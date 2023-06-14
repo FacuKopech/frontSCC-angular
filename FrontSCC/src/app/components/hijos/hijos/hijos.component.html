@@ -1,0 +1,58 @@
+<h1>Mis Hijos</h1>
+<p>{{message}}</p>
+
+<!-- POPUP DATOS INSTITUCION HIJO -->
+<app-datos-institucion-popup *ngIf="openPopupDatosInstitucionHijo"
+[institucion]="institucion"
+(cancelButtonClick)="cerrarDatosInstitucionPopup()">
+</app-datos-institucion-popup>
+
+<!-- POPUP AUSENCIAS HIJO -->
+<app-ausencias-hijo-popup *ngIf="openPopupAusenciasHijo"
+[ausencias]="ausencias" [hijo]="hijo" [message]="messageAusencia"
+(cancelButtonClick)="cerrarAusenciasHijoPopup()">
+</app-ausencias-hijo-popup>
+
+<div class="container" *ngFor="let hijo of hijos">
+  <div class="divContainerHijo">
+    <div class="pNombre">
+      <p>{{hijo.apellido}}, {{hijo.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divInfoHijo">
+        <div class="divDNIHijo">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{hijo.dni}}</label>
+        </div>
+        <div class="divAsistenciaHijo">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{hijo.asistencia}}%</label>
+        </div>
+        <div class="divInstitucion">
+          <label class="labelTitle" for="">Institucion</label>
+          <button class="btnVerInstitucion" (click)="verInstitucion(hijo.institucion)">
+            <span>
+            Ver Institucion
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(hijo.id, hijo)"> Ausencias
+        </button>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <label for="">Institucion: {{hijo.institucion.nombre}}</label>
+<label for="">Institucion: {{hijo.institucion.ciudad}}</label>
+<label for="">Institucion: {{hijo.institucion.direccion}}</label>
+<label for="">Institucion: {{hijo.institucion.telefono}}</label> -->
+

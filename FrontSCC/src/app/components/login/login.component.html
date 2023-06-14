@@ -1,0 +1,54 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<app-olvide-mi-clave-popup class="Popup" *ngIf="showOlvideMiClavePopup"
+(cancelButtonClick)="closeModal()"
+(recuperarButtonClick)="handleRecuperarClick($event)">
+</app-olvide-mi-clave-popup>
+
+<app-recuperar-clave-popup class="Popup" *ngIf="showRecuperarClavePopup"
+(validarButtonClick)="handleValidarTokenClick($event)">
+</app-recuperar-clave-popup>
+
+<app-generacion-nueva-clave-popup class="Popup" *ngIf="showGeneracionNuevaClavePopup"
+(confirmarButtonClick)="handleConfirmarClick($event)">
+</app-generacion-nueva-clave-popup>
+
+<app-success-alert class="alert" *ngIf="showSuccessAlert" [esRecover]="showSuccessAlert"
+(cerrarButtonClick)="closeSuccessAlert()">
+</app-success-alert>
+
+<app-error-alert class="alert" *ngIf="showErrorAlert"
+(cerrarButtonClick)="closeErrorAlert()">
+</app-error-alert>
+
+<div class="wrapper container fadeInDown">
+  <div class="card">
+    <a class="login">Log in</a>
+    <p *ngIf="message != ''" class="errorMessage">
+      {{message}}
+    </p>
+    <div class="inputBox">
+      <input type="text" required="required" id="login" name="username" [(ngModel)]="username">
+      <span class="user">Usuario</span>
+    </div>
+
+    <div class="inputBox">
+      <input required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}" #passwordInpu>
+      <!-- <button (click)="togglePasswordVisibility()" class="password-toggle-button">
+        <i class="far fa-eye" id="togglePassword"></i>
+      </button> -->
+      <span>Clave</span>
+
+    </div>
+
+    <button (click)="LogIn()" class="enter">Login</button>
+    <div class="divOlvideMiClaveButton" >
+      <button class="button" (click)="showOlvideMiClavePopup = true">
+        Olvide mi clave
+      </button>
+    </div>
+  </div>
+</div>

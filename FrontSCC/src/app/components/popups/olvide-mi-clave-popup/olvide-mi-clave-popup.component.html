@@ -1,0 +1,27 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>¿Olvidaste tu clave?</h2>
+        <h3>No hay problema!</h3>
+      </div>
+
+      <h3>Por favor, ingresa tu email:</h3>
+      <span id="generalError" class="error"></span>
+      <br>
+
+      <label>Email</label>
+      <input #emailInput type="email" [(ngModel)]="email" name="email" required />
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary cancelarButton">Cancelar</button>
+        <button class="button" (click)="recuperarClicked()">
+          Recuperar clave
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

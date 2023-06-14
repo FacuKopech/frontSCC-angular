@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\FrontSCC",
+    "\\FrontSCC\\src",
+    "\\FrontSCC\\src\\app",
+    "\\FrontSCC\\src\\app\\components",
+    "\\FrontSCC\\src\\app\\components\\editar-nota-popup",
+    "\\FrontSCC\\src\\app\\components\\notas-emitidas",
+    "\\FrontSCC\\src\\app\\services"
+  ],
+  "SelectedNode": "\\FrontSCC\\src\\app\\components\\notas-emitidas\\notas-emitidas.component.html",
+  "PreviewInSolutionExplorer": false
+}

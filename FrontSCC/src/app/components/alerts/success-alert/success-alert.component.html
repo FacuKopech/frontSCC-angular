@@ -1,0 +1,22 @@
+<div class="alertBody fadeInDown">
+  <div class="modal-content">
+    <div class="icon-box">
+      <img src="https://icons-for-free.com/iconfiles/png/512/complete+done+green+success+valid+icon-1320183462969251652.png" alt="">
+    </div>
+
+  </div>
+  <div class="alertTextContainer">
+    <div class="text-center">
+      <h4>Excelente!</h4>
+      <p *ngIf="esModification">Nota modificada con exito!</p>
+      <p *ngIf="esDeletion">Nota eliminada con exito!</p>
+      <p *ngIf="esResset">Clave modificada con exito!</p>
+      <p *ngIf="esRecover">Clave recuperada con exito!</p>
+      <p *ngIf="esResset">Al hacer click en 'Aceptar' se cerrara tu sesion y deberas loguearte nuevamente con la nueva clave.</p>
+      <p *ngIf="esRecover">Ya puedes iniciar sesion con tu nueva clave.</p>
+      <div class="divCloseButton">
+        <button type="button" (click)="cerrarClicked()" class="closeButton" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

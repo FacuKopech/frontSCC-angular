@@ -1,0 +1,502 @@
+.popup {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: _ngcontent-awe-c49_fadeInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  width: -webkit-fill-available;
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+}
+
+
+    .radio-button-container {
+      display: none;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    .radioButtonLabel{
+      display: none;
+    }
+
+    .radio-button {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 10px;
+      position: relative;
+      align-items: center;
+    }
+
+    .radio-button input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .radio {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      transform: translateZ(-25px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .radio::before {
+      position: absolute;
+      content: '';
+      width: 10px;
+      height: 10px;
+      top: 5px;
+      left: 5px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .radio-button input[type="radio"]:checked + .radio {
+      border-color: #5cb85c;
+      transform: translateZ(0px);
+      background-color: #fff;
+    }
+
+    .radio-button input[type="radio"]:checked + .radio::before {
+      opacity: 1;
+    }
+
+    .divAulaDestinada{
+      display: none;
+      flex-direction: column;
+    }
+
+    .divAlumnoReferido{
+      display: none;
+      flex-direction: column;
+    }
+
+    .dropdown{
+      display: none;
+    }
+
+    .labelDropdown{
+      display: none;
+    }
+
+    .check {
+      cursor: pointer;
+      position: relative;
+      margin: auto;
+      width: 18px;
+      height: 18px;
+      -webkit-tap-highlight-color: transparent;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .check:before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(34,50,84,0.03);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .check svg {
+      position: relative;
+      z-index: 1;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: #c8ccd4;
+      stroke-width: 1.5;
+      transform: translate3d(0, 0, 0);
+      transition: all 0.2s ease;
+    }
+
+    .check svg path {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 0;
+    }
+
+    .check svg polyline {
+      stroke-dasharray: 22;
+      stroke-dashoffset: 66;
+    }
+
+    .check:hover:before {
+      opacity: 1;
+    }
+
+    .check:hover svg {
+      stroke: #4285f4;
+    }
+
+    #cbx:checked + .check svg {
+      stroke: #4285f4;
+    }
+
+    #cbx:checked + .check svg path {
+      stroke-dashoffset: 60;
+      transition: all 0.3s linear;
+    }
+
+    #cbx:checked + .check svg polyline {
+      stroke-dashoffset: 42;
+      transition: all 0.2s linear;
+      transition-delay: 0.15s;
+    }
+
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.closeButtonHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -28px;
+  margin-left: 530px;
+}
+.close[_ngcontent-lkn-c53] {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+.titleHeader {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+}
+a {
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+form {
+
+  flex-direction: column;
+  background-color: #28282B;
+  border-radius: 3%;
+  border: 4px solid darkgreen;
+}
+
+h3 {
+  font-size: 24px;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.formContent {
+  display: flex;
+  flex-direction: column;
+  margin: 4%;
+}
+
+.container {
+  background-color: #28282B;
+  margin-top: 26px;
+  margin-bottom: 13px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.customButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cancelarButton{
+  border-radius: 16px;
+}
+.cancelarButton:hover{
+    background-color: red;
+}
+
+.button {
+  --color: #ffff00;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+}
+
+  .button::before, .button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+  }
+
+  .button::before {
+    top: -1em;
+    left: -1em;
+  }
+
+  .button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+  }
+
+  .button:hover::before, .button:hover::after {
+    height: 410px;
+    width: 410px;
+  }
+
+  .button:hover {
+    color: rgb(10, 25, 30);
+  }
+
+  .button:active {
+    filter: brightness(.8);
+  }
+
+input[type=text], input[type=number], input[type=email], input[type=datetime], select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white;
+  background-color: cadetblue;
+}
+
+.dropdown-toggle{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white;
+  background-color: cadetblue;
+}
+
+.dropdown-menu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: black;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  z-index: 1;
+}
+
+.dropdown-menu.show {
+  display: flex;
+  justify-content: center;
+}
+
+.check {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  color: white;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+.divSVG{
+  margin-right: 10px;
+}
+
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34,50,84,0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+
+.check:hover:before {
+  opacity: 1;
+}
+
+.check:hover svg {
+  stroke: darkgreen;
+}
+
+.inputCheck:checked + .check svg {
+  stroke: darkgreen;
+}
+
+.inputCheck:checked + .check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
+
+.inputCheck:checked + .check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
+}
+
+
+input[disabled] {
+  background-color: #28282B;
+}
+
+.sendButton {
+  font-family: inherit;
+  font-size: 20px;
+  background: darkgreen;
+  color: white;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.sendButton span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.sendButton svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sendButton:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.sendButton:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.sendButton:hover span {
+  transform: translateX(5em);
+}
+
+.sendButton:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+
+#myTextarea{
+  position: relative;
+  z-index: 1000;
+}
+

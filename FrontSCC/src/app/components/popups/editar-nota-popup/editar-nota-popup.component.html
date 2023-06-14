@@ -1,0 +1,35 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Modificar nota</h2>
+      </div>
+
+      <h3>Solo los campos 'Titulo', 'Cuerpo' y 'Id de Aula Destinada' pueden ser modificados.</h3>
+
+      <br>
+
+      <label>Titulo</label>
+      <input type="text" value="{{nota.titulo}}" [(ngModel)]="tituloNota" name="tituloNota" />
+
+      <label>Cuerpo</label>
+      <input type="text" value="{{nota.cuerpo}}" [(ngModel)]="cuerpoNota" name="cuerpoNota" >
+
+      <label>Id del aula destinada</label>
+      <input type="number" value="{{nota.aulaDestinada.id}}" [(ngModel)]="aulaDestinadaIdNota" name="aulaDestinadaIdNota">
+
+      <label>Nombre del aula</label>
+      <input type="text" value="{{nota.aulaDestinada.nombre}}" disabled>
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary cancelarButton">Cancelar</button>
+        <button class="button" (click)="editarClicked()">
+          Modificar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

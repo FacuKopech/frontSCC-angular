@@ -1,0 +1,37 @@
+<div class="overlay">
+  <div class="popup fadeInDown">
+    <div class="popupHeader">
+      <div class="popupTitulo">
+        <h2>Ausencias de {{hijo.apellido}}, {{hijo.nombre}} </h2>
+        <p>{{message}}</p>
+      </div>
+    </div>
+
+
+      <div #divContent class="container" >
+        <div class="divAusencia" *ngFor="let ausencia of ausencias" [ngStyle]="getBackgroundColor(ausencia)">
+          <div class="divFechaComienzo">
+            <p class="pFechaComienzo">{{ausencia.fechaComienzo.substring(0,10)}}</p>
+          </div>
+          <div class="divContainerData">
+            <div class="divData">
+              <label class="labelTitle" for="">Motivo: </label>
+              <label class="labelData" for="">{{ausencia.motivo}}</label>
+            </div>
+            <div class="divData">
+              <label class="labelTitle" for="">Fecha de Fin: </label>
+              <label class="labelData" for="">{{ausencia.fechaFin.substring(0,10)}}</label>
+            </div>
+            <div class="divData">
+              <label class="labelTitle" for="">Fecha de Emision: </label>
+              <label class="labelData" for="">{{ausencia.fechaEmision.substring(0,10)}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="popupCloseButton">
+      <button class="close" (click)="cancelarClicked()">Cerrar</button>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,7 @@ export class LoginComponent {
   showErrorAlert = false;
   token: string = '';
   showPassword: boolean = false;
+  emailUser: string='';
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -48,6 +49,7 @@ export class LoginComponent {
   }
 
   public handleRecuperarClick(eventData: { email: string}){
+    this.emailUser = eventData.email;
     this.apiService.RecuperarClave(eventData.email).subscribe(res => {
       if(!res.includes("ERROR")){
         this.showOlvideMiClavePopup = false;
@@ -60,7 +62,7 @@ export class LoginComponent {
     });
   }
   public handleValidarTokenClick(eventData: {token: string}){
-    if(eventData.token == this.token){
+    if(eventData.token.toUpperCase() == this.token){
       this.showRecuperarClavePopup = false;
       this.showGeneracionNuevaClavePopup = true;
     }else{
@@ -69,7 +71,7 @@ export class LoginComponent {
   }
 
   public handleConfirmarClick(eventData: {nuevaClave: string}){
-    const clave = {claveNueva: eventData.nuevaClave}
+    const clave = {claveNueva: eventData.nuevaClave, emailUsuario: this.emailUser}
     this.apiService.RecuperacionClave(clave).subscribe(res => {
       this.showGeneracionNuevaClavePopup = false;
       if(res){

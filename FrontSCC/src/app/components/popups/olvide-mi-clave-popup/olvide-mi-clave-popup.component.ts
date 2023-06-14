@@ -20,6 +20,18 @@ export class OlvideMiClavePopupComponent {
   }
 
   public recuperarClicked = () => {
-    this.recuperarButtonClick.emit({email: this.email});
+    const emailError = document.querySelector(`span[id="emailError"]`) as HTMLElement;
+    if(!this.emailInput.nativeElement.value.includes('@') || !this.emailInput.nativeElement.value.includes('.com')){
+      emailError.textContent = "Debe ingresar un email valido";
+      emailError.style.display = "flex";
+      emailError.style.color = "red";
+      emailError.style.fontWeight = "bold";
+    }
+    else{
+      emailError.textContent = "";
+      emailError.style.display = "none";
+      this.recuperarButtonClick.emit({email: this.email});
+    }
+
   }
 }

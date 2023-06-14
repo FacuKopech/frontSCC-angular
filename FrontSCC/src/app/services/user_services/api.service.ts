@@ -34,7 +34,7 @@ export class ApiService {
     return this.http.get<string>(this.hostUrl + `/Usuarios/RecuperarClave/${email}`, HTTPOptions)
   }
 
-  public RecuperacionClave(clave: {claveNueva: string}): Observable<boolean> {
+  public RecuperacionClave(clave: {claveNueva: string, emailUsuario: string}): Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Usuarios/RecuperacionClave/`, clave)
   }
 

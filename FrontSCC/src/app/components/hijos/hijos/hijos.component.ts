@@ -24,7 +24,7 @@ export class HijosComponent {
   public hijo: any;
 
   ngOnInit(): void{
-    this.personaService.ObtenerNotasEmitidas().subscribe(res => {
+    this.personaService.ObtenerMisHijos().subscribe(res => {
       this.message = "";
       if(res){
         this.hijos = res;
@@ -44,7 +44,7 @@ export class HijosComponent {
 
   public verAusencias(idHijo: number, hijo: any){
     this.openPopupAusenciasHijo = true;
-    this.ausenciaService.ObtenerNotasEmitidas(idHijo).subscribe(res => {
+    this.ausenciaService.ObtenerAusenciasHijo(idHijo).subscribe(res => {
       if(res){
         this.ausencias = res;
         this.hijo = hijo;

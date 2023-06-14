@@ -11,7 +11,7 @@ export class PersonaService {
   private hostUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  public ObtenerNotasEmitidas(): Observable<any> {
+  public ObtenerMisHijos(): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Personas/ObtenerMisHijos`);
   }
 }

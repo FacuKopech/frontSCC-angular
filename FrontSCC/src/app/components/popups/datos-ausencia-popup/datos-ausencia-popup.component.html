@@ -1,0 +1,59 @@
+<div class="overlay">
+  <div class="popup fadeInDown">
+    <div class="popupHeader">
+      <div class="popupTitulo">
+        <h2>Ausencia</h2>
+      </div>
+      <div class="spanError">
+        <span id="generalError"></span>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="divConInput">
+        <label class="campos">Motivo: </label>
+        <input #motivoInput value="{{ausencia.motivo}}" type="text" name="motivoAusencia" id="" [(ngModel)]="motivoAusencia" disabled>
+      </div>
+      <div class="divConInput">
+        <label class="campos">Fecha de comienzo: </label>
+        <input #fechaComienzoInput value={{ausencia.fechaFin}} type="date" name="fechaComienzo" id="" [ngModel]="fechaComienzo | date:'yyyy-MM-dd'"
+        (ngModelChange)="fechaComienzo = $event" disabled>
+      </div>
+      <div class="divConInput">
+        <label class="campos">Fecha de fin: </label>
+        <input #fechaFinInput value={{ausencia.fechaFin}} type="date" name="fechaFin" id="" [ngModel]="fechaFin | date:'yyyy-MM-dd'"
+        (ngModelChange)="fechaFin = $event" disabled>
+      </div>
+      <div class="divConLabel">
+        <label class="campos">Fecha de emision: </label> <label>{{ausencia.fechaEmision.substring(0,10)}}</label>
+      </div>
+      <div class="divConLabel">
+        <label class="campos" >Justificada:</label> <label for="">{{ausencia.justificada}}</label>
+      </div>
+    </div>
+    <div class="divActionButtons">
+      <div class="popupCloseButton">
+        <button class="close-button" title="Cerrar" (click)="cancelarClicked()">
+          <svg class="close-svgIcon" viewBox="0 0 362 362">
+            <path d="M 90.998 91.502 L 72.515 110.005 107.502 145.002 L 142.489 180.000 107.742 214.758 L 72.995 249.515 91.500 268.000 L 110.005 286.485 144.765 251.735 L 179.524 216.986 214.260 251.774 L 248.996 286.562 267.770 267.788 L 286.545 249.014 251.522 214.257 L 216.500 179.500 251.500 144.761 L 286.500 110.022 268.008 91.509 L 249.515 72.995 214.758 107.742 L 180.000 142.489 145.245 107.745 C 126.129 88.635 110.262 73.000 109.985 73.000 C 109.707 73.000 101.163 81.326 90.998 91.502 "></path>
+                          </svg>
+          </button>
+      </div>
+      <div class="popupDeleteButton">
+        <button class="delete-button" title="Eliminar" (click)="deleteClicked()">
+          <svg class="delete-svgIcon" viewBox="0 0 512 512">
+                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                          </svg>
+          </button>
+      </div>
+      <div class="popupEditButton">
+
+        <button class="edit-button" title="Editar" (click)="editClicked()">
+          <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                            <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

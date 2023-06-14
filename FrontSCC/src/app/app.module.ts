@@ -29,6 +29,8 @@ import { GeneracionNuevaClavePopupComponent } from './components/popups/generaci
 import { HijosComponent } from './components/hijos/hijos/hijos.component';
 import { DatosInstitucionPopupComponent } from './components/popups/datos-institucion-popup/datos-institucion-popup.component';
 import { AusenciasHijoPopupComponent } from './components/popups/ausencias-hijo-popup/ausencias-hijo-popup.component';
+import { GoBackButtonComponent } from './components/go-back-button/go-back-button.component';
+import { DatosAusenciaPopupComponent } from './components/popups/datos-ausencia-popup/datos-ausencia-popup.component';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { AusenciasHijoPopupComponent } from './components/popups/ausencias-hijo-
     GeneracionNuevaClavePopupComponent,
     HijosComponent,
     DatosInstitucionPopupComponent,
-    AusenciasHijoPopupComponent
+    AusenciasHijoPopupComponent,
+    GoBackButtonComponent,
+    DatosAusenciaPopupComponent
   ],
   imports: [
     BrowserModule,

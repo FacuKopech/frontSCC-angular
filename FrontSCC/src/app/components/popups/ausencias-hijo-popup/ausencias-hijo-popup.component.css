@@ -76,7 +76,7 @@
     overflow: scroll;
     max-height: 479px;
     overflow-x: hidden;
-    background-color: aquamarine;
+    background-color: white;
 }
 
 .container::-webkit-scrollbar {
@@ -95,7 +95,7 @@
   background: #555;
 }
 
-.divAusencia{
+.btnAusencia{
   width: max-content;
   transition: transform 0.3s ease;
   border-radius: 12px;
@@ -103,9 +103,11 @@
   width: 400px;
   margin-bottom: 12px;
   margin-top: 10px;
+  border: none;
+  box-shadow: 6px 6px 9px gray, -8px -8px 6px gray;
 }
 
-.divAusencia:hover{
+.btnAusencia:hover{
   transform: scale(1.09);
 }
 
@@ -120,12 +122,24 @@
   color: black;
 }
 
+.divContainerData{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.divMotivoTitle{
+  display: flex;
+  justify-content: center;
+}
+/*
 .divData{
   display: flex;
   justify-content: space-between;
   margin-left: 10px;
     margin-right: 10px;
-}
+} */
 
 .labelTitle{
   text-decoration-line: underline;

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { PersonaService } from 'src/app/services/personas_services/persona.service';
-import { DatosInstitucionPopupComponent } from '../../popups/datos-institucion-popup/datos-institucion-popup.component';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-hijos',
@@ -10,7 +10,7 @@ import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.se
 })
 export class HijosComponent {
 
-  constructor(private personaService: PersonaService, private ausenciaService: AusenciaService) {
+  constructor(private personaService: PersonaService, private ausenciaService: AusenciaService, private location: Location) {
   }
 
   public hijos: any[] = [];
@@ -34,6 +34,10 @@ export class HijosComponent {
         }
       }
     });
+  }
+
+  public goBack(){
+    this.location.back();
   }
 
   public verInstitucion(institucion: any){

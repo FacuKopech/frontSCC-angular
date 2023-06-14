@@ -7,27 +7,28 @@
       </div>
     </div>
 
+    <app-datos-ausencia-popup *ngIf="openDatosAusenciaPopup"
+    [ausencia]="ausencia"
+    [idHijo]="idHijo"
+    (cancelButtonClick)="handleCancelarClicked()"
+    (deleteButtonClick)="handleDeleteClicked($event)"
+    (editButtonClick)="handleEditClicked($event)">
+    </app-datos-ausencia-popup>
 
       <div #divContent class="container" >
-        <div class="divAusencia" *ngFor="let ausencia of ausencias" [ngStyle]="getBackgroundColor(ausencia)">
-          <div class="divFechaComienzo">
-            <p class="pFechaComienzo">{{ausencia.fechaComienzo.substring(0,10)}}</p>
-          </div>
-          <div class="divContainerData">
-            <div class="divData">
-              <label class="labelTitle" for="">Motivo: </label>
-              <label class="labelData" for="">{{ausencia.motivo}}</label>
+          <button (click)="verAusencia(ausencia, hijo.id)" class="btnAusencia" *ngFor="let ausencia of ausencias" [ngStyle]="getBackgroundColor(ausencia)">
+            <div class="divFechaComienzo">
+              <p class="pFechaComienzo">{{ausencia.fechaComienzo.substring(0,10)}}</p>
             </div>
-            <div class="divData">
-              <label class="labelTitle" for="">Fecha de Fin: </label>
-              <label class="labelData" for="">{{ausencia.fechaFin.substring(0,10)}}</label>
+            <div class="divContainerData">
+              <div class="divMotivoTitle">
+                <label class="labelTitle" for="">Motivo: </label>
+              </div>
+              <div class="divMotivoData">
+                <label class="labelData" for="">{{ausencia.motivo}}</label>
+              </div>
             </div>
-            <div class="divData">
-              <label class="labelTitle" for="">Fecha de Emision: </label>
-              <label class="labelData" for="">{{ausencia.fechaEmision.substring(0,10)}}</label>
-            </div>
-          </div>
-        </div>
+          </button>
       </div>
 
     <div class="popupCloseButton">
@@ -35,3 +36,4 @@
     </div>
   </div>
 </div>
+

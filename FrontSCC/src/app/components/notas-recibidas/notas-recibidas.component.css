@@ -147,3 +147,7 @@ color: darkgreen;
   justify-content: center;
 }
 
+.goBackComp{
+  display: flex;
+  justify-content: center;
+ }

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NotaService } from '../../services/notas_services/nota.service';
 import {LeerNotaPopupComponent} from '../popups/leer-nota-popup/leer-nota-popup.component'
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-notas-recibidas',
   templateUrl: './notas-recibidas.component.html',
@@ -10,7 +10,7 @@ import {LeerNotaPopupComponent} from '../popups/leer-nota-popup/leer-nota-popup.
 export class NotasRecibidasComponent {
   @ViewChild(LeerNotaPopupComponent) popupEditarNota!: LeerNotaPopupComponent;
 
-  constructor(private notaService: NotaService)  {
+  constructor(private notaService: NotaService, private location: Location)  {
     this.popupEditarNota = new LeerNotaPopupComponent();
   }
 
@@ -34,6 +34,10 @@ export class NotasRecibidasComponent {
         }
       }
     });
+  }
+
+  public goBack(){
+    this.location.back();
   }
 
   public openDeletion(idNota: number): void {

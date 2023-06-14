@@ -1,0 +1,34 @@
+<div class="overlay">
+  <div class="popup fadeInDown">
+    <div class="popupHeader">
+      <div class="popupTitulo">
+        <h2>Nota</h2>
+      </div>
+    </div>
+
+    <div class="content">
+      <div>
+        <label class="campos">Titulo: </label> <label for=""> {{nota.titulo}}</label>
+      </div>
+      <div>
+        <label class="campos">Fecha: </label> <label for="">{{nota.fecha}}</label>
+      </div>
+      <div>
+        <label class="campos">Emisor: </label> <label for="">{{nota.emisor.email}}</label>
+      </div>
+      <div>
+        <label class="campos">Referido: </label> <label *ngIf="nota.referido != null" for="">{{nota.referido.apellido}}, {{nota.referido.nombre}}</label> <label *ngIf="nota.referido == null" for="">No hay alumno referido</label>
+      </div>
+      <div>
+        <label class="campos" >Tipo:</label> <label *ngIf="nota.tipo == 1" for="">  Generica</label><label *ngIf="nota.tipo == 2" for=""> Particular</label>
+      </div>
+      <div class="cuerpoNota">
+        <label class="campos" for="">Cuerpo de nota</label>
+        <p>{{nota.cuerpo}}</p>
+      </div>
+    </div>
+    <div class="popupCloseButton">
+      <button class="close" (click)="cancelarClicked()">Cerrar</button>
+    </div>
+  </div>
+</div>

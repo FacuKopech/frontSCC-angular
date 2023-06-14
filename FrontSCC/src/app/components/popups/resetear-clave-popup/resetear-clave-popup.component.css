@@ -1,0 +1,184 @@
+.popup {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: _ngcontent-awe-c49_fadeInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  position: absolute;
+  z-index: 9999;
+}
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.closeButtonHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -28px;
+  margin-left: 530px;
+}
+.close[_ngcontent-lkn-c53] {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+.titleHeader {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+}
+a {
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+form {
+
+  flex-direction: column;
+  background-color: #28282B;
+  border-radius: 3%;
+  border: 4px solid #0a90a5;
+}
+
+h3 {
+  font-size: 24px;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.formContent {
+  display: flex;
+  flex-direction: column;
+  margin: 4%;
+}
+
+.container {
+  background-color: #28282B;
+  margin-top: 26px;
+  margin-bottom: 13px;
+}
+.customButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.cancelarButton:hover{
+    background-color: red;
+}
+
+.button {
+  --color: #0a90a5;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  color: var(--color);
+  z-index: 1;
+}
+
+  .button::before, .button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+  }
+
+  .button::before {
+    top: -1em;
+    left: -1em;
+  }
+
+  .button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+  }
+
+  .button:hover::before, .button:hover::after {
+    height: 410px;
+    width: 410px;
+  }
+
+  .button:hover {
+    color: rgb(10, 25, 30);
+  }
+
+  .button:active {
+    filter: brightness(.8);
+  }
+
+input[type=password]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white;
+  background-color: cadetblue;
+}
+
+

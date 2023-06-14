@@ -1,0 +1,34 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Resetear Clave</h2>
+      </div>
+
+      <h3>Por favor, completa los siguientes campos:</h3>
+      <span id="generalError" class="error"></span>
+      <br>
+
+      <label>Clave actual</label>
+      <input #claveActualInput type="password" [(ngModel)]="claveActual" name="claveActual" />
+
+      <label>Nueva clave</label>
+      <input #claveNuevaInput type="password" [(ngModel)]="claveNueva" name="claveNueva">
+      <span id="claveError" class="error"></span>
+
+      <label>Confirme su nueva clave</label>
+      <input #confirmacionClaveInput type="password" [(ngModel)]="confirmacionClaveNueva" name="confirmacionClaveNueva">
+      <span id="confirmacion" class="error"></span>
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary cancelarButton">Cancelar</button>
+        <button class="button" (click)="resetearClicked()">
+          Resetear clave
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

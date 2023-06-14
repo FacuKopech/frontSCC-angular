@@ -1,0 +1,449 @@
+
+/* BASIC */
+
+html {
+  background-color: #56baed;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px;
+  color: #1efd00;
+}
+
+.errorMessage{
+    color:red;
+    font-weight: 900;
+}
+/* STRUCTURE */
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  margin-top: 65px;
+
+}
+
+#formContent {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: rgb(66, 63, 63);
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+#formFooter {
+  background-color: white;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+
+/* TABS */
+
+h2.inactive {
+  color: #cccccc;
+}
+
+h2.active {
+  color: #0d0d0d;
+  border-bottom: 2px solid #5fbae9;
+}
+
+/* FORM TYPOGRAPHY*/
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #56baed;
+  border: none;
+  color: black;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(6 15 20 / 40%);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+  background-color: #39ace7;
+}
+
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=text]:placeholder {
+  color: #cccccc;
+}
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fadeIn {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.fadeIn.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.fadeIn.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.button {
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #17C3B2;
+  transition: all 1000ms;
+  font-size: 11px;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid black;
+}
+
+button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 2px solid #70bdca;
+  box-shadow: 4px 5px 17px -4px #268391;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #2c9caf;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+button:hover::before {
+  width: 350%;
+}
+
+
+
+
+/* OTHERS */
+
+*:focus {
+    outline: none;
+}
+
+#icon {
+  width:60%;
+}
+
+button {
+  padding: 0.8em 1.8em;
+  border: 2px solid #17C3B2;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  transition: .3s;
+  z-index: 1;
+  font-family: inherit;
+  color: #17C3B2;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+}
+
+  button::before {
+    content: '';
+    width: 0;
+    height: 500%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #17C3B2;
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+  }
+
+  button:hover::before {
+    width: 105%;
+  }
+
+  button:hover {
+    color: #111;
+  }
+.password-toggle-button{
+  border: none;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  font-size: 16px;
+  transition: .3s;
+  z-index: 1;
+  color: #17C3B2;
+  border-radius: 10px;
+  margin: 5px 20px 40px 20px;
+}
+
+.login {
+  color: #56baed;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+  width: 300px;
+  flex-direction: column;
+  gap: 35px;
+  background: #28282B;
+  box-shadow: 16px 16px 32px #28282B, -16px -16px 32px #28282B;
+  border-radius: 8px;
+}
+
+.inputBox {
+  position: relative;
+  width: 250px;
+}
+
+  .inputBox input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    background: transparent;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    transition: 0.1s;
+    border-bottom-left-radius: 8px;
+  }
+
+  .inputBox span {
+    margin-top: 5px;
+    position: absolute;
+    left: 0;
+    transform: translateY(-4px);
+    margin-left: 10px;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 3px;
+    border-radius: 8px;
+  }
+
+  .inputBox input:valid ~ span,
+  .inputBox input:focus ~ span {
+    transform: translateX(113px) translateY(-15px);
+    font-size: 0.8em;
+    padding: 5px 10px;
+    background: #000;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+  }
+
+  .inputBox input:valid,
+  .inputBox input:focus {
+    border: 2px solid #000;
+    border-radius: 8px;
+  }
+
+.enter {
+  height: 45px;
+  width: 100px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.5s;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
+}
+
+  .enter:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+  }
+
+  .Popup{
+    display: flex;
+    justify-content: center;
+  }
+
+  .alert{
+    display: flex;
+    justify-content: center;
+  }
+
+

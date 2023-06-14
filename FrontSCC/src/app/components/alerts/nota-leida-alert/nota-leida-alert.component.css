@@ -1,0 +1,99 @@
+.alertBody{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 525px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+}
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.modal-content{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: end;
+    background-color: yellow;
+}
+.icon-box{
+  margin-left: 210px;
+}
+img{
+  width: 113px;
+}
+
+.alertTextContainer{
+  width: 100%;
+  background-color: whitesmoke;
+  height: 87px;
+  height: fit-content;
+}
+
+.text-center{
+  color: black;
+  margin-top: 12px;
+  font-family: 'Capriola', sans-serif;
+}
+
+.divCloseButton{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 13px;
+}
+.closeButton{
+  transition: all 200ms;
+    font-size: 30px;
+    text-decoration: none;
+    text-decoration-line: none;
+    background: none;
+    border: 2px solid darkgreen;
+    border-radius: 20px;
+}
+
+.closeButton:hover{
+  background-color: darkgreen;
+    color: white;
+}

@@ -1,0 +1,27 @@
+<div class="overlay">
+  <div class="popup fadeInDown">
+    <div class="popupHeader">
+      <div class="popupTitulo">
+        <h2>Institucion</h2>
+      </div>
+    </div>
+
+    <div class="content">
+      <div>
+        <label class="campos">Nombre: </label> <label for="">{{institucion.nombre}}</label>
+      </div>
+      <div>
+        <label class="campos">Ciudad: </label> <label for="">{{institucion.ciudad}}</label>
+      </div>
+      <div>
+        <label class="campos">Direccion: </label> <label for="">{{institucion.direccion}}</label>
+      </div>
+      <div>
+        <label class="campos">Telefono: </label> <label for="">{{institucion.telefono}}</label>
+      </div>
+    </div>
+    <div class="popupCloseButton">
+      <button class="close" (click)="cancelarClicked()">Cerrar</button>
+    </div>
+  </div>
+</div>

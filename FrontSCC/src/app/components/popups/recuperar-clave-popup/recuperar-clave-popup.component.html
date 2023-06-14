@@ -1,0 +1,25 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Recuperar Clave</h2>
+      </div>
+
+      <h3>Por favor, ingresa el Token de seguridad que recibiste en tu email:</h3>
+      <br>
+
+      <label>Token</label>
+      <input #tokenInput type="text" [(ngModel)]="token" name="token" />
+      <span id="tokenError" class="error"></span>
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button class="button" (click)="validarClicked()">
+          Validar Token
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

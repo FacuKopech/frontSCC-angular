@@ -1,0 +1,186 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+  align-content: center;
+}
+
+.divContainerHijo{
+  background-color: #28282bbd;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 14px;
+  height: fit-content;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.divContainerHijo:hover{
+  transform: scale(1.2);
+
+}
+
+.pNombre{
+  display: flex;
+  justify-content: center;
+}
+
+.pNombre p{
+  font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+.divContainerInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.divInfoHijo{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.divDNIHijo{
+  display: flex;
+    justify-content: space-between;
+}
+
+
+.divAsistenciaHijo{
+  display: flex;
+    justify-content: space-between;
+}
+
+.divInstitucion{
+  display: flex;
+  width: 118%;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.labelTitle{
+  text-decoration-line: underline;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelData{
+  font-size: 22px;
+}
+
+.btnVerInstitucion {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  z-index: 1;
+  position: relative;
+  -webkit-box-shadow: 0 5px 15px rgba(33, 33, 33, .2);
+  box-shadow: 0 5px 15px rgba(33, 33, 33, .2);
+  overflow: hidden;
+  cursor: pointer;
+  width: 132px;
+  height: 30px;
+}
+
+.btnVerInstitucion > span {
+  z-index: 2;
+}
+
+.btnVerInstitucion::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #212121;
+  z-index: -1;
+  overflow: hidden;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+}
+
+.btnVerInstitucion:hover {
+  color: #e8e8e8;
+}
+
+.btnVerInstitucion:hover::before {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+}
+
+.divAusencias{
+  margin-right: 45px;
+}
+
+.divHistoriales{
+  margin-right: 45px;
+}
+
+.btnInfo {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+
+ .btnInfo:hover {
+  color: black;
+ }
+
+ .btnInfo:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+
+ .btnInfo:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }

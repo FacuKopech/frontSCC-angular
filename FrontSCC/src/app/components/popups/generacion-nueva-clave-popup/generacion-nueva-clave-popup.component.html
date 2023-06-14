@@ -1,0 +1,30 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Nueva Clave</h2>
+      </div>
+
+      <h3>Por favor, ingrese su nueva clave:</h3>
+      <span id="generalError" class="error"></span>
+      <br>
+
+      <label>Nueva clave</label>
+      <input #claveNuevaInput type="password" [(ngModel)]="claveNueva" name="claveNueva">
+      <span id="claveError" class="error"></span>
+
+      <label>Confirme su nueva clave</label>
+      <input #confirmacionClaveInput type="password" [(ngModel)]="confirmacionClaveNueva" name="confirmacionClaveNueva">
+      <span id="confirmacion" class="error"></span>
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button class="button" (click)="confirmarClicked()">
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

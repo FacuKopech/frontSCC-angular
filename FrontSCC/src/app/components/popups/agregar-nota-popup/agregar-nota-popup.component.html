@@ -1,0 +1,87 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Agregar nueva nota</h2>
+      </div>
+      <br>
+      <label>Tipo</label>
+      <select name="Tipo de nota" id="tipos" (change)="radioButtonShow()" #options>
+        <option>Tipo de nota</option>
+        <option value="G">Generica</option>
+        <option value="P">Particular</option>
+      </select>
+      <label id="labelRadio" class="radioButtonLabel" #label>Seleccione una opcion: </label>
+      <div id="radioButtonsContainer"  class="radio-button-container" #radioButtons>
+        <label class="radio-button">
+          <input value="conAula" name="example-radio" type="radio" [required]="isRadioButtonVisible" (click)="mostrarAula()">
+          <span class="radio"></span>
+          Para un aula
+        </label>
+        <label class="radio-button">
+          <input value="sinAula" name="example-radio" type="radio" [required]="isRadioButtonVisible" (click)="esconderAula()">
+          <span class="radio"></span>
+          Para persona/s determinada/s
+        </label>
+      </div>
+      <div class="divAulaDestinada" id="divAulaDestinada" #divAulaDestinada>
+        <label>Aula destinada</label>
+        <select  name="" id="">
+          <option selected disabled>Seleccione un Aula</option>
+          <option *ngFor="let aula of aulas" (click)="handleAulaSeleccionada(aula)">{{aula.nombre}}</option>
+        </select>
+      </div>
+      <div class="divAlumnoReferido" #divAlumnoReferido>
+        <label>Alumno referido</label>
+        <select name="" id="">
+          <option selected disabled>Seleccione un Alumno referido</option>
+          <option *ngFor="let alumno of alumnos" (click)="guardarAlumnoSeleccionado(alumno)">{{alumno.apellido}}, {{alumno.nombre}}</option>
+        </select>
+      </div>
+      <label class="labelDropdown" #labelDropdownMenu>Destinatarios</label>
+      <div class="dropdown" #dropdown>
+        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="showDropDownListDestinatarios()">
+          Elija el/los destinatario/s
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" #dropdownMenu>
+          <ng-container *ngFor="let destinatario of destinatarios">
+            <input type="checkbox" id="cbx12" style="display: none;" class="inputCheck" [checked]="destinatarioSelected(destinatario)" (change)="changedSelection(destinatario)">
+          <label for="cbx12" class="check">{{destinatario}}
+            <div class="divSVG" *ngFor="let destinatario of destinatarios" >
+              <svg width="18px" height="18px" viewBox="0 0 18 18" >
+                <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                <polyline points="1 9 7 14 15 4"></polyline>
+              </svg>
+            </div>
+          </label>
+          </ng-container>
+        </div>
+      </div>
+      <label>Titulo</label>
+      <input type="text" name="tituloNota" required/>
+      <label>Cuerpo</label>
+      <textarea id="myTextarea" required></textarea>
+
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary cancelarButton">Cancelar</button>
+      </div>
+      <div class="sendButton">
+        <button class="sendButton" (click)="enviarClicked()">
+          <div class="svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
+              </svg>
+            </div>
+          </div>
+          <span>Enviar</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -34,7 +34,7 @@ export class RecuperarClavePopupComponent {
     }else{
       tokenError.textContent = "";
       tokenError.style.display = "none";
-      this.validarButtonClick.emit({token: this.token});
+      this.validarButtonClick.emit({token: this.token.replace('-', '')});
     }
   }
 }

@@ -52,6 +52,7 @@ export class HijosComponent {
       if(res){
         this.ausencias = res;
         this.hijo = hijo;
+        this.idHijo = idHijo;
         console.log(this.ausencias);
         if(this.ausencias.length == 0){
           this.messageAusencia = "Su hijo/a aun no tiene ninguna ausencia cargada"

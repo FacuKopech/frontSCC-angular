@@ -15,8 +15,12 @@ export class AusenciaService {
     return this.http.get<any>(this.hostUrl + `/Ausencias/ObtenerAusenciasDeAlumno/${idHijo}`);
   }
 
-  public EditarAusencia(ausenciaIdModificar: number, ausencia: { fechaComienzo: Date, fechaFin: Date, motivo: string }): Observable<any> {
-    return this.http.put<any>(this.hostUrl + `/Ausencias/Edit/${ausenciaIdModificar}`, ausencia);
+  public AgregarAusencia(idHijo: number, ausencia: {fechaComienzo: Date, fechaFin: Date, motivo: string}): Observable<boolean> {
+    return this.http.post<boolean>(this.hostUrl + `/Ausencias/AgregarAusencia/${idHijo}`, ausencia);
+  }
+
+  public EditarAusencia(ausenciaIdModificar: number, idHijo: number, ausencia: { fechaComienzo: Date, fechaFin: Date, motivo: string }): Observable<any> {
+    return this.http.put<any>(this.hostUrl + `/Ausencias/EditarAusencia/${ausenciaIdModificar}/${idHijo}`, ausencia);
   }
 
   public EliminarAusencia(idAusencia: number, idHijo: number): Observable<any> {

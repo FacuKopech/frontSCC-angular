@@ -86,11 +86,6 @@
   flex-direction: column;
 }
 
-.divConLabe{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
 
 .campos{
   margin-right: 10px;
@@ -99,9 +94,6 @@
   font-weight: 500;
 }
 
-.cuerpoNota{
-  text-align: center;
-}
 .divActionButtons{
   display: flex;
   flex-direction: row;

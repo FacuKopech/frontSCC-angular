@@ -10,6 +10,9 @@ export class SuccessAlertComponent {
   @Input() esDeletion: any;
   @Input() esResset: any;
   @Input() esRecover: any;
+  @Input() esEditAusencia: any;
+  @Input() esAgregarAusencia: any;
+  @Input() esDeleteAusencia: any;
   constructor() {
   }
 

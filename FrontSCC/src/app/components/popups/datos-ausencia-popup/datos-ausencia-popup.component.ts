@@ -14,6 +14,8 @@ export class DatosAusenciaPopupComponent {
   fechaFin: Date;
   motivoAusencia: string = '';
   count: number = 0;
+  openConfirmDeletePopup=false;
+  itemForDelete: string = '';
 
   constructor(){
     this.fechaComienzo = new Date();
@@ -37,11 +39,20 @@ export class DatosAusenciaPopupComponent {
     this.fechaFin = this.ausencia.fechaFin;
   }
 
+  public openDeletionPopup(){
+    this.openConfirmDeletePopup = true;
+    this.itemForDelete = "ausencia";
+  }
+  public closeDeletionPopup(){
+    this.openConfirmDeletePopup = false;
+  }
+
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
   }
   public deleteClicked() {
     this.deleteButtonClick.emit({idAusencia: this.ausencia.id, idHijo: this.idHijo});
+    this.openConfirmDeletePopup = false;
   }
   public editClicked() {
     this.count += 1;
@@ -53,7 +64,6 @@ export class DatosAusenciaPopupComponent {
     }
     else if(this.count > 1){
       if(this.motivoInput.nativeElement.value == this.ausencia.motivo && this.fechaComienzo == this.ausencia.fechaComienzo && this.fechaFin == this.ausencia.fechaFin){
-        console.log('boludo');
         const errorGeneral =   document.querySelector(`span[id="generalError"]`) as HTMLElement;
         errorGeneral.textContent = "Para modificar una Ausencia debe modificar al menos 1 campo";
         errorGeneral.style.display = "flex";

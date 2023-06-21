@@ -31,6 +31,7 @@ import { DatosInstitucionPopupComponent } from './components/popups/datos-instit
 import { AusenciasHijoPopupComponent } from './components/popups/ausencias-hijo-popup/ausencias-hijo-popup.component';
 import { GoBackButtonComponent } from './components/go-back-button/go-back-button.component';
 import { DatosAusenciaPopupComponent } from './components/popups/datos-ausencia-popup/datos-ausencia-popup.component';
+import { AgregarAusenciaPopupComponent } from './components/popups/agregar-ausencia-popup/agregar-ausencia-popup.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { DatosAusenciaPopupComponent } from './components/popups/datos-ausencia-
     DatosInstitucionPopupComponent,
     AusenciasHijoPopupComponent,
     GoBackButtonComponent,
-    DatosAusenciaPopupComponent
+    DatosAusenciaPopupComponent,
+    AgregarAusenciaPopupComponent
   ],
   imports: [
     BrowserModule,

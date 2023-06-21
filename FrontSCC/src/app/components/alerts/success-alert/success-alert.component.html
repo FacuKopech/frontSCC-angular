@@ -11,9 +11,12 @@
       <p *ngIf="esModification">Nota modificada con exito!</p>
       <p *ngIf="esDeletion">Nota eliminada con exito!</p>
       <p *ngIf="esResset">Clave modificada con exito!</p>
-      <p *ngIf="esRecover">Clave recuperada con exito!</p>
       <p *ngIf="esResset">Al hacer click en 'Aceptar' se cerrara tu sesion y deberas loguearte nuevamente con la nueva clave.</p>
+      <p *ngIf="esRecover">Clave recuperada con exito!</p>
       <p *ngIf="esRecover">Ya puedes iniciar sesion con tu nueva clave.</p>
+      <p *ngIf="esEditAusencia">Ausencia modificada con exito!</p>
+      <p *ngIf="esDeleteAusencia">Ausencia eliminada con exito!</p>
+      <p *ngIf="esAgregarAusencia">Ausencia agregada con exito!</p>
       <div class="divCloseButton">
         <button type="button" (click)="cerrarClicked()" class="closeButton" data-dismiss="modal" aria-hidden="true">Aceptar</button>
       </div>

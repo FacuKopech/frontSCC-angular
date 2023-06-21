@@ -3,10 +3,19 @@
     <div class="divIcon">
       <img src="https://static.vecteezy.com/system/resources/previews/012/042/292/original/warning-sign-icon-transparent-background-free-png.png" alt="">
     </div>
-    <h2>Eliminar nota</h2>
-    <div class="content">
-      Seguro que desea eliminar la nota?
+    <div class="divEliminarNota" *ngIf="itemForDelete == 'nota'">
+      <h2>Eliminar Nota</h2>
+      <div class="content">
+        Seguro que desea eliminar la nota?
+      </div>
     </div>
+    <div class="divEliminarAusencia" *ngIf="itemForDelete == 'ausencia'">
+      <h2>Eliminar Ausencia</h2>
+      <div class="content">
+        Seguro que desea eliminar la ausencia?
+      </div>
+    </div>
+
     &nbsp;
     <div class="container">
       <div class="customButtons">

@@ -11,6 +11,21 @@ export class AgregarNotaPopupComponent {
   constructor(private notaService: NotaService) {
 
   }
+
+  tituloNota: string = '';
+  cuerpoNota: string = '';
+  tipoElegido = '';
+  esConAula=false;
+  public datosParaNota: any;
+  public aulas: any[] = [];
+  public alumnos: any[] = [];
+  public destinatarios: any[] = [];
+  public selectedDestinatarios: any[] = [];
+  public alumnoSeleccionado: any;
+  public aulaSeleccionada: any;
+  public idAula: number = -1;
+  public idAlumno: number = -1;
+
   @Input() tipoUser: string='';
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
@@ -59,19 +74,7 @@ export class AgregarNotaPopupComponent {
     };
     document.head.appendChild(script);
   }
-  tituloNota: string = '';
-  cuerpoNota: string = '';
-  tipoElegido = '';
-  esConAula=false;
-  public datosParaNota: any;
-  public aulas: any[] = [];
-  public alumnos: any[] = [];
-  public destinatarios: any[] = [];
-  public selectedDestinatarios: any[] = [];
-  public alumnoSeleccionado: any;
-  public aulaSeleccionada: any;
-  public idAula: number = -1;
-  public idAlumno: number = -1;
+
 
   radioButtonShow() {
     const selectedOption = this.optionsRef.nativeElement.value;

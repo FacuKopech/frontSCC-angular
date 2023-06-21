@@ -24,6 +24,7 @@ export class NotasRecibidasComponent {
   public message: string = "";
   public notas: any[] = [];
   public notaALeerr: any;
+  itemForDelete: string ='';
 
   public ngOnInit(): void {
     this.notaService.ObtenerNotasRecibidas().subscribe(res => {
@@ -43,6 +44,7 @@ export class NotasRecibidasComponent {
   public openDeletion(idNota: number): void {
     this.openDeletionPopup = true;
     this.notaId = idNota;
+    this.itemForDelete = "nota";
   }
 
   public openLeer(nota: any): void {

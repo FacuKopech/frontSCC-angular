@@ -8,6 +8,7 @@
 <!--POPUP CONFIRMAR ELIMINACION DE NOTA-->
 <confirm class="confirmDeletePopup" (cancelButtonClick)="closeModal()"
 (eliminarButtonClick)="handleDeleteClick()"
+[itemForDelete]="itemForDelete"
 *ngIf="openDeletionPopup">
 </confirm>
 

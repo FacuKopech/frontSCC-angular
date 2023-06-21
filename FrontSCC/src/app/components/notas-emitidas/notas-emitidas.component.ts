@@ -32,6 +32,7 @@ export class NotasEmitidasComponent {
   public notaAModificar: any;
   public notaALeerCuerpo: any;
   public tipoUsuario: string='';
+  itemForDelete: string = '';
 
 
   public ngOnInit(): void {
@@ -53,6 +54,7 @@ export class NotasEmitidasComponent {
   public openDeletion(id: number): void {
     this.openDeletionPopup = true;
     this.notaId = id;
+    this.itemForDelete = "nota";
   }
 
   public openEdition(nota: any): void {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'confirm',
@@ -9,6 +9,7 @@ export class ConfirmComponent {
   constructor() {
   }
 
+  @Input() itemForDelete: string = '';
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()

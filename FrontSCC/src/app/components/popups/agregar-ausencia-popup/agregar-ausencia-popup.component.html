@@ -1,0 +1,34 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Agregar nueva ausencia</h2>
+      </div>
+      <br>
+      <label>Motivo</label>
+      <input #motivoInput type="text"  [(ngModel)]="motivoAusencia" name="motivoAusencia" required/>
+      <span id="motivoError"></span>
+
+      <label>Fecha desde:</label>
+      <input #fechaDesdeInput type="date"  [(ngModel)]="fechaComienzo" name="fechaDesdeAusencia" required/>
+      <span id="fechaDesdeError"></span>
+
+      <label>Fecha hasta:</label>
+      <input #fechaHastaInput type="date"  [(ngModel)]="fechaFin" name="fechaHastaAusencia" required/>
+      <span id="fechaHastaError"></span>
+
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary cancelarButton">Cancelar</button>
+      </div>
+      <div class="divAddBtn">
+        <button class="addBtn" (click)="agregarClicked()">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

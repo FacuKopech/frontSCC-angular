@@ -3,9 +3,23 @@
     <div class="popupHeader">
       <div class="popupTitulo">
         <h2>Ausencias de {{hijo.apellido}}, {{hijo.nombre}} </h2>
-        <p>{{message}}</p>
+        <div class="divMessage">
+          <p class="pMessage">{{message}}</p>
+        </div>
       </div>
     </div>
+
+    <div class="divAgregarAusencia">
+      <button class="icon-btn add-btn" title="Nueva ausencia" (click)="openAgregarAusenciaPopup = true">
+        <div class="add-icon"></div>
+        <div class="btn-txt">Agregar</div>
+      </button>
+    </div>
+
+    <app-agregar-ausencia-popup class="agregarAusenciaPopup" *ngIf="openAgregarAusenciaPopup"
+    (cancelButtonClick)="openAgregarAusenciaPopup = false"
+    (agregarButtonClick)="handleAgregarClick($event)">
+    </app-agregar-ausencia-popup>
 
     <app-datos-ausencia-popup *ngIf="openDatosAusenciaPopup"
     [ausencia]="ausencia"
@@ -14,6 +28,18 @@
     (deleteButtonClick)="handleDeleteClicked($event)"
     (editButtonClick)="handleEditClicked($event)">
     </app-datos-ausencia-popup>
+
+
+    <app-success-alert class="alert" *ngIf="openSuccessAlert"
+    (cerrarButtonClick)="aceptarClicked()"
+    [esEditAusencia]="esEditAusencia"
+    [esDeleteAusencia]="esDeleteAusencia"
+    [esAgregarAusencia]="esAgregarAusencia">
+    </app-success-alert>
+
+    <app-error-alert class="alert" *ngIf="openErrorAlert"
+    (cerrarButtonClick)="cerrarClicked()">
+    </app-error-alert>
 
       <div #divContent class="container" >
           <button (click)="verAusencia(ausencia, hijo.id)" class="btnAusencia" *ngFor="let ausencia of ausencias" [ngStyle]="getBackgroundColor(ausencia)">

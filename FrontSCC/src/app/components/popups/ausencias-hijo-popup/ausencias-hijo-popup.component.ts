@@ -9,10 +9,16 @@ import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.se
 export class AusenciasHijoPopupComponent {
   @Input() ausencias: any[] = [];
   @Input() hijo: any;
-  @Input() message: string='';
-  idHijo: number = -1;
+  @Input() idHijo: number = -1;
+  @Input() message: string ='';
   ausencia: any;
   openDatosAusenciaPopup = false;
+  openSuccessAlert = false;
+  openErrorAlert = false;
+  esDeleteAusencia = false;
+  esEditAusencia = false;
+  esAgregarAusencia = false;
+  openAgregarAusenciaPopup = false;
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
@@ -26,8 +32,10 @@ export class AusenciasHijoPopupComponent {
   getBackgroundColor(ausencia: any): any {
     if (ausencia.justificada == "Si") {
       return { 'background-color': '#17B890' };
-    } else {
+    } else if (ausencia.justificada == "No"){
       return { 'background-color': 'red' };
+    }else{
+      return { 'background-color': 'yellow' };
     }
   }
 
@@ -44,22 +52,42 @@ export class AusenciasHijoPopupComponent {
   public handleDeleteClicked(eventData: { idAusencia: number, idHijo: number }){
     this.ausenciaService.EliminarAusencia(eventData.idAusencia, eventData.idHijo).subscribe(res =>{
       if(res){
-        console.log("ELIMINADA BIEN");
-        window.close();
+        this.openSuccessAlert = true;
+        this.esDeleteAusencia = true;
       }else{
-        console.log("ELIMINADA MAL");
+       this.openErrorAlert = true;
       }
     });
   }
 
-  public handleEditClicked(eventData: { fechaComienzo: Date, fechaFin: Date, motivo: string }){
-    this.ausenciaService.EditarAusencia(this.ausencia.id, eventData).subscribe(res =>{
+  public handleEditClicked(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string }){
+    this.ausenciaService.EditarAusencia(this.ausencia.id, this.idHijo, eventData).subscribe(res =>{
       if(res){
-        console.log("MODIFICADA BIEN");
-        window.close();
+        this.openSuccessAlert = true;
+        this.esEditAusencia = true;
       }else{
-        console.log("MODIFICADA MAL");
+       this.openErrorAlert = true;
       }
     });
+  }
+
+  public handleAgregarClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string}){
+    this.ausenciaService.AgregarAusencia(this.idHijo, eventData).subscribe(res => {
+      if(res){
+        this.openSuccessAlert = true;
+        this.esAgregarAusencia = true;
+      }else{
+        this.openErrorAlert = true;
+      }
+    });
+  }
+
+  public aceptarClicked(){
+    this.openSuccessAlert = false;
+    window.location.reload();
+  }
+
+  public cerrarClicked(){
+    this.openErrorAlert = false;
   }
 }

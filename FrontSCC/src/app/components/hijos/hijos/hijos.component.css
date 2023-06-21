@@ -6,6 +6,11 @@ h1 {
   text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
 }
 
+.divMessage .pMessage{
+  display: flex;
+  justify-content: center;
+}
+
 .container{
   display: flex;
   flex-direction: row;
@@ -37,7 +42,7 @@ h1 {
   justify-content: center;
 }
 
-.pNombre p{
+.pNombre{
   font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
   font-weight: bold;
   text-decoration-line: underline;
@@ -49,6 +54,7 @@ h1 {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 
 .divInfoHijo{
   display: flex;
@@ -62,6 +68,15 @@ h1 {
     justify-content: space-between;
 }
 
+.divGradoHijo{
+  display: flex;
+    justify-content: space-between;
+}
+
+.divDivisionHijo{
+  display: flex;
+    justify-content: space-between;
+}
 
 .divAsistenciaHijo{
   display: flex;
@@ -140,10 +155,16 @@ h1 {
 
 .divAusencias{
   margin-right: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .divHistoriales{
   margin-right: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .btnInfo {

@@ -13,7 +13,6 @@ export class LoginComponent {
 
   constructor(private apiService: ApiService, private router: Router, private appComponent: AppComponent) { }
 
-
   @Input() username: string = "";
   @Input() clave: string = "";
   public message: string = "";
@@ -29,6 +28,8 @@ export class LoginComponent {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
+
+
   public LogIn(): void {
     if (this.username == "" || this.clave == "") {
       this.message = "Debe ingresar sus credenciales para loguearse"

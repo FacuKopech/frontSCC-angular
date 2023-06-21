@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { PersonaService } from 'src/app/services/personas_services/persona.service';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hijos',
@@ -10,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class HijosComponent {
 
-  constructor(private personaService: PersonaService, private ausenciaService: AusenciaService, private location: Location) {
+  constructor(private personaService: PersonaService, private ausenciaService: AusenciaService, private location: Location, private router: Router) {
   }
 
   public hijos: any[] = [];
@@ -22,6 +23,11 @@ export class HijosComponent {
   public institucion: any;
   public idHijo: number = -1;
   public hijo: any;
+  openAgregarAusenciasGenericasPopup = false;
+  esGenerica = false;
+  openSuccessAlert = false;
+  openErrorAlert = false;
+  esAgregarAusenciaGenerica = false;
 
   ngOnInit(): void{
     this.personaService.ObtenerMisHijos().subscribe(res => {
@@ -46,6 +52,10 @@ export class HijosComponent {
     this.openPopupDatosInstitucionHijo = true;
   }
 
+  public verHistoriales(){
+    this.router.navigate(['/historiales_hijo']);
+  }
+
   public verAusencias(idHijo: number, hijo: any){
     this.openPopupAusenciasHijo = true;
     this.ausenciaService.ObtenerAusenciasHijo(idHijo).subscribe(res => {
@@ -63,12 +73,28 @@ export class HijosComponent {
     });
   }
 
+  public handleAgregarAusenciaGenericaClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string}){
+    this.ausenciaService.AgregarAusenciaGenerica(eventData).subscribe(res=>{
+      if(res){
+        this.openSuccessAlert = true;
+        this.esAgregarAusenciaGenerica = true;
+      }else{
+        this.openErrorAlert = true;
+      }
+    });
+  }
+
   public cerrarDatosInstitucionPopup(){
     this.openPopupDatosInstitucionHijo = false;
   }
 
   public cerrarAusenciasHijoPopup(){
     this.openPopupAusenciasHijo = false;
+  }
+
+  public aceptarClicked(){
+    this.openSuccessAlert = false;
+    window.location.reload();
   }
 
 }

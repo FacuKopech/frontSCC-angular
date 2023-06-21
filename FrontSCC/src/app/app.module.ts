@@ -32,6 +32,7 @@ import { AusenciasHijoPopupComponent } from './components/popups/ausencias-hijo-
 import { GoBackButtonComponent } from './components/go-back-button/go-back-button.component';
 import { DatosAusenciaPopupComponent } from './components/popups/datos-ausencia-popup/datos-ausencia-popup.component';
 import { AgregarAusenciaPopupComponent } from './components/popups/agregar-ausencia-popup/agregar-ausencia-popup.component';
+import { HistorialesComponent } from './components/historiales/historiales.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { AgregarAusenciaPopupComponent } from './components/popups/agregar-ausen
     AusenciasHijoPopupComponent,
     GoBackButtonComponent,
     DatosAusenciaPopupComponent,
-    AgregarAusenciaPopupComponent
+    AgregarAusenciaPopupComponent,
+    HistorialesComponent
   ],
   imports: [
     BrowserModule,

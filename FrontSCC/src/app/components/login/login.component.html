@@ -36,7 +36,7 @@
     </div>
 
     <div class="inputBox">
-      <input required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}" #passwordInpu>
+      <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}" #passwordInpu>
       <!-- <button (click)="togglePasswordVisibility()" class="password-toggle-button">
         <i class="far fa-eye" id="togglePassword"></i>
       </button> -->
@@ -44,7 +44,7 @@
 
     </div>
 
-    <button (click)="LogIn()" class="enter">Login</button>
+    <button #loginButton (click)="LogIn()" class="enter">Login</button>
     <div class="divOlvideMiClaveButton" >
       <button class="button" (click)="showOlvideMiClavePopup = true">
         Olvide mi clave

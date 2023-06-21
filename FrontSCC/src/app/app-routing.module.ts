@@ -6,6 +6,7 @@ import { NotasEmitidasComponent } from './components/notas-emitidas/notas-emitid
 import { NotasRecibidasComponent } from './components/notas-recibidas/notas-recibidas.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HijosComponent } from './components/hijos/hijos/hijos.component';
+import { HistorialesComponent } from './components/historiales/historiales.component';
 
 
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'notas_emitidas', component: NotasEmitidasComponent },
   { path: 'notas_recibidas', component: NotasRecibidasComponent },
-  { path: 'hijos', component: HijosComponent }
+  { path: 'hijos', component: HijosComponent },
+  { path: 'historiales_hijo', component: HistorialesComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

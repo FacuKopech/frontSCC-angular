@@ -17,6 +17,7 @@
     </div>
 
     <app-agregar-ausencia-popup class="agregarAusenciaPopup" *ngIf="openAgregarAusenciaPopup"
+    [hijo]="hijo"
     (cancelButtonClick)="openAgregarAusenciaPopup = false"
     (agregarButtonClick)="handleAgregarClick($event)">
     </app-agregar-ausencia-popup>

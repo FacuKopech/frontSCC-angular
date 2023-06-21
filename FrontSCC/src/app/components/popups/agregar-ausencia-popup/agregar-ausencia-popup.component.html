@@ -3,7 +3,9 @@
   <form>
     <div class="formContent">
       <div class="titleHeader">
-        <h2>Agregar nueva ausencia</h2>
+        <h2 *ngIf="esGenerica">Agregar nueva ausencia generica</h2>
+        <p *ngIf="esGenerica">Esta ausencia sera asignada a TODOS sus hijos</p>
+        <h2 *ngIf="!esGenerica">Agregar nueva ausencia para {{hijo.apellido}}, {{hijo.nombre}}</h2>
       </div>
       <br>
       <label>Motivo</label>

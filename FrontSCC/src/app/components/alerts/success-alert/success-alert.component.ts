@@ -13,6 +13,8 @@ export class SuccessAlertComponent {
   @Input() esEditAusencia: any;
   @Input() esAgregarAusencia: any;
   @Input() esDeleteAusencia: any;
+  @Input() esAgregarAusenciaGenerica: any;
+
   constructor() {
   }
 

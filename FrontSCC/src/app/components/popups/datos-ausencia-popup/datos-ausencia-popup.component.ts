@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 
 @Component({
   selector: 'app-datos-ausencia-popup',
@@ -16,8 +17,9 @@ export class DatosAusenciaPopupComponent {
   count: number = 0;
   openConfirmDeletePopup=false;
   itemForDelete: string = '';
+  esAusenciaGenerica = false;
 
-  constructor(){
+  constructor(private ausenciaService: AusenciaService){
     this.fechaComienzo = new Date();
     this.fechaFin = new Date();
   }
@@ -37,6 +39,13 @@ export class DatosAusenciaPopupComponent {
     this.motivoAusencia = this.ausencia.motivo;
     this.fechaComienzo = this.ausencia.fechaComienzo;
     this.fechaFin = this.ausencia.fechaFin;
+    this.ausenciaService.GetEsAusenciaGenerica(this.ausencia.id).subscribe(res => {
+      if(res){
+        this.esAusenciaGenerica = true;
+      }else{
+        this.esAusenciaGenerica = false;
+      }
+    });
   }
 
   public openDeletionPopup(){

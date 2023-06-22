@@ -1,4 +1,60 @@
-<p>historiales works!</p>
+<h1>Historiales de {{hijo.nombre}}</h1>
+<div class="divMessage">
+  <p class="pMessage">{{message}}</p>
+</div>
+
+
+<app-confirmacion-firma-nota-popup *ngIf="openConfirmacionFirmaNotaPopup"
+(cancelButtonClick)="openConfirmacionFirmaNotaPopup = false"
+(firmarButtonClick)="handleFirmarClick()">
+</app-confirmacion-firma-nota-popup>
+
+<!-- REUTILIZO ESTE POPUP PARA CONFIRMAR TOKEN EN FIRMA DE HISTORIAL (mas seguridad)-->
+<app-recuperar-clave-popup class="tokenPopup" *ngIf="openTokenConfirmation"
+(validarButtonClick)="validarToken($event)"
+[esTokenParaFirmaHistorial]="esTokenParaFirmaHistorial">
+</app-recuperar-clave-popup>
+
+
+<app-success-alert class="alert" *ngIf="openSuccessAlert"
+(cerrarButtonClick)="aceptarClick()"
+[esFirmaHistorial]="esFirmaHistorial">
+</app-success-alert>
+
+<app-error-alert class="alert" *ngIf="openErrorAlert"
+(cerrarButtonClick)=" openErrorAlert = false">
+</app-error-alert>
+
+<div class="divPrincipal">
+  <div class="container" *ngFor="let historial of historiales">
+    <div class="divContainerInfo">
+      <div class="divDescripcionHistorial">
+        <label class="labelData" for="">{{historial.descripcion}}</label>
+      </div>
+      <div class="divDataHistorial">
+        <div class="divFechaHistorial">
+          <label class="labelTitle" for="">Fecha:</label>
+          <label class="labelData" for="">{{ historial.fecha | date:'dd/MM/yyyy' }}</label>
+        </div>
+        <div class="divEstadoHistorial">
+          <label class="labelTitle" for="">Estado:</label>
+          <label *ngIf="historial.estado == 1" class="labelData" for="">Aprobado</label>
+          <label *ngIf="historial.estado == 2" class="labelData" for="">No Aprobado</label>
+          <label *ngIf="historial.estado == 3" class="labelData" for="">Entregado</label>
+          <label *ngIf="historial.estado == 4" class="labelData" for="">No Entregado</label>
+          <label *ngIf="historial.estado == 5" class="labelData" for="">Presente</label>
+          <label *ngIf="historial.estado == 6" class="labelData" for="">Ausente</label>
+          <label *ngIf="historial.estado == 7" class="labelData" for="">Observacion</label>
+        </div>
+      </div>
+      <div class="divFirmaHistoriales">
+        <button *ngIf="historial.firmado == false" class="btnInfo" (click)="openConfirmacionFirmaPopup(historial.idHistorial)"> Firmar
+        </button>
+        <label *ngIf="historial.firmado == true" for="">Firmado</label>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <app-go-back-button class="goBackComp" (backButtonClick)="goBack()">

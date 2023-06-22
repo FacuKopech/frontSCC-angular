@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { PersonaService } from 'src/app/services/personas_services/persona.service';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-hijos',
@@ -52,8 +52,9 @@ export class HijosComponent {
     this.openPopupDatosInstitucionHijo = true;
   }
 
-  public verHistoriales(){
-    this.router.navigate(['/historiales_hijo']);
+  public verHistoriales(hijo: any){
+    this.hijo = hijo;
+    this.router.navigate(['/historiales_hijo'], {state: {data: this.hijo}});
   }
 
   public verAusencias(idHijo: number, hijo: any){

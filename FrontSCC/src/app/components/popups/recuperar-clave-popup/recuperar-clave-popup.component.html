@@ -3,7 +3,8 @@
   <form>
     <div class="formContent">
       <div class="titleHeader">
-        <h2>Recuperar Clave</h2>
+        <h2 *ngIf="!esTokenParaFirmaHistorial">Recuperar Clave</h2>
+        <h2 *ngIf="esTokenParaFirmaHistorial">Firma de Historial</h2>
       </div>
 
       <h3>Por favor, ingresa el Token de seguridad que recibiste en tu email:</h3>

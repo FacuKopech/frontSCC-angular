@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-recuperar-clave-popup',
@@ -10,6 +10,7 @@ export class RecuperarClavePopupComponent {
   @Output()
   validarButtonClick = new EventEmitter<{token: string}>();
 
+  @Input() esTokenParaFirmaHistorial: boolean = false;
   token: string = '';
 
   ngAfterViewInit(): void {

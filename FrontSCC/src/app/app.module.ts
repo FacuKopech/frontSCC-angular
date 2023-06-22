@@ -33,6 +33,7 @@ import { GoBackButtonComponent } from './components/go-back-button/go-back-butto
 import { DatosAusenciaPopupComponent } from './components/popups/datos-ausencia-popup/datos-ausencia-popup.component';
 import { AgregarAusenciaPopupComponent } from './components/popups/agregar-ausencia-popup/agregar-ausencia-popup.component';
 import { HistorialesComponent } from './components/historiales/historiales.component';
+import { ConfirmacionFirmaNotaPopupComponent } from './components/popups/confirmacion-firma-nota-popup/confirmacion-firma-nota-popup.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { HistorialesComponent } from './components/historiales/historiales.compo
     GoBackButtonComponent,
     DatosAusenciaPopupComponent,
     AgregarAusenciaPopupComponent,
-    HistorialesComponent
+    HistorialesComponent,
+    ConfirmacionFirmaNotaPopupComponent
   ],
   imports: [
     BrowserModule,

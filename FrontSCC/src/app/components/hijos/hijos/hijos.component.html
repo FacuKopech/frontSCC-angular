@@ -81,12 +81,16 @@
         </div>
       </div>
       <div class="divHistoriales">
-        <button class="btnInfo" (click)="verHistoriales()"> Historiales
+        <button class="btnInfo" (click)="verHistoriales(hijo)"> Historiales
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #childTemplate>
+  <app-historiales [hijo]="hijo"></app-historiales>
+</ng-template>
 
 <app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
 </app-go-back-button>

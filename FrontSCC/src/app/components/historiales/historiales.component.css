@@ -1,3 +1,124 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+}
+
+.divMessage .pMessage{
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+}
+
+.tokenPopup{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.alert{
+  display: flex;
+  justify-content: center;
+}
+
+.divPrincipal{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.container{
+  width: 421px;
+}
+
+
+
+.divContainerInfo{
+    text-align: center;
+    background-color: #28282bbd;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 14px;
+  height: fit-content;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.divContainerInfo:hover{
+  transform: scale(1.2);
+
+}
+
+.divDescripcionHistorial{
+  font-weight: bold;
+}
+
+.divFechaHistorial{
+  display: flex;
+  justify-content: space-evenly;
+}
+.divEstadoHistorial{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.labelTitle{
+  text-decoration-line: underline;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelData{
+  font-size: 22px;
+}
+
+.btnInfo {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+
+ .btnInfo:hover {
+  color: black;
+ }
+
+ .btnInfo:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+
+ .btnInfo:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }
+
+
+
 .goBackComp{
   display: flex;
   justify-content: center;

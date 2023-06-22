@@ -19,6 +19,13 @@ export class ApiService {
     return this.http.get<any>(this.hostUrl + "/Usuarios/LoggedIn");
   }
 
+  public getEmailPersonaLogueada(): Observable<string> {
+    let HTTPOptions:Object = {
+      responseType: 'text'
+   }
+    return this.http.get<string>(this.hostUrl + "/Usuarios/GetEmailPersonaLogueada", HTTPOptions);
+  }
+
   public Logout(): Observable<boolean> {
     return this.http.get<boolean>(this.hostUrl + "/Usuarios/LogOff")
   }
@@ -32,6 +39,13 @@ export class ApiService {
       responseType: 'text'
    }
     return this.http.get<string>(this.hostUrl + `/Usuarios/RecuperarClave/${email}`, HTTPOptions)
+  }
+
+  public EnviarTokenSeguridad(email: string): Observable<string> {
+    let HTTPOptions:Object = {
+      responseType: 'text'
+   }
+    return this.http.get<string>(this.hostUrl + `/Usuarios/EnviarTokenSeguridad/${email}`, HTTPOptions)
   }
 
   public RecuperacionClave(clave: {claveNueva: string, emailUsuario: string}): Observable<boolean> {

@@ -14,6 +14,7 @@ export class SuccessAlertComponent {
   @Input() esAgregarAusencia: any;
   @Input() esDeleteAusencia: any;
   @Input() esAgregarAusenciaGenerica: any;
+  @Input() esFirmaHistorial: any;
 
   constructor() {
   }

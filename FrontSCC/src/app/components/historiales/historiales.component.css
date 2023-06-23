@@ -56,10 +56,16 @@ h1 {
 }
 
 .divDescripcionHistorial{
+  display: flex;
+  flex-direction: column;
   font-weight: bold;
 }
 
 .divFechaHistorial{
+  display: flex;
+  justify-content: space-evenly;
+}
+.divCalificacionHistorial{
   display: flex;
   justify-content: space-evenly;
 }
@@ -76,6 +82,15 @@ h1 {
 
 .labelData{
   font-size: 22px;
+}
+
+.divFirmaHistoriales{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+svg title {
+  transition: opacity 0.5s ease-in-out; /* Adjust the transition duration */
 }
 
 .btnInfo {

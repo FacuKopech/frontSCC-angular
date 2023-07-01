@@ -2,10 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 525px;
+  max-width: 525px;
   height: 200px;
   position: absolute;
-  top: 0;
   z-index: 9999;
 }
 
@@ -17,6 +16,13 @@
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 @-webkit-keyframes fadeInDown {
@@ -52,30 +58,36 @@
 
 .modal-content{
   display: flex;
+    justify-content: center;
     flex-direction: row;
-    justify-content: space-between;
     flex-wrap: wrap;
-    align-content: end;
     background-color: yellow;
+    border-radius: 12px;
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.2);
 }
-.icon-box{
-  margin-left: 210px;
-}
+
 img{
   width: 113px;
 }
 
 .alertTextContainer{
   width: 100%;
-  background-color: whitesmoke;
+  background-color: #e9e9e9;
   height: 87px;
   height: fit-content;
+  border-radius: 12px;
+  box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .text-center{
   color: black;
   margin-top: 12px;
-  font-family: 'Capriola', sans-serif;
+  font-family: 'Noto Sans Chorasmian', sans-serif;
+}
+
+.pTexto{
+  margin-left: 5px;
+    margin-right: 5px;
 }
 
 .divCloseButton{
@@ -89,8 +101,8 @@ img{
     text-decoration: none;
     text-decoration-line: none;
     background: none;
-    border: 2px solid darkgreen;
-    border-radius: 20px;
+    border: 4px solid darkgreen;
+    border-radius: 28px;
 }
 
 .closeButton:hover{

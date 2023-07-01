@@ -59,7 +59,7 @@
     <tbody class="scroll" *ngFor="let nota of notas">
       <tr>
         <td>{{nota.titulo}}</td>
-        <td>{{nota.fecha}}</td>
+        <td>{{nota.fecha.substring(8,10)}}/{{nota.fecha.substring(5,7)}}/{{nota.fecha.substring(0,4)}} {{nota.fecha.substring(11,19)}}</td>
         <td>{{nota.emisor.email}}</td>
         <td *ngIf="nota.tipo == 2">{{nota.referido.apellido}}, {{nota.referido.nombre}}</td>
         <td *ngIf="nota.tipo == 1">No hay alumno referido</td>

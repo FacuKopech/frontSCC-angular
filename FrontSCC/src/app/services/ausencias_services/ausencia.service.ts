@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
@@ -19,12 +19,18 @@ export class AusenciaService {
     return this.http.get<any>(this.hostUrl + `/Ausencias/GetEsAusenciaGenerica/${idAusencia}`);
   }
 
-  public AgregarAusencia(idHijo: number, ausencia: {fechaComienzo: Date, fechaFin: Date, motivo: string}): Observable<boolean> {
+  public AgregarAusencia(idHijo: number, fechaComienzo: Date, fechaFin: Date, motivo: string): Observable<boolean> {
+    const ausencia = {fechaComienzo: fechaComienzo, fechaFin: fechaFin, motivo: motivo};
     return this.http.post<boolean>(this.hostUrl + `/Ausencias/AgregarAusencia/${idHijo}`, ausencia);
   }
 
-  public AgregarAusenciaGenerica(ausencia: {fechaComienzo: Date, fechaFin: Date, motivo: string}): Observable<boolean> {
+  public AgregarAusenciaGenerica(fechaComienzo: Date, fechaFin: Date, motivo: string): Observable<boolean> {
+    const ausencia = {fechaComienzo: fechaComienzo, fechaFin: fechaFin, motivo: motivo};
     return this.http.post<boolean>(this.hostUrl + `/Ausencias/AgregarAusenciaGenerica`, ausencia);
+  }
+
+  public AgregarAusenciaFiles(files: FormData): Observable<boolean> {
+    return this.http.post<boolean>(this.hostUrl + `/Ausencias/AgregarAusenciaFiles`, files);
   }
 
   public EditarAusencia(ausenciaIdModificar: number, idHijo: number, ausencia: { fechaComienzo: Date, fechaFin: Date, motivo: string }): Observable<any> {
@@ -36,3 +42,4 @@ export class AusenciaService {
   }
 
 }
+

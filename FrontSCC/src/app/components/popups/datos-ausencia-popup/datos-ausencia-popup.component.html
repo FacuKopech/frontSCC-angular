@@ -269,8 +269,8 @@
       <div class="divConLabel">
         <label class="campos">Fecha de emision: </label> <label>{{ausencia.fechaEmision.substring(0,10)}}</label>
       </div>
-      <div class="divConLabel">
-        <label class="campos" >Justificada:</label> <label for="">{{ausencia.justificada}}</label> <label *ngIf="ausencia.justificada == ''" for="">Pendiente</label>
+      <div class="divConLabel divLabelJustificada">
+        <label class="campos" >Justificada:</label> <label for="">{{ausencia.justificada}}</label> <label class="labelEstadoJustificacion" *ngIf="ausencia.justificada == ''" for="">Pendiente</label>
       </div>
     </div>
     <div class="divActionButtons">

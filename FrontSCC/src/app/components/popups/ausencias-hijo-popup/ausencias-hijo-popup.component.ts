@@ -19,6 +19,7 @@ export class AusenciasHijoPopupComponent {
   esEditAusencia = false;
   esAgregarAusencia = false;
   openAgregarAusenciaPopup = false;
+  counter: number = 0;
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
@@ -35,7 +36,7 @@ export class AusenciasHijoPopupComponent {
     } else if (ausencia.justificada == "No"){
       return { 'background-color': 'red' };
     }else{
-      return { 'background-color': 'yellow' };
+      return { 'background-color': '#f0e234' };
     }
   }
 
@@ -71,14 +72,31 @@ export class AusenciasHijoPopupComponent {
     });
   }
 
-  public handleAgregarClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string}){
-    this.ausenciaService.AgregarAusencia(this.idHijo, eventData).subscribe(res => {
+  public handleAgregarClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string, files: FormData}){
+    this.ausenciaService.AgregarAusencia(this.idHijo, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
       if(res){
         this.openSuccessAlert = true;
         this.esAgregarAusencia = true;
+
+        eventData.files?.forEach((value, key) => {
+          if(value != '' || key != ''){
+            this.counter += 1;
+          }
+        });
+        if(this.counter > 0){
+          this.handleAusenciaFiles(eventData.files);
+          this.counter = 0;
+        }
+
       }else{
         this.openErrorAlert = true;
       }
+    });
+  }
+
+  public handleAusenciaFiles(files: FormData){
+    this.ausenciaService.AgregarAusenciaFiles(files).subscribe(res =>{
+
     });
   }
 

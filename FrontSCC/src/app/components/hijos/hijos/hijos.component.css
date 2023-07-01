@@ -1,3 +1,9 @@
+.popupAusenciasHijo{
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 h1 {
   display: flex;
   justify-content: center;

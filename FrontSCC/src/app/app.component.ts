@@ -12,15 +12,39 @@ export class AppComponent implements OnInit {
   openResetearClavePopup = false;
   showRessetClaveSuccessAlert = false;
   showErrorAlert = false;
-  constructor(private apiService: ApiService, private router: Router) { }
+  logueoFueraDeHorario = false;
   public loggedIn: boolean = false;
   public groups: any[] = [];
   public content = '';
+
+  constructor(private apiService: ApiService, private router: Router) { }
+
+
   ngOnInit(): void{
+    this.logueoFueraDeHorario = false;
+    const seMostro = localStorage.getItem('flag');
+    if(seMostro == null){
+      localStorage.setItem('flag', 'false');
+    }
     this.apiService.isLoggedIn().subscribe(res => {
       if (res) {
         this.loggedIn = true;
         this.groups = res['grupos'];
+
+        // preguntamos a que hora se loguea el padre
+        if(localStorage.getItem('flag') == 'false'){
+          for (let i = 0; i < this.groups.length; i++) {
+            if(this.groups[i].tipo == "Padre"){
+              const currentDate = new Date();
+              const currentHour = currentDate.getHours();
+
+              if(currentHour <= 8 || currentHour >= 16){
+                this.logueoFueraDeHorario = true;
+              }
+              break;
+            }
+          }
+        }
       }
     });
   }
@@ -29,6 +53,7 @@ export class AppComponent implements OnInit {
     this.apiService.Logout().subscribe(res => {
       if (res) {
         this.loggedIn = false;
+        localStorage.removeItem('flag');
       }
     });
     this.router.navigate(['']);
@@ -57,6 +82,11 @@ export class AppComponent implements OnInit {
 
   public closeErrorAlert(){
     this.showErrorAlert = false;
+  }
+
+  public closeFueraHorarioAlert(){
+    localStorage.setItem('flag', 'true');
+    this.logueoFueraDeHorario = false;
   }
 
   public misHijosClick(){

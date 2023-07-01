@@ -57,6 +57,8 @@
     flex-wrap: wrap;
     align-content: end;
     background-color: #47c9a2;
+    border-radius: 12px 12px 2px 2px;
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.2);
 }
 .icon-box{
   margin-left: 210px;
@@ -88,10 +90,12 @@ img{
   width: 100%;
   background-color: whitesmoke;
   height: fit-content;
+  border-radius: 2px 2px 12px 12px;
+  box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .text-center{
   color: black;
   margin-top: 12px;
-  font-family: 'Capriola', sans-serif;
+  font-family: 'Noto Sans Chorasmian', sans-serif;
 }

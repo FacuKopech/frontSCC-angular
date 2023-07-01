@@ -10,7 +10,7 @@
     </div>
 
     <div class="divAgregarAusencia">
-      <button class="icon-btn add-btn" title="Nueva ausencia" (click)="openAgregarAusenciaPopup = true">
+      <button class="icon-btn add-btn" title="Nueva ausencia para {{hijo.nombre}}" (click)="openAgregarAusenciaPopup = true">
         <div class="add-icon"></div>
         <div class="btn-txt">Agregar</div>
       </button>
@@ -45,7 +45,7 @@
       <div #divContent class="container" >
           <button (click)="verAusencia(ausencia, hijo.id)" class="btnAusencia" *ngFor="let ausencia of ausencias" [ngStyle]="getBackgroundColor(ausencia)">
             <div class="divFechaComienzo">
-              <p class="pFechaComienzo">{{ausencia.fechaComienzo.substring(0,10)}}</p>
+              <p class="pFechaComienzo">{{ausencia.fechaComienzo.substring(8,10)}}/{{ausencia.fechaComienzo.substring(5,7)}}/{{ausencia.fechaComienzo .substring(0,4)}}</p>
             </div>
             <div class="divContainerData">
               <div class="divMotivoTitle">

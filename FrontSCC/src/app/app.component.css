@@ -35,7 +35,7 @@ html,
 body {
   background-color: #333;
   background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1644&q=80');
-  background-position:center ;
+  background-position:bottom ;
   background-repeat: no-repeat;
   background-size: cover;
   resize: both;
@@ -44,7 +44,12 @@ body {
 }
 
 .customBodyHeight {
-  height: 1432px;
+  /* height: 1289px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  margin: 0 auto;
 }
 body {
   -ms-flex-pack: center;
@@ -58,6 +63,21 @@ body {
   justify-content: space-between;
   margin-top: 6px;
   flex-wrap:wrap;
+  background-color: #343436;
+  margin: 0;
+}
+
+.customDiv{
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+
+.customDivBtnsIzquierda{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 10px;
+  flex-wrap: wrap;
 }
 .cover-container {
   max-width: 42em;
@@ -266,6 +286,20 @@ body {
   background-color: #28282B;
 }
 
+.divNavbarTitle{
+  font-family: 'Ribeye', cursive;
+  display: flex;
+    justify-content: center;
+    margin: 14px 0px 0px 140px;
+    font-size: x-large;
+}
+
+.customDivBtnsDerecha{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
 .BtnResetClave{
   font-size: small;
 }
@@ -399,8 +433,30 @@ body {
     justify-content: center;
 }
 
+footer{
+  background-color: #1f1f1f;
+  height: 60px;
+}
+
+.divContainerFooter{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 100%;
+
+}
+
 :host ::ng-deep app-hijos {
   display: flex;
     flex-direction: column;
     height: 1100px;
 }
+
+/* PARA LOS COMPONENTS RENDEREADOS */
+/*
+display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    min-height: 90vh; */

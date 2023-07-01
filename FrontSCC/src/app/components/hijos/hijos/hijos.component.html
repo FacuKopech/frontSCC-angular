@@ -5,7 +5,7 @@
 
 <div class="divAgregarAusenciasGenericas">
   <div class="divAgregarAusencia">
-    <button class="icon-btn add-btn" title="Nueva ausencia" (click)="openAgregarAusenciasGenericasPopup = true; esGenerica = true">
+    <button class="icon-btn add-btn" title="Nueva ausencia generica" (click)="openAgregarAusenciasGenericasPopup = true; esGenerica = true">
       <div class="add-icon"></div>
       <div class="btn-txt">Agregar</div>
     </button>
@@ -20,7 +20,7 @@
 </app-datos-institucion-popup>
 
 <!-- POPUP AUSENCIAS HIJO -->
-<app-ausencias-hijo-popup *ngIf="openPopupAusenciasHijo"
+<app-ausencias-hijo-popup class="popupAusenciasHijo" *ngIf="openPopupAusenciasHijo"
 [ausencias]="ausencias" [hijo]="hijo" [message]="messageAusencia"
 (cancelButtonClick)="cerrarAusenciasHijoPopup()"
 [idHijo]="idHijo">

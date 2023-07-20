@@ -55,7 +55,7 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-content: end;
+    align-content: flex-end;
     background-color: #C24037;
     border-radius: 12px 12px 2px 2px;
     box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.2);

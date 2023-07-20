@@ -8,7 +8,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    background-color: #468584;
+    background-color: #28282b;
     height: -moz-fit-content;
     height: fit-content;
     position: absolute;
@@ -74,7 +74,7 @@
 }
 
 .popupTitulo h2{
-  color: black;
+  color: white;
   text-decoration-line: underline;
 }
 
@@ -188,6 +188,7 @@
   top: calc(50% - 2px);
 }
 
+
 .container{
   display: flex;
   justify-content: space-evenly;
@@ -205,6 +206,7 @@
 
 .container::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 20px;
 }
 
 .container::-webkit-scrollbar-thumb {
@@ -215,7 +217,7 @@
   background: #555;
 }
 
-.btnAusencia{
+.container .btnAusencia{
   width: max-content;
   transition: transform 0.3s ease;
   border-radius: 12px;

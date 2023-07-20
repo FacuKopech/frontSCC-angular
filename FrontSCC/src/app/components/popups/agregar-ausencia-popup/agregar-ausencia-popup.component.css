@@ -97,7 +97,7 @@
 }
 
 h2{
-  color: black;
+  color: white;
   text-align: center;
   font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
 }
@@ -115,7 +115,7 @@ a {
 
 form {
   flex-direction: column;
-  background-color: #468584;
+  background-color: #28282b;
   border-radius: 18px;
   box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
 }
@@ -134,7 +134,7 @@ h3 {
 }
 
 .container {
-  background-color: #468584;
+  background-color: #28282b;
   margin-top: 26px;
   margin-bottom: 13px;
   display: flex;
@@ -147,63 +147,56 @@ h3 {
 }
 .cancelarButton{
   border-radius: 16px;
+  font-size: 17px;
+    padding: 16px;
+    width: 130px;
+    margin: 5px;
+    background-color: transparent;
 }
 .cancelarButton:hover{
     background-color: red;
 }
 
-.button {
-  --color: #ffff00;
-  background-color: transparent;
-  border-radius: .3em;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: .5s;
-  font-weight: 400;
+.btnAdd {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #18638f;
+  border: none;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-align: center;
   font-size: 17px;
-  border: 1px solid;
-  font-family: inherit;
-  text-transform: uppercase;
-  color: var(--color);
-  z-index: 1;
-}
+  padding: 16px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+ }
 
-  .button::before, .button::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 50px;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    border-radius: 50%;
-    z-index: -1;
-    background-color: var(--color);
-    transition: 1s ease;
-  }
+ .btnAdd span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+ }
 
-  .button::before {
-    top: -1em;
-    left: -1em;
-  }
+ .btnAdd span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+ }
 
-  .button::after {
-    left: calc(100% + 1em);
-    top: calc(100% + 1em);
-  }
+ .btnAdd:hover span {
+  padding-right: 15px;
+ }
 
-  .button:hover::before, .button:hover::after {
-    height: 410px;
-    width: 410px;
-  }
-
-  .button:hover {
-    color: rgb(10, 25, 30);
-  }
-
-  .button:active {
-    filter: brightness(.8);
-  }
+ .btnAdd:hover span:after {
+  opacity: 1;
+  right: 0;
+ }
 
 input[type=text], input[type=date]{
   width: 100%;
@@ -279,7 +272,7 @@ input[type=text], input[type=date]{
   height: 25px;
   border: none;
   border-radius: 50%;
-  background-color: rgb(27, 27, 27);
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -291,65 +284,61 @@ input[type=text], input[type=date]{
 }
 
 .BtnDeleteFile:hover {
-  background-color: white;
+  background-color:  rgb(202, 44, 44);
   transition-duration: .3s;
 }
 
+.BtnDeleteFile .svgIcon{
+  fill: rgb(27, 27, 27);
+}
 
 .BtnDeleteFile:hover .svgIcon {
-  fill: black;
+  fill: white;
   animation: slide-in-top 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
-.addBtn {
-  position: relative;
+.button {
   height: 50px;
   width: 150px;
-  color: #FFF;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  background-color: #212121;
-  transition: all 0.5s;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid #252525;
+  overflow: hidden;
+  border-radius: 30px;
+  color: #333;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn-txt {
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.type1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  background-color: #333;
+  border-radius: 30px;
+  visibility: hidden;
+  height: 10px;
+  width: 10px;
+  z-index: -1;
+}
+
+.button:hover {
+  box-shadow: 1px 1px 200px #252525;
+  color: #fff;
   border: none;
 }
 
-.addBtn::before {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(29, 255, 86, 0.281);
-  border-radius: 5px;
-  transition: all 0.3s;
-  z-index: 1;
-}
-
-.addBtn:hover::before {
-  opacity: 0;
-  transform: scale(0.7,0.7);
-}
-
-.addBtn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: all 0.4s;
-  border: 1px solid rgba(29, 255, 86, 0.281);
-  border-radius: 5px;
-  transform: scale(1.5,1.5);
-  opacity: 0;
-  z-index: 1;
-}
-
-.addBtn:hover::after {
-  opacity: 1;
-  transform: scale(1,1);
+.type1:hover::after {
+  visibility: visible;
+  transform: scale(100) translateX(2px);
 }
 
 

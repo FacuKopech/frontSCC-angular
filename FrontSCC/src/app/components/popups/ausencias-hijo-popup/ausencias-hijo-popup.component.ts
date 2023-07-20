@@ -36,7 +36,7 @@ export class AusenciasHijoPopupComponent {
     } else if (ausencia.justificada == "No"){
       return { 'background-color': 'red' };
     }else{
-      return { 'background-color': '#f0e234' };
+      return { 'background-color': 'rgb(252 234 15 / 60%)' };
     }
   }
 
@@ -75,9 +75,6 @@ export class AusenciasHijoPopupComponent {
   public handleAgregarClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string, files: FormData}){
     this.ausenciaService.AgregarAusencia(this.idHijo, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
       if(res){
-        this.openSuccessAlert = true;
-        this.esAgregarAusencia = true;
-
         eventData.files?.forEach((value, key) => {
           if(value != '' || key != ''){
             this.counter += 1;
@@ -96,7 +93,12 @@ export class AusenciasHijoPopupComponent {
 
   public handleAusenciaFiles(files: FormData){
     this.ausenciaService.AgregarAusenciaFiles(files).subscribe(res =>{
-
+      if(res){
+        this.openSuccessAlert = true;
+        this.esAgregarAusencia = true;
+      }else{
+        this.openErrorAlert = true;
+      }
     });
   }
 

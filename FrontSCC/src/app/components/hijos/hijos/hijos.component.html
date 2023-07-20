@@ -19,6 +19,7 @@
 (cancelButtonClick)="cerrarDatosInstitucionPopup()">
 </app-datos-institucion-popup>
 
+<div *ngIf="openPopupAusenciasHijo" class="overlay"></div>
 <!-- POPUP AUSENCIAS HIJO -->
 <app-ausencias-hijo-popup class="popupAusenciasHijo" *ngIf="openPopupAusenciasHijo"
 [ausencias]="ausencias" [hijo]="hijo" [message]="messageAusencia"
@@ -26,6 +27,7 @@
 [idHijo]="idHijo">
 </app-ausencias-hijo-popup>
 
+<div *ngIf="openAgregarAusenciasGenericasPopup" class="overlay"></div>
 <!-- POPUP AREGAR AUSENCIAS GENERICAS -->
 <app-agregar-ausencia-popup class="agregarAusenciasGenericasPopup" *ngIf="openAgregarAusenciasGenericasPopup"
 [esGenerica]="esGenerica"

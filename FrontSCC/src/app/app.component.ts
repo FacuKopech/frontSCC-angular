@@ -37,8 +37,8 @@ export class AppComponent implements OnInit {
             if(this.groups[i].tipo == "Padre"){
               const currentDate = new Date();
               const currentHour = currentDate.getHours();
-
-              if(currentHour <= 8 || currentHour >= 16){
+              const currentDay = currentDate.getDay()
+              if((currentHour <= 8 || currentHour >= 16) && (currentDay == 6 || currentDay == 0)){
                 this.logueoFueraDeHorario = true;
               }
               break;

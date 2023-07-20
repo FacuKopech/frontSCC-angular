@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 
 @Injectable({
@@ -31,6 +31,10 @@ export class AusenciaService {
 
   public AgregarAusenciaFiles(files: FormData): Observable<boolean> {
     return this.http.post<boolean>(this.hostUrl + `/Ausencias/AgregarAusenciaFiles`, files);
+  }
+
+  public ObtenerArchivosAusencia(idAusencia: number): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Ausencias/ObtenerArchivosAusencia/${idAusencia}`);
   }
 
   public EditarAusencia(ausenciaIdModificar: number, idHijo: number, ausencia: { fechaComienzo: Date, fechaFin: Date, motivo: string }): Observable<any> {

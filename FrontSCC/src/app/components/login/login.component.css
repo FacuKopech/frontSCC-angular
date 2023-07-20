@@ -343,8 +343,11 @@ button {
   margin: 5px 20px 40px 20px;
 }
 
+.card a{
+  color: aliceblue;
+}
+
 .login {
-  color: #56baed;
   text-transform: uppercase;
   letter-spacing: 2px;
   display: block;

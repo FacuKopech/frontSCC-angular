@@ -16,6 +16,7 @@
             "outputPath": "dist/front-scc",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "aot": false,
             "polyfills": [
               "zone.js"
             ],

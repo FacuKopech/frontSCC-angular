@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 
 @Component({
@@ -18,10 +19,12 @@ export class DatosAusenciaPopupComponent {
   openConfirmDeletePopup=false;
   itemForDelete: string = '';
   esAusenciaGenerica = false;
+  @Input() filesAusencia: FormData;
 
-  constructor(private ausenciaService: AusenciaService){
+  constructor(private ausenciaService: AusenciaService, private router: Router){
     this.fechaComienzo = new Date();
     this.fechaFin = new Date();
+    this.filesAusencia = new FormData();
   }
 
   @Input() idHijo: number=-1;
@@ -84,5 +87,9 @@ export class DatosAusenciaPopupComponent {
       }
     }
 
+  }
+
+  public verArchivosAusencia(){
+    this.router.navigate(['/archivos_ausencia'], {state: {data: this.ausencia}});
   }
 }

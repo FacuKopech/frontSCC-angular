@@ -2,7 +2,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -34,6 +33,8 @@ import { DatosAusenciaPopupComponent } from './components/popups/datos-ausencia-
 import { AgregarAusenciaPopupComponent } from './components/popups/agregar-ausencia-popup/agregar-ausencia-popup.component';
 import { HistorialesComponent } from './components/historiales/historiales.component';
 import { ConfirmacionFirmaNotaPopupComponent } from './components/popups/confirmacion-firma-nota-popup/confirmacion-firma-nota-popup.component';
+import { ArchivosAusenciaComponent } from './components/archivos-ausencia/archivos-ausencia/archivos-ausencia.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ConfirmacionFirmaNotaPopupComponent } from './components/popups/confirm
     DatosAusenciaPopupComponent,
     AgregarAusenciaPopupComponent,
     HistorialesComponent,
-    ConfirmacionFirmaNotaPopupComponent
+    ConfirmacionFirmaNotaPopupComponent,
+    ArchivosAusenciaComponent
   ],
   imports: [
     BrowserModule,

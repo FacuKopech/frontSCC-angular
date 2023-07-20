@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { PersonaService } from 'src/app/services/personas_services/persona.service';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 import { Location } from '@angular/common';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hijos',

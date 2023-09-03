@@ -50,15 +50,13 @@ h1 {
 }
 
 .divTableContainer{
-  background-color: #a4d0db;
+  background-color: #232c3a;
   display: flex;
   width: 90%;
   justify-content: space-between;
-  height: 70px;
   border-radius: 10px;
-  border: 4px #396588 solid;
+  border: 2px #396588 solid;
   flex-wrap: wrap;
-    align-content: center;
 }
 
 .divTableHeader{
@@ -73,8 +71,12 @@ h1 {
 .divAccion{
   display: flex;
     justify-content: flex-start;
-    width: 3%;
+    margin-right: 7px;
     font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+}
+
+.divAccion label {
+  align-self: center;
 }
 
 .divText{
@@ -90,7 +92,7 @@ h1 {
     justify-content: space-between;
     background-color: #28282bbd;
     border-radius: 10px;
-    height: 55px;
+    height: 48px;
     margin-top: 5px;
     font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
 }
@@ -122,8 +124,8 @@ h1 {
 }
 
 .Btn {
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   border: none;
   border-radius: 50%;
   background-color: rgb(27, 27, 27);

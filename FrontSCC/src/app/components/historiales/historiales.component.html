@@ -3,9 +3,9 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
-
-<app-confirmacion-firma-nota-popup *ngIf="openConfirmacionFirmaNotaPopup"
-(cancelButtonClick)="openConfirmacionFirmaNotaPopup = false"
+<div *ngIf="openConfirmacionFirmaHistorialPopup || openTokenConfirmation || openSuccessAlert || openErrorAlert" class="divCover"></div>
+<app-confirmacion-firma-nota-popup *ngIf="openConfirmacionFirmaHistorialPopup"
+(cancelButtonClick)="openConfirmacionFirmaHistorialPopup = false"
 (firmarButtonClick)="handleFirmarClick()">
 </app-confirmacion-firma-nota-popup>
 

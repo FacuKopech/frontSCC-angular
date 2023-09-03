@@ -13,13 +13,19 @@
 </div>
 
 
+<div *ngIf="openPopupDatosInstitucionHijo || openPopupDatosAulaHijo || openPopupAusenciasHijo || openAgregarAusenciasGenericasPopup || openSuccessAlert || openErrorAlert" class="divCover"></div>
+<!-- POPUP DATOS AULA HIJO -->
+<app-datos-aula-hijo-popup *ngIf="openPopupDatosAulaHijo"
+[hijo]="hijo"
+(cancelButtonClick)="cerrarDatosAulaPopup()">
+</app-datos-aula-hijo-popup>
+
 <!-- POPUP DATOS INSTITUCION HIJO -->
 <app-datos-institucion-popup *ngIf="openPopupDatosInstitucionHijo"
 [institucion]="institucion"
 (cancelButtonClick)="cerrarDatosInstitucionPopup()">
 </app-datos-institucion-popup>
 
-<div *ngIf="openPopupAusenciasHijo" class="overlay"></div>
 <!-- POPUP AUSENCIAS HIJO -->
 <app-ausencias-hijo-popup class="popupAusenciasHijo" *ngIf="openPopupAusenciasHijo"
 [ausencias]="ausencias" [hijo]="hijo" [message]="messageAusencia"
@@ -27,7 +33,6 @@
 [idHijo]="idHijo">
 </app-ausencias-hijo-popup>
 
-<div *ngIf="openAgregarAusenciasGenericasPopup" class="overlay"></div>
 <!-- POPUP AREGAR AUSENCIAS GENERICAS -->
 <app-agregar-ausencia-popup class="agregarAusenciasGenericasPopup" *ngIf="openAgregarAusenciasGenericasPopup"
 [esGenerica]="esGenerica"
@@ -61,21 +66,29 @@
           <label class="labelTitle" for="">DNI:</label>
           <label class="labelData" for="">{{hijo.dni}}</label>
         </div>
-        <div class="divGradoHijo">
+        <!-- <div class="divGradoHijo">
           <label class="labelTitle" for="">Grado:</label>
           <label class="labelData" for="">{{hijo.grado}}</label>
         </div>
         <div class="divDivisionHijo">
           <label class="labelTitle" for="">Division:</label>
           <label class="labelData" for="">{{hijo.division}}</label>
-        </div>
+        </div> -->
         <div class="divAsistenciaHijo">
           <label class="labelTitle" for="">Asistencia: </label>
           <label class="labelData" for="">{{hijo.asistencia}}%</label>
         </div>
+        <div class="divAulaHijo">
+          <label class="labelTitle" for="">Aula</label>
+          <button class="btnVer" (click)="verAula(hijo)">
+            <span>
+            Ver Aula
+            </span>
+          </button>
+        </div>
         <div class="divInstitucion">
           <label class="labelTitle" for="">Institucion</label>
-          <button class="btnVerInstitucion" (click)="verInstitucion(hijo.institucion)">
+          <button class="btnVer" (click)="verInstitucion(hijo.institucion)">
             <span>
             Ver Institucion
             </span>

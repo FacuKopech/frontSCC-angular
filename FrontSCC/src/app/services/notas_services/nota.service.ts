@@ -36,6 +36,17 @@ export class NotaService {
   //   return this.http.post<boolean>(this.hostUrl + `/Notas/EnviarNuevaNota`, );
   // }
 
+   public EnviarNuevaNotaADocente(idHijo: number, nota: { tipo:string, titulo: string, cuerpo: string}): Observable<boolean> {
+    return this.http.post<boolean>(this.hostUrl + `/Notas/EnviarNuevaNotaADocente/${idHijo}`, nota);
+  }
+
+  public AgregarNotaFiles(files: FormData): Observable<boolean> {
+    return this.http.post<boolean>(this.hostUrl + `/Notas/AgregarNotaFiles`, files);
+  }
+
+  public ObtenerArchivosNota(idNota: number): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerArchivosNota/${idNota}`);
+  }
 
   // NOTAS RECIBIDAS SERVICE
 

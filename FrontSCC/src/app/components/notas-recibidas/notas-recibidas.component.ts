@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NotaService } from '../../services/notas_services/nota.service';
 import {LeerNotaPopupComponent} from '../popups/leer-nota-popup/leer-nota-popup.component'
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-notas-recibidas',
   templateUrl: './notas-recibidas.component.html',
@@ -10,7 +11,7 @@ import { Location } from '@angular/common';
 export class NotasRecibidasComponent {
   @ViewChild(LeerNotaPopupComponent) popupEditarNota!: LeerNotaPopupComponent;
 
-  constructor(private notaService: NotaService, private location: Location)  {
+  constructor(private notaService: NotaService, private location: Location,  private router: Router)  {
     this.popupEditarNota = new LeerNotaPopupComponent();
   }
 
@@ -51,6 +52,11 @@ export class NotasRecibidasComponent {
     this.popupLeerNota = true;
     this.notaALeerr = nota;
     this.handleLeerClick();
+  }
+
+  public verArchivosNota(nota: any){
+    console.log(nota);
+    this.router.navigate(['/archivos_ausencia'], {state: {data: nota}});
   }
 
   public closeModal(): void {

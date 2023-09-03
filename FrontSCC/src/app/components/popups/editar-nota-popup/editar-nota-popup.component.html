@@ -6,7 +6,8 @@
         <h2>Modificar nota</h2>
       </div>
 
-      <h3>Solo los campos 'Titulo', 'Cuerpo' y 'Id de Aula Destinada' pueden ser modificados.</h3>
+      <h3 *ngIf="nota.tipo == 1">Solo los campos 'Titulo', 'Cuerpo' y 'Aula Destinada' pueden ser modificados.</h3>
+      <h3 *ngIf="nota.tipo == 2">Solo los campos 'Titulo' y 'Cuerpo' pueden ser modificados.</h3>
 
       <br>
 
@@ -16,11 +17,11 @@
       <label>Cuerpo</label>
       <input type="text" value="{{nota.cuerpo}}" [(ngModel)]="cuerpoNota" name="cuerpoNota" >
 
-      <label>Id del aula destinada</label>
-      <input type="number" value="{{nota.aulaDestinada.id}}" [(ngModel)]="aulaDestinadaIdNota" name="aulaDestinadaIdNota">
-
-      <label>Nombre del aula</label>
-      <input type="text" value="{{nota.aulaDestinada.nombre}}" disabled>
+      <label *ngIf="nota.tipo == 1">Nombre de Aula destinada</label>
+      <select *ngIf="nota.tipo == 1" [(ngModel)]="aulaElegida" name="aulaElegida" (ngModelChange)="handleAulaSeleccionada($event)" name="Aula Destinada" id="aulas" #options>
+        <option>Aula destinada</option>
+        <option *ngFor="let aula of aulas" [value]="aula.id">{{ aula.nombre }}</option>
+      </select>
     </div>
 
     <div class="container">

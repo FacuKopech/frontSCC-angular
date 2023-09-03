@@ -15,7 +15,6 @@
   box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
   width: 356px;
   max-width: 394px;
-  border: 2px solid red;
 }
 .divIcon{
   display: flex;

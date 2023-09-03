@@ -4,13 +4,13 @@
     justify-content: center;
 }
 
-.overlay {
+.divCover {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: transparent; /* Transparent black background */
+  background-color: #1d1d1d6b; /* Transparent black background */
   z-index: 999; /* Ensure the overlay is above other elements */
 }
 
@@ -198,7 +198,7 @@ h1 {
     justify-content: space-between;
 }
 
-.divGradoHijo{
+/* .divGradoHijo{
   display: flex;
     justify-content: space-between;
 }
@@ -206,11 +206,18 @@ h1 {
 .divDivisionHijo{
   display: flex;
     justify-content: space-between;
-}
+} */
 
 .divAsistenciaHijo{
   display: flex;
     justify-content: space-between;
+}
+
+.divAulaHijo{
+  display: flex;
+  width: 118%;
+  justify-content: space-between;
+  margin-bottom: 14px;
 }
 
 .divInstitucion{
@@ -230,7 +237,7 @@ h1 {
   font-size: 22px;
 }
 
-.btnVerInstitucion {
+.btnVer {
   border: none;
   outline: none;
   border-radius: 30px;
@@ -240,15 +247,15 @@ h1 {
   box-shadow: 0 5px 15px rgba(33, 33, 33, .2);
   overflow: hidden;
   cursor: pointer;
-  width: 132px;
+  width: fit-content;
   height: 30px;
 }
 
-.btnVerInstitucion > span {
+.btnVer > span {
   z-index: 2;
 }
 
-.btnVerInstitucion::before {
+.btnVer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -270,11 +277,11 @@ h1 {
   transition: transform 0.2s ease-in;
 }
 
-.btnVerInstitucion:hover {
+.btnVer:hover {
   color: #e8e8e8;
 }
 
-.btnVerInstitucion:hover::before {
+.btnVer:hover::before {
   -webkit-transform: scaleX(1);
   -ms-transform: scaleX(1);
   transform: scaleX(1);

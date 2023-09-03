@@ -82,12 +82,10 @@ a {
 }
 
 form {
-
   flex-direction: column;
   background-color: #28282B;
   border-radius: 18px;
   box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
-  border: 2px solid yellow;
 }
 
 h3 {

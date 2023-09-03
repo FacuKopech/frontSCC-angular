@@ -16,6 +16,8 @@
       </button>
     </div>
 
+    <div *ngIf="openAgregarAusenciaPopup || openDatosAusenciaPopup || openSuccessAlert || openErrorAlert" class="divCover"></div>
+
     <app-agregar-ausencia-popup class="agregarAusenciaPopup" *ngIf="openAgregarAusenciaPopup"
     [hijo]="hijo"
     (cancelButtonClick)="openAgregarAusenciaPopup = false"
@@ -59,7 +61,11 @@
       </div>
 
     <div class="popupCloseButton">
-      <button class="close" (click)="cancelarClicked()">Cerrar</button>
+      <button class="close-button" title="Cerrar" (click)="cancelarClicked()">
+        <svg class="close-svgIcon" viewBox="0 0 362 362">
+          <path d="M 90.998 91.502 L 72.515 110.005 107.502 145.002 L 142.489 180.000 107.742 214.758 L 72.995 249.515 91.500 268.000 L 110.005 286.485 144.765 251.735 L 179.524 216.986 214.260 251.774 L 248.996 286.562 267.770 267.788 L 286.545 249.014 251.522 214.257 L 216.500 179.500 251.500 144.761 L 286.500 110.022 268.008 91.509 L 249.515 72.995 214.758 107.742 L 180.000 142.489 145.245 107.745 C 126.129 88.635 110.262 73.000 109.985 73.000 C 109.707 73.000 101.163 81.326 90.998 91.502 "></path>
+                        </svg>
+        </button>
     </div>
   </div>
 </div>

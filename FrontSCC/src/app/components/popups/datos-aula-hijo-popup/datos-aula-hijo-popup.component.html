@@ -1,0 +1,55 @@
+<div class="overlay">
+  <div class="popup fadeInDown">
+    <div class="popupHeader">
+      <div class="popupTitulo">
+        <h2>Aula</h2>
+      </div>
+    </div>
+
+    <div *ngIf="showPopupNuevaNota || openSuccessAlert || openErrorAlert" class="divCover"></div>
+    <app-nueva-nota-adocente-popup class="nuevaNotaPopup" *ngIf="showPopupNuevaNota"
+    [hijo]="hijo"
+    [aula]="aula"
+    [docente]="docente"
+    (cancelButtonClick)="cerrarPopupNuevaNota()"
+    (enviarButtonClick)="enviarNotaADocente($event)">
+    </app-nueva-nota-adocente-popup>
+
+    <app-success-alert class="alert" *ngIf="openSuccessAlert"
+    (cerrarButtonClick)="aceptarClick()"
+    [esEnvioNotaDocente]="esEnvioNotaDocente">
+    </app-success-alert>
+
+    <app-error-alert class="alert" *ngIf="openErrorAlert"
+    (cerrarButtonClick)=" openErrorAlert = false">
+    </app-error-alert>
+
+    <div class="content">
+      <div>
+        <label class="campos">Grado: </label> <label for="">{{hijo.grado}}</label>
+      </div>
+      <div>
+        <label class="campos">Division: </label> <label for="">{{hijo.division}}</label>
+      </div>
+      <div>
+        <label class="campos">Docente: </label> <label for="">{{docente.apellido}}, {{docente.nombre}}</label>
+      </div>
+    </div>
+    <div class="divFooterBtnsContainer">
+      <div class="popupCloseButton">
+        <button class="close-button" title="Cerrar" (click)="cancelarClicked()">
+          <svg class="close-svgIcon" viewBox="0 0 362 362">
+            <path d="M 90.998 91.502 L 72.515 110.005 107.502 145.002 L 142.489 180.000 107.742 214.758 L 72.995 249.515 91.500 268.000 L 110.005 286.485 144.765 251.735 L 179.524 216.986 214.260 251.774 L 248.996 286.562 267.770 267.788 L 286.545 249.014 251.522 214.257 L 216.500 179.500 251.500 144.761 L 286.500 110.022 268.008 91.509 L 249.515 72.995 214.758 107.742 L 180.000 142.489 145.245 107.745 C 126.129 88.635 110.262 73.000 109.985 73.000 C 109.707 73.000 101.163 81.326 90.998 91.502 "></path>
+                          </svg>
+          </button>
+      </div>
+      <div class="popupSendNoteBtn">
+        <button class="nota-button" title="Nueva nota" (click)="showPopupNuevaNota = true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 nota-svgIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>

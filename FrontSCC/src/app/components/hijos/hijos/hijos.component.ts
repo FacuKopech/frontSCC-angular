@@ -19,6 +19,7 @@ export class HijosComponent {
   public message: string = "";
   public messageAusencia: string = "";
   openPopupDatosInstitucionHijo = false;
+  openPopupDatosAulaHijo = false;
   openPopupAusenciasHijo = false;
   public institucion: any;
   public idHijo: number = -1;
@@ -48,9 +49,13 @@ export class HijosComponent {
   }
 
   public verInstitucion(institucion: any){
-    console.log(institucion);
     this.institucion = institucion;
     this.openPopupDatosInstitucionHijo = true;
+  }
+
+  public verAula(hijo: any){
+    this.hijo = hijo;
+    this.openPopupDatosAulaHijo = true;
   }
 
   public verHistoriales(hijo: any){
@@ -98,12 +103,17 @@ export class HijosComponent {
 
   public handleAusenciaFiles(files: FormData){
     this.ausenciaService.AgregarAusenciaFiles(files).subscribe(res =>{
-
     });
   }
 
   public cerrarDatosInstitucionPopup(){
+    this.institucion = null;
     this.openPopupDatosInstitucionHijo = false;
+  }
+
+  public cerrarDatosAulaPopup(){
+    this.hijo = null;
+    this.openPopupDatosAulaHijo = false;
   }
 
   public cerrarAusenciasHijoPopup(){

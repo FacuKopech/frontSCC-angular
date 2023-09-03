@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 import { Location } from '@angular/common';
+import { NotaService } from 'src/app/services/notas_services/nota.service';
 
 @Component({
   selector: 'app-archivos-ausencia',
@@ -9,20 +10,37 @@ import { Location } from '@angular/common';
 })
 export class ArchivosAusenciaComponent {
   @Input() ausencia: any;
+  @Input() nota: any;
   filesNames: Blob[] = [];
   message: string='';
-  stringToReplace = /Ausencia-\d+-/;
-  constructor(private ausenciaService: AusenciaService, private location: Location){}
-  ngOnInit(){
-    this.ausencia = history.state.data;
-    this.ausenciaService.ObtenerArchivosAusencia(this.ausencia.id).subscribe((blob: Blob[]) => {
-      this.filesNames = blob;
+  esAusencia = false;
+  stringToReplaceAusencia = /Ausencia-\d+-/;
+  stringToReplaceNota = /Nota-\d+-/;
+  constructor(private ausenciaService: AusenciaService, private notaService: NotaService, private location: Location){}
 
+  ngOnInit(){
+    if(history.state.data.cuerpo == null){
+      this.esAusencia = true;
+      this.ausencia = history.state.data;
+      this.ausenciaService.ObtenerArchivosAusencia(this.ausencia.id).subscribe((blob: Blob[]) => {
+        this.filesNames = blob;
+
+        if(this.filesNames.length == 0){
+          this.message = "Esta ausencia no posee archivos adjuntos";
+        }
+        console.log(blob, this.filesNames, this.filesNames[0]);
+      });
+    }else{
+      this.esAusencia = false;
+      this.nota = history.state.data;
+      this.notaService.ObtenerArchivosNota(this.nota.id).subscribe((blob: Blob[]) => {
+      this.filesNames = blob;
       if(this.filesNames.length == 0){
-        this.message = "Esta ausencia no posee archivos adjuntos";
+        this.message = "Esta nota no posee archivos adjuntos";
       }
       console.log(blob, this.filesNames, this.filesNames[0]);
     });
+    }
   }
 
   public downloadFile(fileName: string, contentType: string, data:string) {

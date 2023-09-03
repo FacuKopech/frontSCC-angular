@@ -15,6 +15,7 @@ export class SuccessAlertComponent {
   @Input() esDeleteAusencia: any;
   @Input() esAgregarAusenciaGenerica: any;
   @Input() esFirmaHistorial: any;
+  @Input() esEnvioNotaDocente: any;
 
   constructor() {
   }

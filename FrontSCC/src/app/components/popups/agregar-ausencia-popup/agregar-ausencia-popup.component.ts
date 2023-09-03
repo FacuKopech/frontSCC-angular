@@ -15,7 +15,6 @@ export class AgregarAusenciaPopupComponent {
   fechaFin: Date;
   motivoAusencia: string = '';
   today: Date;
-  progress: number = 0;;
   fileToUpload: any;
   formData: FormData;
   files: File[] = [];

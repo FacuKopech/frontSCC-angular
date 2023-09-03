@@ -15,7 +15,7 @@ export class HistorialesComponent{
   @Input() hijo: any;
   idHistorial: number = -1;
   emailPersonaLogueada: string = "";
-  openConfirmacionFirmaNotaPopup = false;
+  openConfirmacionFirmaHistorialPopup = false;
   openTokenConfirmation = false;
   esTokenParaFirmaHistorial = false;
   openSuccessAlert = false;
@@ -37,7 +37,7 @@ export class HistorialesComponent{
   }
   public openConfirmacionFirmaPopup(id: number){
     this.idHistorial = id;
-    this.openConfirmacionFirmaNotaPopup = true;
+    this.openConfirmacionFirmaHistorialPopup = true;
   }
 
   public handleFirmarClick(){

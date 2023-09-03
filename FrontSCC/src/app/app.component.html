@@ -167,6 +167,7 @@
     <main>
       <div>
         <router-outlet>
+          <div *ngIf="logueoFueraDeHorario || openResetearClavePopup || showRessetClaveSuccessAlert || showErrorAlert" class="divCover"></div>
           <!-- AVISO SI SE LOGUEA FUERA DEL HORARIO HABIL -->
           <app-nota-leida-alert class="alert" *ngIf="logueoFueraDeHorario"
           [logueoFueraDeHorario]="logueoFueraDeHorario"

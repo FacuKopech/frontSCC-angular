@@ -9,7 +9,15 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
 }
-
+.divCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1d1d1d6b; /* Transparent black background */
+  z-index: 999; /* Ensure the overlay is above other elements */
+}
 a {
   color: #92badd;
   display:inline-block;
@@ -245,7 +253,6 @@ input[type=text]:placeholder {
   border-radius: 5px;
   font-weight: bold;
   letter-spacing: 5px;
-  text-transform: uppercase;
   color: #17C3B2;
   transition: all 1000ms;
   font-size: 11px;
@@ -298,7 +305,6 @@ button {
   overflow: hidden;
   background-color: transparent;
   text-align: center;
-  text-transform: uppercase;
   font-size: 16px;
   transition: .3s;
   z-index: 1;
@@ -348,7 +354,6 @@ button {
 }
 
 .login {
-  text-transform: uppercase;
   letter-spacing: 2px;
   display: block;
   font-weight: bold;
@@ -422,14 +427,14 @@ button {
 
 .enter {
   height: 45px;
-  width: 100px;
+  width: fit-content;
   border-radius: 5px;
   border: 2px solid #000;
   cursor: pointer;
   background-color: transparent;
   transition: 0.5s;
-  text-transform: uppercase;
-  font-size: 10px;
+  font-weight: bold;
+  font-size: 14px;
   letter-spacing: 2px;
   margin-bottom: 1em;
 }

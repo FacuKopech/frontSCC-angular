@@ -18,4 +18,12 @@ export class AulaService {
   public ObtenerAulasDeHijos(): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAulasDeHijos`);
   }
+
+  public ObtenerAulasDocente(): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAulasDocente`);
+  }
+
+  public ObtenerAlumnosAula(idAula: number): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAlumnosAula/${idAula}`);
+  }
 }

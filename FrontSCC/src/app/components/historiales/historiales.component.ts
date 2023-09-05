@@ -25,7 +25,7 @@ export class HistorialesComponent{
   constructor( private historialService: HistorialService, private userService: ApiService, private location: Location){}
 
   ngOnInit(){
-    this.hijo = history.state.data
+    this.hijo = history.state.data;
     this.historialService.ObtenerHistorialesHijo(this.hijo.id).subscribe(res => {
       this.message = "";
       this.historiales = res;

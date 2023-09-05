@@ -1,20 +1,3 @@
-.popupAusenciasHijo{
-  display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.divCover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #1d1d1d6b; /* Transparent black background */
-  z-index: 999; /* Ensure the overlay is above other elements */
-}
-
-
 h1 {
   display: flex;
   justify-content: center;
@@ -28,119 +11,6 @@ h1 {
   justify-content: center;
 }
 
-.divAgregarAusenciasGenericas{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.icon-btn {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #cdcdcd;
-  background: white;
-  border-radius: 25px;
-  overflow: hidden;
-  position: relative;
-  transition: width 0.2s ease-in-out;
-  font-weight: 500;
-  font-family: inherit;
-}
-
-.add-btn:hover {
-  width: 120px;
-}
-
-.add-btn::before,
-.add-btn::after {
-  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
-  content: "";
-  position: absolute;
-  height: 4px;
-  width: 10px;
-  top: calc(50% - 2px);
-  background: seagreen;
-}
-
-.add-btn::after {
-  right: 14px;
-  overflow: hidden;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
-.add-btn::before {
-  left: 14px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.icon-btn:focus {
-  outline: none;
-}
-
-.btn-txt {
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.add-btn:hover::before,
-.add-btn:hover::after {
-  width: 6px;
-  border-radius: 2px;
-}
-
-.add-btn:hover .btn-txt {
-  opacity: 1;
-}
-
-.add-icon::after,
-.add-icon::before {
-  transition: all 0.2s ease-in-out;
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 2px;
-  top: calc(50% - 10px);
-  background: seagreen;
-  overflow: hidden;
-}
-
-.add-icon::before {
-  left: 22.4px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-}
-
-.add-icon::after {
-  right: 22.4px;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
-.add-btn:hover .add-icon::before {
-  left: 15px;
-  height: 4px;
-  top: calc(50% - 2px);
-}
-
-.add-btn:hover .add-icon::after {
-  right: 15px;
-  height: 4px;
-  top: calc(50% - 2px);
-}
-
-
-.agregarAusenciasGenericasPopup{
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.alert{
-  display: flex;
-  justify-content: center;
-}
 .container{
   display: flex;
   flex-direction: row;
@@ -149,7 +19,7 @@ h1 {
   align-content: center;
 }
 
-.divContainerHijo{
+.divContainerAula{
   background-color: #28282bbd;
   width: 100%;
   display: flex;
@@ -162,8 +32,8 @@ h1 {
   transition: transform 0.3s ease;
 }
 
-.divContainerHijo:hover{
-  transform: scale(1.2);
+.divContainerAula:hover{
+  transform: scale(1.08);
 
 }
 
@@ -182,39 +52,16 @@ h1 {
   flex-wrap: wrap;
 }
 
-
-.divInfoHijo{
+.divInfoAula{
   display: flex;
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
 }
 
-.divDNIHijo{
+.divCantidadAlumnosAula{
   display: flex;
     justify-content: space-between;
-}
-
-/* .divGradoHijo{
-  display: flex;
-    justify-content: space-between;
-}
-
-.divDivisionHijo{
-  display: flex;
-    justify-content: space-between;
-} */
-
-.divAsistenciaHijo{
-  display: flex;
-    justify-content: space-between;
-}
-
-.divAulaHijo{
-  display: flex;
-  width: 118%;
-  justify-content: space-between;
-  margin-bottom: 14px;
 }
 
 .divInstitucion{
@@ -222,6 +69,7 @@ h1 {
   width: 118%;
   justify-content: space-between;
   margin-bottom: 14px;
+  margin-top: 12px;
 }
 
 .labelTitle{
@@ -287,14 +135,14 @@ h1 {
   transform-origin: left;
 }
 
-.divAusencias{
+.divAsistencia{
   margin-right: 45px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
 }
 
-.divHistoriales{
+.divAlumnos{
   margin-right: 45px;
   display: flex;
   flex-wrap: wrap;

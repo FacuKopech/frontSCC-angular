@@ -1,0 +1,529 @@
+<h1>Alumnos de {{aula.nombre}}</h1>
+<div class="divMessage">
+  <p class="pMessage">{{message}}</p>
+</div>
+
+<div *ngIf="openPopupAusenciasAlumno || openSuccessAlert || openErrorAlert" class="divCover"></div>
+
+<!-- POPUP AUSENCIAS ALUMNO -->
+<app-ausencias-hijo-popup class="popupAusenciasAlumno" *ngIf="openPopupAusenciasAlumno"
+[ausencias]="ausencias" [idHijo]="idAlumno" [message]="messageAusencia"
+(cancelButtonClick)="cerrarAusenciasHijoPopup()">
+</app-ausencias-hijo-popup>
+
+<!-- ALERT SUCCESS AREGAR HISTORIAL ALUMNO -->
+<app-success-alert class="alert" *ngIf="openSuccessAlert"
+(cerrarButtonClick)="aceptarClicked()"
+[esAgregarAusenciaGenerica]="esAgregarAusenciaGenerica">
+</app-success-alert>
+
+<!-- ALERT ERROR AREGAR HISTORIAL ALUMNO -->
+<app-error-alert class="alert" *ngIf="openErrorAlert"
+(cerrarButtonClick)="openErrorAlert = false">
+</app-error-alert>
+
+<div class="container" *ngFor="let alumno of alumnos">
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="divContainerAlumno">
+    <div class="pNombre">
+      <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAusencias">
+        <button class="btnInfo" (click)="verAusencias(alumno.id, alumno)"> Ausencias
+        </button>
+      </div>
+      <div class="divInfoAlumno">
+        <div class="divDNIAlumno">
+          <label class="labelTitle" for="">DNI:</label>
+          <label class="labelData" for="">{{alumno.dni}}</label>
+        </div>
+        <div class="divAsistenciaAlumno">
+          <label class="labelTitle" for="">Asistencia: </label>
+          <label class="labelData" for="">{{alumno.asistencia}}%</label>
+        </div>
+      </div>
+      <div class="divHistoriales">
+        <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
+</app-go-back-button>

@@ -93,4 +93,8 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/hijos']);
   }
 
+  public misAulasClick(){
+    this.router.navigate(['/aulas']);
+  }
+
 }

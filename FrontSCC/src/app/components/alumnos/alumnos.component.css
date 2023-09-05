@@ -1,0 +1,181 @@
+.popupAusenciasAlumno{
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.divCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1d1d1d6b; /* Transparent black background */
+  z-index: 999; /* Ensure the overlay is above other elements */
+}
+
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+}
+
+.divMessage .pMessage{
+  display: flex;
+  justify-content: center;
+}
+
+.alert{
+  display: flex;
+  justify-content: center;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: 880px;
+  justify-content: space-evenly;
+  overflow-y: hidden;
+}
+
+.container:hover{
+  overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar {
+  width: 10px;
+}
+.container, .inner-div {
+  box-sizing: content-box;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.divContainerAlumno{
+  background-color: #28282bbd;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 14px;
+  height: fit-content;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.divContainerAlumno:hover{
+  transform: scale(1.05);
+}
+
+.pNombre{
+  display: flex;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+.divContainerInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.divInfoAlumno{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 32%;
+}
+
+.divDNIAlumno{
+  display: flex;
+  justify-content: space-between;
+}
+
+.divAsistenciaAlumno{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.labelTitle{
+  text-decoration-line: underline;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelData{
+  font-size: 22px;
+  margin-left: 12px;
+}
+
+.divAusencias{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.divHistoriales{
+  margin-right: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.btnInfo {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+
+ .btnInfo:hover {
+  color: black;
+ }
+
+ .btnInfo:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+
+ .btnInfo:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }
+
+ .goBackComp{
+  display: flex;
+  justify-content: center;
+ }

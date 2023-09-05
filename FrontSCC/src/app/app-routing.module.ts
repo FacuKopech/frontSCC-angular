@@ -8,6 +8,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { HijosComponent } from './components/hijos/hijos/hijos.component';
 import { HistorialesComponent } from './components/historiales/historiales.component';
 import { ArchivosAusenciaComponent } from './components/archivos-ausencia/archivos-ausencia/archivos-ausencia.component';
+import { AulasComponent } from './components/aulas/aulas.component';
+import { AlumnosComponent } from './components/alumnos/alumnos.component';
 
 
 
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'notas_recibidas', component: NotasRecibidasComponent },
   { path: 'hijos', component: HijosComponent },
   { path: 'historiales_hijo', component: HistorialesComponent },
-  { path: 'archivos_ausencia', component: ArchivosAusenciaComponent }
+  { path: 'archivos_ausencia', component: ArchivosAusenciaComponent },
+  { path: 'aulas', component: AulasComponent },
+  { path: 'alumnos_aula', component: AlumnosComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,50 @@
+<h1>Mis Aulas</h1>
+<div class="divMessage">
+  <p class="pMessage">{{message}}</p>
+</div>
+
+<!-- POPUP DATOS INSTITUCION AULA -->
+<app-datos-institucion-popup *ngIf="openPopupDatosInstitucionAula"
+[institucion]="institucion"
+(cancelButtonClick)="cerrarDatosInstitucionPopup()">
+</app-datos-institucion-popup>
+
+<div class="container" *ngFor="let aula of aulas">
+  <div class="divContainerAula">
+    <div class="pNombre">
+      <p>{{aula.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAsistencia">
+        <button class="btnInfo" (click)="verAsistencia(aula)"> Asistencia
+        </button>
+      </div>
+      <div class="divInfoAula">
+        <div class="divCantidadAlumnosAula">
+          <label class="labelTitle" for="">Cantidad de alumnos:</label>
+          <label class="labelData" for="">{{aula.cantidadAlumnos}}</label>
+        </div>
+        <div class="divInstitucion">
+          <label class="labelTitle" for="">Institucion</label>
+          <button class="btnVer" (click)="verInstitucion(aula.institucion)">
+            <span>
+            Ver Institucion
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="divAlumnos">
+        <button class="btnInfo" (click)="verAlumnosAula(aula)"> Alumnos
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #childTemplate>
+  <!-- <app-historiales [aula]="aula"></app-historiales> ASISTENCIA -->
+  <app-alumnos [aula]="aula"></app-alumnos> ALUMNOS
+</ng-template>
+
+<app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
+</app-go-back-button>

@@ -38,6 +38,8 @@ import { CommonModule } from '@angular/common';
 import { DatosAulaHijoPopupComponent } from './components/popups/datos-aula-hijo-popup/datos-aula-hijo-popup.component';
 import { NuevaNotaADocentePopupComponent } from './components/popups/nueva-nota-adocente-popup/nueva-nota-adocente-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AulasComponent } from './components/aulas/aulas.component';
+import { AlumnosComponent } from './components/alumnos/alumnos.component';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ConfirmacionFirmaNotaPopupComponent,
     ArchivosAusenciaComponent,
     DatosAulaHijoPopupComponent,
-    NuevaNotaADocentePopupComponent
+    NuevaNotaADocentePopupComponent,
+    AulasComponent,
+    AlumnosComponent
   ],
   imports: [
     BrowserModule,

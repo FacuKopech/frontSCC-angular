@@ -28,6 +28,7 @@
 <!-- POPUP AUSENCIAS HIJO -->
 <app-ausencias-hijo-popup class="popupAusenciasHijo" *ngIf="openPopupAusenciasHijo"
 [ausencias]="ausencias" [hijo]="hijo" [message]="messageAusencia"
+[esAusenciasAlumno]="false" [esAusenciasHijo]="true"
 (cancelButtonClick)="cerrarAusenciasHijoPopup()"
 [idHijo]="idHijo">
 </app-ausencias-hijo-popup>

@@ -11,7 +11,11 @@ export class AusenciasHijoPopupComponent {
   @Input() hijo: any;
   @Input() idHijo: number = -1;
   @Input() message: string ='';
+  @Input() alumno: any;
+  @Input() esAusenciasHijo = false;
+  @Input() esAusenciasAlumno = false;
   ausencia: any;
+  idAlumno: number = -1;
   openDatosAusenciaPopup = false;
   openSuccessAlert = false;
   openErrorAlert = false;
@@ -26,6 +30,17 @@ export class AusenciasHijoPopupComponent {
 
   constructor(private ausenciaService: AusenciaService) {
   }
+
+  public ngOnInit(){
+    if(this.hijo != null){
+      this.esAusenciasHijo = true;
+      this.esAusenciasAlumno = false;
+    }else if(this.alumno != null){
+      this.esAusenciasAlumno = true;
+      this.esAusenciasHijo = false;
+    }
+  }
+
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
   }
@@ -40,9 +55,15 @@ export class AusenciasHijoPopupComponent {
     }
   }
 
-  public verAusencia(ausencia: any, idHijo: number){
+  public verAusenciaHijo(ausencia: any, idHijo: number){
     this.ausencia = ausencia;
     this.idHijo = idHijo;
+    this.openDatosAusenciaPopup = true;
+  }
+
+  public verAusenciaAlumno(ausencia: any, idAlumno: number){
+    this.ausencia = ausencia;
+    this.idAlumno = idAlumno;
     this.openDatosAusenciaPopup = true;
   }
 

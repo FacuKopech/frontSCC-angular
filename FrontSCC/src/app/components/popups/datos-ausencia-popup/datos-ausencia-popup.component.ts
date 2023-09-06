@@ -20,14 +20,8 @@ export class DatosAusenciaPopupComponent {
   itemForDelete: string = '';
   esAusenciaGenerica = false;
   @Input() filesAusencia: FormData;
-
-  constructor(private ausenciaService: AusenciaService, private router: Router){
-    this.fechaComienzo = new Date();
-    this.fechaFin = new Date();
-    this.filesAusencia = new FormData();
-  }
-
   @Input() idHijo: number=-1;
+  @Input() idAlumno: number=-1;
   @Input() ausencia: any;
 
   @Output()
@@ -37,7 +31,17 @@ export class DatosAusenciaPopupComponent {
   @Output()
   editButtonClick = new EventEmitter<{fechaComienzo: Date, fechaFin: Date, motivo: string}>();
 
+  constructor(private ausenciaService: AusenciaService, private router: Router){
+    this.fechaComienzo = new Date();
+    this.fechaFin = new Date();
+    this.filesAusencia = new FormData();
+  }
+
   ngOnInit(){
+    if(this.idAlumno >= 0){
+      document.getElementById("div-actionButtons")?.classList.remove("divActionButtons")
+      document.getElementById("div-actionButtons")?.classList.add("show-button2");
+    }
     this.count = 0;
     this.motivoAusencia = this.ausencia.motivo;
     this.fechaComienzo = this.ausencia.fechaComienzo;

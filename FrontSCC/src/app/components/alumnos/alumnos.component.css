@@ -37,7 +37,7 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   max-height: 880px;
-  justify-content: space-evenly;
+  justify-content: space-around;
   overflow-y: hidden;
 }
 

@@ -289,9 +289,11 @@ body {
 .divNavbarTitle{
   font-family: 'Ribeye', cursive;
   display: flex;
-    justify-content: center;
-    margin: 14px 0px 0px 140px;
-    font-size: x-large;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  font-size: x-large;
+  align-self: center;
+  width: 36%;
 }
 
 .customDivBtnsDerecha{
@@ -410,7 +412,7 @@ body {
 }
 
 .Btn:hover .signKid {
-  width: 40%;
+  width: 30%;
   transition-duration: .3s;
   padding-left: 0px;
 }

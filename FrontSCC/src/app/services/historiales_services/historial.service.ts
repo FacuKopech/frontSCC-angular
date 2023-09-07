@@ -19,4 +19,8 @@ export class HistorialService {
     return this.http.put<any>(this.hostUrl + `/Historiales/FirmarHistorial/${idHijo}/${idHistorial}`, null);
   }
 
+  public EliminarHistorial(idHistorial: number, idAlumno: number): Observable<any> {
+    return this.http.delete<any>(this.hostUrl + `/Historiales/DeleteHistorial/${idHistorial}/${idAlumno}`);
+  }
+
 }

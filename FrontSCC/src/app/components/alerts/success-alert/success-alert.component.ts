@@ -18,6 +18,8 @@ export class SuccessAlertComponent {
   @Input() esEnvioNotaDocente: any;
   @Input() esAceptarAusenciaAlumno: any;
   @Input() esDenegarAusenciaAlumno: any;
+  @Input() esEliminarHistorial: any;
+  @Input() esEditarHistorial: any;
 
   constructor() {
   }

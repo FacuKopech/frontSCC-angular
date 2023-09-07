@@ -45,6 +45,10 @@ export class AulasComponent {
     this.router.navigate(['/alumnos_aula'], {state: {data: this.aula}});
   }
 
+  public verAsistencia(aula: any){
+
+  }
+
   public cerrarDatosInstitucionPopup(){
     this.institucion = null;
     this.openPopupDatosInstitucionAula = false;

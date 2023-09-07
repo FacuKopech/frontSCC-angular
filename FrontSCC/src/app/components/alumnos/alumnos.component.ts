@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alumnos',
@@ -22,7 +23,7 @@ export class AlumnosComponent {
   esAusenciasAlumno = true;
   messageAusencia = "";
 
-  constructor(private aulaService: AulaService, private location: Location){}
+  constructor(private aulaService: AulaService, private location: Location, private router: Router){}
 
   ngOnInit(){
     this.aula = history.state.data;
@@ -53,7 +54,8 @@ export class AlumnosComponent {
   }
 
   public verHistoriales(alumno: any){
-
+    this.alumno = alumno;
+    this.router.navigate(['/historiales_hijo'], {state: {data: this.alumno, esAlumno: true}});
   }
 
   public goBack(){

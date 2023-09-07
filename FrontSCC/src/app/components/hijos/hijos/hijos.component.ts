@@ -60,7 +60,7 @@ export class HijosComponent {
 
   public verHistoriales(hijo: any){
     this.hijo = hijo;
-    this.router.navigate(['/historiales_hijo'], {state: {data: this.hijo}});
+    this.router.navigate(['/historiales_hijo'], {state: {data: this.hijo, esAlumno: false}});
   }
 
   public verAusencias(idHijo: number, hijo: any){

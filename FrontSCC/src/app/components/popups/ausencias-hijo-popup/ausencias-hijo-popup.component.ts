@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-ausencias-hijo-popup',
@@ -22,6 +23,8 @@ export class AusenciasHijoPopupComponent {
   esDeleteAusencia = false;
   esEditAusencia = false;
   esAgregarAusencia = false;
+  esAceptarAusencia = false;
+  esDenegarAusencia = false;
   openAgregarAusenciaPopup = false;
   counter: number = 0;
 
@@ -47,11 +50,11 @@ export class AusenciasHijoPopupComponent {
 
   getBackgroundColor(ausencia: any): any {
     if (ausencia.justificada == "Si") {
-      return { 'background-color': '#17B890' };
+      return { 'background-color': '#0A7B30' };
     } else if (ausencia.justificada == "No"){
-      return { 'background-color': 'red' };
+      return { 'background-color': '#9D140A' };
     }else{
-      return { 'background-color': 'rgb(252 234 15 / 60%)' };
+      return { 'background-color': 'rgb(100 100 100)' };
     }
   }
 
@@ -61,9 +64,9 @@ export class AusenciasHijoPopupComponent {
     this.openDatosAusenciaPopup = true;
   }
 
-  public verAusenciaAlumno(ausencia: any, idAlumno: number){
+  public verAusenciaAlumno(ausencia: any){
     this.ausencia = ausencia;
-    this.idAlumno = idAlumno;
+    this.idAlumno = this.alumno.id;
     this.openDatosAusenciaPopup = true;
   }
 
@@ -118,6 +121,36 @@ export class AusenciasHijoPopupComponent {
         this.openSuccessAlert = true;
         this.esAgregarAusencia = true;
       }else{
+        this.openErrorAlert = true;
+      }
+    });
+  }
+
+  public handleAceptarAusenciaClicked(eventData: {idAusencia: number, idAlumno: number, esAceptada: boolean}){
+    this.ausenciaService.AceptarODenegarAusencia(eventData.idAusencia, eventData.idAlumno, eventData.esAceptada).subscribe(res => {
+      if (res) {
+        this.openSuccessAlert = true;
+        this.esAceptarAusencia = true;
+        this.esDenegarAusencia = false;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 404){
+        this.openErrorAlert = true;
+      }
+    });
+  }
+
+  public handleDenegarAusenciaClicked(eventData: {idAusencia: number, idAlumno: number, esAceptada: boolean}){
+    this.ausenciaService.AceptarODenegarAusencia(eventData.idAusencia, eventData.idAlumno, eventData.esAceptada).subscribe(res => {
+      if (res) {
+        this.openSuccessAlert = true;
+        this.esDenegarAusencia = true;
+        this.esAceptarAusencia = false;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 404){
         this.openErrorAlert = true;
       }
     });

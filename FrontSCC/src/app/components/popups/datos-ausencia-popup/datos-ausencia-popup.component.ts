@@ -30,6 +30,10 @@ export class DatosAusenciaPopupComponent {
   deleteButtonClick = new EventEmitter<{idAusencia: number, idHijo: number}>();
   @Output()
   editButtonClick = new EventEmitter<{fechaComienzo: Date, fechaFin: Date, motivo: string}>();
+  @Output()
+  aceptarAusenciaButtonClick = new EventEmitter<{idAusencia: number, idAlumno: number, esAceptada: boolean}>();
+  @Output()
+  denegarAusenciaButtonClick = new EventEmitter<{idAusencia: number, idAlumno: number, esAceptada: boolean}>();
 
   constructor(private ausenciaService: AusenciaService, private router: Router){
     this.fechaComienzo = new Date();
@@ -40,13 +44,15 @@ export class DatosAusenciaPopupComponent {
   ngOnInit(){
     if(this.idAlumno >= 0){
       document.getElementById("div-actionButtons")?.classList.remove("divActionButtons")
-      document.getElementById("div-actionButtons")?.classList.add("show-button2");
+      document.getElementById("div-actionButtons")?.classList.add("show-close-button");
+      document.getElementById("popup-widthClass")?.classList.remove("popup");
+      document.getElementById("popup-widthClass")?.classList.add("change-width");
     }
     this.count = 0;
     this.motivoAusencia = this.ausencia.motivo;
     this.fechaComienzo = this.ausencia.fechaComienzo;
     this.fechaFin = this.ausencia.fechaFin;
-    this.ausenciaService.GetEsAusenciaGenerica(this.ausencia.id).subscribe(res => {
+    this.ausenciaService.GetEsAusenciaGenerica(this.ausencia.id, this.idAlumno).subscribe(res => {
       if(res){
         this.esAusenciaGenerica = true;
       }else{
@@ -95,5 +101,13 @@ export class DatosAusenciaPopupComponent {
 
   public verArchivosAusencia(){
     this.router.navigate(['/archivos_ausencia'], {state: {data: this.ausencia}});
+  }
+
+  public aceptarAusenciaClicked(){
+    this.aceptarAusenciaButtonClick.emit({idAusencia: this.ausencia.id, idAlumno: this.idAlumno, esAceptada: true});
+  }
+
+  public denegarAusenciaClicked(){
+    this.denegarAusenciaButtonClick.emit({idAusencia: this.ausencia.id, idAlumno: this.idAlumno, esAceptada: false});
   }
 }

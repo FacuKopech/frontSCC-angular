@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../services/user_services/api.service';
 import {  tap } from 'rxjs';
 import { AppComponent } from '../../app.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,9 @@ export class LoginComponent {
           this.router.navigate(['/home']);
           this.appComponent.ngOnInit();
         }
-        else {
+      },
+      (error:HttpErrorResponse) =>{
+        if(error.status == 404){
           this.message = "Usuario o clave incorrectos!";
           this.clave = '';
         }

@@ -75,7 +75,7 @@ h1 {
 }
 
 .divContainerAlumno:hover{
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .pNombre{
@@ -98,10 +98,22 @@ h1 {
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
-  width: 32%;
+  width: 40%;
 }
 
 .divDNIAlumno{
+  display: flex;
+  justify-content: space-between;
+}
+.divFechaNacimientoAlumno{
+  display: flex;
+  justify-content: space-between;
+}
+.divGradoAlumno{
+  display: flex;
+  justify-content: space-between;
+}
+.divDivisionAlumno{
   display: flex;
   justify-content: space-between;
 }
@@ -109,7 +121,6 @@ h1 {
 .divAsistenciaAlumno{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
 }
 
 .labelTitle{
@@ -130,7 +141,6 @@ h1 {
 }
 
 .divHistoriales{
-  margin-right: 45px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;

@@ -40,8 +40,8 @@
           <label class="labelData" for="">{{alumno.dni}}</label>
         </div>
         <div class="divFechaNacimientoAlumno">
-          <label class="labelTitle" for="">Fecha de nacimiento:</label>
-          <label class="labelData" for="">{{alumno.fechaDeNacimiento}}</label>
+          <label class="labelTitle" for="">Nacimiento:</label>
+          <label class="labelData" for="">{{alumno.fechaNacimiento.substring(8,10)}}/{{alumno.fechaNacimiento.substring(5,7)}}/{{alumno.fechaNacimiento .substring(0,4)}}</label>
         </div>
         <div class="divGradoAlumno">
           <label class="labelTitle" for="">Grado:</label>

@@ -209,6 +209,19 @@
     overflow-x: hidden;
 }
 
+
+.divAusenciasHijo{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.divAusenciasAlumno{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 .container::-webkit-scrollbar {
   width: 10px;
 }
@@ -239,7 +252,7 @@
 }
 
 .btnAusencia:hover{
-  transform: scale(1.09);
+  transform: scale(1.02);
 }
 
 .divFechaComienzo{

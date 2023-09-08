@@ -1,0 +1,48 @@
+<div class="overlay">
+  <div id="popup-widthClass" class="popup fadeInDown">
+    <div class="popupHeader">
+      <div class="popupTitulo">
+        <h2 class="h2Historial">Editar Historial</h2>
+      </div>
+      <div class="spanError">
+        <span id="generalError"></span>
+      </div>
+    </div>
+
+    <div class="content">
+      <div  class="divConLabel">
+        <label class="campos">Fecha de emision: </label><label class="labelFechaHistorial">{{ historial.fecha | date:'dd/MM/yyyy HH:mm:ss' }}</label>
+      </div>
+      <div class="divConInput">
+        <label class="campos">Descripcion: </label>
+        <input value={{historial.descripcion}} #descripcionInput type="text" [(ngModel)]="descripcionHistorial">
+        <span id="descripcionError"></span>
+      </div>
+      <div  class="divConInput">
+        <label class="campos">Calificacion: </label>
+        <input #calificacionInput value={{historial.calificacion}} type="number" [(ngModel)]="calificacionHistorial">
+        <span id="calificacionError"></span>
+      </div>
+      <div  class="divConInput">
+        <label class="campos">Estado: </label>
+        <select value={{historial.estado}}  #estadoInput [(ngModel)]="estadoHistorial">
+          <option value="0">Selecionar estado...</option>
+          <option value="1">Aprobado</option>
+          <option value="2">No Aprobado</option>
+          <option value="3">Entregado</option>
+          <option value="4">No Entregado</option>
+          <option value="7">Observacion</option>
+        </select>
+        <span id="estadoError"></span>
+      </div>
+    </div>
+    <div class="divActionButtons">
+      <div class="popupCloseButton">
+        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary cancelarButton">Cancelar</button>
+        <button class="button" (click)="editarClick()">
+          Modificar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

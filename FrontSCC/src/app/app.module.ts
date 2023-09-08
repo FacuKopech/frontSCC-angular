@@ -40,6 +40,8 @@ import { NuevaNotaADocentePopupComponent } from './components/popups/nueva-nota-
 import { ReactiveFormsModule } from '@angular/forms';
 import { AulasComponent } from './components/aulas/aulas.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
+import { AgregarHistorialPopupComponent } from './components/popups/agregar-historial-popup/agregar-historial-popup.component';
+import { EditarHistorialPopupComponent } from './components/popups/editar-historial-popup/editar-historial-popup.component';
 
 
 @NgModule({
@@ -74,7 +76,9 @@ import { AlumnosComponent } from './components/alumnos/alumnos.component';
     DatosAulaHijoPopupComponent,
     NuevaNotaADocentePopupComponent,
     AulasComponent,
-    AlumnosComponent
+    AlumnosComponent,
+    AgregarHistorialPopupComponent,
+    EditarHistorialPopupComponent
   ],
   imports: [
     BrowserModule,

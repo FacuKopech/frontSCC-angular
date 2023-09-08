@@ -1,0 +1,38 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Nuevo Historial</h2>
+        <h3>Agregar nuevo historial para {{alumno.apellido}}, {{alumno.nombre}}</h3>
+      </div>
+      <br>
+      <label>Descripcion</label>
+      <input #descripcionInput type="text" placeholder="Ej: Prueba 1 - Ciencias Naturales"  [(ngModel)]="descripcionHistorial" name="descripcionHistorial" required/>
+      <span id="descripcionError"></span>
+      <label>Calificacion</label>
+      <input type="number" #calificacionInput [(ngModel)]="calificacionHistorial" name="calificacionHistorial"/>
+      <label>Estado</label>
+      <select name="estadoHistorial" #estadoOptions [(ngModel)]="estadoHistorial" required>
+        <option selected value="0">Seleccionar estado...</option>
+        <option value="1">Aprobado</option>
+        <option value="2">No Aprobado</option>
+        <option value="3">Entregado</option>
+        <option value="4">No Entregado</option>
+        <option value="7">Observacion</option>
+      </select>
+      <span id="estadoError"></span>
+    </div>
+
+    <div class="container">
+      <div class="customButtons">
+        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary cancelarButton">Cancelar</button>
+      </div>
+      <div class="divAddButton">
+        <button class="btnAdd" (click)="agregarClicked()">
+          <span>Agregar</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

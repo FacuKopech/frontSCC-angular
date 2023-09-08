@@ -10,7 +10,7 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
-<div *ngIf="openConfirmacionFirmaHistorialPopup || openTokenConfirmation || openSuccessAlert || openErrorAlert" class="divCover"></div>
+<div *ngIf="openConfirmacionFirmaHistorialPopup || openAgregarHistorialPopup || openTokenConfirmation || openSuccessAlert || openErrorAlert" class="divCover"></div>
 <app-confirmacion-firma-nota-popup *ngIf="openConfirmacionFirmaHistorialPopup"
 (cancelButtonClick)="openConfirmacionFirmaHistorialPopup = false"
 (firmarButtonClick)="handleFirmarClick()">
@@ -22,6 +22,18 @@
 [esTokenParaFirmaHistorial]="esTokenParaFirmaHistorial">
 </app-recuperar-clave-popup>
 
+<app-agregar-historial-popup class="agregarHistorialPopup" *ngIf="openAgregarHistorialPopup"
+(cancelButtonClick)="closeAgregarPopup()"
+(agregarButtonClick)="handleAgregarHistorialClick($event)"
+[alumno]="alumno">
+</app-agregar-historial-popup>
+
+<app-editar-historial-popup *ngIf="openEditarHistorialPopup"
+[historial]="historial"
+(cancelButtonClick)="openEditarHistorialPopup = false"
+(editButtonClick)="handleEditHistorialClick($event)">
+</app-editar-historial-popup>
+
 <confirm *ngIf="openConfirmDeletePopup"
     [itemForDelete]="itemForDelete"
     (eliminarButtonClick)="deleteClicked()"
@@ -31,6 +43,7 @@
 <app-success-alert class="alert" *ngIf="openSuccessAlert"
 (cerrarButtonClick)="aceptarClick()"
 [esFirmaHistorial]="esFirmaHistorial"
+[esAgregarHistorial]="esAgregarHistorial"
 [esEliminarHistorial]="esEliminarHistorial"
 [esEditarHistorial]="esEditarHistorial">
 </app-success-alert>

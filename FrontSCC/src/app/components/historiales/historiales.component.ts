@@ -13,6 +13,7 @@ export class HistorialesComponent{
   message: string='';
   token: string='';
   public historiales: any[] = [];
+  public historial: any
   @Input() hijo: any;
   @Input() alumno: any;
   idHistorial: number = -1;
@@ -23,11 +24,13 @@ export class HistorialesComponent{
   openSuccessAlert = false;
   openErrorAlert = false;
   esFirmaHistorial = false;
+  esAgregarHistorial = false;
   esEliminarHistorial = false;
   esEditarHistorial = false;
   esAlumno = false;
   openAgregarHistorialPopup = false;
   openConfirmDeletePopup = false;
+  openEditarHistorialPopup = false;
   itemForDelete: string = '';
 
   constructor( private historialService: HistorialService, private userService: ApiService, private location: Location){}
@@ -90,6 +93,34 @@ export class HistorialesComponent{
     }
   }
 
+  public handleAgregarHistorialClick(eventData: {descripcion: string, calificacion: number, estado: number}){
+    this.historialService.AgregarHistorial(this.alumno.id, eventData.descripcion, eventData.calificacion, eventData.estado).subscribe(res => {
+      if(res){
+        this.openSuccessAlert = true;
+        this.esAgregarHistorial = true;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 404 || error.status == 400){
+        this.openErrorAlert = true;
+      }
+    });
+  }
+
+  public handleEditHistorialClick(eventData: {idHistorial: number, descripcion: string, calificacion: number, estado: number}){
+    this.historialService.EditarHistorial(this.alumno.id, eventData).subscribe(res => {
+      if(res){
+        this.openSuccessAlert = true;
+        this.esEditarHistorial = true;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 404 || error.status == 400){
+        this.openErrorAlert = true;
+      }
+    });
+  }
+
   public openDeletion(idHistorial: number){
     this.openConfirmDeletePopup = true;
     this.itemForDelete = "historial";
@@ -100,6 +131,10 @@ export class HistorialesComponent{
     this.openConfirmDeletePopup = false;
   }
 
+  public closeAgregarPopup(){
+    this.openAgregarHistorialPopup = false;
+  }
+
   public deleteClicked(){
     this.historialService.EliminarHistorial(this.idHistorial, this.alumno.id).subscribe(res => {
       if(res){
@@ -108,14 +143,15 @@ export class HistorialesComponent{
       }
     },
     (error:HttpErrorResponse) =>{
-      if(error.status == 404){
+      if(error.status == 404 || error.status == 400){
         this.openErrorAlert = true;
       }
     });
   }
 
   public openEdition(historial: any){
-
+    this.historial = historial;
+    this.openEditarHistorialPopup = true;
   }
   public aceptarClick(){
     this.openConfirmDeletePopup = false;

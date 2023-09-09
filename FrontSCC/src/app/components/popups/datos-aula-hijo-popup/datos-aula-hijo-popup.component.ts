@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { NotaService } from 'src/app/services/notas_services/nota.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-datos-aula-hijo-popup',
@@ -41,19 +42,25 @@ export class DatosAulaHijoPopupComponent {
   }
 
   public enviarNotaADocente(eventData: { tipo: string, titulo: string, cuerpo: string,  files: FormData}){
-    console.log(this.hijo.id, eventData);
+    eventData.files?.forEach((value, key) => {
+      if(value != '' || key != ''){
+        this.counter += 1;
+      }
+    });
+    if(this.counter > 0){
+      this.handleNotaFiles(eventData.files);
+      this.counter = 0;
+    }
     this.notaService.EnviarNuevaNotaADocente(this.hijo.id, eventData).subscribe(res => {
       if(res){
-        eventData.files?.forEach((value, key) => {
-          if(value != '' || key != ''){
-            this.counter += 1;
-          }
-        });
-        if(this.counter > 0){
-          this.handleNotaFiles(eventData.files);
-          this.counter = 0;
-        }
+        this.openSuccessAlert = true;
+        this.esEnvioNotaDocente = true;
       }else{
+        this.openErrorAlert = true;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 404 || error.status == 400){
         this.openErrorAlert = true;
       }
     });

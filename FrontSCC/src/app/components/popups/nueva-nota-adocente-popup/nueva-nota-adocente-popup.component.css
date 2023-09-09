@@ -1,12 +1,11 @@
 .popup {
-  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   animation-name: _ngcontent-awe-c49_fadeInDown;
   animation-duration: 1s;
   animation-fill-mode: both;
-  width: -webkit-fill-available;
+  width:700px;
   position: absolute;
   top: 0;
   z-index: 9999;
@@ -97,6 +96,7 @@ h3 {
 .divFiles{
   display: flex;
     justify-content: space-between;
+    margin-top: 12px;
 }
 
 .Btn {
@@ -268,4 +268,3 @@ input[disabled] {
   position: relative;
   z-index: 1000;
 }
-

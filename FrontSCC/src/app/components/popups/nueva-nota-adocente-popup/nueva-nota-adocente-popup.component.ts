@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+declare var tinymce: any;
 
 @Component({
   selector: 'app-nueva-nota-adocente-popup',
@@ -25,7 +26,7 @@ export class NuevaNotaADocentePopupComponent {
 
   tituloNota: string = '';
   cuerpoNota: string = '';
-  tipoElegido = '';
+  tipoElegido = '0';
   fileToUpload: any;
   formData: FormData;
   files: File[] = [];
@@ -36,6 +37,7 @@ export class NuevaNotaADocentePopupComponent {
   constructor(){
     this.formData = new FormData();
   }
+
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
   }

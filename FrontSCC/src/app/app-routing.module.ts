@@ -10,6 +10,7 @@ import { HistorialesComponent } from './components/historiales/historiales.compo
 import { ArchivosAusenciaComponent } from './components/archivos-ausencia/archivos-ausencia/archivos-ausencia.component';
 import { AulasComponent } from './components/aulas/aulas.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
+import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia-aula.component';
 
 
 
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'historiales_hijo', component: HistorialesComponent },
   { path: 'archivos_ausencia', component: ArchivosAusenciaComponent },
   { path: 'aulas', component: AulasComponent },
-  { path: 'alumnos_aula', component: AlumnosComponent }
+  { path: 'alumnos_aula', component: AlumnosComponent },
+  { path: 'asistencia_aula', component: AsistenciaAulaComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

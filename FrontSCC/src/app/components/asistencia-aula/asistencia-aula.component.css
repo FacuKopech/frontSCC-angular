@@ -1,0 +1,168 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+}
+
+.divMessage .pMessage{
+  display: flex;
+  justify-content: center;
+}
+
+.divTomarAsistencia{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.buttonTomarAsistencia {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.buttonTomarAsistencia:hover {
+  background-color: #159098;
+  box-shadow: 0px 15px 20px rgba(7, 218, 218, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.buttonTomarAsistencia:active {
+  transform: translateY(-1px);
+}
+
+.svgPersonIcon{
+  width: 18px;
+  height: 18px;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+  align-content: center;
+}
+
+.divContainerAsistencia{
+  background-color: #28282bbd;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 14px;
+  height: fit-content;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.divContainerAsistencia:hover{
+  transform: scale(1.04);
+
+}
+
+.pNombre{
+  display: flex;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+.divContainerInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.divInfoAsistencia{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.divFechaAsistencia{
+  display: flex;
+  flex-direction: column;
+}
+
+.labelTitle{
+  text-decoration-line: underline;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelData{
+  font-size: 22px;
+}
+
+.divPresentes{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.divAusentes{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.btnInfo {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+
+ .btnInfo:hover {
+  color: black;
+ }
+
+ .btnInfo:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+
+ .btnInfo:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }
+
+ .goBackComp{
+  display: flex;
+  justify-content: center;
+ }

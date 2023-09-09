@@ -8,7 +8,7 @@
       <br>
       <label>Tipo</label>
       <select [(ngModel)]="tipoElegido" name="tipoElegido" name="Tipo de nota" id="tipos" (change)="alumnoReferidoShow()" #options>
-        <option>Tipo de nota</option>
+        <option value="0">Tipo de nota</option>
         <option value="Generica">Generica</option>
         <option value="Particular">Particular</option>
       </select>
@@ -31,7 +31,7 @@
       <input id="titulo" type="text" name="tituloNota" [(ngModel)]="tituloNota" required #tituloInput/>
       <span id="tituloError"></span>
       <label>Cuerpo</label>
-      <textarea id="cuerpo" required [(ngModel)]="cuerpoNota" name="cuerpoNota" #cuerpoInput></textarea>
+      <textarea required [(ngModel)]="cuerpoNota" name="cuerpoNota" #cuerpoInput></textarea>
       <span id="cuerpoError"></span>
 
       <div class="divFiles">
@@ -82,3 +82,4 @@
     </div>
   </form>
 </div>
+

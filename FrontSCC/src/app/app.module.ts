@@ -42,6 +42,7 @@ import { AulasComponent } from './components/aulas/aulas.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
 import { AgregarHistorialPopupComponent } from './components/popups/agregar-historial-popup/agregar-historial-popup.component';
 import { EditarHistorialPopupComponent } from './components/popups/editar-historial-popup/editar-historial-popup.component';
+import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia-aula.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { EditarHistorialPopupComponent } from './components/popups/editar-histor
     AulasComponent,
     AlumnosComponent,
     AgregarHistorialPopupComponent,
-    EditarHistorialPopupComponent
+    EditarHistorialPopupComponent,
+    AsistenciaAulaComponent
   ],
   imports: [
     BrowserModule,

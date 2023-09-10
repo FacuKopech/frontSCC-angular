@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asistencia-aula',
@@ -10,12 +11,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AsistenciaAulaComponent {
 
-  constructor(private aulaService: AulaService, private location: Location){}
+  constructor(private aulaService: AulaService, private location: Location, private router: Router){}
   public aula: any;
   public asistencias: any[] = [];
+  public asistencia: any
   showErrorAlert = false;
   message: string = '';
   asistenciaHoyTomada = false;
+  esPresentes = false;
+  openAsistenciaAlumnosPopup = false;
 
   ngOnInit(): void{
     this.aula = history.state.data;
@@ -43,6 +47,17 @@ export class AsistenciaAulaComponent {
       }
     });
   }
+
+  public tomarAsistencia(){
+    this.router.navigate(['/tomar_asistencia'], {state: {data: this.aula}});
+  }
+
+  public verAsistenciaAlumnos(asistencia: any, esPresentes: boolean){
+    this.asistencia = asistencia;
+    this.esPresentes = esPresentes;
+    this.openAsistenciaAlumnosPopup = true;
+  }
+
   public goBack(){
     this.location.back();
   }

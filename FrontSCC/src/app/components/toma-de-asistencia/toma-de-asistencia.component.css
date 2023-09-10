@@ -1,0 +1,75 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+}
+
+.divMessage .pMessage{
+  display: flex;
+  justify-content: center;
+}
+
+.divTableHeaders{
+  margin-left: 158px;
+    margin-right: 150px;
+    display: flex;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+  justify-content: space-between;
+}
+
+.container{
+  background-color: #28282bbd;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 7px;
+  height: fit-content;
+}
+
+
+.divNombreAlumno{
+  display: flex;
+    justify-content: flex-end;
+    width: 145px;
+}
+
+.pNombre{
+  display: flex;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+.labelTitle{
+  text-decoration-line: underline;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelData{
+  font-size: 22px;
+  display: flex;
+  align-self: center;
+}
+
+.lineSeparator{
+  border: 2px solid rgb(105, 208, 205);
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+ .goBackComp{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+ }

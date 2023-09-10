@@ -43,6 +43,8 @@ import { AlumnosComponent } from './components/alumnos/alumnos.component';
 import { AgregarHistorialPopupComponent } from './components/popups/agregar-historial-popup/agregar-historial-popup.component';
 import { EditarHistorialPopupComponent } from './components/popups/editar-historial-popup/editar-historial-popup.component';
 import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia-aula.component';
+import { AsistenciaAlumnoPopupComponent } from './components/popups/asistencia-alumno-popup/asistencia-alumno-popup.component';
+import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-de-asistencia.component';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia
     AlumnosComponent,
     AgregarHistorialPopupComponent,
     EditarHistorialPopupComponent,
-    AsistenciaAulaComponent
+    AsistenciaAulaComponent,
+    AsistenciaAlumnoPopupComponent,
+    TomaDeAsistenciaComponent
   ],
   imports: [
     BrowserModule,

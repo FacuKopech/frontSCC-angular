@@ -1,0 +1,31 @@
+<h1>Tomar Asistencia {{aula.nombre}}</h1>
+<div class="divMessage">
+  <p class="pMessage">{{message}}</p>
+</div>
+
+
+<app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
+*ngIf="showErrorAlert">
+</app-error-alert>
+<div class="divTableHeaders">
+  <label class="labelTitle" for="">Alumno/a:</label>
+</div>
+<div class="container" *ngFor="let alumno of alumnos">
+  <div class="divNombreAlumno">
+    <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
+  </div>
+  <hr class="lineSeparator">
+  <div class="divNombreAlumno">
+    <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
+  </div>
+  <hr class="lineSeparator">
+  <div class="divNombreAlumno">
+    <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
+  </div>
+  <div class="divAusentes">
+
+  </div>
+</div>
+
+<app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
+</app-go-back-button>

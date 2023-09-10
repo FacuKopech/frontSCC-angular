@@ -11,6 +11,7 @@ import { ArchivosAusenciaComponent } from './components/archivos-ausencia/archiv
 import { AulasComponent } from './components/aulas/aulas.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
 import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia-aula.component';
+import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-de-asistencia.component';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'archivos_ausencia', component: ArchivosAusenciaComponent },
   { path: 'aulas', component: AulasComponent },
   { path: 'alumnos_aula', component: AlumnosComponent },
-  { path: 'asistencia_aula', component: AsistenciaAulaComponent }
+  { path: 'asistencia_aula', component: AsistenciaAulaComponent },
+  { path: 'tomar_asistencia', component: TomaDeAsistenciaComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

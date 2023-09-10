@@ -2,29 +2,51 @@
 <div class="divMessage">
   <p class="pMessage">{{message}}</p>
 </div>
+<div class="divFechaHoyContainer">
+  <div class="divFechaHoy">
+    <h3 class="pMessage">Fecha: {{fechaString.substring(9,11)}}/{{fechaString.substring(6,8)}}/{{fechaString.substring(1,5)}}</h3>
+  </div>
+</div>
 
 
 <app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
 *ngIf="showErrorAlert">
 </app-error-alert>
 <div class="divTableHeaders">
-  <label class="labelTitle" for="">Alumno/a:</label>
+  <label class="labelTitle" for="">Alumno/a</label>
+  <label class="labelTitle" for="">Asistencia</label>
 </div>
 <div class="container" *ngFor="let alumno of alumnos">
-  <div class="divNombreAlumno">
-    <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
+  <div class="divData">
+    <div class="divNombreAlumno">
+      <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
+    </div>
+    <div class="divAsistencia">
+      <div class="checkbox-wrapper-44">
+        <label class="labelLetter" for="">P</label>
+        <label class="toggleButton">
+          <input (click)="presenteChecked(alumno)" #inputCheckboxP type="checkbox">
+          <div>
+            <svg class="svgCheck" viewBox="0 0 44 44">
+              <path transform="translate(-2.000000, -2.000000)" d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"></path>
+            </svg>
+          </div>
+        </label>
+      </div>
+      <div class="checkbox-wrapper-44">
+        <label class="labelLetter" for="">A</label>
+        <label class="toggleButton">
+          <input (click)="ausenteChecked(alumno)" #inputCheckboxA type="checkbox">
+          <div>
+            <svg class="svgCheck" viewBox="0 0 44 44">
+              <path transform="translate(-2.000000, -2.000000)" d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"></path>
+            </svg>
+          </div>
+        </label>
+      </div>
+    </div>
   </div>
   <hr class="lineSeparator">
-  <div class="divNombreAlumno">
-    <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
-  </div>
-  <hr class="lineSeparator">
-  <div class="divNombreAlumno">
-    <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
-  </div>
-  <div class="divAusentes">
-
-  </div>
 </div>
 
 <app-go-back-button class="goBackComp" (backButtonClick)="goBack()">

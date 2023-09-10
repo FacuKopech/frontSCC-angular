@@ -83,6 +83,18 @@
   flex-direction: column;
 }
 
+.divData{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.svgPersonIcon{
+  width: 14px;
+  height: 14px;
+  align-self: center;
+}
+
 .divActionButtons{
   display: flex;
   flex-direction: row;

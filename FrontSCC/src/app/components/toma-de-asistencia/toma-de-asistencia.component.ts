@@ -13,14 +13,12 @@ export class TomaDeAsistenciaComponent {
   aula: any;
   alumnos: any[] = [];
   alumnosPresentes: any[] = [];
-  alumnosAusentes: any[] = [];
   message = '';
   showErrorAlert = false;
   fechaHoy = new Date();
   fechaString: string = '';
 
   @ViewChild('inputCheckboxP', { static: false }) inputCheckboxP!: ElementRef<HTMLInputElement>;
-  @ViewChild('inputCheckboxA', { static: false }) inputCheckboxA!: ElementRef<HTMLInputElement>;
 
   constructor(private aulaService: AulaService, private location: Location){
     this.fechaString = JSON.stringify(this.fechaHoy);
@@ -42,16 +40,8 @@ export class TomaDeAsistenciaComponent {
   }
 
   public presenteChecked(alumno: any){
-    if(this.inputCheckboxA.nativeElement.checked == true){
-      this.inputCheckboxA.nativeElement.checked = false;
-    }
     if(this.inputCheckboxP.nativeElement.checked == true){
       this.alumnosPresentes.push(alumno);
-      this.alumnosAusentes.forEach(alumnoArray => {
-        if(alumnoArray.id == alumno.id){
-          this.alumnosAusentes.splice(alumno);
-        }
-      });
     }else{
       this.alumnosPresentes.forEach(alumnoArray => {
         if(alumnoArray.id == alumno.id){
@@ -59,28 +49,7 @@ export class TomaDeAsistenciaComponent {
         }
       });
     }
-    console.log(this.alumnosPresentes, this.alumnosAusentes);
-  }
-
-  public ausenteChecked(alumno: any){
-    if(this.inputCheckboxP.nativeElement.checked == true){
-      this.inputCheckboxP.nativeElement.checked = false;
-    }
-    if(this.inputCheckboxA.nativeElement.checked == true){
-      this.alumnosAusentes.push(alumno);
-      this.alumnosPresentes.forEach(alumnoArray => {
-        if(alumnoArray.id == alumno.id){
-          this.alumnosPresentes.splice(alumno);
-        }
-      });
-    }else{
-      this.alumnosAusentes.forEach(alumnoArray => {
-        if(alumnoArray.id == alumno.id){
-          this.alumnosAusentes.splice(alumno);
-        }
-      });
-    }
-    console.log(this.alumnosPresentes, this.alumnosAusentes);
+    console.log(this.alumnosPresentes);
   }
 
   public goBack(){

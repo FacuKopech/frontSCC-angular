@@ -11,6 +11,8 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
+<div *ngIf="openAsistenciaAlumnosPopup || openErrorAlert" class="divCover"></div>
+
 <app-asistencia-alumno-popup *ngIf="openAsistenciaAlumnosPopup"
 (cancelButtonClick)="openAsistenciaAlumnosPopup = false"
 [asistencia]="asistencia"

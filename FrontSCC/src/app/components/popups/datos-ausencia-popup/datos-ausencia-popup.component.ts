@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
+import {  DatePipe  } from '@angular/common';
 
 @Component({
   selector: 'app-datos-ausencia-popup',
@@ -22,6 +23,7 @@ export class DatosAusenciaPopupComponent {
   @Input() filesAusencia: FormData;
   @Input() idHijo: number=-1;
   @Input() idAlumno: number=-1;
+  @Input() ausencias: any[] = [];
   @Input() ausencia: any;
 
   @Output()
@@ -35,7 +37,7 @@ export class DatosAusenciaPopupComponent {
   @Output()
   denegarAusenciaButtonClick = new EventEmitter<{idAusencia: number, idAlumno: number, esAceptada: boolean}>();
 
-  constructor(private ausenciaService: AusenciaService, private router: Router){
+  constructor(private ausenciaService: AusenciaService, private router: Router, private datePipe: DatePipe){
     this.fechaComienzo = new Date();
     this.fechaFin = new Date();
     this.filesAusencia = new FormData();
@@ -43,10 +45,24 @@ export class DatosAusenciaPopupComponent {
 
   ngOnInit(){
     if(this.idAlumno >= 0){
-      document.getElementById("div-actionButtons")?.classList.remove("divActionButtons")
-      document.getElementById("div-actionButtons")?.classList.add("show-close-button");
-      document.getElementById("popup-widthClass")?.classList.remove("popup");
-      document.getElementById("popup-widthClass")?.classList.add("change-width");
+      if(this.ausencias.length > 0){
+        document.getElementById("div-actionButtons")?.classList.remove("divActionButtons")
+        document.getElementById("div-actionButtons")?.classList.add("show-close-button");
+        var today = new Date();
+        const formattedDate = this.datePipe.transform(today, 'yyyy-MM-ddTHH:mm:ss');
+        if(formattedDate){
+          for (let index = 0; index < this.ausencias.length; index++) {
+            if(formattedDate >= this.ausencias[index].fechaComienzo && formattedDate <= this.ausencias[index].fechaFin){
+              this.ausencia = this.ausencias[index];
+            }
+          }
+        }
+      }else{
+        document.getElementById("div-actionButtons")?.classList.remove("divActionButtons")
+        document.getElementById("div-actionButtons")?.classList.add("show-close-button");
+        document.getElementById("popup-widthClass")?.classList.remove("popup");
+        document.getElementById("popup-widthClass")?.classList.add("change-width");
+      }
     }
     this.count = 0;
     this.motivoAusencia = this.ausencia.motivo;

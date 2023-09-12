@@ -89,6 +89,14 @@
   flex-wrap: wrap;
 }
 
+.divData.true:hover{
+  color: rgb(6, 112, 6);
+}
+
+.divData.false:hover{
+  color: rgb(172, 14, 14);
+}
+
 .svgPersonIcon{
   width: 14px;
   height: 14px;

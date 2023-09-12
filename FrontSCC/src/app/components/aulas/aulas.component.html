@@ -3,6 +3,7 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
+<div *ngIf="openPopupDatosInstitucionAula" class="divCover"></div>
 <!-- POPUP DATOS INSTITUCION AULA -->
 <app-datos-institucion-popup *ngIf="openPopupDatosInstitucionAula"
 [institucion]="institucion"

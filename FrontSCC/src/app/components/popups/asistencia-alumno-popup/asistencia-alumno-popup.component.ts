@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -17,7 +17,9 @@ export class AsistenciaAlumnoPopupComponent {
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private aulaService: AulaService){}
+
   public ngOnInit(){
     this.aulaService.ObtenerAsistenciaAlumnos(this.aula.id, this.asistencia.id, this.esPresentes).subscribe(res=>{
       this.alumnos = res;

@@ -108,7 +108,8 @@ export class AusenciasHijoPopupComponent {
           this.handleAusenciaFiles(eventData.files);
           this.counter = 0;
         }
-
+        this.openSuccessAlert = true;
+        this.esAgregarAusencia = true;
       }else{
         this.openErrorAlert = true;
       }

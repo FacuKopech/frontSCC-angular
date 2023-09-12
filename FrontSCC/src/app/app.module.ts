@@ -34,7 +34,7 @@ import { AgregarAusenciaPopupComponent } from './components/popups/agregar-ausen
 import { HistorialesComponent } from './components/historiales/historiales.component';
 import { ConfirmacionFirmaNotaPopupComponent } from './components/popups/confirmacion-firma-nota-popup/confirmacion-firma-nota-popup.component';
 import { ArchivosAusenciaComponent } from './components/archivos-ausencia/archivos-ausencia/archivos-ausencia.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DatosAulaHijoPopupComponent } from './components/popups/datos-aula-hijo-popup/datos-aula-hijo-popup.component';
 import { NuevaNotaADocentePopupComponent } from './components/popups/nueva-nota-adocente-popup/nueva-nota-adocente-popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -95,7 +95,7 @@ import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-
     EditorModule,
     ReactiveFormsModule
   ],
-  providers: [ApiService, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
+  providers: [ApiService, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

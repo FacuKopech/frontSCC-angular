@@ -501,13 +501,22 @@
         <input #fechaFinInput value={{ausencia.fechaFin}} type="date" name="fechaFin" id="" [ngModel]="fechaFin | date:'yyyy-MM-dd'"
         (ngModelChange)="fechaFin = $event" disabled>
       </div>
-      <div *ngIf="idAlumno >= 0" class="divConLabel">
+      <div *ngIf="idAlumno >= 0 && ausencias.length == 0" class="divConLabel">
         <label class="campos">Motivo: </label> <label>{{ausencia.motivo}}</label>
       </div>
-      <div *ngIf="idAlumno >= 0" class="divConLabel">
+      <div *ngIf="idAlumno >= 0 && ausencias.length == 0" class="divConLabel">
         <label class="campos">Fecha de comienzo: </label> <label>{{ausencia.fechaComienzo.substring(0,10)}}</label>
       </div>
-      <div *ngIf="idAlumno >= 0" class="divConLabel">
+      <div *ngIf="idAlumno >= 0 && ausencias.length == 0" class="divConLabel">
+        <label class="campos">Fecha de fin: </label> <label>{{ausencia.fechaFin.substring(0,10)}}</label>
+      </div>
+      <div *ngIf="idAlumno >= 0 && ausencias.length > 0" class="divConLabel">
+        <label class="campos">Motivo: </label> <label>{{ausencia.motivo}}</label>
+      </div>
+      <div *ngIf="idAlumno >= 0 && ausencias.length > 0" class="divConLabel">
+        <label class="campos">Fecha de comienzo: </label> <label>{{ausencia.fechaComienzo.substring(0,10)}}</label>
+      </div>
+      <div *ngIf="idAlumno >= 0 && ausencias.length > 0" class="divConLabel">
         <label class="campos">Fecha de fin: </label> <label>{{ausencia.fechaFin.substring(0,10)}}</label>
       </div>
       <div class="divConLabel">
@@ -518,7 +527,7 @@
       </div>
     </div>
     <div id="div-actionButtons" class="divActionButtons">
-      <div *ngIf="idAlumno >= 0 && ausencia.justificada === ''" class="popupAceptarAusenciaButton">
+      <div *ngIf="idAlumno >= 0 && ausencia.justificada === '' && ausencias.length == 0" class="popupAceptarAusenciaButton">
         <button (click)="aceptarAusenciaClicked()" class="buttonDecisionAusencia aceptar">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgDecision">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -533,7 +542,7 @@
               </svg>
           </button>
       </div>
-      <div *ngIf="idAlumno >= 0 && ausencia.justificada === ''" class="popupDenegarAusenciaButton">
+      <div *ngIf="idAlumno >= 0 && ausencia.justificada === '' && ausencias.length == 0" class="popupDenegarAusenciaButton">
         <button (click)="denegarAusenciaClicked()" class="buttonDecisionAusencia denegar">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgDecision">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />

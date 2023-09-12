@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Location } from '@angular/common';
+import { Location, DatePipe  } from '@angular/common';
 
 @Component({
   selector: 'app-toma-de-asistencia',
@@ -17,10 +17,13 @@ export class TomaDeAsistenciaComponent {
   showErrorAlert = false;
   fechaHoy = new Date();
   fechaString: string = '';
+  idAlumno: number = -1;
+  ausencias: any[] = [];
+  openDatosAusenciaPopup = false;
 
   @ViewChild('inputCheckboxP', { static: false }) inputCheckboxP!: ElementRef<HTMLInputElement>;
 
-  constructor(private aulaService: AulaService, private location: Location){
+  constructor(private aulaService: AulaService, private location: Location, private datePipe: DatePipe){
     this.fechaString = JSON.stringify(this.fechaHoy);
   }
 
@@ -40,16 +43,33 @@ export class TomaDeAsistenciaComponent {
   }
 
   public presenteChecked(alumno: any){
-    if(this.inputCheckboxP.nativeElement.checked == true){
+    let arrayAnterior: any[] = [];
+    arrayAnterior = this.alumnosPresentes;
+    this.alumnosPresentes = this.alumnosPresentes.filter((alumnoArray) => alumnoArray.id !== alumno.id);
+    if(arrayAnterior.length == this.alumnosPresentes.length){
       this.alumnosPresentes.push(alumno);
-    }else{
-      this.alumnosPresentes.forEach(alumnoArray => {
-        if(alumnoArray.id == alumno.id){
-          this.alumnosPresentes.splice(alumno);
-        }
-      });
     }
     console.log(this.alumnosPresentes);
+  }
+
+  public tieneAusenciaEnEstaFecha(ausencias: any[]): boolean{
+    var today = new Date();
+    const formattedDate = this.datePipe.transform(today, 'yyyy-MM-ddTHH:mm:ss');
+    if(formattedDate){
+      for (let index = 0; index < ausencias.length; index++) {
+        if(formattedDate >= ausencias[index].fechaComienzo && formattedDate <= ausencias[index].fechaFin){
+          return true;
+        }
+      }
+      return false;
+    }
+    return false;
+  }
+
+  public verAusenciaAlumnoAusente(idAlumno: number, ausencias: any[]){
+    this.openDatosAusenciaPopup = true;
+    this.idAlumno = idAlumno,
+    this.ausencias = ausencias;
   }
 
   public goBack(){

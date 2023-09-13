@@ -44,7 +44,7 @@ export class LoginComponent {
         }
       },
       (error:HttpErrorResponse) =>{
-        if(error.status == 404){
+        if(error.status == 404 || error.status == 400){
           this.message = "Usuario o clave incorrectos!";
           this.clave = '';
         }

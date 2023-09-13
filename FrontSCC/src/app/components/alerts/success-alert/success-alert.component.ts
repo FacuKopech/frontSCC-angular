@@ -21,6 +21,8 @@ export class SuccessAlertComponent {
   @Input() esAgregarHistorial: any;
   @Input() esEliminarHistorial: any;
   @Input() esEditarHistorial: any;
+  @Input() esCargaDeAsistencia: any;
+
 
   constructor() {
   }

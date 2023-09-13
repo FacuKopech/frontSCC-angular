@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Location, DatePipe  } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toma-de-asistencia',
@@ -15,15 +16,18 @@ export class TomaDeAsistenciaComponent {
   alumnosPresentes: any[] = [];
   message = '';
   showErrorAlert = false;
+  openSuccessAlert = false;
+  esCargaDeAsistencia = false;
   fechaHoy = new Date();
   fechaString: string = '';
   idAlumno: number = -1;
   ausencias: any[] = [];
   openDatosAusenciaPopup = false;
+  openConfirmCargaAsistenciaPopup = false;
 
   @ViewChild('inputCheckboxP', { static: false }) inputCheckboxP!: ElementRef<HTMLInputElement>;
 
-  constructor(private aulaService: AulaService, private location: Location, private datePipe: DatePipe){
+  constructor(private aulaService: AulaService, private location: Location, private datePipe: DatePipe, private router: Router){
     this.fechaString = JSON.stringify(this.fechaHoy);
   }
 
@@ -70,6 +74,25 @@ export class TomaDeAsistenciaComponent {
     this.openDatosAusenciaPopup = true;
     this.idAlumno = idAlumno,
     this.ausencias = ausencias;
+  }
+
+  public cargarAsistencia(){
+    this.aulaService.CargarNuevaAsistencia(this.aula.id, this.alumnosPresentes).subscribe(res =>{
+      if(res){
+        this.esCargaDeAsistencia = true;
+        this.openSuccessAlert = true;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 404 || error.status == 400){
+        this.showErrorAlert = true;
+      }
+    });
+  }
+
+  public closeSuccessPopup(){
+    this.openSuccessAlert = false;
+    this.location.back();
   }
 
   public goBack(){

@@ -34,4 +34,8 @@ export class AulaService {
   public ObtenerAsistenciaAlumnos(idAula: number, idAsistencia: number, esPresentes: boolean): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAsistenciaAlumnos/${idAula}/${idAsistencia}/${esPresentes}`);
   }
+
+  public CargarNuevaAsistencia(idAula: number, alumnos: any[]): Observable<boolean> {
+    return this.http.post<boolean>(this.hostUrl + `/Aulas/CargarNuevaAsistencia/${idAula}`, alumnos);
+  }
 }

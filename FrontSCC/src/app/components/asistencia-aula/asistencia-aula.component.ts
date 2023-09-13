@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AsistenciaAulaComponent {
 
-  constructor(private aulaService: AulaService, private location: Location, private router: Router){}
+  constructor(private aulaService: AulaService, private location: Location, private router: Router, private datePipe: DatePipe){}
   public aula: any;
   public asistencias: any[] = [];
   public asistencia: any
@@ -31,12 +31,16 @@ export class AsistenciaAulaComponent {
         if(this.asistencias.length == 0){
           this.message = "Nose registraron asistencias para esta aula";
         }
-        const today = new Date();
-        for (let index = 0; index < this.asistencias.length; index++) {
-          if(today == this.asistencias[index].fechaAsistenciaTomada){
-            this.asistenciaHoyTomada = true;
-          }else{
-            this.asistenciaHoyTomada = false;
+        var today = new Date();
+        const formattedDate = this.datePipe.transform(today, 'yyyy-MM-dd');
+        if(formattedDate){
+          for (let index = 0; index < this.asistencias.length; index++) {
+            const formattedAusenciaDate = this.datePipe.transform(this.asistencias[index].fechaAsistenciaTomada, 'yyyy-MM-dd')
+            if(formattedDate == formattedAusenciaDate){
+              this.asistenciaHoyTomada = true;
+            }else{
+              this.asistenciaHoyTomada = false;
+            }
           }
         }
       }

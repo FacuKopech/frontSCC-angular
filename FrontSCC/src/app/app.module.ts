@@ -46,6 +46,7 @@ import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia
 import { AsistenciaAlumnoPopupComponent } from './components/popups/asistencia-alumno-popup/asistencia-alumno-popup.component';
 import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-de-asistencia.component';
 import { ConfirmCargaAsistenciaAlertComponent } from './components/alerts/confirm-carga-asistencia-alert/confirm-carga-asistencia-alert.component';
+import { PadresAlumnoPopupComponent } from './components/popups/padres-alumno-popup/padres-alumno-popup.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { ConfirmCargaAsistenciaAlertComponent } from './components/alerts/confir
     AsistenciaAulaComponent,
     AsistenciaAlumnoPopupComponent,
     TomaDeAsistenciaComponent,
-    ConfirmCargaAsistenciaAlertComponent
+    ConfirmCargaAsistenciaAlertComponent,
+    PadresAlumnoPopupComponent
   ],
   imports: [
     BrowserModule,

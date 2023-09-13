@@ -12,6 +12,7 @@
   height: 100%;
   background-color: #1d1d1d6b; /* Transparent black background */
   z-index: 999; /* Ensure the overlay is above other elements */
+  backdrop-filter: blur(3px) brightness(1.04);
 }
 
 
@@ -121,6 +122,65 @@ h1 {
 .divAsistenciaAlumno{
   display: flex;
   justify-content: space-between;
+}
+
+.divButtonPadresAlumno{
+  display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.btnVer {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  z-index: 1;
+  position: relative;
+  -webkit-box-shadow: 0 5px 15px rgba(33, 33, 33, .2);
+  box-shadow: 0 5px 15px rgba(33, 33, 33, .2);
+  overflow: hidden;
+  cursor: pointer;
+  width: fit-content;
+  height: 30px;
+}
+
+.btnVer > span {
+  z-index: 2;
+}
+
+.btnVer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #212121;
+  z-index: -1;
+  overflow: hidden;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+}
+
+.btnVer:hover {
+  color: #e8e8e8;
+}
+
+.btnVer:hover::before {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
 }
 
 .labelTitle{

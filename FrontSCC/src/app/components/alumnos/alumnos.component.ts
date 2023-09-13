@@ -18,6 +18,7 @@ export class AlumnosComponent {
   openSuccessAlert = false;
   openErrorAlert = false;
   openPopupAusenciasAlumno = false;
+  openPopupPadresAlumno = false;
   esAceptarAusenciaAlumno = false;
   esDenegarAusenciaAlumno = false;
   esAusenciasAlumno = true;
@@ -47,6 +48,11 @@ export class AlumnosComponent {
       this.messageAusencia = "No existen Ausencias";
     }
     this.openPopupAusenciasAlumno = true;
+  }
+
+  public verPadres(alumno: any){
+    this.alumno = alumno;
+    this.openPopupPadresAlumno = true;
   }
 
   public cerrarAusenciasAlumnoPopup(){

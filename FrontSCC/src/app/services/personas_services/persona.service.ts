@@ -14,4 +14,8 @@ export class PersonaService {
   public ObtenerMisHijos(): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Personas/ObtenerMisHijos`);
   }
+
+  public ObtenerPadresDeAlumno(idAlumno: number): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Personas/ObtenerPadresDeAlumno/${idAlumno}`);
+  }
 }

@@ -73,6 +73,7 @@ h1 {
   height: 100%;
   background-color: #1d1d1d6b; /* Transparent black background */
   z-index: 999; /* Ensure the overlay is above other elements */
+  backdrop-filter: blur(3px) brightness(1.04);
 }
 
 .alert{

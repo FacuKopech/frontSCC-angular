@@ -2,37 +2,34 @@
   <div class="popup fadeInDown">
     <div class="popupHeader">
       <div class="popupTitulo">
-        <h2>Aula</h2>
+        <h2>Padres de {{alumno.nombre}}</h2>
       </div>
     </div>
 
     <div *ngIf="showPopupNuevaNota || openSuccessAlert || openErrorAlert" class="divCover"></div>
     <app-nueva-nota-adocente-popup class="nuevaNotaPopup" *ngIf="showPopupNuevaNota"
-    [hijo]="hijo"
+    [hijo]="alumno"
     [aula]="aula"
-    [docente]="docente"
+    [padres]="padres"
     (cancelButtonClick)="cerrarPopupNuevaNota()"
-    (enviarButtonClick)="enviarNotaADocente($event)">
+    (enviarButtonClick)="enviarNotaAPadre($event)">
     </app-nueva-nota-adocente-popup>
 
     <app-success-alert class="alert" *ngIf="openSuccessAlert"
     (cerrarButtonClick)="aceptarClick()"
-    [esEnvioNotaDocente]="esEnvioNotaDocente">
+    [esEnvioNotaPadre]="esEnvioNotaPadre">
     </app-success-alert>
 
     <app-error-alert class="alert" *ngIf="openErrorAlert"
     (cerrarButtonClick)=" openErrorAlert = false">
     </app-error-alert>
 
-    <div class="content">
-      <div>
-        <label class="campos">Grado: </label> <label for="">{{hijo.grado}}</label>
+    <div class="content" *ngFor="let padre of padres">
+      <div class="divNombrePadre">
+        <label class="campos">Nombre: </label> <label class="labelData" for="">{{padre.apellido}}, {{padre.nombre}}</label>
       </div>
-      <div>
-        <label class="campos">Division: </label> <label for="">{{hijo.division}}</label>
-      </div>
-      <div>
-        <label class="campos">Docente: </label> <label for="">{{docente.apellido}}, {{docente.nombre}}</label>
+      <div class="divTelPadre">
+        <label class="campos">Telefono: </label> <label class="labelData" for="">{{padre.telefono}}</label>
       </div>
     </div>
     <div class="divFooterBtnsContainer">

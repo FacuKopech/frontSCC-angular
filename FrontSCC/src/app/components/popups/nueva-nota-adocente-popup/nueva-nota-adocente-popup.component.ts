@@ -10,6 +10,7 @@ export class NuevaNotaADocentePopupComponent {
   @Input() hijo: any;
   @Input() aula: any;
   @Input() docente: any;
+  @Input() padres: any[] = [];
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()
@@ -30,12 +31,22 @@ export class NuevaNotaADocentePopupComponent {
   fileToUpload: any;
   formData: FormData;
   files: File[] = [];
+  esNotaParaPadre = false;
 
   showErrorAlert = false
   showPopupNuevaNota = false;
 
   constructor(){
     this.formData = new FormData();
+  }
+
+  public ngOnInit(){
+    console.log(this.hijo, this.docente, this.padres);
+    if(this.docente == null && this.padres.length > 0){
+      this.esNotaParaPadre = true;
+    }else if(this.docente != null && this.padres.length == 0){
+      this.esNotaParaPadre = false;
+    }
   }
 
   public cancelarClicked() {

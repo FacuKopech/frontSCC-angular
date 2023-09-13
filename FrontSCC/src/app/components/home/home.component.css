@@ -22,6 +22,11 @@
   margin-right: 16px;
 }
 
+.active {
+  filter: blur(5px) brightness(0.7);
+}
+
+
 .buttonEmitidas::before {
   content: '';
   position: absolute;

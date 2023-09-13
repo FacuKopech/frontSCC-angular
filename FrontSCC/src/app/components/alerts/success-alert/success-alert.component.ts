@@ -22,7 +22,7 @@ export class SuccessAlertComponent {
   @Input() esEliminarHistorial: any;
   @Input() esEditarHistorial: any;
   @Input() esCargaDeAsistencia: any;
-
+  @Input() esEnvioNotaPadre: any;
 
   constructor() {
   }

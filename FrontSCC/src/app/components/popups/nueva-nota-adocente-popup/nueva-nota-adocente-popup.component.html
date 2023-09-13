@@ -3,7 +3,8 @@
   <form>
     <div class="formContent">
       <div class="titleHeader">
-        <h2>Nueva nota para {{docente.apellido}}, {{docente.nombre}}</h2>
+        <h2 *ngIf="!esNotaParaPadre">Nueva nota para {{docente.apellido}}, {{docente.nombre}}</h2>
+        <h2 *ngIf="esNotaParaPadre">Nueva nota para Padre(s) de {{hijo.nombre}}</h2>
       </div>
       <br>
       <label>Tipo</label>
@@ -23,8 +24,11 @@
         <span id="aulaError"></span>
       </div>
       <div class="divDestinatario" #divAlumnoReferido>
-        <label>Destinatario</label>
-        <input type="text" value="{{docente.email}}" disabled>
+        <label>Destinatario(s)</label>
+        <input *ngIf="!esNotaParaPadre" type="text" value="{{docente.email}}" disabled>
+        <div *ngIf="esNotaParaPadre">
+          <input *ngFor="let padre of padres" type="text" value="{{padre.email}}" disabled>
+        </div>
       </div>
 
       <label>Titulo</label>

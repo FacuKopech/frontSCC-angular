@@ -10,7 +10,7 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
-<div *ngIf="openConfirmacionFirmaHistorialPopup || openAgregarHistorialPopup || openTokenConfirmation || openSuccessAlert || openErrorAlert" class="divCover"></div>
+<div *ngIf="openConfirmacionFirmaHistorialPopup || openConfirmDeletePopup || openEditarHistorialPopup || openAgregarHistorialPopup || openTokenConfirmation || openSuccessAlert || openErrorAlert" class="divCover"></div>
 <app-confirmacion-firma-nota-popup *ngIf="openConfirmacionFirmaHistorialPopup"
 (cancelButtonClick)="openConfirmacionFirmaHistorialPopup = false"
 (firmarButtonClick)="handleFirmarClick()">

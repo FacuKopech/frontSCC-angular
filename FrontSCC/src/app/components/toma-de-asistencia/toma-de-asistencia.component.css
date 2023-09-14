@@ -47,6 +47,9 @@ h1 {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+  display: flex;
+    width: 16%;
+    justify-content: space-around;
 }
 
 .buttonCargarAsistencia:hover {
@@ -60,9 +63,12 @@ h1 {
   transform: translateY(-1px);
 }
 
-.svgPersonIcon{
-  width: 14px;
-  height: 14px;
+.svgCalendarIcon{
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  width: 16px;
+  height: 16px;
 }
 
 .divCover {
@@ -113,7 +119,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     border-radius: 7px;
-    background-color: #28282bbd;
+    background-color: #086d7085;
     transition: transform 0.3s ease;
 }
 
@@ -448,7 +454,7 @@ h1 {
 }
 
 .lineSeparator{
-  border: 2px solid rgb(105, 208, 205);
+  border: 2px solid black;
   margin-bottom: 5px;
   margin-top: 5px;
 }

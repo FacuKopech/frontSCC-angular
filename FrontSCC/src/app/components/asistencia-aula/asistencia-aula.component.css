@@ -110,12 +110,27 @@ h1 {
 .divFechaAsistencia{
   display: flex;
   flex-direction: column;
+  width: 145px;
 }
 
 .labelTitle{
   text-decoration-line: underline;
   font-size: 22px;
   font-weight: 500;
+}
+
+.divFechaData{
+  display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.svgCalendarIcon{
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  width: 20px;
+  height: 20px;
 }
 
 .labelData{

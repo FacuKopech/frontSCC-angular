@@ -261,6 +261,20 @@
   justify-content: center;
 }
 
+.divFechaData{
+  display: flex;
+  width: 38%;
+  justify-content: space-evenly;
+}
+
+.svgCalendarIcon{
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  width: 20px;
+  height: 20px;
+}
+
 .pFechaComienzo{
   font-size: 22px;
   font-weight: 500;

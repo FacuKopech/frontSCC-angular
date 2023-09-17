@@ -8,6 +8,7 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
 export class SuccessAlertComponent {
   @Input() esModification: any;
   @Input() esDeletion: any;
+  @Input() esAddition: any;
   @Input() esResset: any;
   @Input() esRecover: any;
   @Input() esEditAusencia: any;

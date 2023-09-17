@@ -5,8 +5,9 @@
       <div class="popupTitulo">
         <h2 *ngIf="esPresentes" class="h2Asistencia">Presentes</h2>
         <h2 *ngIf="!esPresentes" class="h2Asistencia">Ausentes</h2>
+        <h2 class="h2AsistenciaFecha">{{asistencia.fechaAsistenciaTomada.substring(8,10)}}/{{asistencia.fechaAsistenciaTomada.substring(5,7)}}/{{asistencia.fechaAsistenciaTomada.substring(0,4)}}</h2>
       </div>
-      <div class="divMessage">
+      <div *ngIf="message != ''" class="divMessage">
         <label for="">{{message}}</label>
       </div>
 

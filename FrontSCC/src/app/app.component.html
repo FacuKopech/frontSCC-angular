@@ -23,7 +23,7 @@
   <title>Sistema CCD</title>
 </head>
 
-<body class="text-center customBodyHeight">
+<body class="text-center customBodyHeight" [ngStyle]="getBackgroundImage()">
 
   <!-- loggedIn == false -->
   <div *ngIf="!loggedIn" class="container-fluid mt-3">

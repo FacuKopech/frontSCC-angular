@@ -1,7 +1,6 @@
 import { Component, Input} from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/user_services/api.service';
-import {  tap } from 'rxjs';
 import { AppComponent } from '../../app.component';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -45,7 +44,10 @@ export class LoginComponent {
       },
       (error:HttpErrorResponse) =>{
         if(error.status == 404 || error.status == 400){
-          this.message = "Usuario o clave incorrectos!";
+          this.message = "Usuario o clave incorrectos";
+          this.clave = '';
+        }else if(error.status >= 500 || error.status == 0){
+          this.message = "Error del servidor";
           this.clave = '';
         }
       });

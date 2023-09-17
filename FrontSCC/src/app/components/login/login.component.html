@@ -33,11 +33,11 @@
     </p>
     <div class="inputBox">
       <input type="text" required="required" id="login" name="username" [(ngModel)]="username">
-      <span class="user">Usuario</span>
+      <span>Usuario</span>
     </div>
 
     <div class="inputBox">
-      <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}" #passwordInpu>
+      <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}">
       <!-- <button (click)="togglePasswordVisibility()" class="password-toggle-button">
         <i class="far fa-eye" id="togglePassword"></i>
       </button> -->

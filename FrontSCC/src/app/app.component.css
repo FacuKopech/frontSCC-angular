@@ -32,15 +32,19 @@ a:hover {
  * Base structure
  */
 html,
-body {
-  background-color: #333;
-  background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1644&q=80');
+
+body{
   background-position:bottom ;
   background-repeat: no-repeat;
   background-size: cover;
   resize: both;
   overflow: auto;
   height: 100%;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  color: #fff;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
 }
 
 .customBodyHeight {
@@ -51,13 +55,7 @@ body {
   min-height: 100vh;
   margin: 0 auto;
 }
-body {
-  -ms-flex-pack: center;
-  -webkit-box-pack: center;
-  color: #fff;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-}
+
 .navCustom {
   display: flex;
   justify-content: space-between;

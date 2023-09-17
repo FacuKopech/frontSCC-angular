@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-declare var tinymce: any;
 
 @Component({
   selector: 'app-nueva-nota-adocente-popup',

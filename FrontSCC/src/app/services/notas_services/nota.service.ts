@@ -32,9 +32,22 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerAlumnosDeAulaParaNuevaNota/${idAula}`);
   }
 
-  // public EnviarNuevaNota(): Observable<boolean> {
-  //   return this.http.post<boolean>(this.hostUrl + `/Notas/EnviarNuevaNota`, );
-  // }
+  public ObtenerListaDeDestinatariosParaNuevaNota(idAula: number): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerListaDeDestinatariosParaNuevaNota/${idAula}`);
+  }
+
+  public ObtenerAulasParaNuevaNota(tipoDeNota: string): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerAulasParaNuevaNota/${tipoDeNota}`);
+  }
+
+  public ObtenerHijosPadreParaNuevaNota(): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerHijosPadreParaNuevaNota/`);
+  }
+
+  public EnviarNuevaNota(nuevaNota: { tipo: string, conAula: boolean, idAulaDestinada: number, idAlumnoReferido: number,
+    destinatarios: any[], titulo:string, cuerpo: string}): Observable<any> {
+    return this.http.post<any>(this.hostUrl + `/Notas/EnviarNuevaNota`, nuevaNota);
+  }
 
   public EnviarNuevaNotaADocente(idHijo: number, nota: { tipo:string, titulo: string, cuerpo: string}): Observable<boolean> {
     return this.http.post<boolean>(this.hostUrl + `/Notas/EnviarNuevaNotaADocente/${idHijo}`, nota);

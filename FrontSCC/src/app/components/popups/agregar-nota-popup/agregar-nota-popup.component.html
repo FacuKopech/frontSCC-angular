@@ -5,51 +5,79 @@
       <div class="titleHeader">
         <h2>Agregar nueva nota</h2>
       </div>
-      <br>
+
+      <div *ngIf="openTipoNotaInfoPopup" class="divCover"></div>
+      <app-tipo-nota-info-popup *ngIf="openTipoNotaInfoPopup"
+      (cancelButtonClick)="openTipoNotaInfoPopup = false"
+      [esTipo]="esTipo">
+      </app-tipo-nota-info-popup>
+
       <label>Tipo</label>
-      <select name="Tipo de nota" id="tipos" (change)="radioButtonShow()" #options>
-        <option>Tipo de nota</option>
-        <option value="G">Generica</option>
-        <option value="P">Particular</option>
-      </select>
-      <label id="labelRadio" class="radioButtonLabel" #label>Seleccione una opcion: </label>
-      <div id="radioButtonsContainer"  class="radio-button-container" #radioButtons>
-        <label class="radio-button">
-          <input value="conAula" name="example-radio" type="radio" [required]="isRadioButtonVisible" (click)="mostrarAula()">
-          <span class="radio"></span>
-          Para un aula
+      <div id="radioButtonsContainer" class="radio-inputs">
+        <label>
+          <input class="radio-input" type="radio" name="engine" (click)="radioButtonShow('P')" #radioButtonParticular>
+            <span class="radio-tile">
+              <span class="radio-label">Particular</span>
+            </span>
         </label>
-        <label class="radio-button">
-          <input value="sinAula" name="example-radio" type="radio" [required]="isRadioButtonVisible" (click)="esconderAula()">
-          <span class="radio"></span>
-          Para persona/s determinada/s
+        <label for="">
+          <svg xmlns="http://www.w3.org/2000/svg" (click)="openInfoPopup(true)" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+        </label>
+        <label>
+          <input class="radio-input" type="radio" name="engine" (click)="radioButtonShow('G')" #radioButtonGenerica>
+          <span class="radio-tile">
+            <span class="radio-label">Generica</span>
+          </span>
         </label>
       </div>
+      <label *ngIf="isRadioButtonVisible" for="">Seleccione una opcion</label>
+      <div id="radioButtonsContainer"  class="radio-button-container" *ngIf="isRadioButtonVisible">
+        <label class="radio-button">
+          <input class="radio-input" value="conAula" name="example-radio" type="radio" [required]="isRadioButtonVisible" (click)="mostrarAula()">
+          <span class="radio-tile">
+            <span class="radio-label">Con aula destinada</span>
+          </span>
+        </label>
+        <label for="">
+          <svg xmlns="http://www.w3.org/2000/svg" (click)="openInfoPopup(false)" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+        </label>
+        <label class="radio-button">
+          <input class="radio-input" value="sinAula" name="example-radio" type="radio" [required]="isRadioButtonVisible" (click)="esconderAula()">
+          <span class="radio-tile">
+            <span class="radio-label">Sin aula destinada</span>
+          </span>
+        </label>
+      </div>
+
       <div class="divAulaDestinada" id="divAulaDestinada" #divAulaDestinada>
         <label>Aula destinada</label>
-        <select  name="" id="">
-          <option selected disabled>Seleccione un Aula</option>
-          <option *ngFor="let aula of aulas" (click)="handleAulaSeleccionada(aula)">{{aula.nombre}}</option>
+        <select  name="" id="" (change)="handleAulaSeleccionada($event.target.value)" #selectAulas>
+          <option selected value="0">Seleccione un Aula</option>
+          <option *ngFor="let aula of aulas"  [value]="aula.id">{{aula.nombre}}</option>
         </select>
       </div>
       <div class="divAlumnoReferido" #divAlumnoReferido>
         <label>Alumno referido</label>
-        <select name="" id="">
+        <select name="" id="" (change)="guardarAlumnoSeleccionado($event.target.value)">
           <option selected disabled>Seleccione un Alumno referido</option>
-          <option *ngFor="let alumno of alumnos" (click)="guardarAlumnoSeleccionado(alumno)">{{alumno.apellido}}, {{alumno.nombre}}</option>
+          <option *ngFor="let alumno of alumnos"  [value]="alumno.id">{{alumno.apellido}}, {{alumno.nombre}}</option>
         </select>
       </div>
       <label class="labelDropdown" #labelDropdownMenu>Destinatarios</label>
       <div class="dropdown" #dropdown>
         <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="showDropDownListDestinatarios()">
-          Elija el/los destinatario/s
+          Elija el/los destinatario(s)
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" #dropdownMenu>
           <ng-container *ngFor="let destinatario of destinatarios">
-            <input type="checkbox" id="cbx12" style="display: none;" class="inputCheck" [checked]="destinatarioSelected(destinatario)" (change)="changedSelection(destinatario)">
-          <label for="cbx12" class="check">{{destinatario}}
-            <div class="divSVG" *ngFor="let destinatario of destinatarios" >
-              <svg width="18px" height="18px" viewBox="0 0 18 18" >
+            <input type="checkbox" [id]="destinatario.id" style="display: none;" class="inputCheck" (click)="destinatarioCheck(destinatario)">
+            <label [for]="destinatario.id" class="check">{{destinatario.email}}
+            <div class="divSVG">
+              <svg width="18px" height="18px" viewBox="0 0 18 18">
                 <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
                 <polyline points="1 9 7 14 15 4"></polyline>
               </svg>
@@ -59,10 +87,36 @@
         </div>
       </div>
       <label>Titulo</label>
-      <input type="text" name="tituloNota" required/>
+      <input type="text" name="tituloNota" [(ngModel)]="tituloNota" required/>
       <label>Cuerpo</label>
-      <textarea id="myTextarea" required></textarea>
+      <textarea name="cuerpoNota" required [(ngModel)]="cuerpoNota"></textarea>
 
+      <div class="divFiles">
+        <label>Archivos adjuntos:</label>
+        <button class="Btn" title="Seleccionar archivo(s)" (click)="openFileExplorer()">
+          <svg version="1.0" class="svgIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet">
+            <g>
+              <path d="M 171.286 77.799 C 167.369 79.889 163.320 85.189 161.995 89.959 C 161.439 91.962 161.009 108.378 161.006 127.750 L 161.000 162.000 125.015 162.000 L 89.030 162.000 84.132 165.014 C 72.481 172.183 72.292 188.369 83.772 195.973 L 88.343 199.000 124.625 199.000 L 160.907 199.000 161.203 235.250 L 161.500 271.500 164.369 276.290 C 171.403 288.036 187.625 288.360 195.561 276.913 L 198.500 272.675 199.000 236.088 L 199.500 199.500 236.087 199.000 L 272.674 198.500 276.913 195.561 C 288.133 187.783 287.691 172.740 276.012 164.896 L 271.699 162.000 235.350 162.000 L 199.000 162.000 199.000 126.235 C 199.000 92.049 198.909 90.301 196.943 86.632 C 194.339 81.774 192.321 79.672 188.300 77.627 C 184.128 75.506 175.418 75.594 171.286 77.799 "/>
+            </g>
+          </svg>
+       </button>
+        <input type="file" #fileInput style="display: none" [multiple]="true" (change)="onFilesSelected($event)">
+      </div>
+      <div class="divContainerFilesNames">
+        <span  id="fileError"></span>
+        <div *ngFor="let file of files">
+          <div class="divFilesNames">
+            <span>{{ file.name }}</span>
+            <button class="BtnDeleteFile" title="Eliminar" (click)="deleteSelectedFile(file)">
+              <svg class="svgIcon" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet">
+                <g>
+                <path d="M 88.500 78.072 C 83.213 80.706 78.841 85.756 76.717 91.682 C 74.562 97.693 74.548 101.316 76.652 107.493 C 78.097 111.734 82.555 116.611 112.152 146.329 C 130.769 165.021 146.000 180.492 146.000 180.709 C 146.000 180.926 131.107 196.042 112.905 214.302 C 94.703 232.561 78.945 249.186 77.886 251.247 C 73.140 260.491 75.018 271.030 82.756 278.578 C 87.919 283.615 95.862 286.492 101.621 285.411 C 110.374 283.769 113.034 281.551 146.806 247.730 L 180.113 214.376 213.376 247.576 C 232.730 266.893 248.282 281.608 250.569 282.768 C 257.025 286.040 261.905 286.397 268.598 284.087 C 282.414 279.317 289.029 263.754 282.570 251.217 C 280.894 247.965 269.867 236.251 247.070 213.506 L 214.000 180.511 247.458 147.006 C 272.298 122.131 281.437 112.341 282.937 109.000 C 288.132 97.423 282.996 83.509 271.538 78.123 C 265.653 75.356 256.387 75.252 251.210 77.893 C 249.170 78.934 232.384 94.871 213.908 113.307 L 180.316 146.827 146.908 113.372 C 122.484 88.913 112.323 79.389 109.123 77.958 C 103.266 75.338 93.884 75.390 88.500 78.072 "/></g>
+                </svg>
+           </button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="container">

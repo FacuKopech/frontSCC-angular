@@ -8,16 +8,25 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    background-color: #2a2a2a;
+    background-color: #373b3e;
     height: fit-content;
+    width: fit-content;
     min-width: 326px;
-    border-radius: 18px;
+    border-radius: 20px;
     box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
     position: absolute;
     z-index: 9999;
-    width: fit-content;
 }
 
+.content{
+  text-align: center;
+}
+
+.content p{
+  margin: 20px;
+}
+
+/* Simple CSS3 Fade-in-down Animation */
 .fadeInDown {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
@@ -26,8 +35,6 @@
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-
-
 
 @-webkit-keyframes fadeInDown {
   0% {
@@ -60,66 +67,15 @@
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-.popupHeader{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.popupTitulo{
-  flex-direction: column;
-  text-align: center;
-  display: flex;
-   justify-content: center;
-}
-
-
-
-.h2Asistencia{
-  color: white;
-  text-decoration-line: underline;
-}
-
-.h2AsistenciaFecha{
-  font-size: large;
-}
-
-.content{
-  display: flex;
-  flex-direction: column;
-}
-
-.divData{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.divData.true:hover{
-  color: rgb(6, 112, 6);
-}
-
-.divData.false:hover{
-  color: rgb(172, 14, 14);
-}
-
-.svgPersonIcon{
-  width: 14px;
-  height: 14px;
-  align-self: center;
-}
-
-.divActionButtons{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 18px;
+h2{
+  text-decoration: underline;
 }
 
 .popupCloseButton{
   display: flex;
   justify-content: center;
   margin-bottom: 14px;
+  margin-top: 20px;
 }
 
 .close-button {
@@ -137,6 +93,7 @@
   transition-duration: 0.3s;
   overflow: hidden;
   position: relative;
+  margin-right: 18px;
 }
 
 .close-svgIcon {
@@ -183,3 +140,4 @@
   transform: translateY(0px);
   transition-duration: 0.3s;
 }
+

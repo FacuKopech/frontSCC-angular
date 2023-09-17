@@ -5,6 +5,7 @@ import { EditarNotaPopupComponent } from '../popups/editar-nota-popup/editar-not
 import { Location } from '@angular/common';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-notas-emitidas',
@@ -21,6 +22,7 @@ export class NotasEmitidasComponent {
 
   showDeletionSuccessAlert = false;
   showModificationSuccessAlert = false;
+  showAdditionSuccessAlert = false;
   showErrorAlert = false;
   OpenpopupEditarNota = false;
   popuCuerpoNota = false;
@@ -35,7 +37,7 @@ export class NotasEmitidasComponent {
   public notaALeerCuerpo: any;
   public tipoUsuario: string='';
   itemForDelete: string = '';
-
+  counter: number = 0;
 
   public ngOnInit(): void {
     this.notaService.ObtenerNotasEmitidas().subscribe(res => {
@@ -79,6 +81,7 @@ export class NotasEmitidasComponent {
   public closeSuccessAlert(){
     this.showDeletionSuccessAlert = false;
     this.showModificationSuccessAlert = false;
+    this.showAdditionSuccessAlert = false;
     window.location.reload();
   }
 
@@ -92,7 +95,7 @@ export class NotasEmitidasComponent {
         this.reloadPage("success", "deletion");
       }
       else {
-        this.reloadPage("error", "deletion");
+        this.reloadPage("error", "");
       }
     });
     this.openDeletionPopup = false;
@@ -106,7 +109,7 @@ export class NotasEmitidasComponent {
         this.reloadPage("success", "edition");
       }
       else {
-        this.reloadPage("error", "edition");
+        this.reloadPage("error", "");
       }
     });
     this.openEditionPopup = false;
@@ -118,9 +121,39 @@ export class NotasEmitidasComponent {
     });
   }
 
-  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, idAulaDestinada: number, idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string}) {
-    console.log('.');
-    this.openAgregarNotaPopup = false;
+  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, idAulaDestinada: number, idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData}) {
+    eventData.files?.forEach((value, key) => {
+      if(value != '' || key != ''){
+        this.counter += 1;
+      }
+    });
+    if(this.counter > 0){
+      this.handleNotaFiles(eventData.files);
+      this.counter = 0;
+    }
+    this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
+      if(res){
+        this.reloadPage("success", "addition");
+        this.openAgregarNotaPopup = false;
+      }else{
+        this.reloadPage("error", "");
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 404 || error.status == 400){
+        this.reloadPage("error", "");
+      }
+    });
+  }
+
+  public handleNotaFiles(files: FormData){
+    this.notaService.AgregarNotaFiles(files).subscribe(res =>{
+      if(res){
+        this.reloadPage("success", "addition");
+      }else{
+        this.reloadPage("error", "");
+      }
+    });
   }
 
   public verArchivosNota(nota: any){
@@ -132,8 +165,10 @@ export class NotasEmitidasComponent {
     if(resultado == "success"){
       if(action == "deletion"){
           this.showDeletionSuccessAlert = true;
-      }else {
+      }else if(action == "edition") {
         this.showModificationSuccessAlert = true;
+      }else if(action == "addition"){
+        this.showAdditionSuccessAlert = true;
       }
     }
     else{

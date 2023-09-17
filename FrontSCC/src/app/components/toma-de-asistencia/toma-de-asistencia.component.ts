@@ -25,8 +25,6 @@ export class TomaDeAsistenciaComponent {
   openDatosAusenciaPopup = false;
   openConfirmCargaAsistenciaPopup = false;
 
-  @ViewChild('inputCheckboxP', { static: false }) inputCheckboxP!: ElementRef<HTMLInputElement>;
-
   constructor(private aulaService: AulaService, private location: Location, private datePipe: DatePipe, private router: Router){
     this.fechaString = JSON.stringify(this.fechaHoy);
   }

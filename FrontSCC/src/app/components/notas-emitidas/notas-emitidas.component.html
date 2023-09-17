@@ -6,7 +6,8 @@
   </button>
 </div>
 
-<div *ngIf="openDeletionPopup || popuCuerpoNota || openEditionPopup || openAgregarNotaPopup || showModificationSuccessAlert || showErrorAlert" class="divCover"></div>
+<div *ngIf="openDeletionPopup || popuCuerpoNota || openEditionPopup || openAgregarNotaPopup ||
+showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessAlert || showErrorAlert" class="divCover"></div>
 <!--POPUP CONFIRMAR ELIMINACION DE NOTA-->
 <confirm class="confirmDeletePopup" (cancelButtonClick)="closeModal()"
 (eliminarButtonClick)="handleDeleteClick()"
@@ -33,7 +34,10 @@
 
 <!--ALERT SUCCESS-->
 <app-success-alert class="alert" (cerrarButtonClick)="closeSuccessAlert()"
-*ngIf="showModificationSuccessAlert || showDeletionSuccessAlert" [esModification]="showModificationSuccessAlert" [esDeletion]="showDeletionSuccessAlert">
+*ngIf="showModificationSuccessAlert || showDeletionSuccessAlert || showAdditionSuccessAlert"
+[esModification]="showModificationSuccessAlert"
+[esDeletion]="showDeletionSuccessAlert"
+[esAddition]="showAdditionSuccessAlert">
 </app-success-alert>
 
 <!--ALERT ERROR-->

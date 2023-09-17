@@ -49,6 +49,14 @@ export class AppComponent implements OnInit {
     });
   }
 
+  public getBackgroundImage(){
+    if (this.loggedIn) {
+      return { 'background-image': 'url(https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1644&q=80)' };
+    }else {
+      return { 'background-image': 'url(https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg)' };
+    }
+  }
+
   public Logout(): void {
     this.apiService.Logout().subscribe(res => {
       if (res) {

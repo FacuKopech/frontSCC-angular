@@ -5,6 +5,9 @@
     <div class="btn-txt">Agregar</div>
   </button>
 </div>
+<div class="divMessage" *ngIf="message != ''">
+  <p *ngIf="message != ''" class="mensaje">{{message}}</p>
+</div>
 
 <div *ngIf="openDeletionPopup || popuCuerpoNota || openEditionPopup || openAgregarNotaPopup ||
 showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessAlert || showErrorAlert" class="divCover"></div>
@@ -45,7 +48,7 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
 *ngIf="showErrorAlert">
 </app-error-alert>
 
-<main class="inner">
+<div [class.inner]="message === ''">
   <table class="table table-striped table-dark notasEmitidasTable">
     <thead>
       <tr>
@@ -60,7 +63,6 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
         <th scope="col">Acciones</th>
       </tr>
     </thead>
-    <tr *ngIf="message != ''" class="mensaje">{{message}}</tr>
     <tbody class="scroll" *ngFor="let nota of notas">
       <tr>
         <td>{{nota.titulo}}</td>
@@ -116,9 +118,9 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
       </tr>
     </tbody>
   </table>
-
   <app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
   </app-go-back-button>
+</div>
 
-</main>
+
 

@@ -248,6 +248,19 @@ export class AgregarNotaPopupComponent {
         labelDropDownListDestinatarios.style.display = "flex";
       }
     }
+    if(this.tipoElegido == "G" && this.tipoUser == "Directivo"){
+      if(this.esConAula){
+        this.idAula = idAula;
+      }else{
+        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(idAula).subscribe(res => {
+          this.destinatarios = res;
+        });
+        var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
+        var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
+        dropDownListDestinatarios.style.display = "flex";
+        labelDropDownListDestinatarios.style.display = "flex";
+      }
+    }
   }
 
   public guardarAlumnoSeleccionado = (idAlumno: number) => {

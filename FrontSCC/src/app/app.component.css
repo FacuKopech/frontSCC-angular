@@ -66,6 +66,8 @@ body{
 }
 
 .customDiv{
+  display: flex;
+  justify-content: space-evenly;
   margin-bottom: 12px;
   margin-top: 12px;
 }
@@ -74,7 +76,7 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-left: 10px;
+  margin-left: 12px;
   flex-wrap: wrap;
 }
 .cover-container {
@@ -268,6 +270,14 @@ body{
   flex-wrap: wrap;
   align-content: center;
 }
+
+.divBtnNavbarDirectivo{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100px;
+}
 .Btn {
   display: flex;
   align-items: center;
@@ -299,6 +309,7 @@ body{
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin-right: 12px;
 }
 .BtnResetClave{
   font-size: small;

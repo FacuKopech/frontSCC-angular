@@ -128,32 +128,38 @@ export class NotasEmitidasComponent {
       }
     });
     if(this.counter > 0){
-      this.handleNotaFiles(eventData.files);
-      this.counter = 0;
+      this.notaService.AgregarNotaFiles(eventData.files).subscribe(res =>{
+        if(res){
+          this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
+            if(res){
+              this.reloadPage("success", "addition");
+              this.openAgregarNotaPopup = false;
+            }else{
+              this.reloadPage("error", "");
+            }
+          },
+          (error:HttpErrorResponse) =>{
+            if(error.status == 404 || error.status == 400){
+              this.reloadPage("error", "");
+            }
+          });
+        }
+      });
+    }else{
+      this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
+        if(res){
+          this.reloadPage("success", "addition");
+          this.openAgregarNotaPopup = false;
+        }else{
+          this.reloadPage("error", "");
+        }
+      },
+      (error:HttpErrorResponse) =>{
+        if(error.status == 404 || error.status == 400){
+          this.reloadPage("error", "");
+        }
+      });
     }
-    this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
-      if(res){
-        this.reloadPage("success", "addition");
-        this.openAgregarNotaPopup = false;
-      }else{
-        this.reloadPage("error", "");
-      }
-    },
-    (error:HttpErrorResponse) =>{
-      if(error.status == 404 || error.status == 400){
-        this.reloadPage("error", "");
-      }
-    });
-  }
-
-  public handleNotaFiles(files: FormData){
-    this.notaService.AgregarNotaFiles(files).subscribe(res =>{
-      if(res){
-        this.reloadPage("success", "addition");
-      }else{
-        this.reloadPage("error", "");
-      }
-    });
   }
 
   public verArchivosNota(nota: any){

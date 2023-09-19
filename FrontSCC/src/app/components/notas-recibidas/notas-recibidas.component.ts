@@ -3,6 +3,8 @@ import { NotaService } from '../../services/notas_services/nota.service';
 import {LeerNotaPopupComponent} from '../popups/leer-nota-popup/leer-nota-popup.component'
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/user_services/api.service';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-notas-recibidas',
   templateUrl: './notas-recibidas.component.html',
@@ -11,12 +13,13 @@ import { Router } from '@angular/router';
 export class NotasRecibidasComponent {
   @ViewChild(LeerNotaPopupComponent) popupEditarNota!: LeerNotaPopupComponent;
 
-  constructor(private notaService: NotaService, private location: Location,  private router: Router)  {
+  constructor(private notaService: NotaService, private userService: ApiService, private location: Location,  private router: Router)  {
     this.popupEditarNota = new LeerNotaPopupComponent();
   }
 
   openDeletionPopup = false;
   showDeletionSuccessAlert = false;
+  showSuccessAlert = false;
   showErrorAlert = false;
   showNotaLeidaAlert = false;
   popupLeerNota = false;
@@ -25,16 +28,28 @@ export class NotasRecibidasComponent {
   public message: string = "";
   public notas: any[] = [];
   public notaALeerr: any;
+  public notaAFirmar: any;
   itemForDelete: string ='';
+  openConfirmacionFirmaNotaPopup = false;
+  openTokenConfirmation = false;
+  esTokenParaFirmaNota = false;
+  esFirmaNota = false
+  token: string = '';
+  emailUserLogueado = '';
+  notaFirmada = false;
 
   public ngOnInit(): void {
     this.notaService.ObtenerNotasRecibidas().subscribe(res => {
       if (res) {
         this.notas = res;
+        console.log(this.notas);
         if (this.notas.length == 0) {
           this.message = "No existen notas recibidas!";
         }
       }
+    });
+    this.userService.getEmailPersonaLogueada().subscribe(res => {
+      this.emailUserLogueado = res;
     });
   }
 
@@ -52,6 +67,61 @@ export class NotasRecibidasComponent {
     this.popupLeerNota = true;
     this.notaALeerr = nota;
     this.handleLeerClick();
+  }
+
+  public openConfirmacionFirmaPopup(nota: any){
+    this.notaAFirmar = nota
+    console.log(this.notaAFirmar.id);
+    this.openConfirmacionFirmaNotaPopup = true;
+    this.esTokenParaFirmaNota = true;
+  }
+
+  public handleFirmarClick(){
+    this.userService.getEmailPersonaLogueada().subscribe(res => {
+      if(res){
+        this.userService.EnviarTokenSeguridad(res, "Nota").subscribe(res => {
+          if(!res.includes('ERROR')){
+            this.token = res;
+          }
+        });
+      }
+    });
+    this.esTokenParaFirmaNota = true;
+    this.openTokenConfirmation = true;
+  }
+
+  public validarToken(eventData: {token: string}){
+    this.openTokenConfirmation = false;
+    if(this.token == eventData.token.toUpperCase()){
+      this.notaService.FirmarNota(this.notaAFirmar.id).subscribe(res =>{
+        if(res){
+          this.esFirmaNota = true;
+          this.showSuccessAlert = true;
+        }else{
+          this.showErrorAlert = true;
+        }
+      },
+      (error:HttpErrorResponse) =>{
+        if(error.status >= 400){
+          this.showErrorAlert = true;
+        }
+      });
+    }else{
+      this.showErrorAlert = true;
+    }
+  }
+
+  public checkEmailInFirmadaPor(nota: any): boolean{
+    if(nota.firmadaPor.length > 0){
+      for (let index = 0; index < nota.firmadaPor.length; index++) {
+        if(nota.firmadaPor[index].email === this.emailUserLogueado){
+          return true;
+        }
+      }
+      return false;
+    }else{
+      return false;
+    }
   }
 
   public verArchivosNota(nota: any){
@@ -78,6 +148,8 @@ export class NotasRecibidasComponent {
 
   public closeSuccessAlert(){
     this.showDeletionSuccessAlert = false;
+    this.showSuccessAlert = false;
+    this.openConfirmacionFirmaNotaPopup = false;
     window.location.reload();
   }
 

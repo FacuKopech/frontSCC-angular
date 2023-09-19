@@ -3,8 +3,9 @@
   <form>
     <div class="formContent">
       <div class="titleHeader">
-        <h2 *ngIf="!esTokenParaFirmaHistorial">Recuperar Clave</h2>
+        <h2 *ngIf="!esTokenParaFirmaHistorial && !esTokenParaFirmaNota">Recuperar Clave</h2>
         <h2 *ngIf="esTokenParaFirmaHistorial">Firma de Historial</h2>
+        <h2 *ngIf="esTokenParaFirmaNota">Firma de Nota</h2>
       </div>
 
       <h3>Por favor, ingresa el Token de seguridad que recibiste en tu email:</h3>
@@ -17,7 +18,10 @@
 
     <div class="container">
       <div class="customButtons">
-        <button class="button" (click)="validarClicked()">
+        <button (click)="validarClicked()" class="buttonValidarToken">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgValidar">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
           Validar Token
         </button>
       </div>

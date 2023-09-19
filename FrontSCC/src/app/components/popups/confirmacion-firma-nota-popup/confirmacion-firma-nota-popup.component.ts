@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-confirmacion-firma-nota-popup',
@@ -6,6 +6,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./confirmacion-firma-nota-popup.component.css']
 })
 export class ConfirmacionFirmaNotaPopupComponent {
+  @Input() esFirmaHistorial: boolean = false;
+  @Input() esFirmaNota: boolean = false;
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()

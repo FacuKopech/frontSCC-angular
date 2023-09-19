@@ -79,4 +79,8 @@ export class NotaService {
     return this.http.put<boolean>(this.hostUrl + `/Notas/LeerNota/${idNotaLeida}`, null);
   }
 
+  public FirmarNota(idNota: number): Observable<any> {
+    return this.http.put<any>(this.hostUrl + `/Notas/FirmarNota/${idNota}/`, null);
+  }
+
 }

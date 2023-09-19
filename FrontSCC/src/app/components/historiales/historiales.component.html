@@ -13,7 +13,9 @@
 <div *ngIf="openConfirmacionFirmaHistorialPopup || openConfirmDeletePopup || openEditarHistorialPopup || openAgregarHistorialPopup || openTokenConfirmation || openSuccessAlert || openErrorAlert" class="divCover"></div>
 <app-confirmacion-firma-nota-popup *ngIf="openConfirmacionFirmaHistorialPopup"
 (cancelButtonClick)="openConfirmacionFirmaHistorialPopup = false"
-(firmarButtonClick)="handleFirmarClick()">
+(firmarButtonClick)="handleFirmarClick()"
+[esFirmaHistorial]="true"
+[esFirmaNota]="false">
 </app-confirmacion-firma-nota-popup>
 
 <!-- REUTILIZO ESTE POPUP PARA CONFIRMAR TOKEN EN FIRMA DE HISTORIAL (mas seguridad)-->

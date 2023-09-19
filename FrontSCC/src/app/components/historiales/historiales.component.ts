@@ -67,7 +67,7 @@ export class HistorialesComponent{
   public handleFirmarClick(){
     this.userService.getEmailPersonaLogueada().subscribe(res => {
       if(res){
-        this.userService.EnviarTokenSeguridad(res).subscribe(res => {
+        this.userService.EnviarTokenSeguridad(res, "Historial").subscribe(res => {
           if(!res.includes('ERROR')){
             this.token = res;
           }

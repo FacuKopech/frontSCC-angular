@@ -41,11 +41,11 @@ export class ApiService {
     return this.http.get<string>(this.hostUrl + `/Usuarios/RecuperarClave/${email}`, HTTPOptions)
   }
 
-  public EnviarTokenSeguridad(email: string): Observable<string> {
+  public EnviarTokenSeguridad(email: string, firmaDe: string): Observable<string> {
     let HTTPOptions:Object = {
       responseType: 'text'
    }
-    return this.http.get<string>(this.hostUrl + `/Usuarios/EnviarTokenSeguridad/${email}`, HTTPOptions)
+    return this.http.get<string>(this.hostUrl + `/Usuarios/EnviarTokenSeguridad/${email}/${firmaDe}`, HTTPOptions)
   }
 
   public RecuperacionClave(clave: {claveNueva: string, emailUsuario: string}): Observable<boolean> {

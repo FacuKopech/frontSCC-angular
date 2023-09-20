@@ -198,6 +198,27 @@
   top: calc(50% - 2px);
 }
 
+.divColorsReference{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.labelJustificada{
+  color: #0A7B30;
+  font-weight: bold;
+}
+
+.labelNoJustificada{
+  color: #9D140A;
+  font-weight: bold;
+}
+
+.labelPendiente{
+  color: rgb(100 100 100);
+  font-weight: bold;
+}
 
 .container{
   display: flex;
@@ -215,12 +236,14 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .divAusenciasAlumno{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .container::-webkit-scrollbar {

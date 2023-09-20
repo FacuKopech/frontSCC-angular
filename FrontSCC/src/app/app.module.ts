@@ -48,6 +48,7 @@ import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-
 import { ConfirmCargaAsistenciaAlertComponent } from './components/alerts/confirm-carga-asistencia-alert/confirm-carga-asistencia-alert.component';
 import { PadresAlumnoPopupComponent } from './components/popups/padres-alumno-popup/padres-alumno-popup.component';
 import { TipoNotaInfoPopupComponent } from './components/popups/tipo-nota-info-popup/tipo-nota-info-popup.component';
+import { DestinatariosNotaPopupComponent } from './components/popups/destinatarios-nota-popup/destinatarios-nota-popup.component';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import { TipoNotaInfoPopupComponent } from './components/popups/tipo-nota-info-p
     TomaDeAsistenciaComponent,
     ConfirmCargaAsistenciaAlertComponent,
     PadresAlumnoPopupComponent,
-    TipoNotaInfoPopupComponent
+    TipoNotaInfoPopupComponent,
+    DestinatariosNotaPopupComponent
   ],
   imports: [
     BrowserModule,

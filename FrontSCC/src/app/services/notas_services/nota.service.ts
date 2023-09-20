@@ -44,8 +44,8 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerHijosPadreParaNuevaNota/`);
   }
 
-  public EnviarNuevaNota(nuevaNota: { tipo: string, conAula: boolean, idAulaDestinada: number, idAlumnoReferido: number,
-    destinatarios: any[], titulo:string, cuerpo: string}): Observable<any> {
+  public EnviarNuevaNota(nuevaNota: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number,
+    destinatarios: any[], titulo:string, cuerpo: string, files: FormData}): Observable<any> {
     return this.http.post<any>(this.hostUrl + `/Notas/EnviarNuevaNota`, nuevaNota);
   }
 

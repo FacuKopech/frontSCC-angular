@@ -375,6 +375,11 @@ input[type=text], input[type=number], input[type=email], input[type=datetime], s
   z-index: 1;
 }
 
+.divAulasContainer{
+  display: flex;
+  width: 15%;
+}
+
 .divEmailsContainer{
   display: flex;
   width: -webkit-fill-available;
@@ -391,7 +396,7 @@ input[type=text], input[type=number], input[type=email], input[type=datetime], s
   flex-direction: row-reverse;
   justify-content: center;
   color: white;
-  width: 18px;
+  width: 90px;
   height: 18px;
   -webkit-tap-highlight-color: transparent;
   transform: translate3d(0, 0, 0);

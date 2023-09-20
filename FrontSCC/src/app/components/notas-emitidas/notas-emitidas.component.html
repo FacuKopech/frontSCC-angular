@@ -10,7 +10,7 @@
 </div>
 
 <div *ngIf="openDeletionPopup || popuCuerpoNota || openEditionPopup || openAgregarNotaPopup ||
-showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessAlert || showErrorAlert" class="divCover"></div>
+showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessAlert || showDestinatariosPopup || showErrorAlert" class="divCover"></div>
 <!--POPUP CONFIRMAR ELIMINACION DE NOTA-->
 <confirm class="confirmDeletePopup" (cancelButtonClick)="closeModal()"
 (eliminarButtonClick)="handleDeleteClick()"
@@ -25,9 +25,15 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
 
 <!--POPUP EDITAR NOTA-->
 <app-editar-nota-popup [nota]="notaAModificar" class="editarPopup" (cancelButtonClick)="closeModal()"
-              (editarButtonClick)="handleEditClick($event)"
-              *ngIf="openEditionPopup">
+  (editarButtonClick)="handleEditClick($event)"
+  *ngIf="openEditionPopup">
 </app-editar-nota-popup>
+
+<!--POPUP DESTINATARIOS NOTA-->
+<app-destinatarios-nota-popup *ngIf="showDestinatariosPopup"
+(cancelButtonClick)="showDestinatariosPopup = false"
+[nota]="nota">
+</app-destinatarios-nota-popup>
 
 <!--POPUP AGREGAR NOTA-->
 <app-agregar-nota-popup [tipoUser]="tipoUsuario" class="agregarNotaPopup" (cancelButtonClick)="closeModal()"
@@ -56,7 +62,6 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
         <th scope="col">Fecha</th>
         <th scope="col">Emisor</th>
         <th scope="col">Referido</th>
-        <th scope="col">Leida por</th>
         <th scope="col">Destinatarios</th>
         <th scope="col">Cuerpo</th>
         <th scope="col">Tipo</th>
@@ -71,21 +76,16 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
         <td *ngIf="nota.tipo == 2">{{nota.referido.apellido}}, {{nota.referido.nombre}}</td>
         <td *ngIf="nota.tipo == 1">No hay alumno referido</td>
         <td>
-          <select class="selectList">
-            <option value="" disabled selected>Quien leyo mi nota?</option>
-            <option *ngFor="let personaLeyo of nota.leidaPor" disabled>{{personaLeyo.apellido}}, {{personaLeyo.nombre}}</option>
-          </select>
-        </td>
-        <td>
-          <select class="selectList">
-            <option value="" disabled selected>Destinatarios</option>
-            <option *ngFor="let destinatario of nota.destinatarios" disabled>{{destinatario.apellido}}, {{destinatario.nombre}}</option>
-          </select>
+          <button class="btnLeerCuerpo" (click)="openDestinatariosPopup(nota)">
+            <span>
+              Ver
+            </span>
+          </button>
         </td>
         <td>
           <button class="btnLeerCuerpo" (click)="openLeerCuerpo(nota)">
             <span>
-            Leer
+              Leer
             </span>
           </button>
         </td>

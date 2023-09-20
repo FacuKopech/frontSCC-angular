@@ -17,6 +17,12 @@
       </button>
     </div>
 
+    <div class="divColorsReference">
+      <label class="labelJustificada" for="">Justificada</label>
+      <label class="labelNoJustificada" for="">No Justificada</label>
+      <label class="labelPendiente" for="">Pendiente</label>
+    </div>
+
     <div *ngIf="openAgregarAusenciaPopup || openDatosAusenciaPopup || openSuccessAlert || openErrorAlert" class="divCover"></div>
 
     <app-agregar-ausencia-popup class="agregarAusenciaPopup" *ngIf="openAgregarAusenciaPopup"

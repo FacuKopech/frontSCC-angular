@@ -97,34 +97,44 @@ export class AusenciasHijoPopupComponent {
   }
 
   public handleAgregarClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string, files: FormData}){
-    this.ausenciaService.AgregarAusencia(this.idHijo, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
-      if(res){
-        eventData.files?.forEach((value, key) => {
-          if(value != '' || key != ''){
-            this.counter += 1;
-          }
-        });
-        if(this.counter > 0){
-          this.handleAusenciaFiles(eventData.files);
-          this.counter = 0;
+    eventData.files?.forEach((value, key) => {
+      if(value != '' || key != ''){
+        this.counter += 1;
+      }
+    });
+    if(this.counter > 0){
+      this.ausenciaService.AgregarAusenciaFiles(eventData.files).subscribe(res =>{
+        if(res){
+          this.ausenciaService.AgregarAusencia(this.idHijo, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
+            if(res){
+              this.openSuccessAlert = true;
+              this.esAgregarAusencia = true;
+            }else{
+              this.openErrorAlert = true;
+            }
+          },
+          (error:HttpErrorResponse) =>{
+            if(error.status == 404 || error.status == 400){
+              this.openErrorAlert = true;
+            }
+          });
         }
-        this.openSuccessAlert = true;
-        this.esAgregarAusencia = true;
-      }else{
-        this.openErrorAlert = true;
-      }
-    });
-  }
-
-  public handleAusenciaFiles(files: FormData){
-    this.ausenciaService.AgregarAusenciaFiles(files).subscribe(res =>{
-      if(res){
-        this.openSuccessAlert = true;
-        this.esAgregarAusencia = true;
-      }else{
-        this.openErrorAlert = true;
-      }
-    });
+      });
+    }else{
+      this.ausenciaService.AgregarAusencia(this.idHijo, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
+        if(res){
+          this.openSuccessAlert = true;
+          this.esAgregarAusencia = true;
+        }else{
+          this.openErrorAlert = true;
+        }
+      },
+      (error:HttpErrorResponse) =>{
+        if(error.status == 404 || error.status == 400){
+          this.openErrorAlert = true;
+        }
+      });
+    }
   }
 
   public handleAceptarAusenciaClicked(eventData: {idAusencia: number, idAlumno: number, esAceptada: boolean}){

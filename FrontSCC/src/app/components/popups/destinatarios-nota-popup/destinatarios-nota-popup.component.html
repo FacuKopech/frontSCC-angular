@@ -1,0 +1,47 @@
+<div class="overlay">
+  <div class="popup fadeInDown">
+    <div class="popupHeader">
+      <div class="popupTitulo">
+        <h2>Personas en Nota</h2>
+        <h3>{{nota.titulo}}</h3>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="divLeidaPor">
+        <h5>Leida por:</h5>
+        <label class="labelLeida" *ngFor="let persona of nota.leidaPor" for="">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgPersonIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+          {{persona.apellido}}, {{persona.nombre}}
+        </label>
+      </div>
+      <div class="divDestinatarios">
+        <h5>Destinatarios</h5>
+        <label class="labelDestinatarios" *ngFor="let persona of nota.destinatarios" for="">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgPersonIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+          {{persona.apellido}}, {{persona.nombre}}
+        </label>
+      </div>
+      <div class="divFirmadaPor">
+        <h5>Firmada por:</h5>
+        <label class="labelFirmada" *ngFor="let persona of nota.firmadaPor" for="">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgPersonIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+          {{persona.apellido}}, {{persona.nombre}}
+        </label>
+      </div>
+    </div>
+    <div class="popupCloseButton">
+      <button class="close-button" title="Cerrar" (click)="cancelarClicked()">
+        <svg class="close-svgIcon" viewBox="0 0 362 362">
+          <path d="M 90.998 91.502 L 72.515 110.005 107.502 145.002 L 142.489 180.000 107.742 214.758 L 72.995 249.515 91.500 268.000 L 110.005 286.485 144.765 251.735 L 179.524 216.986 214.260 251.774 L 248.996 286.562 267.770 267.788 L 286.545 249.014 251.522 214.257 L 216.500 179.500 251.500 144.761 L 286.500 110.022 268.008 91.509 L 249.515 72.995 214.758 107.742 L 180.000 142.489 145.245 107.745 C 126.129 88.635 110.262 73.000 109.985 73.000 C 109.707 73.000 101.163 81.326 90.998 91.502 "></path>
+        </svg>
+        </button>
+    </div>
+  </div>
+</div>

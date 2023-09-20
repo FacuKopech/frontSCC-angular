@@ -88,8 +88,13 @@ h1 {
 }
 
 .divTableHeaders{
-  margin-left: 158px;
-    margin-right: 150px;
+  width: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+}
+
+.divHeaderTitles{
+  width: 76%;
     display: flex;
     justify-content: space-between;
 }

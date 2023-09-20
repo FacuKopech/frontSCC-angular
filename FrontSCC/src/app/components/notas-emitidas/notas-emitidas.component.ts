@@ -27,6 +27,7 @@ export class NotasEmitidasComponent {
   OpenpopupEditarNota = false;
   popuCuerpoNota = false;
   popuLeerNota = false;
+  showDestinatariosPopup = false;
   openDeletionPopup = false;
   openEditionPopup = false;
   openAgregarNotaPopup = false;
@@ -38,6 +39,7 @@ export class NotasEmitidasComponent {
   public tipoUsuario: string='';
   itemForDelete: string = '';
   counter: number = 0;
+  nota: any;
 
   public ngOnInit(): void {
     this.notaService.ObtenerNotasEmitidas().subscribe(res => {
@@ -65,6 +67,11 @@ export class NotasEmitidasComponent {
     this.openEditionPopup = true;
     this.OpenpopupEditarNota = true;
     this.notaAModificar = nota;
+  }
+
+  public openDestinatariosPopup(nota: any){
+    this.nota = nota;
+    this.showDestinatariosPopup = true;
   }
 
   public openLeerCuerpo(nota: any):void{
@@ -121,7 +128,7 @@ export class NotasEmitidasComponent {
     });
   }
 
-  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, idAulaDestinada: number, idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData}) {
+  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData}) {
     eventData.files?.forEach((value, key) => {
       if(value != '' || key != ''){
         this.counter += 1;
@@ -140,6 +147,7 @@ export class NotasEmitidasComponent {
           },
           (error:HttpErrorResponse) =>{
             if(error.status == 404 || error.status == 400){
+              console.log(error);
               this.reloadPage("error", "");
             }
           });

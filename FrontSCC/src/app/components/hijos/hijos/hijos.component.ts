@@ -3,6 +3,7 @@ import { PersonaService } from 'src/app/services/personas_services/persona.servi
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-hijos',
@@ -81,29 +82,44 @@ export class HijosComponent {
   }
 
   public handleAgregarAusenciaGenericaClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string, files: FormData}){
-    this.ausenciaService.AgregarAusenciaGenerica(eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res=>{
-      if(res){
-        this.openSuccessAlert = true;
-        this.esAgregarAusenciaGenerica = true;
-
-        eventData.files?.forEach((value, key) => {
-          if(value != '' || key != ''){
-            this.counter += 1;
-          }
-        });
-        if(this.counter > 0){
-          this.handleAusenciaFiles(eventData.files);
-          this.counter = 0;
-        }
-      }else{
-        this.openErrorAlert = true;
+    eventData.files?.forEach((value, key) => {
+      if(value != '' || key != ''){
+        this.counter += 1;
       }
     });
-  }
-
-  public handleAusenciaFiles(files: FormData){
-    this.ausenciaService.AgregarAusenciaFiles(files).subscribe(res =>{
-    });
+    if(this.counter > 0){
+      this.ausenciaService.AgregarAusenciaFiles(eventData.files).subscribe(res =>{
+        if(res){
+          this.ausenciaService.AgregarAusenciaGenerica(eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res=>{
+            if(res){
+              this.openSuccessAlert = true;
+              this.esAgregarAusenciaGenerica = true;
+            }else{
+              this.openErrorAlert = true;
+            }
+          },
+          (error:HttpErrorResponse) =>{
+            if(error.status == 404 || error.status == 400){
+              this.openErrorAlert = true;
+            }
+          });
+        }
+      });
+    }else{
+      this.ausenciaService.AgregarAusenciaGenerica(eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res=>{
+        if(res){
+          this.openSuccessAlert = true;
+          this.esAgregarAusenciaGenerica = true;
+        }else{
+          this.openErrorAlert = true;
+        }
+      },
+      (error:HttpErrorResponse) =>{
+        if(error.status == 404 || error.status == 400){
+          this.openErrorAlert = true;
+        }
+      });
+    }
   }
 
   public cerrarDatosInstitucionPopup(){

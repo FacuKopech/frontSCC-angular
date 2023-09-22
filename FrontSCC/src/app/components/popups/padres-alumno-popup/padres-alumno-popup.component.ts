@@ -54,34 +54,43 @@ export class PadresAlumnoPopupComponent {
       }
     });
     if(this.counter > 0){
-      this.handleNotaFiles(eventData.files);
-      this.counter = 0;
-    }
-    this.notaService.EnviarNuevaNotaAPadres(this.alumno.id, eventData).subscribe(res => {
-      if(res){
-        this.openSuccessAlert = true;
-        this.esEnvioNotaPadre = true;
-      }else{
-        this.openErrorAlert = true;
-      }
-    },
-    (error:HttpErrorResponse) =>{
-      if(error.status == 404 || error.status == 400){
-        this.openErrorAlert = true;
-      }
-    });
-  }
+      this.notaService.AgregarNotaFiles(eventData.files).subscribe(res =>{
+        if(res){
+          this.notaService.EnviarNuevaNotaAPadres(this.alumno.id, eventData).subscribe(res => {
+            if(res){
+              this.openSuccessAlert = true;
+              this.esEnvioNotaPadre = true;
+              this.showPopupNuevaNota = false;
+            }else{
+              this.openErrorAlert = true;
+            }
+          },
+          (error:HttpErrorResponse) =>{
+            if(error.status == 404 || error.status == 400){
+              this.openErrorAlert = true;
+            }
+          });
+        }else{
+          this.openErrorAlert = true;
+        }
+      });
 
-  public handleNotaFiles(files: FormData){
-    this.notaService.AgregarNotaFiles(files).subscribe(res =>{
-      if(res){
-        this.openSuccessAlert = true;
-        this.esEnvioNotaPadre = true;
-        this.showPopupNuevaNota = false;
-      }else{
-        this.openErrorAlert = true;
-      }
-    });
+    }else{
+      this.notaService.EnviarNuevaNotaAPadres(this.alumno.id, eventData).subscribe(res => {
+        if(res){
+          this.openSuccessAlert = true;
+          this.esEnvioNotaPadre = true;
+          this.showPopupNuevaNota = false;
+        }else{
+          this.openErrorAlert = true;
+        }
+      },
+      (error:HttpErrorResponse) =>{
+        if(error.status == 404 || error.status == 400){
+          this.openErrorAlert = true;
+        }
+      });
+    }
   }
 
   aceptarClick(){

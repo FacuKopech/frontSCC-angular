@@ -16,7 +16,7 @@ export class NotasEmitidasComponent {
   @ViewChild(EditarNotaPopupComponent) popupEditarNota!: EditarNotaPopupComponent;
 
   constructor(private notaService: NotaService, private apiService: ApiService,  private location: Location, private aulaService: AulaService, private router: Router) {
-    this.popupEditarNota = new EditarNotaPopupComponent(aulaService);
+    this.popupEditarNota = new EditarNotaPopupComponent(aulaService, apiService);
   }
 
 
@@ -108,8 +108,8 @@ export class NotasEmitidasComponent {
     this.openDeletionPopup = false;
   }
 
-  public handleEditClick(eventData: { titulo: string, cuerpo: string, idAula: number }) {
-    const nota = { titulo: eventData.titulo, cuerpo: eventData.cuerpo, IdAula: eventData.idAula }
+  public handleEditClick(eventData: { titulo: string, cuerpo: string, aulasDestinadas: any[] }) {
+    const nota = { titulo: eventData.titulo, cuerpo: eventData.cuerpo, aulasDestinadas: eventData.aulasDestinadas }
     this.notaService.ModificarNotaEmitida(this.notaAModificar.id, nota).subscribe(res => {
       console.log(res);
       if (res) {

@@ -145,7 +145,6 @@ export class NuevaNotaADocentePopupComponent {
               fileError.style.display = "flex";
               fileError.style.color = "red";
               fileError.style.fontWeight = "bold";
-              this.deleteSelectedFile(this.fileToUpload);
             }
 
         }
@@ -164,6 +163,7 @@ export class NuevaNotaADocentePopupComponent {
     const index = this.files.indexOf(file);
     if (index > -1) {
       this.files.splice(index, 1);
+      this.formData.delete(file.name);
     }
   }
 }

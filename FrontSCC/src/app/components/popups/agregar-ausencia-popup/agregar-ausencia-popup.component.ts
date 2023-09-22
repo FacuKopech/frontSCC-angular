@@ -139,7 +139,6 @@ export class AgregarAusenciaPopupComponent {
               fileError.style.display = "flex";
               fileError.style.color = "red";
               fileError.style.fontWeight = "bold";
-              this.deleteSelectedFile(this.fileToUpload);
             }
 
         }
@@ -158,6 +157,7 @@ export class AgregarAusenciaPopupComponent {
     const index = this.files.indexOf(file);
     if (index > -1) {
       this.files.splice(index, 1);
+      this.formData.delete(file.name);
     }
   }
 }

@@ -20,7 +20,7 @@ export class NotaService {
     return this.http.delete<boolean>(this.hostUrl + `/Notas/DeleteConfirmed/${notaIdEliminar}`);
   }
 
-  public ModificarNotaEmitida(notaIdModificar: number, nota: { titulo: string, cuerpo: string, IdAula: number }): Observable<boolean> {
+  public ModificarNotaEmitida(notaIdModificar: number, nota: { titulo: string, cuerpo: string, aulasDestinadas: any[] }): Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Notas/Edit/${notaIdModificar}`, nota);
   }
 
@@ -58,7 +58,7 @@ export class NotaService {
   }
 
   public AgregarNotaFiles(files: FormData): Observable<boolean> {
-    return this.http.post<boolean>(this.hostUrl + `/Notas/AgregarNotaFiles`, files);
+    return this.http.post<boolean>(this.hostUrl + `/Notas/AgregarNotaFiles/`, files);
   }
 
   public ObtenerArchivosNota(idNota: number): Observable<any> {

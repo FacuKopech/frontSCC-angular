@@ -130,7 +130,7 @@
         <input type="file" #fileInput style="display: none" [multiple]="true" (change)="onFilesSelected($event)">
       </div>
       <div class="divContainerFilesNames">
-        <span  id="fileError"></span>
+        <span id="fileError"></span>
         <div *ngFor="let file of files">
           <div class="divFilesNames">
             <span>{{ file.name }}</span>

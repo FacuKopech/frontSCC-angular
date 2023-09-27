@@ -19,41 +19,24 @@ export class AuthGuard  {
           var rolesArray: any[] = [];
           rolesArray = route.data['roles'];
           if(rolesArray.includes(res)){
+            this.authService.setUnauthorized(false);
             observer.next(true);
             observer.complete();
           }else{
-            this.userService.Logout().subscribe(res => {
-              if (res) {
-                this.authService.setLoggedIn(false);
-                localStorage.removeItem('flag');
-              }
-            });
-            this.router.navigate(['']);
+            this.authService.setUnauthorized(true);
             observer.next(false);
             observer.complete();
           }
         },
         (error:HttpErrorResponse) => {
           if(error.status >= 400){
-            this.userService.Logout().subscribe(res => {
-              if (res) {
-                this.authService.setLoggedIn(false);
-                localStorage.removeItem('flag');
-              }
-            });
-            this.router.navigate(['']);
+            this.authService.setUnauthorized(true);
             observer.next(false);
             observer.complete();
           }
         });
       } else {
-        this.userService.Logout().subscribe(res => {
-          if (res) {
-            this.authService.setLoggedIn(false);
-            localStorage.removeItem('flag');
-          }
-        });
-        this.router.navigate(['']);
+        this.authService.setUnauthorized(true)
         observer.next(false);
         observer.complete();
       }

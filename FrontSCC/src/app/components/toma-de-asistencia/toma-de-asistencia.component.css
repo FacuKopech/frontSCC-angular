@@ -89,14 +89,14 @@ h1 {
 
 .divTableHeaders{
   width: -webkit-fill-available;
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .divHeaderTitles{
-  width: 76%;
-    display: flex;
-    justify-content: space-between;
+  width: 86%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .labelTitle{

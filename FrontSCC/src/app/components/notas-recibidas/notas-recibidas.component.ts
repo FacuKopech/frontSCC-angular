@@ -40,12 +40,12 @@ export class NotasRecibidasComponent {
 
   public ngOnInit(): void {
     this.notaService.ObtenerNotasRecibidas().subscribe(res => {
-      if (res) {
+      this.notas = res;
+      if (this.notas !== null && this.notas.length > 0) {
         this.notas = res;
         console.log(this.notas);
-        if (this.notas.length == 0) {
-          this.message = "No existen notas recibidas!";
-        }
+      }else if(this.notas == null || this.notas.length === 0){
+        this.message = "No existen notas recibidas!";
       }
     });
     this.userService.getEmailPersonaLogueada().subscribe(res => {

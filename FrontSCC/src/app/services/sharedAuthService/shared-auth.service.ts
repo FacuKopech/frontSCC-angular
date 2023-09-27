@@ -5,12 +5,12 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedAuthService {
-  private loggedInSubject = new BehaviorSubject<boolean>(false);
-  loggedIn$ = this.loggedInSubject.asObservable();
+  private unauthorizedSubject = new BehaviorSubject<boolean>(false);
+  isUnauthorized$ = this.unauthorizedSubject.asObservable();
 
   constructor() {}
 
-  setLoggedIn(value: boolean) {
-    this.loggedInSubject.next(value);
+  setUnauthorized(value: boolean) {
+    this.unauthorizedSubject.next(value);
   }
 }

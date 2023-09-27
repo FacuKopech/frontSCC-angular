@@ -1,3 +1,7 @@
+.divMessage{
+  display: flex;
+  justify-content: center;
+}
 
 .divCover {
   position: absolute;
@@ -343,11 +347,7 @@ color: darkgreen;
 }
 
 .mensaje{
-  font-size:50px;
-  display: inline-block;
-  position: fixed;
-  padding-top: 60px;
-  padding-left:900px;
+  font-size:28px;
   font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }

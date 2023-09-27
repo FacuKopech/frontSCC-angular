@@ -1,5 +1,7 @@
 <p>Notas Recibidas</p>
-
+<div class="divMessage" *ngIf="message != ''">
+  <p class="mensaje">{{message}}</p>
+</div>
 <div *ngIf="openDeletionPopup || openConfirmacionFirmaNotaPopup || openTokenConfirmation || showDeletionSuccessAlert || showNotaLeidaAlert || popupLeerNota
 || showErrorAlert" class="divCover"></div>
 
@@ -57,7 +59,6 @@
         <th scope="col">Acciones</th>
       </tr>
     </thead>
-    <tr *ngIf="message != ''" class="mensaje">{{message}}</tr>
     <tbody class="scroll" *ngFor="let nota of notas">
       <tr>
         <td>{{nota.titulo}}</td>

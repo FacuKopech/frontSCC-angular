@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   showErrorAlert = false;
   logueoFueraDeHorario = false;
   public loggedIn: boolean = false;
+  public isUnauthorized: boolean = false;
   public groups: any[] = [];
   public content = '';
 
@@ -26,8 +27,8 @@ export class AppComponent implements OnInit {
     if(seMostro == null){
       localStorage.setItem('flag', 'false');
     }
-    this.authService.loggedIn$.subscribe((loggedIn) => {
-      this.loggedIn = loggedIn;
+    this.authService.isUnauthorized$.subscribe((unauthorized) => {
+      this.isUnauthorized = unauthorized;
     });
     this.apiService.isLoggedIn().subscribe(res => {
       if (res) {
@@ -53,10 +54,14 @@ export class AppComponent implements OnInit {
   }
 
   public getBackgroundImage(){
-    if (this.loggedIn) {
+    if (this.loggedIn && !this.isUnauthorized) {
       return { 'background-image': 'url(https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1644&q=80)' };
-    }else {
+    }else if(!this.loggedIn){
       return { 'background-image': 'url(https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg)' };
+    }else if(this.isUnauthorized){
+      return { 'background-color': 'white'};
+    }else{
+      return null;
     }
   }
 
@@ -68,6 +73,11 @@ export class AppComponent implements OnInit {
       }
     });
     this.router.navigate(['']);
+  }
+
+  public volerAInicioClick(){
+    this.isUnauthorized = false;
+    this.router.navigate(['/home']);
   }
 
   public closeResetearPopup(){

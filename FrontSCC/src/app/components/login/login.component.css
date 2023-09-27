@@ -426,6 +426,24 @@ button {
     border-radius: 8px;
   }
 
+  /* .btn-container{
+    padding: 20px;
+    transition: .2s linear;
+  }
+
+  #btn{
+    padding: 5px 20px;
+    border: none;
+    background-color: #1efd00;
+    color: white;
+    transition: .3s;
+    margin: 25px 0;
+  }
+
+  #btn:hover{
+    cursor: pointer;
+  } */
+
 .enter {
   height: 45px;
   width: fit-content;

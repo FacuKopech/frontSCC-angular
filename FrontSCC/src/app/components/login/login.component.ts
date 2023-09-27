@@ -54,6 +54,8 @@ export class LoginComponent {
     }
   }
 
+
+
   public handleRecuperarClick(eventData: { email: string}){
     this.emailUser = eventData.email;
     this.apiService.RecuperarClave(eventData.email).subscribe(res => {

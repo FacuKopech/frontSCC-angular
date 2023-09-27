@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.buttonEmitidas {
+/* .buttonEmitidas {
   padding: 10px 24px;
   font-size: 18px;
   color: white;
@@ -53,9 +53,45 @@
 
 .buttonEmitidas:active {
   scale: 1;
+} */
+
+.divBtnsContainer{
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.buttonRecibidas {
+.btnNotas {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #136f633d;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.buttonEmitidas:hover {
+  background-color: #E9D44B;
+  box-shadow: 0px 15px 20px rgba(181, 201, 8, 0.505);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.buttonRecibidas:hover {
+  background-color: rgb(33, 196, 84);
+  box-shadow: 0px 15px 20px rgba(8, 130, 8, 0.505);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+/* .buttonRecibidas {
   cursor: pointer;
   position: relative;
   padding: 10px 24px;
@@ -103,7 +139,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-}
+} */
 
 h1 {
   font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;

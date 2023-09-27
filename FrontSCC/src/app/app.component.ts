@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from './services/user_services/api.service';
+import { SharedAuthService } from './services/sharedAuthService/shared-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,7 @@ export class AppComponent implements OnInit {
   public groups: any[] = [];
   public content = '';
 
-  constructor(private apiService: ApiService, private router: Router) { }
-
+  constructor(private apiService: ApiService, private router: Router,private authService: SharedAuthService) { }
 
   ngOnInit(): void{
     this.logueoFueraDeHorario = false;
@@ -26,6 +26,9 @@ export class AppComponent implements OnInit {
     if(seMostro == null){
       localStorage.setItem('flag', 'false');
     }
+    this.authService.loggedIn$.subscribe((loggedIn) => {
+      this.loggedIn = loggedIn;
+    });
     this.apiService.isLoggedIn().subscribe(res => {
       if (res) {
         this.loggedIn = true;

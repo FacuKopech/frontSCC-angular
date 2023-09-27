@@ -3,14 +3,23 @@
     <div class="customDiv" *ngIf="grupo.tipo == 'UserRegular'">
       <h1 class="cover-heading">¡Gestiona tus Notas {{username}}!</h1>
       <p class="lead pSubtitle">Puedes comenzar gestionando tus notas haciendo click en las siguientes opciones:</p>
-      <p class="lead">
+      <!-- <p class="lead">
         <button (click)="NotasEmitidas()" class="buttonEmitidas">
           Notas Emitidas
         </button>
+
         <button  (click)="NotasRecibidas()" class="buttonRecibidas">
           Notas Recibidas
         </button>
-      </p>
+      </p> -->
+      <div class="divBtnsContainer">
+        <button (click)="NotasEmitidas()" class=" btnNotas buttonEmitidas">
+          Notas Emitidas
+        </button>
+        <button (click)="NotasRecibidas()" class=" btnNotas buttonRecibidas">
+          Notas Recibidas
+        </button>
+      </div>
     </div>
     <div *ngIf="grupo.tipo == 'Admin'">
       <h1 class="cover-heading">Puede gestionar el area que desee, {{username}}!</h1>

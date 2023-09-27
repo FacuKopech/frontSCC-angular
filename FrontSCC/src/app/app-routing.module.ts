@@ -18,16 +18,16 @@ import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'notas_emitidas', component: NotasEmitidasComponent },
-  { path: 'notas_recibidas', component: NotasRecibidasComponent },
-  { path: 'hijos', component: HijosComponent },
-  { path: 'historiales_hijo', component: HistorialesComponent },
-  { path: 'archivos_ausencia', component: ArchivosAusenciaComponent },
-  { path: 'aulas', component: AulasComponent },
-  { path: 'alumnos_aula', component: AlumnosComponent },
-  { path: 'asistencia_aula', component: AsistenciaAulaComponent },
-  { path: 'tomar_asistencia', component: TomaDeAsistenciaComponent }
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
+  { path: 'notas_emitidas', component: NotasEmitidasComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
+  { path: 'notas_recibidas', component: NotasRecibidasComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
+  { path: 'hijos', component: HijosComponent, canActivate: [AuthGuard], data: { roles: ['Padre'] } },
+  { path: 'historiales_hijo', component: HistorialesComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
+  { path: 'archivos_ausencia', component: ArchivosAusenciaComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
+  { path: 'aulas', component: AulasComponent, canActivate: [AuthGuard], data: { roles: ['Docente', 'Directivo'] } },
+  { path: 'alumnos_aula', component: AlumnosComponent, canActivate: [AuthGuard], data: { roles: ['Docente', 'Directivo'] } },
+  { path: 'asistencia_aula', component: AsistenciaAulaComponent, canActivate: [AuthGuard], data: { roles: ['Docente'] } },
+  { path: 'tomar_asistencia', component: TomaDeAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Docente'] } }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

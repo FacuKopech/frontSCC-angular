@@ -68,7 +68,7 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
         <th scope="col">Acciones</th>
       </tr>
     </thead>
-    <tbody class="scroll" *ngFor="let nota of notas">
+    <tbody class="scroll" *ngFor="let nota of notas.slice(calculateIndices().startIndex, calculateIndices().endIndex)">
       <tr>
         <td>{{nota.titulo}}</td>
         <td>{{nota.fecha.substring(8,10)}}/{{nota.fecha.substring(5,7)}}/{{nota.fecha.substring(0,4)}} {{nota.fecha.substring(11,19)}}</td>
@@ -118,6 +118,21 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
       </tr>
     </tbody>
   </table>
+  <div class="pagination-controls">
+    <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+      </svg>
+    </button>
+    <ng-container *ngIf="notas.length > itemsPerPage">
+      <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()" [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
+    </ng-container>
+    <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()" [disabled]="currentPage * itemsPerPage >= notas.length">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+  </div>
   <app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
   </app-go-back-button>
 </div>

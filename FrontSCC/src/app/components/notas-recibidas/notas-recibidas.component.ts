@@ -37,6 +37,8 @@ export class NotasRecibidasComponent {
   token: string = '';
   emailUserLogueado = '';
   notaFirmada = false;
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
 
   public ngOnInit(): void {
     this.notaService.ObtenerNotasRecibidas().subscribe(res => {
@@ -46,15 +48,12 @@ export class NotasRecibidasComponent {
         console.log(this.notas);
       }else if(this.notas == null || this.notas.length === 0){
         this.message = "No existen notas recibidas!";
+        this.notas = [];
       }
     });
     this.userService.getEmailPersonaLogueada().subscribe(res => {
       this.emailUserLogueado = res;
     });
-  }
-
-  public goBack(){
-    this.location.back();
   }
 
   public openDeletion(idNota: number): void {
@@ -187,5 +186,32 @@ export class NotasRecibidasComponent {
     else{
       this.showErrorAlert = true;
     }
+  }
+
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.notas.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
+  }
+
+  public goBack(){
+    this.location.back();
   }
 }

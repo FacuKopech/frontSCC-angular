@@ -27,6 +27,8 @@ export class AusenciasHijoPopupComponent {
   esDenegarAusencia = false;
   openAgregarAusenciaPopup = false;
   counter: number = 0;
+  currentPage: number = 1;
+  itemsPerPage: number = 4;
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
@@ -170,6 +172,29 @@ export class AusenciasHijoPopupComponent {
   public aceptarClicked(){
     this.openSuccessAlert = false;
     window.location.reload();
+  }
+
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.ausencias.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
   }
 
   public cerrarClicked(){

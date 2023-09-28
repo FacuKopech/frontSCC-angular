@@ -164,7 +164,7 @@ h1 {
 }
 
 .divContainerHijo:hover{
-  transform: scale(1.2);
+  transform: scale(1.02);
 
 }
 
@@ -339,6 +339,48 @@ h1 {
   transform: skewX(-45deg) scale(1, 1);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+ }
+
+ .pagination-controls{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+  height: 24px;
+ }
+
+ .paginationBtn{
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+ }
+
+ .paginationBtn:hover{
+  background-color: #23a9da90;
+  color: white;
+ }
+
+ .svgArrowIcon{
+  height: 15px;
+    width: 15px;
+    display: flex;
+ }
+
+ .currentPageBtn{
+  border-radius: 100%;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+ }
+
+ .current-page {
+  background-color: #23a9da;
+  color: #fff;
+}
+
+ .currentPageBtn:hover{
+  background-color: #23a9da;
+  color: white;
  }
 
  .goBackComp{

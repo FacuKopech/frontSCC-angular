@@ -142,7 +142,6 @@ body{
 .customH1{
   display: flex;
   justify-content: center;
-  /* font-family: 'Satisfy', cursive; */
   font-family: 'Chalk', sans-serif;
   font-size: 60px;
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
@@ -300,11 +299,11 @@ body{
 }
 
 .divNavbarTitle{
-  font-family: 'Ribeye', cursive;
+  font-family: 'Satisfy', cursive;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  font-size: x-large;
+  font-size: xx-large;
   align-self: center;
   width: 36%;
 }

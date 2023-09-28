@@ -7,17 +7,17 @@
     </div>
 
     <div class="content">
-      <div>
-        <label class="campos">Fecha: </label> <label for="">{{nota.fecha.substring(8,10)}}/{{nota.fecha.substring(5,7)}}/{{nota.fecha.substring(0,4)}} {{nota.fecha.substring(11,19)}}</label>
+      <div class="divCampos">
+        <label class="campos">Fecha: </label> <label class="labelData" for="">{{nota.fecha.substring(8,10)}}/{{nota.fecha.substring(5,7)}}/{{nota.fecha.substring(0,4)}} {{nota.fecha.substring(11,19)}}</label>
       </div>
-      <div>
-        <label class="campos">Emisor: </label> <label for="">{{nota.emisor.email}}</label>
+      <div class="divCampos">
+        <label class="campos">Emisor: </label> <label class="labelData" for="">{{nota.emisor.email}}</label>
       </div>
-      <div>
-        <label class="campos">Referido: </label> <label *ngIf="nota.referido != null" for="">{{nota.referido.apellido}}, {{nota.referido.nombre}}</label> <label *ngIf="nota.referido == null" for="">No hay alumno referido</label>
+      <div class="divCampos">
+        <label class="campos">Referido: </label> <label class="labelData" *ngIf="nota.referido != null" for="">{{nota.referido.apellido}}, {{nota.referido.nombre}}</label> <label *ngIf="nota.referido == null" for="">No hay alumno referido</label>
       </div>
-      <div>
-        <label class="campos" >Tipo:</label> <label *ngIf="nota.tipo == 1" for="">  Generica</label><label *ngIf="nota.tipo == 2" for=""> Particular</label>
+      <div class="divCampos">
+        <label class="campos" >Tipo:</label> <label class="labelData" *ngIf="nota.tipo == 1" for="">  Generica</label><label *ngIf="nota.tipo == 2" for=""> Particular</label>
       </div>
       <div class="cuerpoNota">
         <label class="campos" for="">Cuerpo de nota</label>

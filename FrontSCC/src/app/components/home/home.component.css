@@ -68,7 +68,7 @@
   letter-spacing: 2.5px;
   font-weight: 500;
   color: #000;
-  background-color: #136f633d;
+  background-color: #136f6312;
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -142,12 +142,13 @@
 } */
 
 h1 {
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
-  font-size:50px;
+  font-family: 'Satisfy', cursive;
+  font-size:60px;
   text-shadow: -1px -1px 0 yellow, 1px -1px 0 red, -1px 1px 0 blue, 1px 1px 0 green;
 }
 .pSubtitle{
-    font-weight:400;
-    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
-    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  font-weight: 500;
+  font-size: xx-large;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: -1px -1px 0 #136f63ba, 1px -1px 0 #136f637d, -1px 1px 0 #136f638c, 1px 1px 0 #136f6396;
 }

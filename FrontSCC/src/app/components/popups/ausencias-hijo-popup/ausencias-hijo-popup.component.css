@@ -226,9 +226,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 864px;
-    overflow: scroll;
     max-height: 479px;
-    overflow-x: hidden;
 }
 
 
@@ -333,6 +331,51 @@
 .labelData{
   font-size: 22px;
 }
+
+.pagination-controls{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+  height: 24px;
+ }
+
+ .paginationBtn{
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+  color: white;
+ }
+
+ .paginationBtn:hover{
+  background-color: #23a9da90;
+  color: white;
+ }
+
+ .svgArrowIcon{
+  height: 15px;
+    width: 15px;
+    display: flex;
+ }
+
+ .currentPageBtn{
+  border-radius: 100%;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+    color: white;
+ }
+
+ .current-page {
+  background-color: #23a9da;
+  color: #fff;
+}
+
+ .currentPageBtn:hover{
+  background-color: #23a9da;
+  color: white;
+ }
+
 .popupCloseButton{
   display: flex;
   justify-content: center;

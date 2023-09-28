@@ -31,6 +31,8 @@ export class HijosComponent {
   openErrorAlert = false;
   esAgregarAusenciaGenerica = false;
   counter: number = 0;
+  currentPage: number = 1;
+  itemsPerPage: number = 3;
 
   ngOnInit(): void{
     this.personaService.ObtenerMisHijos().subscribe(res => {
@@ -43,10 +45,6 @@ export class HijosComponent {
         }
       }
     });
-  }
-
-  public goBack(){
-    this.location.back();
   }
 
   public verInstitucion(institucion: any){
@@ -139,6 +137,33 @@ export class HijosComponent {
   public aceptarClicked(){
     this.openSuccessAlert = false;
     window.location.reload();
+  }
+
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.hijos.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
+  }
+
+  public goBack(){
+    this.location.back();
   }
 
 }

@@ -65,7 +65,7 @@
     </div>
 
     <div class="inputBox">
-      <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}">
+      <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="password">
       <button (click)="togglePasswordVisibility()" class="password-toggle-button">
         <!-- <i class="far fa-eye" id="togglePassword"></i> -->
       </button>

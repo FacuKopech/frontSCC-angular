@@ -32,6 +32,8 @@ export class HistorialesComponent{
   openConfirmDeletePopup = false;
   openEditarHistorialPopup = false;
   itemForDelete: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 2;
 
   constructor( private historialService: HistorialService, private userService: ApiService, private location: Location){}
 
@@ -157,6 +159,29 @@ export class HistorialesComponent{
     this.openConfirmDeletePopup = false;
     this.openSuccessAlert = false;
     window.location.reload();
+  }
+
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.historiales.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
   }
 
   public goBack(){

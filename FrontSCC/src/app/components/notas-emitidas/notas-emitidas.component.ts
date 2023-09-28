@@ -40,6 +40,8 @@ export class NotasEmitidasComponent {
   itemForDelete: string = '';
   counter: number = 0;
   nota: any;
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
 
   public ngOnInit(): void {
     this.notaService.ObtenerNotasEmitidas().subscribe(res => {
@@ -51,10 +53,6 @@ export class NotasEmitidasComponent {
         }
       }
     });
-  }
-
-  public goBack(){
-    this.location.back();
   }
 
   public openDeletion(id: number): void {
@@ -188,5 +186,32 @@ export class NotasEmitidasComponent {
     else{
       this.showErrorAlert = true;
     }
+  }
+
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.notas.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
+  }
+
+  public goBack(){
+    this.location.back();
   }
 }

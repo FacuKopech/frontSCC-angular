@@ -23,8 +23,15 @@ export class AppComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router,private authService: SharedAuthService) {
     if (window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
       console.log(window.location.pathname);
-      if(window.location.pathname === "/"){
+      this.apiService.isLoggedIn().subscribe(res => {
+        if (res) {
+          this.loggedIn = res;
+        }
+      });
+      if(window.location.pathname === "/" && this.loggedIn){
         this.router.navigate(['/home']);
+      }else if(window.location.pathname === "/" && !this.loggedIn){
+        this.router.navigate(['/login']);
       }
     }
   }

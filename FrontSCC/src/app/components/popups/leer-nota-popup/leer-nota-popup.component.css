@@ -14,7 +14,6 @@
     min-width: 326px;
     border-radius: 18px;
     box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
-    border: 2px solid green;
     position: absolute;
     z-index: 9999;
 }
@@ -77,11 +76,21 @@
     margin-left: 16px;
 }
 
+.divCampos{
+  display: flex;
+  justify-content: space-between;
+}
 .campos{
   margin-right: 10px;
   text-decoration-line: underline;
   font-size: 22px;
   font-weight: 500;
+}
+
+.labelData{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .cuerpoNota{

@@ -51,8 +51,8 @@
 (cerrarButtonClick)="openErrorAlert = false">
 </app-error-alert>
 
-<div class="container" *ngFor="let hijo of hijos">
-  <div class="divContainerHijo">
+<div class="container">
+  <div class="divContainerHijo" *ngFor="let hijo of hijos.slice(calculateIndices().startIndex, calculateIndices().endIndex)">
     <div class="pNombre">
       <p>{{hijo.apellido}}, {{hijo.nombre}}</p>
     </div>
@@ -92,6 +92,21 @@
         </button>
       </div>
     </div>
+  </div>
+  <div class="pagination-controls">
+    <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+      </svg>
+    </button>
+    <ng-container *ngIf="hijos.length > itemsPerPage">
+      <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()" [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
+    </ng-container>
+    <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()" [disabled]="currentPage * itemsPerPage >= hijos.length">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
   </div>
 </div>
 

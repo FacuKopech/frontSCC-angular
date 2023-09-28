@@ -23,6 +23,8 @@ export class AlumnosComponent {
   esDenegarAusenciaAlumno = false;
   esAusenciasAlumno = true;
   messageAusencia = "";
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
 
   constructor(private aulaService: AulaService, private location: Location, private router: Router){}
 
@@ -62,6 +64,29 @@ export class AlumnosComponent {
   public verHistoriales(alumno: any){
     this.alumno = alumno;
     this.router.navigate(['/historiales_hijo'], {state: {data: this.alumno, esAlumno: true}});
+  }
+
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.alumnos.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
   }
 
   public goBack(){

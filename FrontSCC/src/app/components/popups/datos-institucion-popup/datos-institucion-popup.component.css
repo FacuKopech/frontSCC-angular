@@ -77,11 +77,22 @@
     margin-left: 16px;
 }
 
+.divCampos{
+  display: flex;
+    justify-content: space-between;
+}
+
 .campos{
   margin-right: 10px;
   text-decoration-line: underline;
   font-size: 22px;
   font-weight: 500;
+}
+
+.labelData{
+  display: flex;
+    flex-wrap: wrap;
+    align-self: center;
 }
 
 .cuerpoNota{

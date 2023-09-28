@@ -1,31 +1,26 @@
 <div class="alertBody fadeInDown">
-  <div class="container">
-    <div class="modal-content">
-      <div class="icon-box">
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 25 11 A 3 3 0 0 0 22 14 A 3 3 0 0 0 25 17 A 3 3 0 0 0 28 14 A 3 3 0 0 0 25 11 z M 21 21 L 21 23 L 22 23 L 23 23 L 23 36 L 22 36 L 21 36 L 21 38 L 22 38 L 23 38 L 27 38 L 28 38 L 29 38 L 29 36 L 28 36 L 27 36 L 27 21 L 26 21 L 22 21 L 21 21 z"></path>
-          </svg>
-
-      </div>
+  <div class="modal-content">
+    <div class="icon-box">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+      </svg>
     </div>
-    <div class="alertTextContainer">
-      <div class="text-center">
-        <h4>AVISO</h4>
-        <p *ngIf="!logueoFueraDeHorario">La nota ha sido marcada como leida.</p>
-        <p *ngIf="!logueoFueraDeHorario">Le notificaremos al emisor que usted ha leido su nota.</p>
-        <p *ngIf="logueoFueraDeHorario">Fuera de horario!</p>
-        <p class="pTexto" *ngIf="logueoFueraDeHorario">Señor/a {{username}}, el rango horario para recibir respuestas de parte de los Docentes y/o Directivos es de Lunes a Viernes de 8:00 AM hasta 16:00 PM. Si necesita comunicar una ausencia o enviar una nota, se le respondera lo antes posible dentro del horario
-          estipulado.
-        </p>
-        <p>Gracias!</p>
-      </div>
-      <div class="divCloseButton">
-        <button class="close-button" title="Cerrar" (click)="aceptarClicked()">
-          <svg class="close-svgIcon" viewBox="0 0 362 362">
-            <path d="M 90.998 91.502 L 72.515 110.005 107.502 145.002 L 142.489 180.000 107.742 214.758 L 72.995 249.515 91.500 268.000 L 110.005 286.485 144.765 251.735 L 179.524 216.986 214.260 251.774 L 248.996 286.562 267.770 267.788 L 286.545 249.014 251.522 214.257 L 216.500 179.500 251.500 144.761 L 286.500 110.022 268.008 91.509 L 249.515 72.995 214.758 107.742 L 180.000 142.489 145.245 107.745 C 126.129 88.635 110.262 73.000 109.985 73.000 C 109.707 73.000 101.163 81.326 90.998 91.502 "></path>
-          </svg>
-          </button>
-      </div>
+  </div>
+  <div class="alertTextContainer">
+    <div class="text-center">
+      <h4>AVISO</h4>
+      <p *ngIf="!logueoFueraDeHorario">La nota ha sido marcada como leida.</p>
+      <p *ngIf="!logueoFueraDeHorario">Le notificaremos al emisor que usted ha leido su nota.</p>
+      <p *ngIf="logueoFueraDeHorario">Fuera de horario!</p>
+      <p class="pTexto" *ngIf="logueoFueraDeHorario">Señor/a {{username}}, el rango horario para recibir respuestas de parte de los Docentes y/o Directivos es de Lunes a Viernes de 8:00 AM hasta 16:00 PM. Si necesita comunicar una ausencia o enviar una nota, se le respondera lo antes posible dentro del horario
+        estipulado.
+      </p>
+      <p>Gracias!</p>
+    </div>
+    <div class="divCloseBtn">
+      <button (click)="aceptarClicked()" class="closeButton">
+        Cerrar
+      </button>
     </div>
   </div>
 </div>

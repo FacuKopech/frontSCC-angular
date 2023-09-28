@@ -25,7 +25,7 @@
 (cerrarButtonClick)="closeErrorAlert()">
 </app-error-alert>
 
-<div class="wrapper container fadeInDown">
+<!-- <div class="wrapper container fadeInDown">
   <div class="card">
     <a class="login">Iniciar sesión</a>
     <p *ngIf="message != ''" class="errorMessage">
@@ -38,15 +38,15 @@
 
     <div class="inputBox">
       <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}">
-      <!-- <button (click)="togglePasswordVisibility()" class="password-toggle-button">
+      <button (click)="togglePasswordVisibility()" class="password-toggle-button">
         <i class="far fa-eye" id="togglePassword"></i>
-      </button> -->
+      </button>
       <span>Clave</span>
 
     </div>
-    <!-- <div class="btn-container">
+    <div class="btn-container">
       <button #btn (click)="LogIn()" class="enter">Ingresar</button>
-    </div> -->
+    </div>
     <button #loginButton (click)="LogIn()" class="enter">Ingresar</button>
     <div class="divOlvideMiClaveButton" >
       <button class="button" (click)="showOlvideMiClavePopup = true">
@@ -54,4 +54,32 @@
       </button>
     </div>
   </div>
+</div> -->
+
+<div class="form-container wrapper container fadeInDown">
+  <p class="title login">LogIn</p>
+  <form class="form">
+    <div class="inputBox">
+      <input type="text" required="required" id="login" name="username" [(ngModel)]="username">
+      <span>Usuario</span>
+    </div>
+
+    <div class="inputBox">
+      <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="{{ showPassword ? 'text' : 'password' }}">
+      <button (click)="togglePasswordVisibility()" class="password-toggle-button">
+        <!-- <i class="far fa-eye" id="togglePassword"></i> -->
+      </button>
+      <span>Clave</span>
+
+    </div>
+    <div class="divLogInBtn">
+      <button  #loginButton (click)="LogIn()" class="form-btn enter">LogIn</button>
+    </div>
+    <hr class="hrCustom">
+    <div class="divOlvideMiClaveButton" >
+      <button class="button form-btn" (click)="showOlvideMiClavePopup = true">
+        Olvide mi clave
+      </button>
+    </div>
+  </form>
 </div>

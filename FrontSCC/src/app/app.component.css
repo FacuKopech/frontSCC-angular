@@ -142,17 +142,22 @@ body{
 .customH1{
   display: flex;
   justify-content: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
-  font-size: 50px;
-  text-shadow: -1px -1px 0 red, 1px -1px 0 green, -1px 1px 0 yellow, 1px 1px 0 blue;
+  /* font-family: 'Satisfy', cursive; */
+  font-family: 'Chalk', sans-serif;
+  font-size: 60px;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
 
+.customPWelcome{
+  font-size: 45px;
+  font-weight:400;
+  font-family: 'Chalk', sans-serif;
+}
 
 .customP{
+  font-size: 30px;
     font-weight:400;
-    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
-    font-size: 24px;
-    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    font-family: 'Chalk', sans-serif;
 }
 
 
@@ -468,6 +473,8 @@ body{
     display: flex;
     flex-direction: column;
     box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    background-color: #2f2f2f;
 }
 .svgCrossIcon{
   height: 88px;
@@ -475,9 +482,12 @@ body{
   color: rgb(224, 30, 30);
 }
 
+.h1Unauthorized{
+  color: #ffffff;
+}
+
 .pUnauthorized{
-  font-family: 'Ubuntu Mono', monospace;
-  color: rgb(31, 29, 29);
+  color: #ffffff;
   font-size: larger;
   font-weight: bold;
   margin-left: 12px;

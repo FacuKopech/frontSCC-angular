@@ -10,16 +10,15 @@
 .popup{
   position: absolute;
   z-index: 9999;
-  background-color: #28282B;
+  background-color: #ffffff;
   border-radius: 18px;
   box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
-  width: 356px;
-  max-width: 394px;
+  max-width: 400px;
 }
 .divIcon{
   display: flex;
     justify-content: center;
-    background-color: yellow;
+    background-color: #fefe44;
     border-radius: 7px;
 }
 
@@ -31,7 +30,7 @@
 
   .popup h2 {
     margin-top: 0;
-    color: white;
+    color: black;
     font-family: Tahoma, Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -137,8 +136,12 @@ button {
   width: 100%;
 }
 
+.labelPregunta{
+  color: #000;
+}
+
 .labelInfo{
-  color: yellow;
+  color: #bdbd32;
 }
 
 .buttonCargaAsistencia {

@@ -1,9 +1,10 @@
 <div class="alertBody fadeInDown">
   <div class="modal-content">
     <div class="icon-box">
-      <img src="https://cdn3.iconfinder.com/data/icons/basicolor-arrows-checks/24/151_check_no_delete_error_remove-512.png" alt="">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCrossIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
     </div>
-    <button type="button" (click)="cerrarClicked()" class="closeButton" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
   <div class="alertTextContainer">
     <div class="text-center">
@@ -34,8 +35,12 @@
         <g fill="#1C1511FD" stroke="#1C1511FD">
         <path d="M 306.547 67.924 C 305.718 69.266 312.076 80.071 313.263 79.337 C 313.742 79.041 314.015 79.407 313.871 80.150 C 313.447 82.328 315.028 86.000 316.389 86.000 C 317.079 86.000 319.794 85.267 322.423 84.372 C 327.678 82.581 326.969 80.575 321.623 82.108 C 316.819 83.486 316.677 83.397 313.066 76.750 C 308.308 67.991 307.326 66.663 306.547 67.924 "/></g>
         </svg>
-
       <p>Algo salio mal!</p>
+    </div>
+    <div class="divCloseBtn">
+      <button (click)="cerrarClicked()" class="closeButton">
+        Cerrar
+      </button>
     </div>
   </div>
 </div>

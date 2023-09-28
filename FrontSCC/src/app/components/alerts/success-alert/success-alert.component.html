@@ -1,7 +1,9 @@
 <div class="alertBody fadeInDown">
   <div class="modal-content">
     <div class="icon-box">
-      <img src="https://icons-for-free.com/iconfiles/png/512/complete+done+green+success+valid+icon-1320183462969251652.png" alt="">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCheckIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
     </div>
 
   </div>
@@ -30,8 +32,10 @@
       <p *ngIf="esCargaDeAsistencia">Asistencia cargada con exito!</p>
       <p *ngIf="esEnvioNotaPadre">Nota enviada al/los Padre(s) con exito!</p>
 
-      <div class="divCloseButton">
-        <button type="button" (click)="cerrarClicked()" class="closeButton" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+      <div class="divCloseBtn">
+        <button (click)="cerrarClicked()" class="closeButton">
+          Aceptar
+        </button>
       </div>
     </div>
   </div>

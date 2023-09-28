@@ -19,12 +19,6 @@
 }
 
 
-.container{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
 @-webkit-keyframes fadeInDown {
   0% {
     opacity: 0;
@@ -61,13 +55,20 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: yellow;
-    border-radius: 12px;
+    background-color: #f0f030;
+    border-radius: 12px 12px 2px 2px;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.4)
 }
 
-.icon-box svg{
-  color: black;
+.icon-box{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.svgInfoIcon{
+  width: 86px;
+  height: 86px;
 }
 
 .alertTextContainer{
@@ -75,7 +76,7 @@
   background-color: #e9e9e9;
   height: 87px;
   height: fit-content;
-  border-radius: 12px;
+  border-radius: 2px 2px 12px 12px;
   box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -89,71 +90,28 @@
   margin-left: 5px;
     margin-right: 5px;
 }
-
-.divCloseButton{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+.divCloseBtn{
+  margin-bottom: 12px;
 }
-
-.close-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgb(20, 20, 20);
+.closeButton {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
   border: none;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
   cursor: pointer;
-  transition-duration: 0.3s;
-  overflow: hidden;
-  position: relative;
+  outline: none;
 }
 
-.close-svgIcon {
-  width: 15px;
-  transition-duration: 0.3s;
-}
-
-.close-svgIcon path {
-  fill: white;
-}
-
-.close-button:hover {
-  width: 90px;
-  border-radius: 50px;
-  transition-duration: 0.3s;
-  background-color: rgb(200, 22, 22);
-  align-items: center;
-}
-
-.close-button:hover .close-svgIcon {
-  width: 20px;
-  transition-duration: 0.3s;
-  transform: translateY(60%);
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
-
-.close-button::before {
-  display: none;
-  content: "Cerrar";
-  color: white;
-  transition-duration: 0.3s;
-  font-size: 2px;
-}
-
-.close-button:hover::before {
-  display: block;
-  padding-right: 10px;
-  font-size: 13px;
-  opacity: 1;
-  transform: translateY(0px);
-  transition-duration: 0.3s;
+.closeButton:hover {
+  background-color: #f0f030;
+  box-shadow: 0px 15px 20px #f0f03080;
+  color: #fff;
+  transform: translateY(-7px);
 }

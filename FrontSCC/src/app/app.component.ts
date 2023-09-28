@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router   } from '@angular/router';
 import { ApiService } from './services/user_services/api.service';
 import { SharedAuthService } from './services/sharedAuthService/shared-auth.service';
 
@@ -18,8 +18,16 @@ export class AppComponent implements OnInit {
   public isUnauthorized: boolean = false;
   public groups: any[] = [];
   public content = '';
+  isLoggedWithNoRoles: boolean = false;
 
-  constructor(private apiService: ApiService, private router: Router,private authService: SharedAuthService) { }
+  constructor(private apiService: ApiService, private router: Router,private authService: SharedAuthService) {
+    if (window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
+      console.log(window.location.pathname);
+      if(window.location.pathname === "/"){
+        this.router.navigate(['/home']);
+      }
+    }
+  }
 
   ngOnInit(): void{
     this.logueoFueraDeHorario = false;
@@ -27,29 +35,34 @@ export class AppComponent implements OnInit {
     if(seMostro == null){
       localStorage.setItem('flag', 'false');
     }
-    this.authService.isUnauthorized$.subscribe((unauthorized) => {
-      this.isUnauthorized = unauthorized;
-    });
+
     this.apiService.isLoggedIn().subscribe(res => {
       if (res) {
         this.loggedIn = true;
         this.groups = res['grupos'];
-
-        // preguntamos a que hora se loguea el padre
-        if(localStorage.getItem('flag') == 'false'){
-          for (let i = 0; i < this.groups.length; i++) {
-            if(this.groups[i].tipo == "Padre"){
-              const currentDate = new Date();
-              const currentHour = currentDate.getHours();
-              const currentDay = currentDate.getDay()
-              if((currentHour <= 8 || currentHour >= 16) && (currentDay == 6 || currentDay == 0)){
-                this.logueoFueraDeHorario = true;
+        if(this.groups.length > 0){
+          // preguntamos a que hora se loguea el padre
+          if(localStorage.getItem('flag') == 'false'){
+            for (let i = 0; i < this.groups.length; i++) {
+              if(this.groups[i].tipo == "Padre"){
+                const currentDate = new Date();
+                const currentHour = currentDate.getHours();
+                const currentDay = currentDate.getDay()
+                if((currentHour <= 8 || currentHour >= 16) && (currentDay == 6 || currentDay == 0)){
+                  this.logueoFueraDeHorario = true;
+                }
+                break;
               }
-              break;
             }
           }
+        }else{
+          this.isLoggedWithNoRoles = true;
         }
       }
+    });
+
+    this.authService.isUnauthorized$.subscribe((unauthorized) => {
+      this.isUnauthorized = unauthorized;
     });
   }
 
@@ -59,7 +72,7 @@ export class AppComponent implements OnInit {
     }else if(!this.loggedIn){
       return { 'background-image': 'url(https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg)' };
     }else if(this.isUnauthorized){
-      return { 'background-color': 'white'};
+      return { 'background-color': '#3f3f3f'};
     }else{
       return null;
     }

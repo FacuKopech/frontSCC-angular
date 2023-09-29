@@ -45,6 +45,7 @@ export class ResetearClavePopupComponent {
       errorGeneral.style.display = "flex";
       errorGeneral.style.color = "red";
       errorGeneral.style.fontWeight = "bold";
+      errorGeneral.style.justifyContent = "center";
     }
 
   }

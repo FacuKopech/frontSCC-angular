@@ -344,6 +344,9 @@ color: darkgreen;
   display: flex;
     flex-wrap: wrap;
     align-self: center;
+    width: 40px;
+    height: 40px;
+    color: #00a600;
 }
 
 .mensaje{

@@ -26,6 +26,7 @@ export class OlvideMiClavePopupComponent {
       emailError.style.display = "flex";
       emailError.style.color = "red";
       emailError.style.fontWeight = "bold";
+      emailError.style.justifyContent = "center";
     }
     else{
       emailError.textContent = "";

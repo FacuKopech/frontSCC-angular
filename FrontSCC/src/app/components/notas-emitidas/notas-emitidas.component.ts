@@ -161,7 +161,7 @@ export class NotasEmitidasComponent {
         }
       },
       (error:HttpErrorResponse) =>{
-        if(error.status == 404 || error.status == 400){
+        if(error.status >= 400){
           this.reloadPage("error", "");
         }
       });

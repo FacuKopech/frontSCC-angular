@@ -300,6 +300,7 @@ body{
 
 .divNavbarTitle{
   font-family: 'Chalk', sans-serif;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;

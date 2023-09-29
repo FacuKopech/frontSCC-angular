@@ -73,7 +73,8 @@
 
 .alertTextContainer{
   width: 100%;
-  background-color: #e9e9e9;
+  background-image: url(https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg);
+  background-position: center;
   height: 87px;
   height: fit-content;
   border-radius: 2px 2px 12px 12px;
@@ -81,9 +82,18 @@
 }
 
 .text-center{
-  color: black;
+  font-family: 'Chalk', sans-serif;
+  color: white;
   margin-top: 12px;
-  font-family: 'Noto Sans Chorasmian', sans-serif;
+  font-size: x-large;
+}
+
+.pNotaLeida{
+  margin-left: 10px;
+}
+
+.pTitle{
+  font-size: larger;
 }
 
 .pTexto{

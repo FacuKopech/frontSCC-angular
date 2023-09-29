@@ -26,13 +26,13 @@ export class AppComponent implements OnInit {
       this.apiService.isLoggedIn().subscribe(res => {
         if (res) {
           this.loggedIn = res;
+          if(window.location.pathname === "/" && this.loggedIn){
+            this.router.navigate(['/home']);
+          }else if(window.location.pathname === "/" && !this.loggedIn){
+            this.router.navigate(['/login']);
+          }
         }
       });
-      if(window.location.pathname === "/" && this.loggedIn){
-        this.router.navigate(['/home']);
-      }else if(window.location.pathname === "/" && !this.loggedIn){
-        this.router.navigate(['/login']);
-      }
     }
   }
 
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
                 const currentDate = new Date();
                 const currentHour = currentDate.getHours();
                 const currentDay = currentDate.getDay()
-                if((currentHour <= 8 || currentHour >= 16) && (currentDay == 6 || currentDay == 0)){
+                if((currentHour <= 8 || currentHour >= 16)){
                   this.logueoFueraDeHorario = true;
                 }
                 break;

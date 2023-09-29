@@ -61,7 +61,7 @@ body{
   justify-content: space-between;
   margin-top: 6px;
   flex-wrap:wrap;
-  background-color: #343436;
+  background-image: url('https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg');
   margin: 0;
 }
 
@@ -299,13 +299,13 @@ body{
 }
 
 .divNavbarTitle{
-  font-family: 'Satisfy', cursive;
+  font-family: 'Chalk', sans-serif;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
   font-size: xx-large;
   align-self: center;
-  width: 36%;
+  width: 42%;
 }
 
 .customDivBtnsDerecha{
@@ -667,7 +667,7 @@ body{
 }
 
 footer{
-  background-color: #1f1f1f;
+  background-image: url('https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg');
   height: 60px;
 }
 

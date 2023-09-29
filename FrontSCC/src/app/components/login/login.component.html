@@ -58,17 +58,20 @@
 
 <div class="form-container wrapper container fadeInDown">
   <p class="title login">LogIn</p>
+  <p *ngIf="message != ''" class="errorMessage">
+      {{message}}
+  </p>
   <form class="form">
     <div class="inputBox">
       <input type="text" required="required" id="login" name="username" [(ngModel)]="username">
       <span>Usuario</span>
     </div>
 
-    <div class="inputBox">
+    <div class="inputBox inputClave">
       <input (keydown.enter)="LogIn()" required="required" id="password" name="clave" [(ngModel)]="clave" type="password">
-      <button (click)="togglePasswordVisibility()" class="password-toggle-button">
-        <!-- <i class="far fa-eye" id="togglePassword"></i> -->
-      </button>
+      <!-- <button (click)="togglePasswordVisibility()" class="password-toggle-button">
+        <i class="far fa-eye" id="togglePassword"></i>
+      </button> -->
       <span>Clave</span>
 
     </div>

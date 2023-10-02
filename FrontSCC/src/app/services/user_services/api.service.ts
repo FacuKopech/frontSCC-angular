@@ -52,10 +52,7 @@ export class ApiService {
     return this.http.put<boolean>(this.hostUrl + `/Usuarios/RecuperacionClave/`, clave)
   }
 
-  public ObtenerTipoPersonaLogueada(): Observable<string>{
-    let HTTPOptions:Object = {
-      responseType: 'text'
-   }
-    return this.http.get<string>(this.hostUrl + "/Usuarios/ObtenerTipoPersonaLogueada", HTTPOptions)
+  public ObtenerTipoPersonaLogueada(): Observable<any>{
+    return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerTipoPersonaLogueada")
   }
 }

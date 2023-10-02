@@ -16,10 +16,15 @@ export class AuthGuard  {
     return new Observable<boolean>((observer) => {
       this.userService.isLoggedIn().subscribe(res => {
         if(res){
-          this.userService.ObtenerTipoPersonaLogueada().subscribe(res => {
+          this.userService.ObtenerTipoPersonaLogueada().subscribe((res: any[]) => {
             var rolesArray: any[] = [];
             rolesArray = route.data['roles'];
-            if(rolesArray.includes(res)){
+
+            const hasCommonRole = rolesArray.some(roleAllowed =>
+              res.some(obj => obj.tipo === roleAllowed)
+            );
+
+            if(hasCommonRole){
               this.authService.setUnauthorized(false);
               observer.next(true);
               observer.complete();

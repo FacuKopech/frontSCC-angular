@@ -25,21 +25,35 @@ export class AgregarNotaPopupComponent {
   isRadioButtonVisible = false;
   openTipoNotaInfoPopup = false;
   esTipo = false;
+  esVariosRoles = false;
   fileToUpload: any;
   formData: FormData;
   files: File[] = [];
+  esPadreYAlgoMas = false;
+  roleAdicional: string = '';
+  enviaNotaComoPadre = false;
+  isTipoLabelVisible = false;
+  isTipoOptionsVisible = false;
+  particularRadioButtonCheck = false;
+  genericaRadioButtonCheck = false;
+  conAulaRadioButtonCheck = false;
+  sinAulaRadioButtonCheck = false;
 
   constructor(private notaService: NotaService) {
     this.formData = new FormData();
   }
 
-  @Input() tipoUser: string='';
+  @Input() gruposUsuario: any[]= [];
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()
   enviarButtonClick = new EventEmitter<{tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData}>();
-  @ViewChild('radioButtonParticular', { static: false }) radioButtonParticularRef!: ElementRef<HTMLSelectElement>;
-  @ViewChild('radioButtonGenerica', { static: false }) radioButtonGenericaRef!: ElementRef<HTMLSelectElement>;
+  @ViewChild('radioButtonPadre', { static: false }) radioButtonPadreRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('radioButtonRoleAdicional', { static: false }) radioButtonRoleAdicionalRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('radioButtonParticular', { static: false }) radioButtonParticularRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('radioButtonGenerica', { static: false }) radioButtonGenericaRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('radioButtonConAula', { static: false }) radioButtonConAulaRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('radioButtonSinAula', { static: false }) radioButtonSinAulaRef!: ElementRef<HTMLInputElement>;
   @ViewChild('divAulaDestinada', { static: false }) aulaRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('dropdownAulas', { static: false }) aulasRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('dropdownMenuAulas', { static: false }) aulasMenuRef!: ElementRef<HTMLSelectElement>;
@@ -49,18 +63,84 @@ export class AgregarNotaPopupComponent {
   @ViewChild('dropdownMenu', { static: false }) destinatariosMenuRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('labelDropdownMenu', { static: false }) labelDestinatariosRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('selectAulas', { static: false }) selectAulasRef!: ElementRef<HTMLSelectElement>;
+  @ViewChild('divTituloAndCuerpo', { static: false }) divTituloAndCuerpoElementRef!: ElementRef<HTMLElement>;
+  @ViewChild('tituloInput', { static: false }) tituloInputRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('cuerpoTextArea', { static: false }) cuerpoTextAreaRef!: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('divFiles', { static: false }) divFilesElementRef!: ElementRef<HTMLElement>;
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+
+
+  public ngOnInit(){
+    const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
+    if(this.gruposUsuario.length > 2){
+      this.isTipoLabelVisible = false;
+      this.isTipoOptionsVisible = false;
+      if(isPadre){
+        this.esPadreYAlgoMas = true;
+        const grupoAdicional = this.gruposUsuario.find(obj => obj.tipo !== 'Padre' && obj.tipo !== 'UserRegular');
+        this.roleAdicional = grupoAdicional.tipo;
+      }else{
+        this.esPadreYAlgoMas = false;
+      }
+    }else{
+      this.isTipoLabelVisible = true;
+      this.isTipoOptionsVisible = true;
+    }
+  }
+
+  ngAfterViewInit() {
+    this.radioButtonParticularRef.nativeElement.checked = false;
+    this.radioButtonGenericaRef.nativeElement.checked = false;
+    this.radioButtonConAulaRef.nativeElement.checked = false;
+    this.radioButtonSinAulaRef.nativeElement.checked = false;
+
+    this.particularRadioButtonCheck = this.radioButtonParticularRef.nativeElement.checked;
+    this.genericaRadioButtonCheck = this.radioButtonGenericaRef.nativeElement.checked;
+    this.conAulaRadioButtonCheck = this.radioButtonConAulaRef.nativeElement.checked;
+    this.sinAulaRadioButtonCheck = this.radioButtonSinAulaRef.nativeElement.checked;
+  }
 
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
   }
   public enviarClicked = () => {
-    this.enviarButtonClick.emit({ tipo: this.tipoElegido, conAula: this.esConAula, aulasDestinadas: this.aulasDestinadas,
-      idAlumnoReferido: this.idAlumno, destinatarios:this.selectedDestinatarios, titulo: this.tituloNota, cuerpo: this.cuerpoNota, files: this.formData});
+    const tituloError =   document.querySelector(`span[id="tituloError"]`) as HTMLElement;
+    const cuerpoError =   document.querySelector(`span[id="cuerpoError"]`) as HTMLElement;
+    if(this.tituloInputRef.nativeElement.value == ""){
+      tituloError.textContent = "Este campo es requerido";
+      tituloError.style.display = "flex";
+      tituloError.style.color = "red";
+      tituloError.style.fontWeight = "bold";
+    }else if(this.tituloInputRef.nativeElement.value.length < 5){
+      tituloError.textContent = "El Titulo debe contener al menos 5 caracteres";
+      tituloError.style.display = "flex";
+      tituloError.style.color = "red";
+      tituloError.style.fontWeight = "bold";
+    }else if(this.cuerpoTextAreaRef.nativeElement.value == ""){
+      cuerpoError.textContent = "Este campo es requerido";
+      cuerpoError.style.display = "flex";
+      cuerpoError.style.color = "red";
+      cuerpoError.style.fontWeight = "bold";
+    }else if(this.cuerpoTextAreaRef.nativeElement.value.length < 10){
+      cuerpoError.textContent = "El Cuerpo debe contener al menos 10 caracteres";
+      cuerpoError.style.display = "flex";
+      cuerpoError.style.color = "red";
+      cuerpoError.style.fontWeight = "bold";
+    }else{
+      this.enviarButtonClick.emit({ tipo: this.tipoElegido, conAula: this.esConAula, aulasDestinadas: this.aulasDestinadas,
+        idAlumnoReferido: this.idAlumno, destinatarios:this.selectedDestinatarios, titulo: this.tituloNota, cuerpo: this.cuerpoNota, files: this.formData});
+    }
   }
 
   public openInfoPopup(esTipo: boolean){
     this.esTipo = esTipo;
+    this.esVariosRoles = false;
+    this.openTipoNotaInfoPopup = true;
+  }
+
+  public openInfoPopupVariosRoles(){
+    this.esVariosRoles = true;
+    this.esTipo = false;
     this.openTipoNotaInfoPopup = true;
   }
 
@@ -119,31 +199,89 @@ export class AgregarNotaPopupComponent {
     }
   }
 
-  public radioButtonShow(tipoElegido: string) {
+  public enviarNotaComoClick(enviaNotaComo: string){
+    if(enviaNotaComo == 'P'){
+      this.enviaNotaComoPadre = true;
+      this.radioButtonPadreRef.nativeElement.checked = true;
+      this.radioButtonRoleAdicionalRef.nativeElement.checked = false;
+    }else{
+      this.enviaNotaComoPadre = false;
+      this.radioButtonRoleAdicionalRef.nativeElement.checked = true;
+      this.radioButtonPadreRef.nativeElement.checked = false;
+    }
+    this.isTipoLabelVisible = true;
+    this.isTipoOptionsVisible = true;
+    this.particularRadioButtonCheck = false;
+    this.genericaRadioButtonCheck = false;
+    this.conAulaRadioButtonCheck = false;
+    this.sinAulaRadioButtonCheck = false;
+    this.isRadioButtonVisible = false;
     var divAulaDestinada = this.aulaRef.nativeElement;
     var divAlumnoReferido = this.alumnoRef.nativeElement;
     var dropDownListAulas = this.aulasRef.nativeElement;
     var dropDownListMenuAulas = this.aulasMenuRef.nativeElement;
     var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
     var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
+
+    divAlumnoReferido.style.display = 'none';
+    divAulaDestinada.style.display = 'none';
+    dropDownListAulas.style.display = 'none';
+    dropDownListMenuAulas.style.display = 'none';
+    dropDownListDestinatarios.style.display = "none";
+    labelDropDownListDestinatarios.style.display = "none";
+    this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+    this.divFilesElementRef.nativeElement.style.display = "none";
+  }
+
+  public radioButtonShow(tipoElegido: string) {
+    this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+    this.divFilesElementRef.nativeElement.style.display = "none";
+    var divAulaDestinada = this.aulaRef.nativeElement;
+    var divAlumnoReferido = this.alumnoRef.nativeElement;
+    var dropDownListAulas = this.aulasRef.nativeElement;
+    var dropDownListMenuAulas = this.aulasMenuRef.nativeElement;
+    var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
+    var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
+
     this.tipoElegido = tipoElegido;
+    const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
 
     if (tipoElegido === 'G') {
+      this.genericaRadioButtonCheck = true;
+      this.particularRadioButtonCheck = false;
       this.isRadioButtonVisible = true;
       divAlumnoReferido.style.display = 'none';
-      if(this.tipoUser == "Padre"){
-        this.isRadioButtonVisible = false;
-        this.esConAula = false;
-        this.aulasDestinadas = [];
-        this.idAlumno = 0;
-        divAulaDestinada.style.display = 'flex';
-        this.selectAulasRef.nativeElement.value = "0";
+      if(isPadre){
+        if(this.esPadreYAlgoMas){
+          if(this.enviaNotaComoPadre){
+            this.isRadioButtonVisible = false;
+            this.esConAula = false;
+            this.aulasDestinadas = [];
+            this.idAlumno = 0;
+            divAulaDestinada.style.display = 'flex';
+            this.selectAulasRef.nativeElement.value = "0";
+          }else{
+            divAulaDestinada.style.display = 'none';
+            dropDownListAulas.style.display = 'none';
+          }
+          this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido, isPadre, this.esPadreYAlgoMas, this.enviaNotaComoPadre);
+        }else{
+          this.isRadioButtonVisible = false;
+            this.esConAula = false;
+            this.aulasDestinadas = [];
+            this.idAlumno = 0;
+            divAulaDestinada.style.display = 'flex';
+            this.selectAulasRef.nativeElement.value = "0";
+          this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido, isPadre, false, false);
+        }
       }else{
         divAulaDestinada.style.display = 'none';
         dropDownListAulas.style.display = 'none';
+        this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido, isPadre, false, false);
       }
-      this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido);
     } else if(tipoElegido === 'P') {
+      this.genericaRadioButtonCheck = false;
+      this.particularRadioButtonCheck = true;
       dropDownListAulas.style.display = 'none';
       dropDownListMenuAulas.style.display = 'none';
       this.isRadioButtonVisible = false;
@@ -152,10 +290,9 @@ export class AgregarNotaPopupComponent {
       this.esConAula = true;
       dropDownListDestinatarios.style.display = "none";
       labelDropDownListDestinatarios.style.display = "none";
-      if(this.tipoUser != "Padre"){
-        this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido);
-      }
-      if(this.tipoUser == "Padre"){
+      if(!isPadre){
+        this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido, false, false, false);
+      } else if((isPadre && this.enviaNotaComoPadre) || (isPadre && !this.esPadreYAlgoMas)){
         this.aulasDestinadas = [];
         this.destinatarios = [];
         divAlumnoReferido.style.display = 'flex';
@@ -163,11 +300,17 @@ export class AgregarNotaPopupComponent {
         dropDownListDestinatarios.style.display = "none";
         labelDropDownListDestinatarios.style.display = "none";
         this.ObtenerHijosPadreParaNuevaNota();
+      }else if(isPadre && !this.enviaNotaComoPadre){
+        this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido, true, true, false);
       }
     }
   }
 
   mostrarAula(){
+    this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+    this.divFilesElementRef.nativeElement.style.display = "none";
+    this.conAulaRadioButtonCheck = true;
+    this.sinAulaRadioButtonCheck = false;
     this.esConAula = true;
     var divAulaDestinada = this.aulaRef.nativeElement;
     var dropDownListAulas = this.aulasRef.nativeElement;
@@ -187,10 +330,23 @@ export class AgregarNotaPopupComponent {
     }else{
       divAlumnoReferido.style.display = "flex";
     }
-    this.ObtenerAulasDestinatariosParaNuevaNota(this.tipoElegido);
+    const isDocente = this.gruposUsuario.some(obj => obj.tipo === 'Docente');
+    if(isDocente){
+      if(this.gruposUsuario.length > 2){
+        if(!this.enviaNotaComoPadre){
+          this.ObtenerAulasDestinatariosParaNuevaNota(this.tipoElegido, true, true, false);
+        }
+      }else{
+        this.ObtenerAulasDestinatariosParaNuevaNota(this.tipoElegido, false, false, false);
+      }
+    }
   }
 
   esconderAula(){
+    this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+    this.divFilesElementRef.nativeElement.style.display = "none";
+    this.sinAulaRadioButtonCheck = true;
+    this.conAulaRadioButtonCheck = false;
     this.esConAula = false;
     var divAulaDestinada = this.aulaRef.nativeElement;
     var dropDownListAulas = this.aulasRef.nativeElement;
@@ -201,7 +357,17 @@ export class AgregarNotaPopupComponent {
     this.selectAulasRef.nativeElement.value = "0";
     var divAlumnoReferido = this.alumnoRef.nativeElement;
     divAlumnoReferido.style.display = "none";
-    this.ObtenerAulasDestinatariosParaNuevaNota(this.tipoElegido);
+
+    const isDocente = this.gruposUsuario.some(obj => obj.tipo === 'Docente');
+    if(isDocente){
+      if(this.gruposUsuario.length > 2){
+        if(!this.enviaNotaComoPadre){
+          this.ObtenerAulasDestinatariosParaNuevaNota(this.tipoElegido, true, true, false);
+        }
+      }else{
+        this.ObtenerAulasDestinatariosParaNuevaNota(this.tipoElegido, false, false, false);
+      }
+    }
   }
 
   showDropDownListDestinatarios(){
@@ -222,9 +388,10 @@ export class AgregarNotaPopupComponent {
     }
   }
 
-  public ObtenerAulasDestinatariosParaNuevaNota = (tipoDeNota: string) => {
-    this.notaService.ObtenerAulasParaNuevaNota(tipoDeNota).subscribe(res => {
+  public ObtenerAulasDestinatariosParaNuevaNota = (tipoDeNota: string, isPadre: boolean, esPadreYAlgoMas: boolean, enviaNotaComoPadre: boolean) => {
+    this.notaService.ObtenerAulasParaNuevaNota(tipoDeNota, isPadre, esPadreYAlgoMas, enviaNotaComoPadre).subscribe(res => {
       this.aulas = res;
+      console.log(this.aulas);
     });
   }
 
@@ -236,7 +403,10 @@ export class AgregarNotaPopupComponent {
 
   public handleAulaSeleccionada = (idAula: number) => {
     this.selectedDestinatarios.length = 0;
-    if(this.tipoUser == "Padre" && this.tipoElegido == "G"){
+    const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
+    const isDocente = this.gruposUsuario.some(obj => obj.tipo === 'Docente');
+    const isDirectivo = this.gruposUsuario.some(obj => obj.tipo === 'Directivo');
+    if(isPadre && this.tipoElegido == "G" && this.enviaNotaComoPadre){
       this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(idAula).subscribe(res => {
         this.destinatarios = res;
       });
@@ -244,6 +414,8 @@ export class AgregarNotaPopupComponent {
       var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
       dropDownListDestinatarios.style.display = "flex";
       labelDropDownListDestinatarios.style.display = "flex";
+      this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
+      this.divFilesElementRef.nativeElement.style.display = "flex";
     }
     if(this.tipoElegido == 'P'){
       this.notaService.ObtenerAlumnosDeAulaParaNuevaNota(idAula).subscribe(res => {
@@ -253,10 +425,18 @@ export class AgregarNotaPopupComponent {
       var divAlumnoReferido = this.alumnoRef.nativeElement;
       divAlumnoReferido.style.display = 'flex';
     }
-    if(this.tipoElegido == "G" && this.tipoUser == "Docente"){
+
+    if(this.tipoElegido == "G" && isDocente){
       this.idAlumno = 0;
       if(this.esConAula){
         this.aulasCheck(idAula);
+        if(this.aulasDestinadas.length === 0){
+          this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+          this.divFilesElementRef.nativeElement.style.display = "none";
+        }else{
+          this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
+          this.divFilesElementRef.nativeElement.style.display = "flex";
+        }
       }else{
         this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(idAula).subscribe(res => {
           this.destinatarios = res;
@@ -265,11 +445,20 @@ export class AgregarNotaPopupComponent {
         var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
         dropDownListDestinatarios.style.display = "flex";
         labelDropDownListDestinatarios.style.display = "flex";
+        this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
+        this.divFilesElementRef.nativeElement.style.display = "flex";
       }
     }
-    if(this.tipoElegido == "G" && this.tipoUser == "Directivo"){
+    if(this.tipoElegido == "G" && isDirectivo){
       if(this.esConAula){
         this.aulasCheck(idAula);
+        if(this.aulasDestinadas.length === 0){
+          this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+          this.divFilesElementRef.nativeElement.style.display = "none";
+        }else{
+          this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
+          this.divFilesElementRef.nativeElement.style.display = "flex";
+        }
       }else{
         this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(idAula).subscribe(res => {
           this.destinatarios = res;
@@ -278,6 +467,8 @@ export class AgregarNotaPopupComponent {
         var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
         dropDownListDestinatarios.style.display = "flex";
         labelDropDownListDestinatarios.style.display = "flex";
+        this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
+        this.divFilesElementRef.nativeElement.style.display = "flex";
       }
     }
   }
@@ -285,6 +476,8 @@ export class AgregarNotaPopupComponent {
   public guardarAlumnoSeleccionado = (idAlumno: number) => {
     console.log(idAlumno);
     this.idAlumno = idAlumno;
+    this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
+    this.divFilesElementRef.nativeElement.style.display = "flex";
   }
 
   public destinatarioCheck = (destinatario: any) => {

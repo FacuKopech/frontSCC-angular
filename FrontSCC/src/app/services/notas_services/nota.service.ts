@@ -36,8 +36,8 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerListaDeDestinatariosParaNuevaNota/${idAula}`);
   }
 
-  public ObtenerAulasParaNuevaNota(tipoDeNota: string): Observable<any> {
-    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerAulasParaNuevaNota/${tipoDeNota}`);
+  public ObtenerAulasParaNuevaNota(tipoDeNota: string, isPadre: boolean, esPadreYAlgoMas:boolean, enviaNotaComoPadre: boolean): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerAulasParaNuevaNota/${tipoDeNota}/${isPadre}/${esPadreYAlgoMas}/${enviaNotaComoPadre}/`);
   }
 
   public ObtenerHijosPadreParaNuevaNota(): Observable<any> {

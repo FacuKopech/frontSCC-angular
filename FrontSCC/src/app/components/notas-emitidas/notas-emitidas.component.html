@@ -1,6 +1,6 @@
 <p>Notas Emitidas</p>
 <div class="divAgregarNota">
-  <button class="icon-btn add-btn" title="Nueva nota" (click)="openAgregarNotaPopup = true; handleAgregarClick()">
+  <button class="icon-btn add-btn" title="Nueva nota" (click)="openAgregarNotaPopup = true">
     <div class="add-icon"></div>
     <div class="btn-txt">Agregar</div>
   </button>
@@ -36,9 +36,10 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
 </app-destinatarios-nota-popup>
 
 <!--POPUP AGREGAR NOTA-->
-<app-agregar-nota-popup [tipoUser]="tipoUsuario" class="agregarNotaPopup" (cancelButtonClick)="closeModal()"
+<app-agregar-nota-popup class="agregarNotaPopup" (cancelButtonClick)="closeModal()"
 (enviarButtonClick)="handleEnviarClick($event)"
-*ngIf="openAgregarNotaPopup">
+*ngIf="openAgregarNotaPopup"
+[gruposUsuario]="gruposUsuario">
 </app-agregar-nota-popup>
 
 <!--ALERT SUCCESS-->

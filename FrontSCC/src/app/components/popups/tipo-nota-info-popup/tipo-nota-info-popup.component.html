@@ -1,23 +1,29 @@
 <div class="overlay">
   <div class="popup fadeInDown">
     <h2 *ngIf="esTipo">Tipos de nota</h2>
-    <h2 *ngIf="!esTipo">Aula Destinada</h2>
+    <h2 *ngIf="!esTipo && !esVariosRoles">Aula Destinada</h2>
+    <h2 *ngIf="esVariosRoles">Enviar Nota como...</h2>
     <div class="content">
       <h3 *ngIf="esTipo">Particular</h3>
       <p *ngIf="esTipo">Cuando se selecciona este tipo de nota, se comunica algo sobre un alumno/hijo especifico: Alumno Referido. Al tener un Alumno referido en la Nota,
         el sistema ya sabe cual sera el Aula destinada.
       </p>
-      <h3 *ngIf="!esTipo">Con aula destinada</h3>
-      <p *ngIf="!esTipo">Cuando se selecciona esta opcion, la nota es enviada al Aula deseada, es decir, el sistema automaticamente envia la nota a los Destinatarios
+      <h3 *ngIf="!esTipo && !esVariosRoles">Con aula destinada</h3>
+      <p *ngIf="!esTipo && !esVariosRoles">Cuando se selecciona esta opcion, la nota es enviada al Aula deseada, es decir, el sistema automaticamente envia la nota a los Destinatarios
         correspondientes. Los destinatarios varian acorde a si la nota esta siendo enviada por un Padre, un Docente o un Directivo.
+      </p>
+      <p *ngIf="esVariosRoles">El sistema ha detectado que su usuario tiene asignado mas de un Rol. Esto puede ocurrir cuando un mismo Usuario actua como Padre y Docente, o
+        como Padre y Directivo a la vez. Debe seleccionar la opcion correspondiente acorde a como desea actuar. Ejemplo, si quiere enviar una Nota Particular sobre uno de sus hijos,
+        o enviar una Nota generica al personal de la institucion, seleccione la opcion 'Padre'. Si en cambio desea enviar una Nota generica a alguna de las aulas que Ud. tiene a cargo,
+        seleccione Docente (en caso de tener ese Rol asignado). Sino, seleccione 'Directivo'.
       </p>
 
       <br>
 
       <h3 *ngIf="esTipo">Generica</h3>
       <p *ngIf="esTipo">Cuando se selecciona este tipo de nota, se comunica algo generico, que puede o no estar directamente relacionado a un Alumno.</p>
-      <h3 *ngIf="!esTipo">Sin aula destinada</h3>
-      <p *ngIf="!esTipo">Cuando se selecciona esta opcion, la nota no es enviada a un Aula determinada, sino que es el Emisor quien debe elegir a que Destinatarios
+      <h3 *ngIf="!esTipo && !esVariosRoles">Sin aula destinada</h3>
+      <p *ngIf="!esTipo && !esVariosRoles">Cuando se selecciona esta opcion, la nota no es enviada a un Aula determinada, sino que es el Emisor quien debe elegir a que Destinatarios
         correspondientes se debe enviar la nota. Los destinatarios disponibles para su eleccion varian acorde a si la nota esta siendo enviada por un Padre, un Docente o un Directivo.</p>
     </div>
     <div class="popupCloseButton">

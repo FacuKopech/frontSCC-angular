@@ -36,7 +36,7 @@ export class NotasEmitidasComponent {
   public notas: any[] = [];
   public notaAModificar: any;
   public notaALeerCuerpo: any;
-  public tipoUsuario: string='';
+  public gruposUsuario: any[] = [];
   itemForDelete: string = '';
   counter: number = 0;
   nota: any;
@@ -44,15 +44,21 @@ export class NotasEmitidasComponent {
   itemsPerPage: number = 10;
 
   public ngOnInit(): void {
-    this.notaService.ObtenerNotasEmitidas().subscribe(res => {
-      if (res) {
-        this.notas = res;
-        console.log(this.notas);
-        if (this.notas.length == 0) {
-          this.message = "No existen notas emitidas!";
-        }
+    this.apiService.ObtenerTipoPersonaLogueada().subscribe(res =>{
+      if(res != null){
+        this.gruposUsuario = res;
+        this.notaService.ObtenerNotasEmitidas().subscribe(res => {
+          if (res) {
+            this.notas = res;
+            console.log(this.notas);
+            if (this.notas.length == 0) {
+              this.message = "No existen notas emitidas!";
+            }
+          }
+        });
       }
     });
+    console.log(this.gruposUsuario);
   }
 
   public openDeletion(id: number): void {
@@ -118,12 +124,6 @@ export class NotasEmitidasComponent {
       }
     });
     this.openEditionPopup = false;
-  }
-
-  public handleAgregarClick() {
-    this.apiService.ObtenerTipoPersonaLogueada().subscribe(res =>{
-      this.tipoUsuario = res;
-    });
   }
 
   public handleEnviarClick(eventData: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData}) {

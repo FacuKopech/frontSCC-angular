@@ -24,11 +24,15 @@ export class LoginComponent {
   token: string = '';
   showPassword: boolean = false;
   emailUser: string='';
+  passwordHidden: boolean = true;
 
   togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+    if(this.passwordHidden){
+      this.passwordHidden = false;
+    }else{
+      this.passwordHidden = true;
+    }
   }
-
 
   public LogIn(): void {
     if (this.username == "" || this.clave == "") {

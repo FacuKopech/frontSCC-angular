@@ -8,6 +8,7 @@ import { Component,Input, Output, EventEmitter } from '@angular/core';
 export class TipoNotaInfoPopupComponent {
 
   @Input() esTipo: boolean = false;
+  @Input() esVariosRoles: boolean = false;
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
 

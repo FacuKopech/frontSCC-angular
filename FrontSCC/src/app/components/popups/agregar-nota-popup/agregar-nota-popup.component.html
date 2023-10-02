@@ -9,32 +9,63 @@
       <div *ngIf="openTipoNotaInfoPopup" class="divCover"></div>
       <app-tipo-nota-info-popup *ngIf="openTipoNotaInfoPopup"
       (cancelButtonClick)="openTipoNotaInfoPopup = false"
-      [esTipo]="esTipo">
+      [esTipo]="esTipo"
+      [esVariosRoles]="esVariosRoles">
       </app-tipo-nota-info-popup>
 
-      <label>Tipo</label>
-      <div id="radioButtonsContainer" class="radio-inputs">
-        <label>
-          <input class="radio-input" type="radio" name="engine" (click)="radioButtonShow('P')" #radioButtonParticular>
-            <span class="radio-tile">
-              <span class="radio-label">Particular</span>
-            </span>
-        </label>
-        <label for="" class="labelInfoSvg">
-          <svg xmlns="http://www.w3.org/2000/svg" (click)="openInfoPopup(true)" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-          </svg>
-        </label>
-        <label>
-          <input class="radio-input" type="radio" name="engine" (click)="radioButtonShow('G')" #radioButtonGenerica>
-          <span class="radio-tile">
-            <span class="radio-label">Generica</span>
-          </span>
-        </label>
+      <label *ngIf="esPadreYAlgoMas">Quiero enviar una nota como...</label>
+      <div *ngIf="esPadreYAlgoMas" id="radioButtonsContainer" class="radio-inputs">
+        <div class="container">
+          <div class="radio-tile-group">
+            <div class="input-container" (click)="enviarNotaComoClick('P')" id="divPadre">
+              <input id="padre" class="radio-button" type="radio" name="radio" #radioButtonPadre>
+              <div class="radio-tile">
+                <label for="padre" class="radio-tile-label">Padre</label>
+              </div>
+            </div>
+            <label for="" class="labelInfoSvg">
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="openInfoPopupVariosRoles()" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+              </svg>
+            </label>
+            <div class="input-container" (click)="enviarNotaComoClick('D')" id="divRoleAdicional">
+              <input id="roleAdicional" class="radio-button" type="radio" name="radio" #radioButtonRoleAdicional>
+              <div class="radio-tile">
+                <label for="roleAdicional" class="radio-tile-label">{{roleAdicional}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <label *ngIf="isTipoLabelVisible">Tipo</label>
+      <div *ngIf="isTipoOptionsVisible" id="radioButtonsContainer" class="radio-inputs">
+        <div class="container">
+          <div class="radio-tile-group">
+            <div class="input-container" (click)="radioButtonShow('P')">
+              <input id="particular" class="radio-button" type="radio" name="engine" [checked]="particularRadioButtonCheck" #radioButtonParticular>
+              <div class="radio-tile">
+                <label for="particular" class="radio-tile-label">Particular</label>
+              </div>
+            </div>
+            <label for="" class="labelInfoSvg">
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="openInfoPopup(true)" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+              </svg>
+            </label>
+            <div class="input-container" (click)="radioButtonShow('G')">
+              <input id="generica" class="radio-button" type="radio" name="engine" [checked]="genericaRadioButtonCheck" #radioButtonGenerica>
+              <div class="radio-tile">
+                <label for="generica" class="radio-tile-label">Generica</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <label *ngIf="isRadioButtonVisible" for="">Seleccione una opcion</label>
       <div id="radioButtonsContainer"  class="radio-button-container" *ngIf="isRadioButtonVisible">
-        <label class="radio-button">
+        <!-- <label class="radio-button">
           <input class="radio-input" value="conAula" name="example-radio" type="radio" [required]="isRadioButtonVisible" (click)="mostrarAula()">
           <span class="radio-tile">
             <span class="radio-label">Con aula destinada</span>
@@ -50,7 +81,30 @@
           <span class="radio-tile">
             <span class="radio-label">Sin aula destinada</span>
           </span>
-        </label>
+        </label> -->
+
+
+        <div class="container">
+          <div class="radio-tile-group">
+            <div class="input-container" (click)="mostrarAula()">
+              <input id="conAula" class="radio-button" type="radio" name="example-radio" [required]="isRadioButtonVisible" [checked]="conAulaRadioButtonCheck" #radioButtonConAula>
+              <div class="radio-tile">
+                <label for="conAula" class="radio-tile-label">Con aula destinada</label>
+              </div>
+            </div>
+            <label for="" class="labelInfoSvg">
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="openInfoPopup(false)" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+              </svg>
+            </label>
+            <div class="input-container" (click)="esconderAula()">
+              <input id="sinAula" class="radio-button" type="radio" name="example-radio" [required]="isRadioButtonVisible" [checked]="sinAulaRadioButtonCheck" #radioButtonSinAula>
+              <div class="radio-tile">
+                <label for="sinAula" class="radio-tile-label">Sin aula destinada</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="divAulaDestinada" id="divAulaDestinada" #divAulaDestinada>
@@ -113,18 +167,20 @@
           </ng-container>
         </div>
       </div>
-      <label>Titulo</label>
-      <input type="text" name="tituloNota" [(ngModel)]="tituloNota" required/>
-      <label>Cuerpo</label>
-      <textarea name="cuerpoNota" required [(ngModel)]="cuerpoNota"></textarea>
+      <div #divTituloAndCuerpo class="divTituloAndCuerpo">
+        <label>Titulo</label>
+        <input class="inputTitulo" type="text" name="tituloNota" [(ngModel)]="tituloNota" required #tituloInput/>
+        <span id="tituloError"></span>
+        <label>Cuerpo</label>
+        <textarea name="cuerpoNota" class="textareaCuerpo" required [(ngModel)]="cuerpoNota" #cuerpoTextArea></textarea>
+        <span id="cuerpoError"></span>
+      </div>
 
-      <div class="divFiles">
+      <div #divFiles class="divFiles">
         <label>Archivos adjuntos:</label>
         <button class="Btn" title="Seleccionar archivo(s)" (click)="openFileExplorer()">
-          <svg version="1.0" class="svgIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet">
-            <g>
-              <path d="M 171.286 77.799 C 167.369 79.889 163.320 85.189 161.995 89.959 C 161.439 91.962 161.009 108.378 161.006 127.750 L 161.000 162.000 125.015 162.000 L 89.030 162.000 84.132 165.014 C 72.481 172.183 72.292 188.369 83.772 195.973 L 88.343 199.000 124.625 199.000 L 160.907 199.000 161.203 235.250 L 161.500 271.500 164.369 276.290 C 171.403 288.036 187.625 288.360 195.561 276.913 L 198.500 272.675 199.000 236.088 L 199.500 199.500 236.087 199.000 L 272.674 198.500 276.913 195.561 C 288.133 187.783 287.691 172.740 276.012 164.896 L 271.699 162.000 235.350 162.000 L 199.000 162.000 199.000 126.235 C 199.000 92.049 198.909 90.301 196.943 86.632 C 194.339 81.774 192.321 79.672 188.300 77.627 C 184.128 75.506 175.418 75.594 171.286 77.799 "/>
-            </g>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
           </svg>
        </button>
         <input type="file" #fileInput style="display: none" [multiple]="true" (change)="onFilesSelected($event)">
@@ -146,7 +202,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="containerBottomBtns">
       <div class="customButtons">
         <button (click)="cancelarClicked()" class="closeButton">
           Cancelar

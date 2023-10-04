@@ -38,6 +38,8 @@ export class AgregarNotaPopupComponent {
   genericaRadioButtonCheck = false;
   conAulaRadioButtonCheck = false;
   sinAulaRadioButtonCheck = false;
+  selectedAulaId: number = 0;
+  selectedAlumnoId: number = 0;
 
   constructor(private notaService: NotaService) {
     this.formData = new FormData();
@@ -106,26 +108,43 @@ export class AgregarNotaPopupComponent {
   public enviarClicked = () => {
     const tituloError =   document.querySelector(`span[id="tituloError"]`) as HTMLElement;
     const cuerpoError =   document.querySelector(`span[id="cuerpoError"]`) as HTMLElement;
+    const generalError =   document.querySelector(`span[id="generalError"]`) as HTMLElement;
     if(this.tituloInputRef.nativeElement.value == ""){
       tituloError.textContent = "Este campo es requerido";
       tituloError.style.display = "flex";
       tituloError.style.color = "red";
       tituloError.style.fontWeight = "bold";
+      generalError.textContent = "Campos incompletos";
+      generalError.style.display = "flex";
+      generalError.style.color = "red";
+      generalError.style.fontWeight = "bold";
     }else if(this.tituloInputRef.nativeElement.value.length < 5){
       tituloError.textContent = "El Titulo debe contener al menos 5 caracteres";
       tituloError.style.display = "flex";
       tituloError.style.color = "red";
       tituloError.style.fontWeight = "bold";
+      generalError.textContent = "Campos incompletos";
+      generalError.style.display = "flex";
+      generalError.style.color = "red";
+      generalError.style.fontWeight = "bold";
     }else if(this.cuerpoTextAreaRef.nativeElement.value == ""){
       cuerpoError.textContent = "Este campo es requerido";
       cuerpoError.style.display = "flex";
       cuerpoError.style.color = "red";
       cuerpoError.style.fontWeight = "bold";
+      generalError.textContent = "Campos incompletos";
+      generalError.style.display = "flex";
+      generalError.style.color = "red";
+      generalError.style.fontWeight = "bold";
     }else if(this.cuerpoTextAreaRef.nativeElement.value.length < 10){
       cuerpoError.textContent = "El Cuerpo debe contener al menos 10 caracteres";
       cuerpoError.style.display = "flex";
       cuerpoError.style.color = "red";
       cuerpoError.style.fontWeight = "bold";
+      generalError.textContent = "Campos incompletos";
+      generalError.style.display = "flex";
+      generalError.style.color = "red";
+      generalError.style.fontWeight = "bold";
     }else{
       this.enviarButtonClick.emit({ tipo: this.tipoElegido, conAula: this.esConAula, aulasDestinadas: this.aulasDestinadas,
         idAlumnoReferido: this.idAlumno, destinatarios:this.selectedDestinatarios, titulo: this.tituloNota, cuerpo: this.cuerpoNota, files: this.formData});
@@ -316,6 +335,7 @@ export class AgregarNotaPopupComponent {
     var dropDownListAulas = this.aulasRef.nativeElement;
     divAulaDestinada.style.display = "none";
     dropDownListAulas.style.display = "flex";
+    this.labelAulasRef.nativeElement.style.display = "flex";
     this.selectAulasRef.nativeElement.value = "0";
     var divAlumnoReferido = this.alumnoRef.nativeElement;
     var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
@@ -353,6 +373,7 @@ export class AgregarNotaPopupComponent {
     var dropDownListMenuAulas = this.aulasMenuRef.nativeElement;
     divAulaDestinada.style.display = "flex";
     dropDownListAulas.style.display = "none";
+    this.labelAulasRef.nativeElement.style.display = "none";
     dropDownListMenuAulas.style.display = "none";
     this.selectAulasRef.nativeElement.value = "0";
     var divAlumnoReferido = this.alumnoRef.nativeElement;
@@ -397,28 +418,33 @@ export class AgregarNotaPopupComponent {
 
   public ObtenerHijosPadreParaNuevaNota = () => {
     this.notaService.ObtenerHijosPadreParaNuevaNota().subscribe(res => {
-      this.alumnos = res;
+      if(res != null){
+        this.alumnos = res;
+      }
     });
   }
 
-  public handleAulaSeleccionada = (idAula: number) => {
+  public handleAulaSeleccionada = ($event: Event) => {
+    const idAula =  ($event.target as HTMLInputElement).value;
+    const aulaId = parseInt(idAula);
     this.selectedDestinatarios.length = 0;
     const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
     const isDocente = this.gruposUsuario.some(obj => obj.tipo === 'Docente');
     const isDirectivo = this.gruposUsuario.some(obj => obj.tipo === 'Directivo');
-    if(isPadre && this.tipoElegido == "G" && this.enviaNotaComoPadre){
-      this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(idAula).subscribe(res => {
+    var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
+    var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
+
+    if((isPadre && this.tipoElegido == "G" && this.enviaNotaComoPadre) || (isPadre && this.tipoElegido == "G")){
+      this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId).subscribe(res => {
         this.destinatarios = res;
       });
       var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
       var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
       dropDownListDestinatarios.style.display = "flex";
       labelDropDownListDestinatarios.style.display = "flex";
-      this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
-      this.divFilesElementRef.nativeElement.style.display = "flex";
     }
     if(this.tipoElegido == 'P'){
-      this.notaService.ObtenerAlumnosDeAulaParaNuevaNota(idAula).subscribe(res => {
+      this.notaService.ObtenerAlumnosDeAulaParaNuevaNota(aulaId).subscribe(res => {
         this.alumnos = res;
         console.log(this.alumnos);
       });
@@ -426,10 +452,12 @@ export class AgregarNotaPopupComponent {
       divAlumnoReferido.style.display = 'flex';
     }
 
-    if(this.tipoElegido == "G" && isDocente){
+    if(this.tipoElegido == "G" && isDocente && !this.enviaNotaComoPadre){
       this.idAlumno = 0;
       if(this.esConAula){
-        this.aulasCheck(idAula);
+        dropDownListDestinatarios.style.display = "none";
+        labelDropDownListDestinatarios.style.display = "none";
+        this.aulasCheck(aulaId);
         if(this.aulasDestinadas.length === 0){
           this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
           this.divFilesElementRef.nativeElement.style.display = "none";
@@ -438,20 +466,26 @@ export class AgregarNotaPopupComponent {
           this.divFilesElementRef.nativeElement.style.display = "flex";
         }
       }else{
-        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(idAula).subscribe(res => {
+        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId).subscribe(res => {
           this.destinatarios = res;
         });
-        var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
-        var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
-        dropDownListDestinatarios.style.display = "flex";
-        labelDropDownListDestinatarios.style.display = "flex";
-        this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
-        this.divFilesElementRef.nativeElement.style.display = "flex";
+
+        if(aulaId === 0){
+          dropDownListDestinatarios.style.display = "none";
+          labelDropDownListDestinatarios.style.display = "none";
+        }else if(aulaId > 0){
+          dropDownListDestinatarios.style.display = "flex";
+          labelDropDownListDestinatarios.style.display = "flex";
+        }
+        this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+        this.divFilesElementRef.nativeElement.style.display = "none";
       }
     }
-    if(this.tipoElegido == "G" && isDirectivo){
+    if(this.tipoElegido == "G" && isDirectivo && !this.enviaNotaComoPadre){
       if(this.esConAula){
-        this.aulasCheck(idAula);
+        dropDownListDestinatarios.style.display = "none";
+        labelDropDownListDestinatarios.style.display = "none";
+        this.aulasCheck(aulaId);
         if(this.aulasDestinadas.length === 0){
           this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
           this.divFilesElementRef.nativeElement.style.display = "none";
@@ -460,22 +494,27 @@ export class AgregarNotaPopupComponent {
           this.divFilesElementRef.nativeElement.style.display = "flex";
         }
       }else{
-        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(idAula).subscribe(res => {
+        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId).subscribe(res => {
           this.destinatarios = res;
         });
-        var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
-        var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
-        dropDownListDestinatarios.style.display = "flex";
-        labelDropDownListDestinatarios.style.display = "flex";
-        this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
-        this.divFilesElementRef.nativeElement.style.display = "flex";
+        if(aulaId === 0){
+          dropDownListDestinatarios.style.display = "none";
+          labelDropDownListDestinatarios.style.display = "none";
+        }else if(aulaId > 0){
+          dropDownListDestinatarios.style.display = "flex";
+          labelDropDownListDestinatarios.style.display = "flex";
+        }
+        this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+        this.divFilesElementRef.nativeElement.style.display = "none";
       }
     }
   }
 
-  public guardarAlumnoSeleccionado = (idAlumno: number) => {
-    console.log(idAlumno);
-    this.idAlumno = idAlumno;
+  public guardarAlumnoSeleccionado = ($event: Event) => {
+    const idAlumno =  ($event.target as HTMLInputElement).value;
+    const alumnoId = parseInt(idAlumno);
+    console.log(alumnoId);
+    this.idAlumno = alumnoId;
     this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
     this.divFilesElementRef.nativeElement.style.display = "flex";
   }
@@ -488,6 +527,14 @@ export class AgregarNotaPopupComponent {
       this.selectedDestinatarios.push(destinatario.id);
     }
     console.log(this.selectedDestinatarios);
+    if(this.selectedDestinatarios.length === 0){
+      this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
+      this.divFilesElementRef.nativeElement.style.display = "none";
+    }else if(this.selectedDestinatarios.length > 0){
+      this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
+      this.divFilesElementRef.nativeElement.style.display = "flex";
+    }
+
   }
 
   public aulasCheck = (idAula: number) => {

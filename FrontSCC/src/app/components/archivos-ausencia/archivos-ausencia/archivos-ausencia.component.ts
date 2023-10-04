@@ -26,7 +26,7 @@ export class ArchivosAusenciaComponent {
         this.filesNames = blob;
 
         if(this.filesNames.length == 0){
-          this.message = "Esta ausencia no posee archivos adjuntos";
+          this.message = "Hmmm...Nada por aqui!";
         }
         console.log(blob, this.filesNames, this.filesNames[0]);
       });
@@ -36,7 +36,7 @@ export class ArchivosAusenciaComponent {
       this.notaService.ObtenerArchivosNota(this.nota.id).subscribe((blob: Blob[]) => {
       this.filesNames = blob;
       if(this.filesNames.length == 0){
-        this.message = "Esta nota no posee archivos adjuntos";
+        this.message = "Hmmm...Nada por aqui!";
       }
       console.log(blob, this.filesNames, this.filesNames[0]);
     });

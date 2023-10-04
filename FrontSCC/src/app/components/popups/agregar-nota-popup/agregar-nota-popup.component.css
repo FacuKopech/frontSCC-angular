@@ -94,10 +94,14 @@
 
     .dropdown{
       display: none;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
     .labelDropdown{
       display: none;
+      justify-content: center;
     }
     .divTituloAndCuerpo{
       display: none;
@@ -232,8 +236,10 @@
 }
 .titleHeader {
   display: flex;
-  justify-content: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 a {
   transition: all 200ms;
@@ -470,16 +476,16 @@ input[type=text], input[type=number], input[type=email], input[type=datetime], s
   stroke: darkgreen;
 }
 
-.inputCheck:checked + .check svg {
+.check .inputCheck:checked + .divSVG svg {
   stroke: darkgreen;
 }
 
-.inputCheck:checked + .check svg path {
+.check .inputCheck:checked + .divSVG svg path {
   stroke-dashoffset: 60;
   transition: all 0.3s linear;
 }
 
-.inputCheck:checked + .check svg polyline {
+.check .inputCheck:checked + .divSVG svg polyline {
   stroke-dashoffset: 42;
   transition: all 0.2s linear;
   transition-delay: 0.15s;

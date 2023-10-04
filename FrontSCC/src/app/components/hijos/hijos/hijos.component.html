@@ -3,7 +3,7 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
-<div class="divAgregarAusenciasGenericas">
+<div *ngIf="hijos.length > 0" class="divAgregarAusenciasGenericas">
   <div class="divAgregarAusencia">
     <button class="icon-btn add-btn" title="Nueva ausencia generica" (click)="openAgregarAusenciasGenericasPopup = true; esGenerica = true">
       <div class="add-icon"></div>

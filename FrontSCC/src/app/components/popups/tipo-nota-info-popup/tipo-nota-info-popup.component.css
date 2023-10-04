@@ -8,7 +8,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
-    background-color: #373b3e;
+    background-image: url(https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg);
+    background-position: center;
     height: fit-content;
     width: fit-content;
     min-width: 326px;
@@ -24,6 +25,8 @@
 
 .content p{
   margin: 20px;
+  font-family: 'Chalk';
+  font-size: x-large;
 }
 
 /* Simple CSS3 Fade-in-down Animation */
@@ -68,7 +71,11 @@
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
 h2{
-  text-decoration: underline;
+  font-family: 'Chalk';
+}
+
+h3{
+  font-family: 'Chalk';
 }
 
 .popupCloseButton{

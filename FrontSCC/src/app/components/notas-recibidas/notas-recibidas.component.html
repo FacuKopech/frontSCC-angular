@@ -60,7 +60,7 @@
       </tr>
     </thead>
     <tbody class="scroll" *ngFor="let nota of notas.slice(calculateIndices().startIndex, calculateIndices().endIndex)">
-      <tr>
+      <tr class="trData">
         <td>{{nota.titulo}}</td>
         <td>{{nota.fecha.substring(8,10)}}/{{nota.fecha.substring(5,7)}}/{{nota.fecha.substring(0,4)}} {{nota.fecha.substring(11,19)}}</td>
         <td>{{nota.emisor.email}}</td>

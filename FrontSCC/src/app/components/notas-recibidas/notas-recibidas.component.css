@@ -41,8 +41,24 @@ p{
   border: 1px solid #ccc;
 }
 
+.trData{
+  transition: transform 0.3s ease;
+}
+
+.trData:hover{
+  transform: scale(1.009);
+}
+
+.inner{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  margin-top: 82px;
+}
+
 .table {
-  width: 100%;
+  width: 99%;
   table-layout: fixed;
   border-block-color: darkgreen;
 }

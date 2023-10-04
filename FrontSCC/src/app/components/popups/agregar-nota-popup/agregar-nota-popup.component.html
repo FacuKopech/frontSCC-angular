@@ -4,6 +4,7 @@
     <div class="formContent">
       <div class="titleHeader">
         <h2>Nueva nota</h2>
+        <span id="generalError"></span>
       </div>
 
       <div *ngIf="openTipoNotaInfoPopup" class="divCover"></div>
@@ -109,9 +110,9 @@
 
       <div class="divAulaDestinada" id="divAulaDestinada" #divAulaDestinada>
         <label>Aula destinada</label>
-        <select  name="" id="" (change)="handleAulaSeleccionada($event.target.value)" #selectAulas>
+        <select  name="" id="" (change)="handleAulaSeleccionada($event)" #selectAulas>
           <option selected value="0">Seleccione un Aula</option>
-          <option *ngFor="let aula of aulas"  [value]="aula.id">{{aula.nombre}}</option>
+          <option *ngFor="let aula of aulas" [value]="aula.id">{{aula.nombre}}</option>
         </select>
       </div>
 
@@ -124,8 +125,8 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" #dropdownMenuAulas>
           <ng-container *ngFor="let aula of aulas">
             <div class="divAulasContainer">
-              <input type="checkbox" [id]="aula.id" style="display: none;" class="inputCheck" (click)="handleAulaSeleccionada(aula.id)">
-              <label [for]="aula.id" class="check">{{aula.nombre}}
+              <label class="check">{{aula.nombre}}
+                <input type="checkbox" [value]="aula.id" style="display: none;" class="inputCheck" (click)="handleAulaSeleccionada($event)">
                 <div class="divSVG">
                   <svg width="18px" height="18px" viewBox="0 0 18 18">
                     <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
@@ -141,11 +142,12 @@
 
       <div class="divAlumnoReferido" #divAlumnoReferido>
         <label>Alumno referido</label>
-        <select name="" id="" (change)="guardarAlumnoSeleccionado($event.target.value)">
+        <select name="" id="" (change)="guardarAlumnoSeleccionado($event)">
           <option selected disabled>Seleccione un Alumno referido</option>
           <option *ngFor="let alumno of alumnos"  [value]="alumno.id">{{alumno.apellido}}, {{alumno.nombre}}</option>
         </select>
       </div>
+
       <label class="labelDropdown" #labelDropdownMenu>Destinatarios</label>
       <div class="dropdown" #dropdown>
         <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="showDropDownListDestinatarios()">
@@ -154,8 +156,8 @@
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" #dropdownMenu>
           <ng-container *ngFor="let destinatario of destinatarios">
             <div class="divEmailsContainer">
-              <input type="checkbox" [id]="destinatario.id" style="display: none;" class="inputCheck" (click)="destinatarioCheck(destinatario)">
-              <label [for]="destinatario.id" class="check">{{destinatario.email}}
+              <label class="check">{{destinatario.email}}
+                <input type="checkbox" [value]="destinatario.id" style="display: none;" class="inputCheck" (click)="destinatarioCheck(destinatario)">
                 <div class="divSVG">
                   <svg width="18px" height="18px" viewBox="0 0 18 18">
                     <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
@@ -167,6 +169,7 @@
           </ng-container>
         </div>
       </div>
+
       <div #divTituloAndCuerpo class="divTituloAndCuerpo">
         <label>Titulo</label>
         <input class="inputTitulo" type="text" name="tituloNota" [(ngModel)]="tituloNota" required #tituloInput/>

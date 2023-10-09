@@ -114,6 +114,7 @@ export class NuevaNotaADocentePopupComponent {
     this.cuerpoLabelRef.nativeElement.style.display = "flex";
     this.cuerpoLabelRef.nativeElement.style.justifyContent = "center";
     this.cuerpoInputRef.nativeElement.style.display = "flex";
+    this.alumnoReferidoShow();
   }
 
   public genericaCheck(){
@@ -126,6 +127,7 @@ export class NuevaNotaADocentePopupComponent {
     this.cuerpoLabelRef.nativeElement.style.display = "flex";
     this.cuerpoLabelRef.nativeElement.style.justifyContent = "center";
     this.cuerpoInputRef.nativeElement.style.display = "flex";
+    this.alumnoReferidoShow();
   }
 
   public alumnoReferidoShow(){

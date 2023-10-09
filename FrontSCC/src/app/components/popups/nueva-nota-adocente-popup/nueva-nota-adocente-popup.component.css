@@ -384,6 +384,7 @@ h3 {
   color: #fff;
   transform: translateY(-7px);
 }
+
 input[type=text], input[type=number], input[type=email], input[type=datetime], select, textarea {
   width: 100%;
   padding: 12px 20px;

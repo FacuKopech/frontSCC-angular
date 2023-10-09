@@ -89,6 +89,11 @@
   flex-direction: column;
 }
 
+.divDestinatarios label{
+  display: flex;
+  justify-content: flex-start;
+}
+
 .labelDestinatarios:hover{
   color: darkgreen;
 }

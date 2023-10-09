@@ -98,6 +98,12 @@
   max-width: 302px;
 }
 
+.svgInfoIcon{
+  width: 28px;
+  height: 28px;
+  color: yellow;
+}
+
 .gFill{
   fill: rgb(224, 224, 16);
 }

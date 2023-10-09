@@ -108,66 +108,94 @@ h3 {
 }
 .customButtons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
-
-.cancelarButton:hover{
-    background-color: red;
-}
-
-.button {
-  --color: #ffff00;
-  background-color: transparent;
-  border-radius: .3em;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: .5s;
-  font-weight: 400;
-  font-size: 17px;
-  border: 1px solid;
-  font-family: inherit;
+.closeButton {
+  padding: 1.3em;
+  font-size: 12px;
   text-transform: uppercase;
-  color: var(--color);
-  z-index: 1;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
 }
 
-  .button::before, .button::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 50px;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    border-radius: 50%;
-    z-index: -1;
-    background-color: var(--color);
-    transition: 1s ease;
-  }
+.closeButton:hover {
+  background-color: #C24037;
+  box-shadow: 0px 15px 20px #dc453a8a;
+  color: #fff;
+  transform: translateY(-7px);
+}
 
-  .button::before {
-    top: -1em;
-    left: -1em;
-  }
+.btnSend {
+  position: relative;
+  outline: 0;
+  border: 1px solid transparent;
+  background-color: rgb(195, 200, 25);
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(92, 103, 9, 0.685), 0 2px 4px -1px rgba(92, 103, 9, 0.685);
+}
 
-  .button::after {
-    left: calc(100% + 1em);
-    top: calc(100% + 1em);
-  }
+.btnSend span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all .4s ease;
+}
 
-  .button:hover::before, .button:hover::after {
-    height: 410px;
-    width: 410px;
-  }
+.btnSend svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
 
-  .button:hover {
-    color: rgb(10, 25, 30);
-  }
+.btnSend span:nth-child(2),.btnSend span:nth-child(3) {
+  position: absolute;
+  top: 40px;
+  color: #fff;
+}
 
-  .button:active {
-    filter: brightness(.8);
-  }
+.btnSend span:nth-child(2) {
+  background-color: rgb(195, 200, 25);
+}
+
+.btnSend span:nth-child(3) {
+  background-color: rgb(195, 200, 25);
+}
+
+.btnSend:hover {
+  box-shadow: 0 10px 15px -3px rgba(92, 103, 9, 0.685), 0 4px 6px -2px rgba(92, 103, 9, 0.685);
+}
+
+.btnSend:hover span:nth-child(2), .btnSend:focus span:nth-child(3) {
+  top: 0;
+}
+
+.btnSend:focus {
+  box-shadow: none;
+}
 
 input[type=text], input[type=number], input[type=email], input[type=date], select {
   width: 100%;

@@ -124,8 +124,12 @@ p {
   border: 1px solid #ccc;
 }
 
+tr.custom-tr {
+  border-radius: 10px;
+}
 .trData{
   transition: transform 0.3s ease;
+  border-radius: 10px;
 }
 
 .trData:hover{

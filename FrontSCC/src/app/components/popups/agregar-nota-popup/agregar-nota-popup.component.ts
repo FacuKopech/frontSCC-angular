@@ -40,6 +40,7 @@ export class AgregarNotaPopupComponent {
   sinAulaRadioButtonCheck = false;
   selectedAulaId: number = 0;
   selectedAlumnoId: number = 0;
+  enviaNotaComo = "";
 
   constructor(private notaService: NotaService) {
     this.formData = new FormData();
@@ -49,7 +50,7 @@ export class AgregarNotaPopupComponent {
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()
-  enviarButtonClick = new EventEmitter<{tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData}>();
+  enviarButtonClick = new EventEmitter<{tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData, enviaNotaComo: string}>();
   @ViewChild('radioButtonPadre', { static: false }) radioButtonPadreRef!: ElementRef<HTMLInputElement>;
   @ViewChild('radioButtonRoleAdicional', { static: false }) radioButtonRoleAdicionalRef!: ElementRef<HTMLInputElement>;
   @ViewChild('radioButtonParticular', { static: false }) radioButtonParticularRef!: ElementRef<HTMLInputElement>;
@@ -73,20 +74,36 @@ export class AgregarNotaPopupComponent {
 
 
   public ngOnInit(){
-    const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
-    if(this.gruposUsuario.length > 2){
-      this.isTipoLabelVisible = false;
-      this.isTipoOptionsVisible = false;
+    if(this.gruposUsuario.length === 2){
+      const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
       if(isPadre){
-        this.esPadreYAlgoMas = true;
-        const grupoAdicional = this.gruposUsuario.find(obj => obj.tipo !== 'Padre' && obj.tipo !== 'UserRegular');
-        this.roleAdicional = grupoAdicional.tipo;
+        this.enviaNotaComo = "Padre"
       }else{
-        this.esPadreYAlgoMas = false;
+        const isDocente = this.gruposUsuario.some(obj => obj.tipo === 'Docente');
+        if(isDocente){
+          this.enviaNotaComo = "Docente"
+        }else{
+          const isDirectivo = this.gruposUsuario.some(obj => obj.tipo === 'Directivo');
+          if(isDirectivo){
+            this.enviaNotaComo = "Directivo"
+          }
+        }
       }
-    }else{
       this.isTipoLabelVisible = true;
       this.isTipoOptionsVisible = true;
+    }else{
+      if(this.gruposUsuario.length > 2){
+        const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
+        this.isTipoLabelVisible = false;
+        this.isTipoOptionsVisible = false;
+        if(isPadre){
+          this.esPadreYAlgoMas = true;
+          const grupoAdicional = this.gruposUsuario.find(obj => obj.tipo !== 'Padre' && obj.tipo !== 'UserRegular');
+          this.roleAdicional = grupoAdicional.tipo;
+        }else{
+          this.esPadreYAlgoMas = false;
+        }
+      }
     }
   }
 
@@ -147,7 +164,7 @@ export class AgregarNotaPopupComponent {
       generalError.style.fontWeight = "bold";
     }else{
       this.enviarButtonClick.emit({ tipo: this.tipoElegido, conAula: this.esConAula, aulasDestinadas: this.aulasDestinadas,
-        idAlumnoReferido: this.idAlumno, destinatarios:this.selectedDestinatarios, titulo: this.tituloNota, cuerpo: this.cuerpoNota, files: this.formData});
+        idAlumnoReferido: this.idAlumno, destinatarios:this.selectedDestinatarios, titulo: this.tituloNota, cuerpo: this.cuerpoNota, files: this.formData, enviaNotaComo: this.enviaNotaComo});
     }
   }
 
@@ -221,12 +238,22 @@ export class AgregarNotaPopupComponent {
   public enviarNotaComoClick(enviaNotaComo: string){
     if(enviaNotaComo == 'P'){
       this.enviaNotaComoPadre = true;
+      this.enviaNotaComo = "Padre";
       this.radioButtonPadreRef.nativeElement.checked = true;
       this.radioButtonRoleAdicionalRef.nativeElement.checked = false;
     }else{
       this.enviaNotaComoPadre = false;
       this.radioButtonRoleAdicionalRef.nativeElement.checked = true;
       this.radioButtonPadreRef.nativeElement.checked = false;
+
+      const isDocente = this.gruposUsuario.some(obj => obj.tipo === 'Docente');
+      const isDirectivo = this.gruposUsuario.some(obj => obj.tipo === 'Directivo');
+
+      if(isDocente){
+        this.enviaNotaComo = "Docente";
+      }else if(isDirectivo){
+        this.enviaNotaComo = "Directivo";
+      }
     }
     this.isTipoLabelVisible = true;
     this.isTipoOptionsVisible = true;
@@ -435,7 +462,7 @@ export class AgregarNotaPopupComponent {
     var labelDropDownListDestinatarios = this.labelDestinatariosRef.nativeElement;
 
     if((isPadre && this.tipoElegido == "G" && this.enviaNotaComoPadre) || (isPadre && this.tipoElegido == "G")){
-      this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId).subscribe(res => {
+      this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId, this.enviaNotaComo).subscribe(res => {
         this.destinatarios = res;
       });
       var dropDownListDestinatarios = this.destinatariosRef.nativeElement;
@@ -466,7 +493,7 @@ export class AgregarNotaPopupComponent {
           this.divFilesElementRef.nativeElement.style.display = "flex";
         }
       }else{
-        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId).subscribe(res => {
+        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId, this.enviaNotaComo).subscribe(res => {
           this.destinatarios = res;
         });
 
@@ -494,7 +521,7 @@ export class AgregarNotaPopupComponent {
           this.divFilesElementRef.nativeElement.style.display = "flex";
         }
       }else{
-        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId).subscribe(res => {
+        this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId, this.enviaNotaComo).subscribe(res => {
           this.destinatarios = res;
         });
         if(aulaId === 0){

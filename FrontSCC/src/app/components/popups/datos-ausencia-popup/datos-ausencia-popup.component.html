@@ -479,6 +479,8 @@
       </div>
     </div>
 
+    <div *ngIf="openConfirmDeletePopup" class="divCover"></div>
+
     <confirm *ngIf="openConfirmDeletePopup"
     [itemForDelete]="itemForDelete"
     (eliminarButtonClick)="deleteClicked()"

@@ -126,7 +126,7 @@ export class NotasEmitidasComponent {
     this.openEditionPopup = false;
   }
 
-  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData}) {
+  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData, enviaNotaComo: string}) {
     eventData.files?.forEach((value, key) => {
       if(value != '' || key != ''){
         this.counter += 1;

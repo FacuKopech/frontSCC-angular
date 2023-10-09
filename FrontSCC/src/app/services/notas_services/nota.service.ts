@@ -32,8 +32,8 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerAlumnosDeAulaParaNuevaNota/${idAula}`);
   }
 
-  public ObtenerListaDeDestinatariosParaNuevaNota(idAula: number): Observable<any> {
-    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerListaDeDestinatariosParaNuevaNota/${idAula}`);
+  public ObtenerListaDeDestinatariosParaNuevaNota(idAula: number, enviaNotaComo: string): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Notas/ObtenerListaDeDestinatariosParaNuevaNota/${idAula}/${enviaNotaComo}`);
   }
 
   public ObtenerAulasParaNuevaNota(tipoDeNota: string, isPadre: boolean, esPadreYAlgoMas:boolean, enviaNotaComoPadre: boolean): Observable<any> {
@@ -45,8 +45,8 @@ export class NotaService {
   }
 
   public EnviarNuevaNota(nuevaNota: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number,
-    destinatarios: any[], titulo:string, cuerpo: string, files: FormData}): Observable<any> {
-    return this.http.post<any>(this.hostUrl + `/Notas/EnviarNuevaNota`, nuevaNota);
+    destinatarios: any[], titulo:string, cuerpo: string, files: FormData, enviaNotaComo: string}): Observable<any> {
+    return this.http.post<any>(this.hostUrl + `/Notas/EnviarNuevaNota/`, nuevaNota);
   }
 
   public EnviarNuevaNotaADocente(idHijo: number, nota: { tipo:string, titulo: string, cuerpo: string}): Observable<boolean> {

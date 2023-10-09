@@ -10,17 +10,20 @@ export class NuevaNotaADocentePopupComponent {
   @Input() aula: any;
   @Input() docente: any;
   @Input() padres: any[] = [];
+
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()
   enviarButtonClick = new EventEmitter<{tipo: string, titulo:string, cuerpo: string, files:FormData}>();
   @ViewChild('divAlumnoReferido', { static: false }) alumnoRef!: ElementRef<HTMLSelectElement>;
-  @ViewChild('options', { static: false }) optionsRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('tituloInput', { static: false }) tituloInputRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('cuerpoInput', { static: false }) cuerpoInputRef!: ElementRef<HTMLSelectElement>;
+  @ViewChild('tituloLabel', { static: false }) tituloLabelRef!: ElementRef<HTMLElement>;
+  @ViewChild('cuerpoLabel', { static: false }) cuerpoLabelRef!: ElementRef<HTMLElement>;
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('radioButtonParticular', { static: false }) radioButtonParticularRef!: ElementRef<HTMLInputElement>;
+  @ViewChild('radioButtonGenerica', { static: false }) radioButtonGenericaRef!: ElementRef<HTMLInputElement>;
 
-  selectTipos = document.getElementById("tipos");
   inputTitulo = document.getElementById("titulo");
   inputCuerpo = document.getElementById("cuerpo");
 
@@ -31,6 +34,8 @@ export class NuevaNotaADocentePopupComponent {
   formData: FormData;
   files: File[] = [];
   esNotaParaPadre = false;
+  particularRadioButtonCheck = false;
+  genericaRadioButtonCheck = false;
 
   showErrorAlert = false
   showPopupNuevaNota = false;
@@ -46,6 +51,15 @@ export class NuevaNotaADocentePopupComponent {
     }else if(this.docente != null && this.padres.length == 0){
       this.esNotaParaPadre = false;
     }
+    this.particularRadioButtonCheck = false;
+    this.genericaRadioButtonCheck = false;
+  }
+
+  ngAfterViewInit(){
+    this.tituloLabelRef.nativeElement.style.display = "none";
+    this.tituloInputRef.nativeElement.style.display = "none";
+    this.cuerpoLabelRef.nativeElement.style.display = "none";
+    this.cuerpoInputRef.nativeElement.style.display = "none";
   }
 
   public cancelarClicked() {
@@ -53,19 +67,13 @@ export class NuevaNotaADocentePopupComponent {
   }
 
   public enviarClicked() {
-    var selectedOption = this.optionsRef.nativeElement.value;
     var titulo = this.tituloInputRef.nativeElement.value;
     var cuerpo = this.cuerpoInputRef.nativeElement.value;
     const tipoError =   document.querySelector(`span[id="tipoError"]`) as HTMLElement;
     const tituloError =   document.querySelector(`span[id="tituloError"]`) as HTMLElement;
     const cuerpoError =   document.querySelector(`span[id="cuerpoError"]`) as HTMLElement;
 
-    if(selectedOption === "Tipo de nota" || selectedOption === ""){
-      tipoError.textContent = "Este campo es requerido";
-      tipoError.style.display = "flex";
-      tipoError.style.color = "red";
-      tipoError.style.fontWeight = "bold";
-    }else if(titulo.length === 0){
+    if(titulo.length === 0){
       tituloError.textContent = "Este campo es requerido";
       tituloError.style.display = "flex";
       tituloError.style.color = "red";
@@ -85,10 +93,6 @@ export class NuevaNotaADocentePopupComponent {
       this.enviarButtonClick.emit({ tipo: this.tipoElegido, titulo: this.tituloNota, cuerpo: this.cuerpoNota, files: this.formData});
     }
 
-    this.selectTipos?.addEventListener("focus", function () {
-      tipoError.textContent = "";
-      tipoError.style.display = "none";
-    });
     this.inputTitulo?.addEventListener("focus", function () {
       tituloError.textContent = "";
       tituloError.style.display = "none";
@@ -99,10 +103,34 @@ export class NuevaNotaADocentePopupComponent {
     });
   }
 
+
+  public particularCheck(){
+    this.particularRadioButtonCheck = true;
+    this.genericaRadioButtonCheck = false;
+    this.tipoElegido = "Particular";
+    this.tituloLabelRef.nativeElement.style.display = "flex";
+    this.tituloLabelRef.nativeElement.style.justifyContent = "center";
+    this.tituloInputRef.nativeElement.style.display = "flex";
+    this.cuerpoLabelRef.nativeElement.style.display = "flex";
+    this.cuerpoLabelRef.nativeElement.style.justifyContent = "center";
+    this.cuerpoInputRef.nativeElement.style.display = "flex";
+  }
+
+  public genericaCheck(){
+    this.genericaRadioButtonCheck = true;
+    this.particularRadioButtonCheck = false;
+    this.tipoElegido = "Generica";
+    this.tituloLabelRef.nativeElement.style.display = "flex";
+    this.tituloLabelRef.nativeElement.style.justifyContent = "center";
+    this.tituloInputRef.nativeElement.style.display = "flex";
+    this.cuerpoLabelRef.nativeElement.style.display = "flex";
+    this.cuerpoLabelRef.nativeElement.style.justifyContent = "center";
+    this.cuerpoInputRef.nativeElement.style.display = "flex";
+  }
+
   public alumnoReferidoShow(){
     var divAlumnoReferido = this.alumnoRef.nativeElement;
-    var selectedOption = this.optionsRef.nativeElement.value;
-    if (selectedOption === 'Particular') {
+    if (this.particularRadioButtonCheck) {
       divAlumnoReferido.style.display = "flex";
       divAlumnoReferido.style.flexWrap = "wrap";
       divAlumnoReferido.style.alignContent = "center";

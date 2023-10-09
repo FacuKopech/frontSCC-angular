@@ -56,9 +56,9 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
 </app-error-alert>
 
 <div [class.inner]="message === ''">
-  <table class="table table-striped table-dark notasEmitidasTable">
+  <table #myTable class="table table-striped table-dark notasEmitidasTable">
     <thead>
-      <tr>
+      <tr class="custom-tr">
         <th scope="col">Titulo</th>
         <th scope="col">Fecha</th>
         <th scope="col">Emisor</th>

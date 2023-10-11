@@ -50,7 +50,6 @@ import { PadresAlumnoPopupComponent } from './components/popups/padres-alumno-po
 import { TipoNotaInfoPopupComponent } from './components/popups/tipo-nota-info-popup/tipo-nota-info-popup.component';
 import { DestinatariosNotaPopupComponent } from './components/popups/destinatarios-nota-popup/destinatarios-nota-popup.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +91,7 @@ import { DestinatariosNotaPopupComponent } from './components/popups/destinatari
     ConfirmCargaAsistenciaAlertComponent,
     PadresAlumnoPopupComponent,
     TipoNotaInfoPopupComponent,
-    DestinatariosNotaPopupComponent
+    DestinatariosNotaPopupComponent,
   ],
   imports: [
     BrowserModule,

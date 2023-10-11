@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
   public groups: any[] = [];
   public content = '';
   isLoggedWithNoRoles: boolean = false;
+  nombreUserLogueado = '';
+  apellidoUserLogueado = '';
 
   constructor(private apiService: ApiService, private router: Router,private authService: SharedAuthService) {
     if (window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
@@ -45,8 +47,11 @@ export class AppComponent implements OnInit {
 
     this.apiService.isLoggedIn().subscribe(res => {
       if (res) {
+        console.log(res);
         this.loggedIn = true;
-        this.groups = res['grupos'];
+        this.groups = res.usuario.grupos;
+        this.nombreUserLogueado = res.nombre;
+        this.apellidoUserLogueado = res.apellido;
         if(this.groups.length > 0){
           // preguntamos a que hora se loguea el padre
           if(localStorage.getItem('flag') == 'false'){

@@ -17,8 +17,8 @@ export class HomeComponent {
   public ngOnInit(): void {
     this.apiService.isLoggedIn().subscribe(res => {
       if (res) {
-        this.username = res['username'];
-        this.groups = res['grupos'];
+        this.username = res.usuario.username;
+        this.groups = res.usuario.grupos;
       }
     });
   }

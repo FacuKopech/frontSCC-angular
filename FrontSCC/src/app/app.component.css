@@ -301,7 +301,7 @@ body{
 .divNavTitleContainer{
   display: flex;
     justify-content: center;
-    width: 76%;
+    width: 83%;
 }
 
 .divNavbarTitle{
@@ -312,7 +312,6 @@ body{
   flex-wrap: wrap;
   font-size: xx-large;
   align-self: center;
-  width: 42%;
 }
 
 .customDivBtnsDerecha{
@@ -446,9 +445,10 @@ body{
 /* hover effect button's text */
 .Btn:hover .text {
   opacity: 1;
-  width: 70%;
+  width: 80%;
   transition-duration: .3s;
-  padding-right: 10px;
+  padding-left: 5px;
+  font-size: medium;
 }
 /* button click effect*/
 .Btn:active {
@@ -700,3 +700,178 @@ display: flex;
     flex-wrap: wrap;
     align-content: center;
     min-height: 90vh; */
+
+    .containerSideBar {
+      width: 5%;
+      margin: 0;
+    }
+    .navbar-container input[type="checkbox"],
+    .navbar-container .hamburger-lines {
+      display: block;
+    }
+
+.navbar{
+  display: flex;
+  flex-direction: row;
+  padding: initial;
+  background-image: url('https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg');
+}
+    .navbar-container {
+      display: block;
+      position: relative;
+      height: 64px;
+      margin: 0;
+      margin-left: 20px;
+      padding: 0;
+    }
+
+    .navbar-container input[type="checkbox"] {
+      position: absolute;
+      display: block;
+      height: 32px;
+      width: 35px;
+      top: 20px;
+      left: 20px;
+      z-index: 5;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .navbar-container .hamburger-lines {
+      display: block;
+      height: 23px;
+      width: 35px;
+      position: absolute;
+      top: 17px;
+      left: 20px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .navbar-container .hamburger-lines .line {
+      display: block;
+      height: 4px;
+      width: 100%;
+      border-radius: 10px;
+      background: white;
+    }
+
+    .navbar-container .hamburger-lines .line1 {
+      transform-origin: 0% 0%;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .navbar-container .hamburger-lines .line2 {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .navbar-container .hamburger-lines .line3 {
+      transform-origin: 0% 100%;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .navbar .menu-items {
+      padding-top: 80px;
+      background-color: #4040407d;
+      height: 100vh;
+      width: 185px;
+      transform: translate(-150%);
+      display: block;
+      flex-direction: column;
+      margin-left: -40px;
+      transition: transform 0.5s ease-in-out;
+      list-style: none;
+    }
+
+    .navbar .menu-items button {
+     display: flex;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-right: 40px;
+      margin-left: 21px;
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .menu-items {
+      transform: translateX(0);
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+      transform: rotate(35deg);
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+      transform: scaleY(0);
+    }
+
+    .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+      transform: rotate(-35deg);
+    }
+.userDropdown{
+  display: flex;
+  flex-wrap: wrap;
+  width: 10%;
+  margin-right: 8px;
+  outline: none;
+}
+    .dropbtn {
+      background-color: #ffffff57;
+      color: white;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      height: 38px;
+      width: 100%;
+      justify-content: space-around;
+      outline: none;
+    }
+    .svgUserIcon{
+      width: 20px;
+      height: 20px;
+    }
+
+    .userDropdown {
+      position: relative;
+      display: inline-block;
+      outline: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      width: 100%;
+      justify-content: center;
+      margin-top: 1px;
+      position: absolute;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      outline: none;
+    }
+.dropbtnLogout{
+      background-color: #414141ab;
+      color: white;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      height: 38px;
+      width: 100%;
+      justify-content: space-around;
+      outline: none;
+}
+.divLogout{
+  width: 80%;
+  outline: none;
+}
+    .dropdown-content .dropbtnLogout:hover {background-color: #414141d4; outline: none;}
+
+    .userDropdown:hover .dropdown-content {
+      display: flex;
+    }

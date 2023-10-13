@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router   } from '@angular/router';
 import { ApiService } from './services/user_services/api.service';
 import { SharedAuthService } from './services/sharedAuthService/shared-auth.service';
@@ -76,7 +76,10 @@ export class AppComponent implements OnInit {
     this.authService.isUnauthorized$.subscribe((unauthorized) => {
       this.isUnauthorized = unauthorized;
     });
+
+
   }
+
 
   public getBackgroundImage(){
     if (this.loggedIn && !this.isUnauthorized) {
@@ -133,6 +136,10 @@ export class AppComponent implements OnInit {
   public closeFueraHorarioAlert(){
     localStorage.setItem('flag', 'true');
     this.logueoFueraDeHorario = false;
+  }
+
+  public homeClick(){
+    this.router.navigate(['/home']);
   }
 
   public misHijosClick(){

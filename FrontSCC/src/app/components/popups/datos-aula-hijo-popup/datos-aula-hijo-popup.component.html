@@ -7,10 +7,13 @@
     </div>
 
     <div *ngIf="showPopupNuevaNota || openSuccessAlert || openErrorAlert" class="divCover"></div>
+
     <app-nueva-nota-adocente-popup class="nuevaNotaPopup" *ngIf="showPopupNuevaNota"
     [hijo]="hijo"
     [aula]="aula"
     [docente]="docente"
+    [aulaInstitucion]="aulaInstitucion"
+    [hijoAulaInstitucion]="hijoAulaInstitucion"
     (cancelButtonClick)="cerrarPopupNuevaNota()"
     (enviarButtonClick)="enviarNotaADocente($event)">
     </app-nueva-nota-adocente-popup>
@@ -25,14 +28,24 @@
     </app-error-alert>
 
     <div class="content">
-      <div class="divCampos">
-        <label class="campos">Grado: </label> <label class="labelData" for="">{{hijo.grado}}</label>
+      <div class="divCampos" *ngIf="hijo != null">
+        <label class="campos">Grado: </label> <label class="labelData" for="">{{aula.grado}}</label>
       </div>
-      <div class="divCampos">
-        <label class="campos">Division: </label> <label class="labelData" for="">{{hijo.division}}</label>
+      <div class="divCampos" *ngIf="hijo != null">
+        <label class="campos">Division: </label> <label class="labelData" for="">{{aula.division}}</label>
       </div>
-      <div class="divCampos">
-        <label class="campos">Docente: </label> <label class="labelData" for="">{{docente.apellido}}, {{docente.nombre}}</label>
+      <div class="divCampos" *ngIf="hijo != null">
+        <label class="campos">Docente: </label> <label *ngIf="docente != null"  class="labelData" for="">{{docente.apellido}}, {{docente.nombre}}</label> <label *ngIf="docente == null" class="labelData" for="">Sin Docente asignado/a</label>
+      </div>
+
+      <div class="divCampos" *ngIf="aulaInstitucion != null">
+        <label class="campos">Grado: </label> <label class="labelData" for="">{{aulaInstitucion.grado}}</label>
+      </div>
+      <div class="divCampos" *ngIf="aulaInstitucion != null">
+        <label class="campos">Division: </label> <label class="labelData" for="">{{aulaInstitucion.division}}</label>
+      </div>
+      <div class="divCampos" *ngIf="aulaInstitucion != null && aulaInstitucion != undefined">
+        <label class="campos">Docente: </label> <label *ngIf="aulaInstitucion.docente != null"  class="labelData" for="">{{docente.apellido}}, {{docente.nombre}}</label> <label *ngIf="aulaInstitucion.docente == null" class="labelData" for="">Sin Docente asignado/a</label>
       </div>
     </div>
     <div class="divFooterBtnsContainer">

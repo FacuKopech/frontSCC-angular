@@ -18,11 +18,15 @@
 }
 .divIcon{
   display: flex;
-    justify-content: center;
+  justify-content: center;
 }
-img{
+
+.svgWarningIcon{
   width: 60px;
+  height: 60px;
+  color: red;
 }
+
   .popup h2 {
     margin-top: 0;
     color: white;

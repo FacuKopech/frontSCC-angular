@@ -10,6 +10,8 @@ export class NuevaNotaADocentePopupComponent {
   @Input() aula: any;
   @Input() docente: any;
   @Input() padres: any[] = [];
+  @Input() aulaInstitucion: any;
+  @Input() hijoAulaInstitucion: any;
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();

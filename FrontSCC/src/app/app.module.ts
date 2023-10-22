@@ -49,6 +49,8 @@ import { ConfirmCargaAsistenciaAlertComponent } from './components/alerts/confir
 import { PadresAlumnoPopupComponent } from './components/popups/padres-alumno-popup/padres-alumno-popup.component';
 import { TipoNotaInfoPopupComponent } from './components/popups/tipo-nota-info-popup/tipo-nota-info-popup.component';
 import { DestinatariosNotaPopupComponent } from './components/popups/destinatarios-nota-popup/destinatarios-nota-popup.component';
+import { AulasInstitucionComponent } from './components/aulas-institucion/aulas-institucion.component';
+import { NuevaAulaPopupComponent } from './components/popups/nueva-aula-popup/nueva-aula-popup.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { DestinatariosNotaPopupComponent } from './components/popups/destinatari
     PadresAlumnoPopupComponent,
     TipoNotaInfoPopupComponent,
     DestinatariosNotaPopupComponent,
+    AulasInstitucionComponent,
+    NuevaAulaPopupComponent,
   ],
   imports: [
     BrowserModule,

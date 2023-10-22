@@ -57,7 +57,6 @@
 .titleHeader {
   display: flex;
   justify-content: center;
-  margin-bottom: 12px;
   font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
 }
 a {

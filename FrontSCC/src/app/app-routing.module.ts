@@ -12,6 +12,7 @@ import { AulasComponent } from './components/aulas/aulas.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
 import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia-aula.component';
 import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-de-asistencia.component';
+import { AulasInstitucionComponent } from './components/aulas-institucion/aulas-institucion.component';
 
 
 
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'aulas', component: AulasComponent, canActivate: [AuthGuard], data: { roles: ['Docente', 'Directivo'] } },
   { path: 'alumnos_aula', component: AlumnosComponent, canActivate: [AuthGuard], data: { roles: ['Docente', 'Directivo'] } },
   { path: 'asistencia_aula', component: AsistenciaAulaComponent, canActivate: [AuthGuard], data: { roles: ['Docente'] } },
-  { path: 'tomar_asistencia', component: TomaDeAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Docente'] } }
+  { path: 'tomar_asistencia', component: TomaDeAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Docente'] } },
+  { path: 'aulas-institucion', component: AulasInstitucionComponent, canActivate: [AuthGuard], data: { roles: ['Directivo'] } },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

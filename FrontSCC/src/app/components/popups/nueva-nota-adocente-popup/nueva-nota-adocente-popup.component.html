@@ -29,11 +29,13 @@
       <span id="tipoError"></span>
       <div class="divAlumnoReferido" #divAlumnoReferido>
         <label>Alumno referido</label>
-        <input type="text" value="{{hijo.apellido}}, {{hijo.nombre}}" disabled>
+        <input *ngIf="hijo != null" type="text" value="{{hijo.apellido}}, {{hijo.nombre}}" disabled>
+        <input *ngIf="hijoAulaInstitucion != null" type="text" value="{{hijoAulaInstitucion.apellido}}, {{hijoAulaInstitucion.nombre}}" disabled>
       </div>
       <div class="divAulaDestinada" id="divAulaDestinada" #divAulaDestinada>
         <label>Aula destinada</label>
-        <input type="text" value="{{aula.nombre}}" disabled>
+        <input *ngIf="aula != null" type="text" value="{{aula.nombre}}" disabled>
+        <input *ngIf="aulaInstitucion != null" type="text" value="{{aulaInstitucion.nombre}}" disabled>
         <span id="aulaError"></span>
       </div>
       <div class="divDestinatario" #divAlumnoReferido>

@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { NotaService } from 'src/app/services/notas_services/nota.service';
 import { PersonaService } from 'src/app/services/personas_services/persona.service';
+import { ApiService } from 'src/app/services/user_services/api.service';
 
 @Component({
   selector: 'app-padres-alumno-popup',
@@ -22,25 +23,38 @@ export class PadresAlumnoPopupComponent {
   esEnvioNotaPadre = false;
   counter: number = 0;
   message: string = '';
+  personaLogueada: any;
+  padreDeAlumnoEstaLogueado = false;
 
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
   }
-  constructor(private personaService: PersonaService, private notaService: NotaService) {}
+  constructor(private personaService: PersonaService, private notaService: NotaService, private userService: ApiService) {}
 
 
   ngOnInit(): void{
-    this.personaService.ObtenerPadresDeAlumno(this.alumno.id).subscribe(res => {
-      this.padres = res;
-      if(this.padres.length == 0){
-        this.message = "Este alumno aun no tiene Padre(s) asignado en el sistema";
-      }
-    },
-    (error:HttpErrorResponse) =>{
-      if(error.status == 404 || error.status == 400){
-        this.openErrorAlert = true;
+    this.userService.isLoggedIn().subscribe(res =>{
+      if(res){
+        this.personaLogueada = res;
+        this.personaService.ObtenerPadresDeAlumno(this.alumno.id).subscribe(res => {
+          this.padres = res;
+          this.padres.forEach(padre => {
+            if(padre.nombre == this.personaLogueada.nombre && padre.apellido == this.personaLogueada.apellido){
+              this.padreDeAlumnoEstaLogueado = true;
+            }
+          });
+          if(this.padres.length == 0){
+            this.message = "Este alumno aun no tiene Padre(s) asignado en el sistema";
+          }
+        },
+        (error:HttpErrorResponse) =>{
+          if(error.status == 404 || error.status == 400){
+            this.openErrorAlert = true;
+          }
+        });
       }
     });
+
   }
 
   public cerrarPopupNuevaNota(){

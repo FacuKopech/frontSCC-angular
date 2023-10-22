@@ -150,4 +150,8 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/aulas']);
   }
 
+  public aulasClick(){
+    this.router.navigate(['/aulas-institucion']);
+  }
+
 }

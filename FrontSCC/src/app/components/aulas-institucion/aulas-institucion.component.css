@@ -1,0 +1,413 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+}
+
+.containerInst{
+  display: flex;
+  justify-content: center;
+}
+.containerInstitucion{
+  text-align: center;
+    background-color: #28282bbd;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 14px;
+  height: fit-content;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+
+}
+
+.containerInstitucion:hover{
+  transform: scale(1.03);
+
+}
+
+.divContainerData{
+  margin: 7px;
+}
+
+.divAgregarAula{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.add-btn:hover {
+  width: 120px;
+}
+
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: seagreen;
+}
+
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.icon-btn:focus {
+  outline: none;
+}
+
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 6px;
+  border-radius: 2px;
+}
+
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: seagreen;
+  overflow: hidden;
+}
+
+.add-icon::before {
+  left: 22.4px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-icon::after {
+  right: 22.4px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.divCampos{
+  display: flex;
+    justify-content: space-between;
+}
+
+.campos{
+  margin-right: 10px;
+  text-decoration-line: underline;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelData{
+  display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.divMessage .pMessage{
+  display: flex;
+  justify-content: center;
+}
+.divCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1d1d1d6b; /* Transparent black background */
+  z-index: 999; /* Ensure the overlay is above other elements */
+  backdrop-filter: blur(3px) brightness(1.04);
+}
+
+.popup{
+  display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+  align-content: center;
+}
+
+.divContainerAula{
+  background-color: #28282bbd;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-radius: 14px;
+  height: fit-content;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.divContainerAula:hover{
+  transform: scale(1.08);
+
+}
+
+.pNombre{
+  display: flex;
+  justify-content: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+.divContainerInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.divInfoAula{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.divDocenteACargo{
+  display: flex;
+    justify-content: space-between;
+}
+
+.divCantidadAlumnosAula{
+  display: flex;
+    justify-content: space-between;
+}
+
+.divPorcentajeAsistencia{
+  display: flex;
+  width: 118%;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.labelTitle{
+  text-decoration-line: underline;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.labelData{
+  font-size: 22px;
+}
+
+.btnVer {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  z-index: 1;
+  position: relative;
+  -webkit-box-shadow: 0 5px 15px rgba(33, 33, 33, .2);
+  box-shadow: 0 5px 15px rgba(33, 33, 33, .2);
+  overflow: hidden;
+  cursor: pointer;
+  width: fit-content;
+  height: 30px;
+}
+
+.btnVer > span {
+  z-index: 2;
+}
+
+.btnVer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #212121;
+  z-index: -1;
+  overflow: hidden;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+}
+
+.btnVer:hover {
+  color: #e8e8e8;
+}
+
+.btnVer:hover::before {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+}
+
+.divAsistencia{
+  margin-right: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.divAlumnos{
+  margin-right: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.btnInfo {
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+
+ .btnInfo:hover {
+  color: black;
+ }
+
+ .btnInfo:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+
+ .btnInfo:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }
+
+ .divEliminarAula{
+  display: flex;
+    justify-content: center;
+ }
+
+ .divContainerEliminarAula{
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 40%;
+ }
+ .btnEliminarAula{
+  background-color: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+ }
+
+ .btnEliminarAula:hover{
+  transform: scale(1.08);
+ }
+
+
+ .svgCrossIcon{
+  width: 45px;
+  height: 45px;
+  color: white;
+ }
+
+ .btnEditarAula{
+  background-color: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+ }
+ .btnEditarAula:hover{
+  transform: scale(1.08);
+ }
+
+
+ .svgEditIcon{
+  width: 36px;
+  height: 36px;
+  color: white;
+ }
+
+ .btnEliminarAula:hover .svgCrossIcon{
+  color: red;
+ }
+
+ .btnEditarAula:hover .svgEditIcon{
+  color: yellow;
+ }
+
+ .goBackComp{
+  display: flex;
+  justify-content: center;
+ }

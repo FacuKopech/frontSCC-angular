@@ -1,7 +1,10 @@
 <div class="popupConfirmContainer">
   <div class="popup fadeInDown">
     <div class="divIcon">
-      <img src="https://static.vecteezy.com/system/resources/previews/012/042/292/original/warning-sign-icon-transparent-background-free-png.png" alt="">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgWarningIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+      </svg>
+
     </div>
     <div class="divEliminarNota" *ngIf="itemForDelete == 'nota'">
       <h2>Eliminar Nota</h2>
@@ -19,6 +22,18 @@
       <h2>Eliminar Historial</h2>
       <div class="content">
         Seguro que desea eliminar el historial?
+      </div>
+    </div>
+    <div class="divEliminarAlumnoDeAula" *ngIf="itemForDelete == 'Alumno de Aula'">
+      <h2>Remover Alumno de Aula</h2>
+      <div class="content">
+        Seguro que desea remover el Alumno del Aula?
+      </div>
+    </div>
+    <div class="divEliminarAula" *ngIf="itemForDelete == 'Aula'">
+      <h2>Eliminar Aula</h2>
+      <div class="content">
+        Seguro que desea eliminar el Aula?
       </div>
     </div>
 

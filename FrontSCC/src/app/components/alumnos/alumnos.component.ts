@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-alumnos',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class AlumnosComponent {
   message: string='';
   @Input() aula: any;
+  @Input() accedeDirectivo: any;
   public alumnos: any[] = [];
   ausenciasAlumno: any[] = [];
   alumno: any;
@@ -25,22 +27,36 @@ export class AlumnosComponent {
   messageAusencia = "";
   currentPage: number = 1;
   itemsPerPage: number = 6;
+  openDeletionPopup = false;
+  itemForDelete = "";
+  esRemoverAlumnoDeAula = false;
 
   constructor(private aulaService: AulaService, private location: Location, private router: Router){}
 
   ngOnInit(){
     this.aula = history.state.data;
+    this.accedeDirectivo = history.state.accedeDirectivo;
     this.aulaService.ObtenerAlumnosAula(this.aula.id).subscribe(res =>{
-      this.alumnos = res;
-      console.log(this.alumnos);
-      if(this.alumnos.length == 0 || this.alumnos == null){
+      if(res){
+        this.alumnos = res;
+        console.log(this.alumnos);
+        if(this.alumnos.length == 0 || this.alumnos == null){
+          this.message = "Esta aula aun no tiene alumnos"
+        }
+      }else{
         this.message = "Esta aula aun no tiene alumnos"
       }
+
     });
   }
 
   public aceptarClick(){
     window.location.reload;
+  }
+
+  public closeSuccessAlert(){
+    this.openSuccessAlert = false
+    window.location.reload();
   }
 
   public verAusencias(alumno: any){
@@ -63,7 +79,28 @@ export class AlumnosComponent {
 
   public verHistoriales(alumno: any){
     this.alumno = alumno;
-    this.router.navigate(['/historiales_hijo'], {state: {data: this.alumno, esAlumno: true}});
+    this.router.navigate(['/historiales_hijo'], {state: {data: this.alumno, esAlumno: true, accedeDirectivo: this.accedeDirectivo}});
+  }
+
+  public eliminarAlumnoDeAula(alumno: any){
+    this.openDeletionPopup = true;
+    this.alumno = alumno;
+    this.itemForDelete = "Alumno de Aula";
+  }
+
+  public confirmEliminarAlumnoDeAula(){
+    this.aulaService.EliminarAlumnoDeAula(this.alumno.id).subscribe(res => {
+      if(res){
+        this.openSuccessAlert = true;
+        this.esRemoverAlumnoDeAula = true;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status >= 400){
+        this.openErrorAlert = true;
+      }
+    });
+    this.openDeletionPopup = false;
   }
 
   public calculateIndices() {

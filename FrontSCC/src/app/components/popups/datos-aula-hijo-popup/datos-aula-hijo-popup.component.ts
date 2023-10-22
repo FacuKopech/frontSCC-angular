@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class DatosAulaHijoPopupComponent {
   @Input() hijo: any;
+  @Input() aulaInstitucion: any;
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   aula: any;
@@ -19,6 +20,7 @@ export class DatosAulaHijoPopupComponent {
   showPopupNuevaNota = false;
   esEnvioNotaDocente = false;
   counter: number = 0;
+  hijoAulaInstitucion: any
 
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
@@ -27,14 +29,26 @@ export class DatosAulaHijoPopupComponent {
 
 
   ngOnInit(): void{
-    this.aulaService.ObtenerAulaHijo(this.hijo.id).subscribe(res => {
-      if(res == null){
-        this.openErrorAlert = true;
-      }else{
-        this.aula = res;
-        this.docente = this.aula.docente;
-      }
-    });
+
+    if(this.aulaInstitucion == null){
+      this.aulaService.ObtenerAulaHijo(this.hijo.id).subscribe(res => {
+        if(res == null){
+          this.openErrorAlert = true;
+        }else{
+          this.aula = res;
+          this.docente = this.aula.docente;
+        }
+      });
+    }else{
+      this.aula = this.aulaInstitucion;
+      this.docente = this.aulaInstitucion.docente;
+      this.aulaService.ObtenerAlumnosAula(this.aulaInstitucion.id).subscribe(res => {
+        if(res){
+          this.hijoAulaInstitucion = res[0];
+        }
+      });
+    }
+
   }
 
   public cerrarPopupNuevaNota(){

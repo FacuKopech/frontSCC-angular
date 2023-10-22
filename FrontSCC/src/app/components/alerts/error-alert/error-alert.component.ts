@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-error-alert',
@@ -11,6 +11,9 @@ export class ErrorAlertComponent {
 
   @Output()
   cerrarButtonClick: EventEmitter<string> = new EventEmitter<string>();
+  @Input() esErrorNomreAulaRepetido: any;
+  @Input() esErrorGradoAulaRepetido: any;
+  @Input() esErrorDivisionAulaRepetida: any;
 
   public cerrarClicked() {
     this.cerrarButtonClick.emit("cerrar_button_clicked");

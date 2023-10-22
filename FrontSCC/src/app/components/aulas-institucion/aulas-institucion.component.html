@@ -1,0 +1,119 @@
+<h1>Aulas de Institucion</h1>
+
+<app-nueva-aula-popup class="popup" *ngIf="openAgregarAulaPopup"
+[institucion]="institucion"
+(cancelButtonClick)="openAgregarAulaPopup = false">
+</app-nueva-aula-popup>
+
+<div class="containerInst">
+  <div #divContent class="containerInstitucion" >
+    <div class="divContainerData">
+      <div class="divMotivoTitle">
+        <label class="labelTitle" for="">Institucion</label>
+      </div>
+      <div class="divCampos">
+        <label class="campos">Nombre: </label> <label class="labelData" for="">{{institucion.nombre}}</label>
+      </div>
+      <div class="divCampos">
+        <label class="campos">Ciudad: </label> <label class="labelData" for="">{{institucion.ciudad}}</label>
+      </div>
+      <div class="divCampos">
+        <label class="campos">Direccion: </label> <label class="labelData" for="">{{institucion.direccion}}</label>
+      </div>
+      <div class="divCampos">
+        <label class="campos">Telefono: </label> <label class="labelData" for="">{{institucion.telefono}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="divMessage">
+  <p class="pMessage">{{message}}</p>
+</div>
+
+<div class="divAgregarAula">
+  <button class="icon-btn add-btn" title="Nueva Aula" (click)="openAgregarAulaPopup = true">
+    <div class="add-icon"></div>
+    <div class="btn-txt">Agregar</div>
+  </button>
+</div>
+
+<div *ngIf="openInfoAulaPopup || openAgregarAulaPopup || openDeletionPopup" class="divCover"></div>
+
+<app-datos-aula-hijo-popup *ngIf="openInfoAulaPopup"
+[aulaInstitucion]="aula"
+(cancelButtonClick)=" openInfoAulaPopup = false">
+</app-datos-aula-hijo-popup>
+
+<!-- ALERT SUCCESS ACEPTAR/DENEGAR AUSENCIA ALUMNO -->
+<app-success-alert class="alert" *ngIf="openSuccessAlert"
+(cerrarButtonClick)="closeSuccessAlert()"
+[esEliminarAula]="esEliminarAula">
+</app-success-alert>
+
+<!-- ALERT ERROR ACEPTAR/DENEGAR AUSENCIA ALUMNO -->
+<app-error-alert class="alert" *ngIf="openErrorAlert"
+(cerrarButtonClick)="openErrorAlert = false">
+</app-error-alert>
+
+<confirm class="confirmDeletePopup" (cancelButtonClick)="openDeletionPopup = false"
+(eliminarButtonClick)="confirmEliminarAula()"
+[itemForDelete]="itemForDelete"
+*ngIf="openDeletionPopup">
+</confirm>
+
+<div class="container" *ngFor="let aula of aulas; let i = index">
+  <div class="divContainerAula">
+    <div class="pNombre">
+      <p>{{aula.nombre}}</p>
+    </div>
+    <div class="divContainerInfo">
+      <div class="divAsistencia">
+        <button class="btnInfo" (click)="openInfoPopup(aula)"> Info.
+        </button>
+      </div>
+      <div class="divInfoAula">
+        <div class="divDocenteACargo">
+          <label class="labelTitle" for="">Docente a cargo:</label>
+          <label *ngIf="aula.docente != null" class="labelData" for="">{{aula.docente.apellido}}, {{aula.docente.nombre}}</label>
+          <label *ngIf="aula.docente == null" class="labelData" for="">Sin Docente asignado/a</label>
+        </div>
+        <div class="divCantidadAlumnosAula">
+          <label class="labelTitle" for="">Cantidad de alumnos:</label>
+          <label class="labelData" for="">{{aula.cantidadAlumnos}}</label>
+        </div>
+        <div class="divPorcentajeAsistencia">
+          <label class="labelTitle" for="">% Asistencia:</label>
+          <label class="labelData" for="">{{ porcentajesAulas[i] | number:'1.1-1' }}%</label>
+        </div>
+      </div>
+      <div class="divAlumnos">
+        <button class="btnInfo" (click)="verAlumnosAula(aula)"> Alumnos
+        </button>
+      </div>
+    </div>
+    <div class="divEliminarAula">
+      <div class="divContainerEliminarAula">
+        <button class="btnEliminarAula" title="Eliminar Aula" (click)="eliminarAula(aula)">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCrossIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
+        <button class="btnEditarAula" title="Editar Aula" (click)="editarAula(aula)">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgEditIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #childTemplate>
+  <!-- <app-historiales [aula]="aula"></app-historiales> ASISTENCIA -->
+  <app-alumnos [aula]="aula"></app-alumnos> ALUMNOS
+</ng-template>
+
+<app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
+</app-go-back-button>

@@ -240,6 +240,30 @@ h1 {
   transition: all 0.5s;
  }
 
+ .divContainerEliminarAlumnoAula{
+  margin-bottom: 4px;
+ }
+ .btnEliminarAlumnoAula{
+  background-color: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+ }
+
+ .btnEliminarAlumnoAula:hover{
+  transform: scale(1.08);
+ }
+
+
+ .svgCrossIcon{
+  width: 45px;
+  height: 45px;
+  color: white;
+ }
+
+ .btnEliminarAlumnoAula:hover .svgCrossIcon{
+  color: red;
+ }
+
  .pagination-controls{
   display: flex;
   justify-content: center;

@@ -21,9 +21,10 @@
 
 <!-- ALERT SUCCESS ACEPTAR/DENEGAR AUSENCIA ALUMNO -->
 <app-success-alert class="alert" *ngIf="openSuccessAlert"
-(cerrarButtonClick)="openSuccessAlert = false"
+(cerrarButtonClick)="closeSuccessAlert()"
 [esAceptarAusenciaAlumno]="esAceptarAusenciaAlumno"
-[esDenegarAusenciaAlumno]="esDenegarAusenciaAlumno">
+[esDenegarAusenciaAlumno]="esDenegarAusenciaAlumno"
+[esRemoverAlumnoDeAula]="esRemoverAlumnoDeAula">
 </app-success-alert>
 
 <!-- ALERT ERROR ACEPTAR/DENEGAR AUSENCIA ALUMNO -->
@@ -31,7 +32,13 @@
 (cerrarButtonClick)="openErrorAlert = false">
 </app-error-alert>
 
-<div class="container">
+<confirm class="confirmDeletePopup" (cancelButtonClick)="openDeletionPopup = false"
+(eliminarButtonClick)="confirmEliminarAlumnoDeAula()"
+[itemForDelete]="itemForDelete"
+*ngIf="openDeletionPopup">
+</confirm>
+
+<div class="container" *ngIf="message == ''">
   <div class="divContainerAlumno" *ngFor="let alumno of alumnos.slice(calculateIndices().startIndex, calculateIndices().endIndex)">
     <div class="pNombre">
       <p>{{alumno.apellido}}, {{alumno.nombre}}</p>
@@ -50,14 +57,6 @@
           <label class="labelTitle" for="">Nacimiento:</label>
           <label class="labelData" for="">{{alumno.fechaNacimiento.substring(8,10)}}/{{alumno.fechaNacimiento.substring(5,7)}}/{{alumno.fechaNacimiento.substring(0,4)}}</label>
         </div>
-        <div class="divGradoAlumno">
-          <label class="labelTitle" for="">Grado:</label>
-          <label class="labelData" for="">{{alumno.grado}}</label>
-        </div>
-        <div class="divDivisionAlumno">
-          <label class="labelTitle" for="">Division:</label>
-          <label class="labelData" for="">{{alumno.division}}</label>
-        </div>
         <div class="divAsistenciaAlumno">
           <label class="labelTitle" for="">Asistencia: </label>
           <label class="labelData" for="">{{alumno.asistencia}}%</label>
@@ -69,6 +68,15 @@
       </div>
       <div class="divHistoriales">
         <button class="btnInfo" (click)="verHistoriales(alumno)"> Historiales
+        </button>
+      </div>
+    </div>
+    <div *ngIf="accedeDirectivo" class="divEliminarAlumnoAula">
+      <div class="divContainerEliminarAlumnoAula">
+        <button class="btnEliminarAlumnoAula" title="Remover Alumno de Aula" (click)="eliminarAlumnoDeAula(alumno)">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCrossIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
         </button>
       </div>
     </div>

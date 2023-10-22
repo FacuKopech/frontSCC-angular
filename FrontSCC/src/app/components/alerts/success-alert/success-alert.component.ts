@@ -25,6 +25,9 @@ export class SuccessAlertComponent {
   @Input() esEditarHistorial: any;
   @Input() esCargaDeAsistencia: any;
   @Input() esEnvioNotaPadre: any;
+  @Input() esAdditionAula: any;
+  @Input() esRemoverAlumnoDeAula: any;
+  @Input() esEliminarAula: any;
 
   constructor() {
   }

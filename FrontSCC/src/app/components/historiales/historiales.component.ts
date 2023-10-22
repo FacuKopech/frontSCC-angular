@@ -16,6 +16,7 @@ export class HistorialesComponent{
   public historial: any
   @Input() hijo: any;
   @Input() alumno: any;
+  @Input() accedeDirectivo: any;
   idHistorial: number = -1;
   emailPersonaLogueada: string = "";
   openConfirmacionFirmaHistorialPopup = false;
@@ -39,6 +40,7 @@ export class HistorialesComponent{
 
   ngOnInit(){
     this.esAlumno = history.state.esAlumno;
+    this.accedeDirectivo = history.state.accedeDirectivo;
     if(this.esAlumno){
       this.alumno = history.state.data;
       this.historialService.ObtenerHistorialesHijo(this.alumno.id).subscribe(res => {

@@ -1,0 +1,390 @@
+.popup {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation-name: _ngcontent-awe-c49_fadeInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  width: -webkit-fill-available;
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+    background-color: #28282B;
+    border-radius: 18px;
+    box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.formContent {
+  display: flex;
+  flex-direction: column;
+  margin: 4%;
+}
+.titleHeader {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  text-align: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+}
+
+h2{
+  color: white;
+  text-align: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+}
+
+form {
+  flex-direction: column;
+  background-color: #28282b;
+  border-radius: 18px;
+  box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
+}
+.dropdown{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.dropdown-toggle{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: white;
+  background-color: cadetblue;
+}
+.dropdown-menu {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: -webkit-fill-available;
+  height: fit-content;
+  background-color: #332e2e;
+  top: 100%;
+  left: 0;
+  display: none;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  z-index: 1;
+}
+
+.divNombresContainer{
+  display: flex;
+  width: -webkit-fill-available;
+  max-width: 190px;
+}
+
+.dropdown-menu.show {
+  display: flex;
+  justify-content: center;
+}
+
+.check {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  color: white;
+  width: fit-content;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+.divSVG{
+  margin-right: 10px;
+}
+
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34,50,84,0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #c8ccd4;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+
+.check:hover:before {
+  opacity: 1;
+}
+
+.check:hover svg {
+  stroke: darkgreen;
+}
+
+.check .inputCheck:checked + .divSVG svg {
+  stroke: darkgreen;
+}
+
+.check .inputCheck:checked + .divSVG svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.3s linear;
+}
+
+.check .inputCheck:checked + .divSVG svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.15s;
+}
+
+.container {
+  background-color: #28282b;
+  margin-top: 26px;
+  margin-bottom: 13px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.customButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.closeButton {
+  padding: 1.3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.closeButton:hover {
+  background-color: #C24037;
+  box-shadow: 0px 15px 20px #dc453a8a;
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.btnSend {
+  position: relative;
+  outline: 0;
+  border: 1px solid transparent;
+  background-color: rgb(5, 65, 65);
+  color: #ffffff;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(7, 80, 80, 0.685), 0 2px 4px -1px rgba(7, 80, 80, 0.685);
+}
+
+.btnSend span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all .4s ease;
+}
+
+.btnSend svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.btnSend span:nth-child(2),.btnSend span:nth-child(3) {
+  position: absolute;
+  top: 40px;
+  color: #fff;
+}
+
+.btnSend span:nth-child(2) {
+  background-color: rgb(5, 65, 65);
+}
+
+.btnSend span:nth-child(3) {
+  background-color: rgb(5, 65, 65);
+}
+
+.btnSend:hover {
+  box-shadow: 0 10px 15px -3px rgba(7, 80, 80, 0.685), 0 4px 6px -2px rgba(7, 80, 80, 0.685);
+}
+
+.btnSend:hover span:nth-child(2), .btnSend:focus span:nth-child(3) {
+  top: 0;
+}
+
+.btnSend:focus {
+  box-shadow: none;
+}
+
+input[type=text], input[type=number]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: white;
+  background-color: #2a2a2a;
+}
+
+select{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: white;
+  background-color: cadetblue;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.button {
+  height: 50px;
+  width: 150px;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid #252525;
+  overflow: hidden;
+  border-radius: 30px;
+  color: #333;
+  transition: all 0.5s ease-in-out;
+}
+
+.btn-txt {
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+.type1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  background-color: #333;
+  border-radius: 30px;
+  visibility: hidden;
+  height: 10px;
+  width: 10px;
+  z-index: -1;
+}
+
+.button:hover {
+  box-shadow: 1px 1px 200px #252525;
+  color: #fff;
+  border: none;
+}
+
+.type1:hover::after {
+  visibility: visible;
+  transform: scale(100) translateX(2px);
+}
+
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}

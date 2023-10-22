@@ -36,6 +36,9 @@
         <path d="M 306.547 67.924 C 305.718 69.266 312.076 80.071 313.263 79.337 C 313.742 79.041 314.015 79.407 313.871 80.150 C 313.447 82.328 315.028 86.000 316.389 86.000 C 317.079 86.000 319.794 85.267 322.423 84.372 C 327.678 82.581 326.969 80.575 321.623 82.108 C 316.819 83.486 316.677 83.397 313.066 76.750 C 308.308 67.991 307.326 66.663 306.547 67.924 "/></g>
         </svg>
       <p>Algo salio mal!</p>
+      <p *ngIf="esErrorNomreAulaRepetido">El Nombre seleccionado para el Aula ya existe</p>
+      <p *ngIf="esErrorGradoAulaRepetido">El Grado seleccionado para el Aula ya existe</p>
+      <p *ngIf="esErrorDivisionAulaRepetida">La Division seleccionada para el Aula ya existe</p>
     </div>
     <div class="divCloseBtn">
       <button (click)="cerrarClicked()" class="closeButton">

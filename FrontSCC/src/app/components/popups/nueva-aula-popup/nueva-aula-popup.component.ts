@@ -12,7 +12,6 @@ export class NuevaAulaPopupComponent {
   @Input() institucion: any;
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
-  @ViewChild('divAlumnoReferido', { static: false }) alumnoRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('dropdownMenu', { static: false }) alumnosMenuRef!: ElementRef<HTMLSelectElement>;
   @ViewChild('nombreInput', { static: false }) nombreInputRef!: ElementRef<HTMLInputElement>;
   @ViewChild('gradoInput', { static: false }) gradoInputRef!: ElementRef<HTMLInputElement>;

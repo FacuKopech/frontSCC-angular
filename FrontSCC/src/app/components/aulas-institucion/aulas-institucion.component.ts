@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { error } from 'console';
 
 @Component({
   selector: 'app-aulas-institucion',
@@ -25,6 +26,9 @@ export class AulasInstitucionComponent {
   openSuccessAlert = false;
   openErrorAlert = false;
   esEliminarAula = false;
+  openEditarAulaPopup = false;
+  currentPage: number = 1;
+  itemsPerPage: number = 2;
 
   ngOnInit(): void{
     this.aulaService.ObtenerAulasInstitucion().subscribe(res => {
@@ -35,14 +39,15 @@ export class AulasInstitucionComponent {
         console.log(this.aulas, this.institucion);
         if(this.aulas.length == 0){
           this.message = "No existen Aulas en esta Institucion";
+        }else{
+          this.aulaService.ObtenerPorcentajesAsistenciaAulas(this.institucion.id).subscribe(res =>{
+            if(res){
+              this.porcentajesAulas = res;
+              console.log(this.porcentajesAulas);
+            }
+          });
         }
 
-        this.aulaService.ObtenerPorcentajesAsistenciaAulas(this.institucion.id).subscribe(res =>{
-          if(res){
-            this.porcentajesAulas = res;
-            console.log(this.porcentajesAulas);
-          }
-        });
       }
     });
   }
@@ -64,6 +69,7 @@ export class AulasInstitucionComponent {
   }
 
   public confirmEliminarAula(){
+    this.openDeletionPopup = false;
       this.aulaService.EliminarAula(this.aula.id).subscribe(res =>{
         if(res){
           this.openSuccessAlert = true;
@@ -79,11 +85,35 @@ export class AulasInstitucionComponent {
 
   public closeSuccessAlert(){
     this.openSuccessAlert = false;
-    window.location.reload;
+    window.location.reload();
   }
 
   public editarAula(aula: any){
+    this.aula = aula;
+    this.openEditarAulaPopup = true;
+  }
 
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.aulas.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
   }
 
   public goBack(){

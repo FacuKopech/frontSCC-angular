@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
 
     this.apiService.isLoggedIn().subscribe(res => {
       if (res) {
-        console.log(res);
         this.loggedIn = true;
         this.groups = res.usuario.grupos;
         this.nombreUserLogueado = res.nombre;

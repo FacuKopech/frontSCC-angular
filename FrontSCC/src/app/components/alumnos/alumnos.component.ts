@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./alumnos.component.css']
 })
 export class AlumnosComponent {
+
   message: string='';
   @Input() aula: any;
   @Input() accedeDirectivo: any;
@@ -30,6 +31,8 @@ export class AlumnosComponent {
   openDeletionPopup = false;
   itemForDelete = "";
   esRemoverAlumnoDeAula = false;
+  openAgregarAlumnoPopup = false;
+  openEditarAlumnoPopup = false;
 
   constructor(private aulaService: AulaService, private location: Location, private router: Router){}
 
@@ -39,6 +42,9 @@ export class AlumnosComponent {
     this.aulaService.ObtenerAlumnosAula(this.aula.id).subscribe(res =>{
       if(res){
         this.alumnos = res;
+        this.alumnos.sort((a, b) => {
+          return a.apellido.localeCompare(b.apellido, undefined, { sensitivity: 'base' });
+        });
         console.log(this.alumnos);
         if(this.alumnos.length == 0 || this.alumnos == null){
           this.message = "Esta aula aun no tiene alumnos"
@@ -86,6 +92,15 @@ export class AlumnosComponent {
     this.openDeletionPopup = true;
     this.alumno = alumno;
     this.itemForDelete = "Alumno de Aula";
+  }
+
+  public editarAlumno(alumno: any){
+    this.alumno = alumno;
+    this.openEditarAlumnoPopup = true;
+  }
+
+  public verAlumnosSinAula(){
+    this.router.navigate(['/alumnos-sin-aula'], {state: {data: this.aula.institucion.id}});
   }
 
   public confirmEliminarAlumnoDeAula(){

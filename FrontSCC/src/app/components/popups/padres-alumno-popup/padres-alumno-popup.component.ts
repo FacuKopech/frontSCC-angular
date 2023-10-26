@@ -38,13 +38,12 @@ export class PadresAlumnoPopupComponent {
         this.personaLogueada = res;
         this.personaService.ObtenerPadresDeAlumno(this.alumno.id).subscribe(res => {
           this.padres = res;
-          this.padres.forEach(padre => {
-            if(padre.nombre == this.personaLogueada.nombre && padre.apellido == this.personaLogueada.apellido){
-              this.padreDeAlumnoEstaLogueado = true;
-            }
-          });
-          if(this.padres.length == 0){
-            this.message = "Este alumno aun no tiene Padre(s) asignado en el sistema";
+          if(this.padres.length > 0 && this.padres != null){
+            this.padres.forEach(padre => {
+              if(padre.nombre == this.personaLogueada.nombre && padre.apellido == this.personaLogueada.apellido){
+                this.padreDeAlumnoEstaLogueado = true;
+              }
+            });
           }
         },
         (error:HttpErrorResponse) =>{
@@ -54,7 +53,6 @@ export class PadresAlumnoPopupComponent {
         });
       }
     });
-
   }
 
   public cerrarPopupNuevaNota(){

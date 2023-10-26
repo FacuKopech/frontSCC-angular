@@ -28,6 +28,13 @@ export class SuccessAlertComponent {
   @Input() esAdditionAula: any;
   @Input() esRemoverAlumnoDeAula: any;
   @Input() esEliminarAula: any;
+  @Input() esEditionAula: any;
+  @Input() esAgregarAlumnoExistenteAAula: any;
+  @Input() esAgregarAlumnoNuevoAAula: any;
+  @Input() esEditarAlumno: any;
+  @Input() esEliminarAlumnoDelSistema: any;
+
+
 
   constructor() {
   }

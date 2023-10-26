@@ -11,7 +11,7 @@ export class AusenciaService {
   private hostUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  public ObtenerAusenciasHijo(idHijo: number): Observable<any> {
+  public ObtenerAusenciasAlumno(idHijo: number): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Ausencias/ObtenerAusenciasDeAlumno/${idHijo}`);
   }
 

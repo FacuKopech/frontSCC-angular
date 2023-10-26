@@ -168,6 +168,20 @@ h1 {
   backdrop-filter: blur(3px) brightness(1.04);
 }
 
+.alert{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0%;
+  position: relative;
+}
+
+.editarAulaPopup{
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
 .popup{
   display: flex;
     justify-content: center;
@@ -405,6 +419,49 @@ h1 {
 
  .btnEditarAula:hover .svgEditIcon{
   color: yellow;
+ }
+
+
+ .pagination-controls{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+  height: 24px;
+ }
+
+ .paginationBtn{
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+ }
+
+ .paginationBtn:hover{
+  background-color: #23a9da90;
+  color: white;
+ }
+
+ .svgArrowIcon{
+  height: 20px;
+    width: 20px;
+    display: flex;
+ }
+
+ .currentPageBtn{
+  border-radius: 100%;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+ }
+
+ .current-page {
+  background-color: #23a9da;
+  color: #fff;
+}
+
+ .currentPageBtn:hover{
+  background-color: #23a9da;
+  color: white;
  }
 
  .goBackComp{

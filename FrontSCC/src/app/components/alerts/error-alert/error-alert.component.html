@@ -39,6 +39,9 @@
       <p *ngIf="esErrorNomreAulaRepetido">El Nombre seleccionado para el Aula ya existe</p>
       <p *ngIf="esErrorGradoAulaRepetido">El Grado seleccionado para el Aula ya existe</p>
       <p *ngIf="esErrorDivisionAulaRepetida">La Division seleccionada para el Aula ya existe</p>
+      <p *ngIf="esErrorAgregarAusenciaHijoSinAulaAsignada">No puede agregar una Ausencia a un Hijo sin Aula asignada</p>
+      <p *ngIf="esErrorAgregarAlumnoYaExistente">El DNI de Alumno que intenta agregar ya existe</p>
+
     </div>
     <div class="divCloseBtn">
       <button (click)="cerrarClicked()" class="closeButton">

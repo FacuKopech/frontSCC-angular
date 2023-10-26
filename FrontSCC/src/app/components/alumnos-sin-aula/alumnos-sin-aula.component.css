@@ -1,0 +1,146 @@
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+}
+
+
+.divCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1d1d1d6b; /* Transparent black background */
+  z-index: 999; /* Ensure the overlay is above other elements */
+  backdrop-filter: blur(3px) brightness(1.04);
+}
+
+.alert{
+  display: flex;
+  justify-content: center;
+}
+
+.divContainerAlumnos{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.divHeaderContainer{
+  justify-content: space-between;
+    width: 57%;
+    display: flex;
+    background-color: #00000099;
+    border-radius: 17px;
+    border: 2px solid #25c3be;
+    margin-bottom: 8px;
+}
+
+.divNombre{
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+
+.divAccion{
+  margin-right: 4px;
+  text-decoration: underline;
+}
+
+
+.divContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 57%;
+  flex-direction: column;
+}
+
+.divAlumno{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  background-color: #0000007d;
+  border-radius: 24px;
+  transition: transform 0.3s ease;
+}
+
+.divAlumno:hover{
+  transform: scale(1.05);
+}
+
+.divNombreAlumno{
+  margin-left: 14px;
+}
+
+
+.btnEliminarAlumno{
+  background-color: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+ }
+
+ .btnEliminarAlumno:hover{
+  transform: scale(1.08);
+ }
+
+.svgCrossIcon{
+  width: 45px;
+  height: 45px;
+  color: white;
+ }
+
+ .btnEliminarAlumno:hover .svgCrossIcon{
+  color: red;
+ }
+
+ .pagination-controls{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+  height: 24px;
+ }
+
+ .paginationBtn{
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+ }
+
+ .paginationBtn:hover{
+  background-color: #23a9da90;
+  color: white;
+ }
+
+ .svgArrowIcon{
+  height: 20px;
+    width: 20px;
+    display: flex;
+ }
+
+ .currentPageBtn{
+  border-radius: 100%;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+ }
+
+ .current-page {
+  background-color: #23a9da;
+  color: #fff;
+}
+
+ .currentPageBtn:hover{
+  background-color: #23a9da;
+  color: white;
+ }
+
+.goBackComp{
+  display: flex;
+  justify-content: center;
+ }

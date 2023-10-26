@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AulaService } from 'src/app/services/aulas_services/aula.service';
 
 @Component({
   selector: 'app-ausencias-hijo-popup',
@@ -8,10 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./ausencias-hijo-popup.component.css']
 })
 export class AusenciasHijoPopupComponent {
-  @Input() ausencias: any[] = [];
   @Input() hijo: any;
-  @Input() idHijo: number = -1;
-  @Input() message: string ='';
   @Input() alumno: any;
   @Input() esAusenciasHijo = false;
   @Input() esAusenciasAlumno = false;
@@ -29,21 +27,55 @@ export class AusenciasHijoPopupComponent {
   counter: number = 0;
   currentPage: number = 1;
   itemsPerPage: number = 4;
+  idHijo: number = -1;
+  ausencias: any[] = [];
+  alumnoOHijoSinAulaAsignada = false;
+  messageAusencias: string = '';
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private ausenciaService: AusenciaService) {
+  constructor(private ausenciaService: AusenciaService, private aulaService: AulaService) {
   }
 
   public ngOnInit(){
     if(this.hijo != null){
       this.esAusenciasHijo = true;
       this.esAusenciasAlumno = false;
+      this.idAlumno = this.hijo.id;
     }else if(this.alumno != null){
       this.esAusenciasAlumno = true;
       this.esAusenciasHijo = false;
+      this.idAlumno = this.alumno.id;
     }
+    this.ausenciaService.ObtenerAusenciasAlumno(this.idAlumno).subscribe(res => {
+      if(res){
+        this.ausencias = res;
+        console.log(this.ausencias);
+        if(this.ausencias.length == 0){
+          this.messageAusencias = "Su hijo/a aun no tiene ninguna ausencia cargada"
+        }else{
+          this.messageAusencias = "";
+        }
+        this.aulaService.ObtenerAulaHijo(this.idAlumno).subscribe(res => {
+          if(res == null){
+            this.alumnoOHijoSinAulaAsignada = true;
+          }else{
+            this.alumnoOHijoSinAulaAsignada = false;
+          }
+        },
+        (error:HttpErrorResponse) =>{
+          if(error.status >= 400){
+            this.openErrorAlert = true;
+          }
+        });
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status >= 400){
+        this.openErrorAlert = true;
+      }
+    });
   }
 
   public cancelarClicked() {

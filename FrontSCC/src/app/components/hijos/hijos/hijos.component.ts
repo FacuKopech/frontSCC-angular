@@ -33,6 +33,7 @@ export class HijosComponent {
   counter: number = 0;
   currentPage: number = 1;
   itemsPerPage: number = 3;
+  esErrorAgregarAusenciaHijoSinAulaAsignada = false;
 
   ngOnInit(): void{
     this.personaService.ObtenerMisHijos().subscribe(res => {
@@ -62,21 +63,9 @@ export class HijosComponent {
     this.router.navigate(['/historiales_hijo'], {state: {data: this.hijo, esAlumno: false}});
   }
 
-  public verAusencias(idHijo: number, hijo: any){
+  public verAusencias(hijo: any){
     this.openPopupAusenciasHijo = true;
-    this.ausenciaService.ObtenerAusenciasHijo(idHijo).subscribe(res => {
-      if(res){
-        this.ausencias = res;
-        this.hijo = hijo;
-        this.idHijo = idHijo;
-        console.log(this.ausencias);
-        if(this.ausencias.length == 0){
-          this.messageAusencia = "Su hijo/a aun no tiene ninguna ausencia cargada"
-        }else{
-          this.messageAusencia = "";
-        }
-      }
-    });
+    this.hijo = hijo;
   }
 
   public handleAgregarAusenciaGenericaClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string, files: FormData}){
@@ -92,14 +81,22 @@ export class HijosComponent {
             if(res){
               this.openSuccessAlert = true;
               this.esAgregarAusenciaGenerica = true;
+              this.openAgregarAusenciasGenericasPopup = false;
             }else{
               this.openErrorAlert = true;
             }
           },
           (error:HttpErrorResponse) =>{
-            if(error.status == 404 || error.status == 400){
+            debugger
+            if(error.status == 400 && error.error == 'No puede agregar una Ausencia a un Hijo sin Aula asignada'){
               this.openErrorAlert = true;
+              this.esErrorAgregarAusenciaHijoSinAulaAsignada = true;
+            }else  if(error.error == ''){
+              if(error.status == 404 || error.status == 400){
+                this.openErrorAlert = true;
+              }
             }
+
           });
         }
       });
@@ -108,6 +105,7 @@ export class HijosComponent {
         if(res){
           this.openSuccessAlert = true;
           this.esAgregarAusenciaGenerica = true;
+          this.openAgregarAusenciasGenericasPopup = false;
         }else{
           this.openErrorAlert = true;
         }

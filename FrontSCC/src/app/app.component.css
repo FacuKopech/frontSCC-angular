@@ -10,7 +10,6 @@ html {
   background-size: cover;
   resize: both;
   overflow: auto;
-  height: 100%;
   -ms-flex-pack: center;
   -webkit-box-pack: center;
   color: #fff;
@@ -20,10 +19,12 @@ html {
 .customBodyHeight {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
-  margin: 0 auto;
+
 }
+.divNoLoggedIn{
+  height: 93.5vh;
+}
+
 .cover-container {
   max-width: 42em;
 }
@@ -465,6 +466,17 @@ footer {
 .navbar-container input[type="checkbox"] {
   display: block;
 }
+
+.divLoggedIn{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mainLoggedIn{
+  height: 1042px;
+}
+
 .navbar {
   display: flex;
   flex-direction: row;
@@ -612,11 +624,10 @@ footer {
 }
 .dropdown-content {
   display: none;
-  width: 100%;
   justify-content: center;
   margin-top: 1px;
   position: absolute;
-  min-width: 160px;
+  width: -webkit-fill-available;
   z-index: 1;
   outline: 0;
   flex-direction: column;
@@ -644,7 +655,6 @@ footer {
   justify-content: space-around;
   outline: 0;
   margin-top: 1px;
-  margin-right: 8px;
   border: none;
 }
 .divLogout {

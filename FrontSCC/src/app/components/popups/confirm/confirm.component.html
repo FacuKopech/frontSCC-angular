@@ -36,16 +36,38 @@
         Seguro que desea eliminar el Aula?
       </div>
     </div>
+    <div class="divEliminarAlumno" *ngIf="itemForDelete == 'Alumno'">
+      <h2>Eliminar Alumno</h2>
+      <div class="content">
+        Seguro que desea eliminar el Alumno?
+      </div>
+    </div>
 
     &nbsp;
     <div class="container">
       <div class="customButtons">
-        <button (click)="cancelarClicked()" type="button" class="btn btn-secondary customButton" id="cancelButtonClick">Cancelar</button>
+        <button (click)="cancelarClicked()" class="closeButton">
+          Cancelar
+        </button>
       </div>
       <div class="customButtons">
-        <button class="noselect">
-          <span class="text">Eliminar</span><span class="icon" (click)="eliminarClicked()" id="eliminarButtonClick"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span>
-        </button>
+        <div class="divAddButton">
+          <button class="btnEliminar" (click)="eliminarClicked()">
+            <span>
+              Eliminar
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+            <span>
+              Seguro?
+            </span>
+            <span>
+              Enviado!
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linecap="round" stroke-width="2" stroke="#ffffff" d="M8.00011 13L12.2278 16.3821C12.6557 16.7245 13.2794 16.6586 13.6264 16.2345L22.0001 6"></path> <path fill="#ffffff" d="M11.1892 12.2368L15.774 6.63327C16.1237 6.20582 16.0607 5.5758 15.6332 5.22607C15.2058 4.87635 14.5758 4.93935 14.226 5.36679L9.65273 10.9564L11.1892 12.2368ZM8.02292 16.1068L6.48641 14.8263L5.83309 15.6248L2.6 13.2C2.15817 12.8687 1.53137 12.9582 1.2 13.4C0.868627 13.8419 0.95817 14.4687 1.4 14.8L4.63309 17.2248C5.49047 17.8679 6.70234 17.7208 7.381 16.8913L8.02292 16.1068Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

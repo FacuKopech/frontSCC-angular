@@ -1,0 +1,63 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+  <form>
+    <div class="formContent">
+      <div class="titleHeader">
+        <h2>Editar Alumno</h2>
+      </div>
+
+      <div *ngIf="showErrorAlert || showSuccessAlert" class="divCover"></div>
+
+      <app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
+        *ngIf="showErrorAlert">
+      </app-error-alert>
+
+      <app-success-alert class="alert" (cerrarButtonClick)="closeSuccessAlert()"
+      *ngIf="showSuccessAlert"
+      [esEditarAlumno]="esEditarAlumno">
+      </app-success-alert>
+
+      <br>
+
+      <div class="divEditAlumno">
+        <label>Nombre</label>
+        <input #nombreInput type="text" [(ngModel)]="nombre" [value]="this.alumno.nombre" name="nombre" placeholder="Nombre de Alumno"  required/>
+        <span id="nombreError"></span>
+        <label>Apellido</label>
+        <input #apellidoInput type="text" [(ngModel)]="apellido" [value]="this.alumno.apellido" name="apellido" placeholder="Apellido de Alumno"  required/>
+        <span id="apellidoError"></span>
+        <label>DNI</label>
+        <input type="number" #dniInput [(ngModel)]="dni" [value]="this.alumno.dni" name="dni" placeholder="DNI de Alumno" required/>
+        <span id="DNIError"></span>
+        <label>Fecha de Nacimiento</label>
+        <input type="date" #fechaNacimientoInput [ngModel]="fechaNacimiento | date:'yyyy-MM-dd'" [value]="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de Nacimiento de Alumno" required/>
+        <span id="fechaNacimientoError"></span>
+      </div>
+    </div>
+
+    <div  class="containerBottomButtons">
+      <div  class="customButtons">
+        <button (click)="cancelarClicked()" class="closeButton">
+          Cancelar
+        </button>
+      </div>
+      <div class="divAddButton">
+        <button class="btnSend" (click)="editarClicked()">
+          <span>
+            Editar
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+            </svg>
+          </span>
+          <span>
+            Seguro?
+          </span>
+          <span>
+            Enviado!
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linecap="round" stroke-width="2" stroke="#ffffff" d="M8.00011 13L12.2278 16.3821C12.6557 16.7245 13.2794 16.6586 13.6264 16.2345L22.0001 6"></path> <path fill="#ffffff" d="M11.1892 12.2368L15.774 6.63327C16.1237 6.20582 16.0607 5.5758 15.6332 5.22607C15.2058 4.87635 14.5758 4.93935 14.226 5.36679L9.65273 10.9564L11.1892 12.2368ZM8.02292 16.1068L6.48641 14.8263L5.83309 15.6248L2.6 13.2C2.15817 12.8687 1.53137 12.9582 1.2 13.4C0.868627 13.8419 0.95817 14.4687 1.4 14.8L4.63309 17.2248C5.49047 17.8679 6.70234 17.7208 7.381 16.8913L8.02292 16.1068Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

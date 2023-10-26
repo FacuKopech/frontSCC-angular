@@ -21,6 +21,7 @@ export class DatosAulaHijoPopupComponent {
   esEnvioNotaDocente = false;
   counter: number = 0;
   hijoAulaInstitucion: any
+  sinAula = false;
 
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
@@ -33,7 +34,7 @@ export class DatosAulaHijoPopupComponent {
     if(this.aulaInstitucion == null){
       this.aulaService.ObtenerAulaHijo(this.hijo.id).subscribe(res => {
         if(res == null){
-          this.openErrorAlert = true;
+          this.sinAula = true;
         }else{
           this.aula = res;
           this.docente = this.aula.docente;

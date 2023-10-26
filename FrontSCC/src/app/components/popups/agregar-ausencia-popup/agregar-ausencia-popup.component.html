@@ -10,9 +10,9 @@
           </svg>
           <p class="pAusenciaGenericaInfo" *ngIf="esGenerica">Esta ausencia sera asignada a TODOS sus hijos</p>
         </div>
-
         <h2 *ngIf="!esGenerica">Agregar nueva ausencia para {{hijo.apellido}}, {{hijo.nombre}}</h2>
       </div>
+
       <br>
       <label>Motivo</label>
       <input #motivoInput type="text"  [(ngModel)]="motivoAusencia" name="motivoAusencia" required/>

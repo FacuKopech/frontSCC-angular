@@ -10,11 +10,14 @@
       </div>
     </div>
 
-    <div *ngIf="esAusenciasHijo" class="divAgregarAusencia">
+    <div *ngIf="esAusenciasHijo && alumnoOHijoSinAulaAsignada == false" class="divAgregarAusencia">
       <button class="icon-btn add-btn" title="Nueva ausencia para {{hijo.nombre}}" (click)="openAgregarAusenciaPopup = true">
         <div class="add-icon"></div>
         <div class="btn-txt">Agregar</div>
       </button>
+    </div>
+    <div class="divSinAula" *ngIf="esAusenciasHijo && alumnoOHijoSinAulaAsignada" >
+      <label for="">Hijo sin Aula asignada. No se pueden agregar nuevas Ausencias</label>
     </div>
 
     <div class="divColorsReference">

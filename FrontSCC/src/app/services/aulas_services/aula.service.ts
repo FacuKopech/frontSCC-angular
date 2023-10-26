@@ -64,8 +64,20 @@ export class AulaService {
     return this.http.post<boolean>(this.hostUrl + `/Aulas/AgregarAula/`, aula);
   }
 
+  public EditarAula(idAula: number, aula:{nombreAula: string, gradoAula:string, divisionAula: string, institucionId: number, alumnosSeleccionados: any[], docenteId: number} ): Observable<boolean> {
+    return this.http.put<boolean>(this.hostUrl + `/Aulas/EditarAula/${idAula}`, aula);
+  }
+
   public EliminarAlumnoDeAula(idAlumno: number): Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Aulas/EliminarAlumnoDeAula/${idAlumno}`, null);
+  }
+
+  public AgrgarAlumnoExistenteAAula(idAula: number, alumnos:{alumnosSeleccionados: any[]}) : Observable<boolean> {
+    return this.http.put<boolean>(this.hostUrl + `/Aulas/AgrgarAlumnoExistenteAAula/${idAula}`, alumnos);
+  }
+
+  public AgrgarAlumnoNuevoAAula(idAula: number, alumno:{nombre: string, apellido:string, DNI: number, fechaNacimiento: Date} ): Observable<boolean> {
+    return this.http.put<boolean>(this.hostUrl + `/Aulas/AgrgarAlumnoNuevoAAula/${idAula}`, alumno);
   }
 
   public EliminarAula(idAula: number): Observable<any> {

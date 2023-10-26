@@ -51,6 +51,10 @@ import { TipoNotaInfoPopupComponent } from './components/popups/tipo-nota-info-p
 import { DestinatariosNotaPopupComponent } from './components/popups/destinatarios-nota-popup/destinatarios-nota-popup.component';
 import { AulasInstitucionComponent } from './components/aulas-institucion/aulas-institucion.component';
 import { NuevaAulaPopupComponent } from './components/popups/nueva-aula-popup/nueva-aula-popup.component';
+import { EditarAulaPopupComponent } from './components/popups/editar-aula-popup/editar-aula-popup.component';
+import { AgregarAlumnoPopupComponent } from './components/popups/agregar-alumno-popup/agregar-alumno-popup.component';
+import { EditarAlumnoPopupComponent } from './components/popups/editar-alumno-popup/editar-alumno-popup.component';
+import { AlumnosSinAulaComponent } from './components/alumnos-sin-aula/alumnos-sin-aula.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +100,10 @@ import { NuevaAulaPopupComponent } from './components/popups/nueva-aula-popup/nu
     DestinatariosNotaPopupComponent,
     AulasInstitucionComponent,
     NuevaAulaPopupComponent,
+    EditarAulaPopupComponent,
+    AgregarAlumnoPopupComponent,
+    EditarAlumnoPopupComponent,
+    AlumnosSinAulaComponent,
   ],
   imports: [
     BrowserModule,

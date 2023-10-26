@@ -1,9 +1,23 @@
 <h1>Alumnos de {{aula.nombre}}</h1>
+
+<div *ngIf="accedeDirectivo" class="divAgregarAlumno">
+  <button class="icon-btn add-btn" title="Agregar Alumno" (click)="openAgregarAlumnoPopup = true">
+    <div class="add-icon"></div>
+    <div class="btn-txt">Agregar</div>
+  </button>
+</div>
+
 <div class="divMessage">
   <p class="pMessage">{{message}}</p>
 </div>
 
-<div *ngIf="openPopupAusenciasAlumno || openPopupPadresAlumno || openSuccessAlert || openErrorAlert" class="divCover"></div>
+<div class="divAlumnosSinAulaButton">
+  <button (click)="verAlumnosSinAula()" class="alumnosSinAulaButton">
+    Alumnos sin Aula
+  </button>
+</div>
+
+<div *ngIf="openPopupAusenciasAlumno || openPopupPadresAlumno || openSuccessAlert || openErrorAlert || openDeletionPopup || openAgregarAlumnoPopup || openEditarAlumnoPopup" class="divCover"></div>
 
 <!-- POPUP AUSENCIAS ALUMNO -->
 <app-ausencias-hijo-popup class="popupAusenciasAlumno" *ngIf="openPopupAusenciasAlumno"
@@ -37,6 +51,16 @@
 [itemForDelete]="itemForDelete"
 *ngIf="openDeletionPopup">
 </confirm>
+
+<app-agregar-alumno-popup class="alumnoPopup" *ngIf="openAgregarAlumnoPopup"
+(cancelButtonClick)="openAgregarAlumnoPopup = false"
+[aula]="aula">
+</app-agregar-alumno-popup>
+
+<app-editar-alumno-popup class="alumnoPopup" *ngIf="openEditarAlumnoPopup"
+[alumno]="alumno"
+(cancelButtonClick)="openEditarAlumnoPopup = false">
+</app-editar-alumno-popup>
 
 <div class="container" *ngIf="message == ''">
   <div class="divContainerAlumno" *ngFor="let alumno of alumnos.slice(calculateIndices().startIndex, calculateIndices().endIndex)">
@@ -76,6 +100,11 @@
         <button class="btnEliminarAlumnoAula" title="Remover Alumno de Aula" (click)="eliminarAlumnoDeAula(alumno)">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCrossIcon">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </button>
+        <button class="btnEditarAlumno" title="Editar Alumno" (click)="editarAlumno(alumno)">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgEditIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
           </svg>
         </button>
       </div>

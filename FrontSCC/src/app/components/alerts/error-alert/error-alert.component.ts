@@ -14,6 +14,8 @@ export class ErrorAlertComponent {
   @Input() esErrorNomreAulaRepetido: any;
   @Input() esErrorGradoAulaRepetido: any;
   @Input() esErrorDivisionAulaRepetida: any;
+  @Input() esErrorAgregarAusenciaHijoSinAulaAsignada: any;
+  @Input() esErrorAgregarAlumnoYaExistente: any;
 
   public cerrarClicked() {
     this.cerrarButtonClick.emit("cerrar_button_clicked");

@@ -3,12 +3,11 @@
   <form>
     <div class="formContent">
       <div class="titleHeader">
-        <h2>Nueva Aula</h2>
+        <h2>Editar Aula</h2>
       </div>
       <br>
 
       <div *ngIf="showErrorAlert || showSuccessAlert" class="divCover"></div>
-
       <app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
         *ngIf="showErrorAlert"
         [esErrorNomreAulaRepetido]="esErrorNomreAulaRepetido"
@@ -18,50 +17,29 @@
 
       <app-success-alert class="alert" (cerrarButtonClick)="closeSuccessAlert()"
       *ngIf="showSuccessAlert"
-      [esAdditionAula]="showAdditionAulaSuccessAlert">
+      [esEditionAula]="showEditionAulaSuccessAlert">
       </app-success-alert>
 
       <label>Nombre</label>
-      <input #nombreInput type="text" placeholder="Ej: Aula A"  [(ngModel)]="nombreAula" name="nombreAula" required/>
+      <input #nombreInput type="text" placeholder="Ej: Aula A" [value]="aula.nombre"  [(ngModel)]="nombreAula" name="nombreAula" required/>
       <span id="nombreError"></span>
 
       <label>Grado</label>
-      <input #gradoInput type="text" placeholder="Ej: 3er Grado"  [(ngModel)]="gradoAula" name="gradoAula" required/>
+      <input #gradoInput type="text" placeholder="Ej: 3er Grado" [value]="aula.grado"  [(ngModel)]="gradoAula" name="gradoAula" required/>
       <span id="gradoError"></span>
 
       <label>Division</label>
-      <input #divisionInput type="text" placeholder="Ej: Division A"  [(ngModel)]="divisionAula" name="divisionAula" required/>
+      <input #divisionInput type="text" placeholder="Ej: Division A" [value]="aula.division"  [(ngModel)]="divisionAula" name="divisionAula" required/>
       <span id="divisionError"></span>
 
       <label>Institucion</label>
-      <input type="text" value="{{institucion.nombre}}" disabled=""/>
-
-      <label for="">Alumnos de Aula</label>
-      <div class="dropdown">
-        <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="showDropDownListAlumnos()">
-          Seleccione el/los alumno(s)
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" #dropdownMenu>
-          <ng-container *ngFor="let alumno of alumnosSinAula">
-            <div class="divNombresContainer">
-              <label class="check">{{alumno.apellido}}, {{alumno.nombre}}
-                <input type="checkbox" [value]="alumno.id" style="display: none;" class="inputCheck" (click)="alumnoCheck(alumno)">
-                <div class="divSVG">
-                  <svg width="18px" height="18px" viewBox="0 0 18 18">
-                    <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
-                    <polyline points="1 9 7 14 15 4"></polyline>
-                  </svg>
-                </div>
-              </label>
-            </div>
-          </ng-container>
-          <label *ngIf="alumnosSinAula.length == 0" for="">No hay Alumnos sin Aula asignada</label>
-        </div>
-      </div>
+      <input type="text" value="{{aula.institucion.nombre}}" disabled=""/>
 
       <label>Docente</label>
       <select name="docenteAula" (change)="onDocenteSelected($event)">
-        <option selected value="0">Seleccionar Docente...</option>
+        <option value="" disabled selected>Seleccione Docente... </option>
+        <option value="0">Sin Docente</option>
+        <option *ngIf="aula.docente != null" selected [value]="aula.docente.id">{{aula.docente.apellido}}, {{aula.docente.nombre}}</option>
         <option value="" [value]="docente.id" *ngFor="let docente of docentesSinAula">{{docente.apellido}}, {{docente.nombre}}</option>
       </select>
     </div>
@@ -73,11 +51,11 @@
         </button>
       </div>
       <div class="divAddButton">
-        <button class="btnSend" (click)="agregarClicked()">
+        <button class="btnSend" (click)="editarClicked()">
           <span>
-            Agregar
+            Editar
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
             </svg>
           </span>
           <span>

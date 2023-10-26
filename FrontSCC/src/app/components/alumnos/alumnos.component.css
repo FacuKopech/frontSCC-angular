@@ -24,15 +24,154 @@ h1 {
   text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
 }
 
+.divAgregarAlumno{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.icon-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #cdcdcd;
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+.add-btn:hover {
+  width: 120px;
+}
+
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: seagreen;
+}
+
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.icon-btn:focus {
+  outline: none;
+}
+
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 6px;
+  border-radius: 2px;
+}
+
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: seagreen;
+  overflow: hidden;
+}
+
+.add-icon::before {
+  left: 22.4px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.add-icon::after {
+  right: 22.4px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+
 .divMessage .pMessage{
   display: flex;
   justify-content: center;
+}
+
+.divAlumnosSinAulaButton {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.alumnosSinAulaButton {
+  padding: 1.3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.alumnosSinAulaButton:hover {
+  background-color: #25c3be;
+  box-shadow: 0px 15px 20px #32c0d38a;
+  color: #fff;
+  transform: translateY(-7px);
 }
 
 .alert{
   display: flex;
   justify-content: center;
 }
+
+.alumnoPopup{
+  display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+
 .container{
   display: flex;
   flex-direction: row;
@@ -240,8 +379,16 @@ h1 {
   transition: all 0.5s;
  }
 
+ .divEliminarAlumnoAula{
+  display: flex;
+  justify-content: center;
+ }
+
  .divContainerEliminarAlumnoAula{
+  display: flex;
+  justify-content: space-evenly;
   margin-bottom: 4px;
+  width: 46%;
  }
  .btnEliminarAlumnoAula{
   background-color: transparent;
@@ -262,6 +409,26 @@ h1 {
 
  .btnEliminarAlumnoAula:hover .svgCrossIcon{
   color: red;
+ }
+
+ .btnEditarAlumno{
+  background-color: transparent;
+  border: none;
+  transition: transform 0.3s ease;
+ }
+ .btnEditarAlumno:hover{
+  transform: scale(1.08);
+ }
+
+
+ .svgEditIcon{
+  width: 36px;
+  height: 36px;
+  color: white;
+ }
+
+ .btnEditarAlumno:hover .svgEditIcon{
+  color: yellow;
  }
 
  .pagination-controls{

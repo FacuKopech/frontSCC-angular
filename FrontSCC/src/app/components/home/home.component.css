@@ -61,7 +61,7 @@
   justify-content: space-evenly;
 }
 
-.btnNotas {
+.btnGeneral {
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
@@ -151,4 +151,53 @@ h1 {
   font-size: xx-large;
   font-family: 'Dancing Script', cursive;
   text-shadow: -1px -1px 0 #136f63ba, 1px -1px 0 #136f637d, -1px 1px 0 #136f638c, 1px 1px 0 #136f6396;
+}
+
+.divContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.divBtnContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #3d3d3dc4;
+  border-radius: 20px;
+  width: 15%;
+  height: 186px;
+  transition: transform 0.3s ease;
+}
+
+.divBtnContainer:hover{
+  transform: scale(1.03);
+}
+
+.btnOption{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: white;
+}
+
+.btnOption:hover {
+  background-color: #274156;
+  box-shadow: 0px 15px 20px #2741568e;
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.personIcon{
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  fill: currentColor;  
+}
+
+.pSubtitleOptions{
+  font-weight: 500;
+    font-size: larger;
+    font-family: 'Dancing Script', cursive;
+    text-shadow: -1px -1px 0 #136f63ba, 1px -1px 0 #136f637d, -1px 1px 0 #136f638c, 1px 1px 0 #136f6396;
 }

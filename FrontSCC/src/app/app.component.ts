@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router   } from '@angular/router';
+import { Router, NavigationEnd  } from '@angular/router';
 import { ApiService } from './services/user_services/api.service';
 import { SharedAuthService } from './services/sharedAuthService/shared-auth.service';
 
@@ -44,33 +44,66 @@ export class AppComponent implements OnInit {
     if(seMostro == null){
       localStorage.setItem('flag', 'false');
     }
-
-    this.apiService.isLoggedIn().subscribe(res => {
-      if (res) {
-        this.loggedIn = true;
-        this.groups = res.usuario.grupos;
-        this.nombreUserLogueado = res.nombre;
-        this.apellidoUserLogueado = res.apellido;
-        if(this.groups.length > 0){
-          // preguntamos a que hora se loguea el padre
-          if(localStorage.getItem('flag') == 'false'){
-            for (let i = 0; i < this.groups.length; i++) {
-              if(this.groups[i].tipo == "Padre"){
-                const currentDate = new Date();
-                const currentHour = currentDate.getHours();
-                const currentDay = currentDate.getDay()
-                if((currentHour <= 8 || currentHour >= 16)){
-                  this.logueoFueraDeHorario = true;
-                }
-                break;
+    const isLoggedInResult = localStorage.getItem('isLoggedInResult');
+    var isLoggedInResultObject = null;
+    if(isLoggedInResult != null){
+      isLoggedInResultObject = JSON.parse(isLoggedInResult);
+    }
+    if(isLoggedInResultObject != null){
+      this.loggedIn = true;
+      this.groups = isLoggedInResultObject.usuario.grupos;
+      this.nombreUserLogueado = isLoggedInResultObject.nombre;
+      this.apellidoUserLogueado = isLoggedInResultObject.apellido;
+      if(this.groups.length > 0){
+        // preguntamos a que hora se loguea el padre
+        if(localStorage.getItem('flag') == 'false'){
+          for (let i = 0; i < this.groups.length; i++) {
+            if(this.groups[i].tipo == "Padre"){
+              const currentDate = new Date();
+              const currentHour = currentDate.getHours();
+              const currentDay = currentDate.getDay()
+              if((currentHour <= 8 || currentHour >= 16)){
+                this.logueoFueraDeHorario = true;
               }
+              break;
             }
           }
-        }else{
-          this.isLoggedWithNoRoles = true;
         }
+      }else{
+        this.loggedIn = false;
+        this.isLoggedWithNoRoles = true;
       }
-    });
+    }else{
+      this.loggedIn = false;
+    }
+    // this.apiService.isLoggedIn().subscribe(res => {
+    //   if (res) {
+    //     this.loggedIn = true;
+    //     this.groups = res.usuario.grupos;
+    //     this.nombreUserLogueado = res.nombre;
+    //     this.apellidoUserLogueado = res.apellido;
+    //     if(this.groups.length > 0){
+    //       // preguntamos a que hora se loguea el padre
+    //       if(localStorage.getItem('flag') == 'false'){
+    //         for (let i = 0; i < this.groups.length; i++) {
+    //           if(this.groups[i].tipo == "Padre"){
+    //             const currentDate = new Date();
+    //             const currentHour = currentDate.getHours();
+    //             const currentDay = currentDate.getDay()
+    //             if((currentHour <= 8 || currentHour >= 16)){
+    //               this.logueoFueraDeHorario = true;
+    //             }
+    //             break;
+    //           }
+    //         }
+    //       }
+    //     }else{
+    //       this.isLoggedWithNoRoles = true;
+    //     }
+    //   }else{
+    //     this.loggedIn = false;
+    //   }
+    // });
 
     this.authService.isUnauthorized$.subscribe((unauthorized) => {
       this.isUnauthorized = unauthorized;
@@ -95,7 +128,9 @@ export class AppComponent implements OnInit {
   public Logout(): void {
     this.apiService.Logout().subscribe(res => {
       if (res) {
+        localStorage.removeItem('isLoggedInResult');
         this.loggedIn = false;
+        this.isUnauthorized = false;
         localStorage.removeItem('flag');
       }
     });

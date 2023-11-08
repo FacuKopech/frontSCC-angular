@@ -33,8 +33,9 @@ export class SuccessAlertComponent {
   @Input() esAgregarAlumnoNuevoAAula: any;
   @Input() esEditarAlumno: any;
   @Input() esEliminarAlumnoDelSistema: any;
-
-
+  @Input() esEliminarUser: any;
+  @Input() esAgregarUsuario: any;
+  @Input() esEditarUsuario: any;
 
   constructor() {
   }

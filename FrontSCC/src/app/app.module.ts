@@ -55,6 +55,10 @@ import { EditarAulaPopupComponent } from './components/popups/editar-aula-popup/
 import { AgregarAlumnoPopupComponent } from './components/popups/agregar-alumno-popup/agregar-alumno-popup.component';
 import { EditarAlumnoPopupComponent } from './components/popups/editar-alumno-popup/editar-alumno-popup.component';
 import { AlumnosSinAulaComponent } from './components/alumnos-sin-aula/alumnos-sin-aula.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { UserRolesPopupComponent } from './components/popups/user-roles-popup/user-roles-popup.component';
+import { AgregarUserPopupComponent } from './components/popups/agregar-user-popup/agregar-user-popup.component';
+import { EditarUserPopupComponent } from './components/popups/editar-user-popup/editar-user-popup.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +108,10 @@ import { AlumnosSinAulaComponent } from './components/alumnos-sin-aula/alumnos-s
     AgregarAlumnoPopupComponent,
     EditarAlumnoPopupComponent,
     AlumnosSinAulaComponent,
+    UsuariosComponent,
+    UserRolesPopupComponent,
+    AgregarUserPopupComponent,
+    EditarUserPopupComponent
   ],
   imports: [
     BrowserModule,

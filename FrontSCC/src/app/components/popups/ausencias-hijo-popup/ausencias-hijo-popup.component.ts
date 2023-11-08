@@ -53,7 +53,11 @@ export class AusenciasHijoPopupComponent {
         this.ausencias = res;
         console.log(this.ausencias);
         if(this.ausencias.length == 0){
-          this.messageAusencias = "Su hijo/a aun no tiene ninguna ausencia cargada"
+          if(this.esAusenciasHijo){
+            this.messageAusencias = "Su hijo/a aun no tiene ninguna ausencia cargada"
+          }else if(this.esAusenciasAlumno){
+            this.messageAusencias = "Alumno/a sin ausencias cargadas"
+          }          
         }else{
           this.messageAusencias = "";
         }

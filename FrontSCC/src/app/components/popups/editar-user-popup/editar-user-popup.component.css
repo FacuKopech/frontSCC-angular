@@ -1,0 +1,362 @@
+.overlay{
+    display: flex;
+      justify-content: center;
+  }
+  
+  .popup{
+    display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: center;
+      background-color: #2a2a2a;
+      height: fit-content;
+      border-radius: 18px;
+      box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      z-index: 9999;
+      width: 403px;
+  }
+  
+  /* Simple CSS3 Fade-in-down Animation */
+  .fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  
+  
+  @-webkit-keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  /* Simple CSS3 Fade-in Animation */
+  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  
+  .popupHeader{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+      align-content: center;
+  }
+  
+  .popupTitulo{
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+     justify-content: center;
+  } 
+  
+  .h2Usuario{
+    color: white;
+    text-decoration-line: underline;
+  }
+  
+  .spanError{
+    width: 54%;
+  }
+
+  .divCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1d1d1d6b;
+    z-index: 999;
+    backdrop-filter: blur(3px) brightness(1.04);
+  }
+
+  .alert{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .divConInput{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .divConLabel{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  .campos{
+    margin-right: 10px;
+    text-decoration-line: underline;
+    font-size: 22px;
+    font-weight: 500;
+  }
+  
+  .dropdown{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .dropdown-toggle{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    background-color: cadetblue;
+  }
+  .dropdown-menu {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: -webkit-fill-available;
+    height: fit-content;
+    background-color: #332e2e;
+    top: 100%;
+    left: 0;
+    display: none;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    z-index: 1;
+  }
+  
+  .divNombresContainer{
+    display: flex;
+    width: -webkit-fill-available;
+    max-width: 190px;
+  }
+  
+  .dropdown-menu.show {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .check {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    color: white;
+    width: fit-content;
+    height: 18px;
+    -webkit-tap-highlight-color: transparent;
+    transform: translate3d(0, 0, 0);
+    margin-bottom: 10px;
+  }
+  
+  .divSVG{
+    margin-right: 10px;
+  }
+  
+  .check:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(34,50,84,0.03);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .check svg {
+    position: relative;
+    z-index: 1;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #c8ccd4;
+    stroke-width: 1.5;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
+  }
+  
+  .check svg path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 0;
+  }
+  
+  .check svg polyline {
+    stroke-dasharray: 22;
+    stroke-dashoffset: 66;
+  }
+  
+  .check:hover:before {
+    opacity: 1;
+  }
+  
+  .check:hover svg {
+    stroke: darkgreen;
+  }
+  
+  .check .inputCheck:checked + .divSVG svg {
+    stroke: darkgreen;
+  }
+  
+  .check .inputCheck:checked + .divSVG svg path {
+    stroke-dashoffset: 60;
+    transition: all 0.3s linear;
+  }
+  
+  .check .inputCheck:checked + .divSVG svg polyline {
+    stroke-dashoffset: 42;
+    transition: all 0.2s linear;
+    transition-delay: 0.15s;
+  }
+  
+  .dropdown-menu label{
+    color: white;
+  }
+  .divActionButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 18px;
+    width: 93%;
+  }
+  .popupCloseButton{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  
+  .closeButton {
+    padding: 1.3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .closeButton:hover {
+    background-color: #C24037;
+    box-shadow: 0px 15px 20px #dc453a8a;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  .btnSend {
+    position: relative;
+    outline: 0;
+    border: 1px solid transparent;
+    background-color: rgb(195, 200, 25);
+    color: #ffffff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(92, 103, 9, 0.685), 0 2px 4px -1px rgba(92, 103, 9, 0.685);
+  }
+  
+  .btnSend span {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all .4s ease;
+  }
+  
+  .btnSend svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .btnSend span:nth-child(2),.btnSend span:nth-child(3) {
+    position: absolute;
+    top: 40px;
+    color: #fff;
+  }
+  
+  .btnSend span:nth-child(2) {
+    background-color: rgb(195, 200, 25);
+  }
+  
+  .btnSend span:nth-child(3) {
+    background-color: rgb(195, 200, 25);
+  }
+  
+  .btnSend:hover {
+    box-shadow: 0 10px 15px -3px rgba(92, 103, 9, 0.685), 0 4px 6px -2px rgba(92, 103, 9, 0.685);
+  }
+  
+  .btnSend:hover span:nth-child(2), .btnSend:focus span:nth-child(3) {
+    top: 0;
+  }
+  
+  .btnSend:focus {
+    box-shadow: none;
+  }
+  
+  
+  
+  input[type=text],input[type=password],input[type=email], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #2a2a2a;
+  }
+  

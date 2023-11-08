@@ -55,4 +55,28 @@ export class ApiService {
   public ObtenerTipoPersonaLogueada(): Observable<any>{
     return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerTipoPersonaLogueada")
   }
+
+  public ObtenerUsuariosSistema(): Observable<any>{
+    return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerUsuariosSistema")
+  }
+
+  public ObtenerRolesSistema(): Observable<any>{
+    return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerRolesSistema")
+  }
+
+  public ObtenerRolesUsuario(idUser: number): Observable<any>{
+    return this.http.get<any>(this.hostUrl + `/Usuarios/ObtenerRolesUsuario/${idUser}`)
+  }
+
+  public EliminarUsuario(idUser: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.hostUrl + `/Usuarios/EliminarUsuario/${idUser}`);
+  }
+
+  public AgregarUsuario( usuario: {email: string, username: string, clave: string, rolesSeleccionados: any[]}): Observable<boolean> {    
+    return this.http.post<boolean>(this.hostUrl + `/Usuarios/AgregarUsuario/`, usuario);
+  }
+
+  public EditarUsuario(idUser: number, usuario: {email: string, username: string, clave: string, rolesSeleccionados: any[]}): Observable<any> {
+    return this.http.put<any>(this.hostUrl + `/Usuarios/EditarUsuario/${idUser}`, usuario);
+  }
 }

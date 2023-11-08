@@ -15,7 +15,10 @@ export class AuthGuard  {
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     return new Observable<boolean>((observer) => {
       this.userService.isLoggedIn().subscribe(res => {
-        if(res){
+        if(res){          
+          const isLoggedInResult = JSON.stringify(res);
+          localStorage.setItem('isLoggedInResult', isLoggedInResult);
+          console.log(isLoggedInResult);
           this.userService.ObtenerTipoPersonaLogueada().subscribe((res: any[]) => {
             var rolesArray: any[] = [];
             rolesArray = route.data['roles'];
@@ -41,12 +44,15 @@ export class AuthGuard  {
               observer.complete();
             }
           });
+        }else if(res == null){      
+          this.authService.setUnauthorized(true)
+          observer.next(false);
+          observer.complete();
         }else{
           this.authService.setUnauthorized(true)
           observer.next(false);
           observer.complete();
         }
-
       });
     });
   }

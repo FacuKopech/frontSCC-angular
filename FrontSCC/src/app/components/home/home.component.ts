@@ -15,12 +15,22 @@ export class HomeComponent {
 
 
   public ngOnInit(): void {
-    this.apiService.isLoggedIn().subscribe(res => {
-      if (res) {
-        this.username = res.usuario.username;
-        this.groups = res.usuario.grupos;
-      }
-    });
+    const isLoggedInResult = localStorage.getItem('isLoggedInResult');
+    console.log(isLoggedInResult);
+    var isLoggedInResultObject = null;
+    if(isLoggedInResult != null){
+      isLoggedInResultObject = JSON.parse(isLoggedInResult);
+    }
+    if(isLoggedInResultObject != null){
+      this.username = isLoggedInResultObject.usuario.username;
+      this.groups = isLoggedInResultObject.usuario.grupos; 
+    }
+    // this.apiService.isLoggedIn().subscribe(res => {
+    //   if (res) {
+    //     this.username = res.usuario.username;
+    //     this.groups = res.usuario.grupos; 
+    //   }
+    // });
   }
 
   public NotasEmitidas(): void {
@@ -29,5 +39,9 @@ export class HomeComponent {
 
   public NotasRecibidas(): void {
     this.router.navigate(['/notas_recibidas']);
+  }
+
+  public usuariosClick(){
+    this.router.navigate(['/usuarios']);
   }
 }

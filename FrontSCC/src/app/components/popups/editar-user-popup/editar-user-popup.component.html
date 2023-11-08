@@ -1,0 +1,88 @@
+<div class="overlay">
+    <div id="popup-widthClass" class="popup fadeInDown">
+      <div class="popupHeader">
+        <div class="popupTitulo">
+          <h2 class="h2Usuario">Editar Usuario</h2>
+        </div>
+        <div class="spanError">
+          <span id="generalError"></span>
+        </div>
+      </div>
+      <div *ngIf="showErrorAlert || showSuccessAlert" class="divCover"></div>
+      
+      <app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
+        *ngIf="showErrorAlert"
+        [esErrorEmailRepetido]="esErrorEmailRepetido"
+        [esErrorUsernameRepetido]="esErrorUsernameRepetido">
+      </app-error-alert>
+
+      <app-success-alert class="alert" (cerrarButtonClick)="closeSuccessAlert()"
+      *ngIf="showSuccessAlert"
+      [esEditarUsuario]="esEditarUsuario">
+      </app-success-alert>
+  
+      <div class="content">        
+        <div class="divConInput">
+          <label class="campos">Email: </label>
+          <input value={{user.email}} #emailInput type="email" [(ngModel)]="emailUsuario">
+          <span id="emailError"></span>
+        </div>
+        <div  class="divConInput">
+          <label class="campos">Username: </label>
+          <input #usernameInput value={{user.username}} type="text" [(ngModel)]="usernameUsuario">
+          <span id="usernameError"></span>
+        </div>
+        <div  class="divConInput">
+            <label class="campos">Clave: </label>
+            <input #claveInput type="password" [(ngModel)]="claveUsuario">
+            <span id="claveError"></span>
+        </div>
+        <label for="">Roles</label>
+          <div class="dropdown">
+            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="showDropDownListRoles()">
+              Seleccione el/los rol(es)
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" #dropdownMenu>
+              <ng-container *ngFor="let rol of rolesSistema">
+                <div class="divNombresContainer">
+                  <label class="check">{{rol.tipo}}
+                    <input type="checkbox" [value]="rol.id" style="display: none;" class="inputCheck" (click)="rolCheck(rol)"  [checked]="rolesSeleccionados.includes(rol.tipo)">
+                    <div class="divSVG">
+                      <svg width="18px" height="18px" viewBox="0 0 18 18">
+                        <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                        <polyline points="1 9 7 14 15 4"></polyline>
+                      </svg>
+                    </div>
+                  </label>
+                </div>
+              </ng-container>  
+                   
+            </div>
+          </div>
+          <span id="rolesDropdownError"></span>
+      </div>
+      <div class="divActionButtons">
+        <div class="popupCloseButton">
+          <button (click)="cancelarClicked()" class="closeButton">
+            Cancelar
+          </button>
+          <button class="btnSend" (click)="editarClick()">
+            <span>
+              Modificar
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+              </svg>
+            </span>
+            <span>
+              Seguro?
+            </span>
+            <span>
+              Enviado!
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linecap="round" stroke-width="2" stroke="#ffffff" d="M8.00011 13L12.2278 16.3821C12.6557 16.7245 13.2794 16.6586 13.6264 16.2345L22.0001 6"></path> <path fill="#ffffff" d="M11.1892 12.2368L15.774 6.63327C16.1237 6.20582 16.0607 5.5758 15.6332 5.22607C15.2058 4.87635 14.5758 4.93935 14.226 5.36679L9.65273 10.9564L11.1892 12.2368ZM8.02292 16.1068L6.48641 14.8263L5.83309 15.6248L2.6 13.2C2.15817 12.8687 1.53137 12.9582 1.2 13.4C0.868627 13.8419 0.95817 14.4687 1.4 14.8L4.63309 17.2248C5.49047 17.8679 6.70234 17.7208 7.381 16.8913L8.02292 16.1068Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

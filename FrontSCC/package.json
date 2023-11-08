@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^16.1.5",
     "@angular/router": "^16.1.5",
     "@material/dialog": "^15.0.0-canary.684e33d25.0",
-    "@ng-bootstrap/ng-bootstrap": "^14.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@ngneat/helipopper": "^7.0.2",
     "@ngneat/overview": "^4.1.0",
     "@tinymce/tinymce-angular": "^7.0.0",

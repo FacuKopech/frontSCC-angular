@@ -14,13 +14,14 @@ import { AsistenciaAulaComponent } from './components/asistencia-aula/asistencia
 import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-de-asistencia.component';
 import { AulasInstitucionComponent } from './components/aulas-institucion/aulas-institucion.component';
 import { AlumnosSinAulaComponent } from './components/alumnos-sin-aula/alumnos-sin-aula.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo', 'Admin'] } },
   { path: 'notas_emitidas', component: NotasEmitidasComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
   { path: 'notas_recibidas', component: NotasRecibidasComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo'] } },
   { path: 'hijos', component: HijosComponent, canActivate: [AuthGuard], data: { roles: ['Padre'] } },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'asistencia_aula', component: AsistenciaAulaComponent, canActivate: [AuthGuard], data: { roles: ['Docente'] } },
   { path: 'tomar_asistencia', component: TomaDeAsistenciaComponent, canActivate: [AuthGuard], data: { roles: ['Docente'] } },
   { path: 'aulas-institucion', component: AulasInstitucionComponent, canActivate: [AuthGuard], data: { roles: ['Directivo'] } },
-  { path: 'alumnos-sin-aula', component: AlumnosSinAulaComponent, canActivate: [AuthGuard], data: { roles: ['Directivo'] } }
+  { path: 'alumnos-sin-aula', component: AlumnosSinAulaComponent, canActivate: [AuthGuard], data: { roles: ['Directivo'] } },
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,24 @@
+<div class="overlay">
+    <div class="popup fadeInDown">
+      <div class="popupHeader">
+        <div class="popupTitulo">
+          <h2>Usuario</h2>
+        </div>
+      </div>
+  
+      <div class="content">
+        <div class="divCampos">
+          <label class="campos">Username: </label> <label class="labelData" for="">{{usuario.username}}</label>
+        </div>
+        <div class="divCampos">
+          <label class="campos">Email: </label> <label class="labelData" for="">{{usuario.email}}</label>
+        </div>       
+      </div>
+      <div  class="customButtons">
+        <button (click)="cancelarClicked()" class="closeButton">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+  

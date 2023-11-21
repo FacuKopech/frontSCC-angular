@@ -33,7 +33,7 @@ export class EditarUserPopupComponent {
   esEditarUsuario = false;
   rolesArraysAreEqual = false;
   
-  public ngOnInit(){
+  public ngOnInit(){    
     this.emailUsuario = this.user.email;
     this.usernameUsuario = this.user.username;
     this.userService.ObtenerRolesUsuario(this.user.id).subscribe(res => {

@@ -1,0 +1,126 @@
+.overlay{
+    display: flex;
+      justify-content: center;
+  }
+  
+  .popup{
+    display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: center;
+      background-color: #373b3e;
+      height: fit-content;
+      width: min-content;
+      min-width: 326px;
+      border-radius: 18px;
+      box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
+      position: absolute;
+      z-index: 9999;
+  }
+  
+  /* Simple CSS3 Fade-in-down Animation */
+  .fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @-webkit-keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  /* Simple CSS3 Fade-in Animation */
+  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  
+  .popupHeader{
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .content{
+    display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      margin-right: 16px;
+      margin-left: 16px;
+  }
+  
+  .divCampos{
+    display: flex;
+    justify-content: space-between;
+  }
+  .campos{
+    margin-right: 10px;
+    text-decoration-line: underline;
+    font-size: 22px;
+    font-weight: 500;
+  }
+  
+  .labelData{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  
+  .cuerpoNota{
+    text-align: center;
+  }
+  
+  .customButtons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .closeButton {
+    padding: 1.3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .closeButton:hover {
+    background-color: #C24037;
+    box-shadow: 0px 15px 20px #dc453a8a;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  

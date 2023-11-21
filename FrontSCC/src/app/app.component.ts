@@ -51,7 +51,14 @@ export class AppComponent implements OnInit {
     }
     if(isLoggedInResultObject != null){
       this.loggedIn = true;
-      this.groups = isLoggedInResultObject.usuario.grupos;
+      const rolesLoggedIn = localStorage.getItem('rolesUserLoggedIn');
+      var rolesUserLoggedInObject = null;
+      if(rolesLoggedIn != null){ 
+        rolesUserLoggedInObject = JSON.parse(rolesLoggedIn);
+      }
+      
+      console.log(rolesUserLoggedInObject);
+      this.groups = rolesUserLoggedInObject;
       this.nombreUserLogueado = isLoggedInResultObject.nombre;
       this.apellidoUserLogueado = isLoggedInResultObject.apellido;
       if(this.groups.length > 0){

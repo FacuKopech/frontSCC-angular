@@ -36,7 +36,13 @@ export class SuccessAlertComponent {
   @Input() esEliminarUser: any;
   @Input() esAgregarUsuario: any;
   @Input() esEditarUsuario: any;
-
+  @Input() esEliminarPersona: any;
+  @Input() esEditarPersona: any;
+  @Input() esAgregarPersona: any;
+  @Input() esAgregarInstitucion: any;
+  @Input() esEliminarInstitucion: any;
+  @Input() esEditarInstitucion: any;
+  
   constructor() {
   }
 

@@ -15,6 +15,8 @@ import { TomaDeAsistenciaComponent } from './components/toma-de-asistencia/toma-
 import { AulasInstitucionComponent } from './components/aulas-institucion/aulas-institucion.component';
 import { AlumnosSinAulaComponent } from './components/alumnos-sin-aula/alumnos-sin-aula.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { PersonasComponent } from './components/personas/personas.component';
+import { InstitucionesComponent } from './components/instituciones/instituciones.component';
 
 
 
@@ -34,6 +36,8 @@ const routes: Routes = [
   { path: 'aulas-institucion', component: AulasInstitucionComponent, canActivate: [AuthGuard], data: { roles: ['Directivo'] } },
   { path: 'alumnos-sin-aula', component: AlumnosSinAulaComponent, canActivate: [AuthGuard], data: { roles: ['Directivo'] } },
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'instituciones', component: InstitucionesComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

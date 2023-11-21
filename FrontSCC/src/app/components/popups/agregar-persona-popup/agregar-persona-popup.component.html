@@ -1,0 +1,108 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+    <form>
+      <div class="formContent">
+        <div class="titleHeader">
+          <h2>Agregar Persona</h2>
+        </div>
+  
+        <div *ngIf="showErrorAlert || showSuccessAlert" class="divCover"></div>
+  
+        <app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
+          *ngIf="showErrorAlert"
+          [esErrorEmailRepetidoPersona]="esErrorEmailRepetidoPersona"
+          [esErrorDNIRepetido]="esErrorDNIRepetido">
+        </app-error-alert>
+
+        <app-success-alert class="alert" *ngIf="showSuccessAlert"
+        [esAgregarPersona]="esAgregarPersona"
+        (cerrarButtonClick)="cerrarSuccess()">          
+        </app-success-alert>
+        <div class="divTipoPersonaContainer">
+            <label for="">Tipo Persona</label>
+            <div class="container">
+                <div class="radio-tile-group">
+                  <div class="input-container" (click)="padreCheck()">
+                    <input id="padre" class="radio-button" type="radio" name="engine" [checked]="padreRadioBtnCheck" #radioButtonPadre>
+                    <div class="radio-tile">
+                      <label for="padre" class="radio-tile-label">Padre</label>
+                    </div>
+                  </div>
+                  <div class="input-container" (click)="docenteCheck()">
+                    <input id="docente" class="radio-button" type="radio" name="engine" [checked]="docenteRadioBtnCheck" #radioButtonDocente>
+                    <div class="radio-tile">
+                      <label for="docente" class="radio-tile-label">Docente</label>
+                    </div>
+                  </div>
+                  <div class="input-container" (click)="directivoCheck()">
+                    <input id="directivo" class="radio-button" type="radio" name="engine" [checked]="directivoRadioBtnCheck" #radioButtonDirectivo>
+                    <div class="radio-tile">
+                      <label for="directivo" class="radio-tile-label">Directivo</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div *ngIf="containerShow" class="divContainer">
+            <div class="divAgregarPersonaLeft">
+                <label>Nombre</label>
+                <input #nombreInput type="text" placeholder="Nombre de la Persona"  required/>
+                <span id="nombreError"></span>
+                <label>Apellido</label>
+                <input #apellidoInput type="text" placeholder="Apellido de la Persona"  required/>
+                <span id="apellidoError"></span>
+                <label>DNI</label>
+                <input #dniInput type="number" placeholder="DNI de la Persona"  required/>
+                <span id="dniError"></span>
+                <label>Email</label>
+                <input #emailInput type="email" [value]="emailInputValue" placeholder="Email de la Persona"  disabled/>
+                
+              </div>
+              <div class="divAgregarPersonaRight">
+                  <label>Telefono</label>
+                <input #telefonoInput type="text" placeholder="Telefono de la Persona"/>
+                <span id="telefonoError"></span>
+                <label>Domicilio</label>
+                <input #domicilioInput type="text" placeholder="Domicilio de la Persona"/>
+                <span id="domicilioError"></span>
+                <label>Usuario</label>
+                <select place name="usuarioPersona" [(ngModel)]="usuarioSeleccionado" (ngModelChange)="onUsuarioSelected()">
+                    <option [ngValue]="undefined" disabled selected>Seleccionar Usuario...</option>
+                  <option value="" [ngValue]="user" *ngFor="let user of users">{{user.email}}</option>
+                </select>
+                <label>Institucion</label>
+                <select name="institucionPersona" [(ngModel)]="institucionSeleccionada" (ngModelChange)="onInstitucionSelected()">
+                  <option [ngValue]="undefined" disabled selected>Seleccionar Institucion...</option>
+                  <option value="" [ngValue]="institucion" *ngFor="let institucion of instituciones">{{institucion.nombre}}</option>
+                </select>
+              </div>
+        </div>        
+      </div>
+  
+      <div  class="containerBottomButtons">
+        <div  class="customButtons">
+          <button (click)="cancelarClicked()" class="closeButton">
+            Cancelar
+          </button>
+        </div>
+        <div class="divAddButton">
+          <button class="btnSend" (click)="agregarClicked()">
+            <span>
+              Agregar
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </span>
+            <span>
+              Seguro?
+            </span>
+            <span>
+              Enviado!
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linecap="round" stroke-width="2" stroke="#ffffff" d="M8.00011 13L12.2278 16.3821C12.6557 16.7245 13.2794 16.6586 13.6264 16.2345L22.0001 6"></path> <path fill="#ffffff" d="M11.1892 12.2368L15.774 6.63327C16.1237 6.20582 16.0607 5.5758 15.6332 5.22607C15.2058 4.87635 14.5758 4.93935 14.226 5.36679L9.65273 10.9564L11.1892 12.2368ZM8.02292 16.1068L6.48641 14.8263L5.83309 15.6248L2.6 13.2C2.15817 12.8687 1.53137 12.9582 1.2 13.4C0.868627 13.8419 0.95817 14.4687 1.4 14.8L4.63309 17.2248C5.49047 17.8679 6.70234 17.7208 7.381 16.8913L8.02292 16.1068Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

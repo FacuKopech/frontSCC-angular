@@ -26,7 +26,7 @@
       <p class="lead pSubtitle">Puedes comenzar la gestion haciendo click en las siguientes opciones:</p>
       <div class="divContainer">
         <div class="divBtnContainer">
-          <button *ngIf="grupo.tipo == 'Admin'" class="btnGeneral btnOption">Personas</button>
+          <button *ngIf="grupo.tipo == 'Admin'" class="btnGeneral btnOption"  (click)="personasClick()">Personas</button>
           <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon personIcon" viewBox="0 0 1024 1024" version="1.1"><path d="M512 597.994667q108.010667 0 225.002667 46.997333t116.992 123.008l0 85.994667-684.010667 0 0-85.994667q0-76.010667 116.992-123.008t225.002667-46.997333zM512 512q-69.994667 0-120-50.005333t-50.005333-120 50.005333-121.002667 120-51.008 120 51.008 50.005333 121.002667-50.005333 120-120 50.005333z"/></svg>          
           <p class="pSubtitleOptions">Selecciona esta opcion para gestionar las Personas del sistema</p>
         </div>
@@ -38,7 +38,7 @@
           <p class="pSubtitleOptions">Selecciona esta opcion para gestionar los Usuarios del sistema</p>
         </div>
         <div class="divBtnContainer">
-          <button *ngIf="grupo.tipo == 'Admin'" class="btnGeneral btnOption">Instituciones</button>
+          <button *ngIf="grupo.tipo == 'Admin'" class="btnGeneral btnOption" (click)="institucionesClick()">Instituciones</button>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
           </svg>          

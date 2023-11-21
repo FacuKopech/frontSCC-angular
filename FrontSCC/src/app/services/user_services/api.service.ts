@@ -60,6 +60,10 @@ export class ApiService {
     return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerUsuariosSistema")
   }
 
+  public ObtenerUsuariosSinAsignacionPersona(): Observable<any>{
+    return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerUsuariosSinAsignacionPersona")
+  }
+
   public ObtenerRolesSistema(): Observable<any>{
     return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerRolesSistema")
   }

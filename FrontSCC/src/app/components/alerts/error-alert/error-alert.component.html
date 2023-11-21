@@ -43,7 +43,11 @@
       <p *ngIf="esErrorAgregarAlumnoYaExistente">El DNI de Alumno que intenta agregar ya existe</p>
       <p *ngIf="esErrorEmailRepetido">Ya existe un Usuario con ese Email registrado</p>
       <p *ngIf="esErrorUsernameRepetido">Ya existe un Usuario con ese Username registrado</p>
-
+      <p *ngIf="esErrorDNIRepetido">Ya existe una Persona con ese DNI registrado</p>
+      <p *ngIf="esErrorEmailRepetidoPersona">Ya existe una Persona con ese Email registrado</p>
+      <p *ngIf="esErrorNombreInstitucionRepetido">Ya existe una Institucion con ese Nombre registrado</p>
+      <p *ngIf="esErrorTelefonoInstitucionRepetido">Ya existe una Institucion con ese Telefono registrado</p>
+      
     </div>
     <div class="divCloseBtn">
       <button (click)="cerrarClicked()" class="closeButton">

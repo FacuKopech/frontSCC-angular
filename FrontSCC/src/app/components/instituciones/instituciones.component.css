@@ -1,0 +1,336 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-size: 50px;
+    text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+  }
+  
+  .divAgregarInstitucion{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .icon-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #cdcdcd;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    transition: width 0.2s ease-in-out;
+    font-weight: 500;
+    font-family: inherit;
+  }
+  
+  .add-btn:hover {
+    width: 120px;
+  }
+  
+  .add-btn::before,
+  .add-btn::after {
+    transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 10px;
+    top: calc(50% - 2px);
+    background: seagreen;
+  }
+  
+  .add-btn::after {
+    right: 14px;
+    overflow: hidden;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+  
+  .add-btn::before {
+    left: 14px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+  
+  .icon-btn:focus {
+    outline: none;
+  }
+  
+  .btn-txt {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .add-btn:hover::before,
+  .add-btn:hover::after {
+    width: 6px;
+    border-radius: 2px;
+  }
+  
+  .add-btn:hover .btn-txt {
+    opacity: 1;
+  }
+  
+  .add-icon::after,
+  .add-icon::before {
+    transition: all 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 2px;
+    top: calc(50% - 10px);
+    background: seagreen;
+    overflow: hidden;
+  }
+  
+  .add-icon::before {
+    left: 22.4px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+  
+  .add-icon::after {
+    right: 22.4px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+  
+  .add-btn:hover .add-icon::before {
+    left: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
+  }
+  
+  .add-btn:hover .add-icon::after {
+    right: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
+  }
+  
+  .divMessage .pMessage{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+  }
+  .divCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1d1d1d6b; /* Transparent black background */
+    z-index: 999; /* Ensure the overlay is above other elements */
+    backdrop-filter: blur(3px) brightness(1.04);
+  }
+  
+  .tokenPopup{
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .agregarHistorialPopup{
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .alert{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .divPrincipal{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 70%;
+  }
+  
+  .container{
+    width: 421px;
+  }
+  
+  
+  .divContainerInfo{
+    text-align: center;
+    background-color: #28282bbd;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-radius: 14px;
+    height: fit-content;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .divContainerInfo:hover{
+    transform: scale(1.02);
+  
+  }
+  
+  .divNombreInstitucion{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  }
+  
+  .divData{
+    display: flex;
+    justify-content: space-between;
+  }
+    
+  .labelTitle{
+    text-decoration-line: underline;
+    font-size: 22px;
+    font-weight: 500;
+    margin-left: 12px;
+  }
+  
+  .labelData{
+    font-size: 22px;
+    margin-right: 12px;
+  }
+
+  
+  svg title {
+    transition: opacity 0.5s ease-in-out; /* Adjust the transition duration */
+  }
+  
+  .divActionButtons{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4px;
+  }
+  
+  .divEliminarPersona {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  
+  
+  .btnInfo {
+    width: 6.5em;
+    height: 2.3em;
+    margin: 0.5em;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 0.625em;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+   }
+  
+   .btnInfo:hover {
+    color: black;
+   }
+  
+   .btnInfo:after {
+    content: "";
+    background: white;
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+   }
+  
+   .btnInfo:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+   }
+
+   .divModificarBtn{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+   }
+   .btnEliminarUser{
+    background-color: transparent;
+    border: none;
+   }
+
+   .btnEditarUser{
+    background-color: transparent;
+    border: none;
+   }
+
+   .svgEditIcon{
+    width: 45px;
+    height: 45px;
+    color: white;
+   }
+
+   .svgCrossIcon{
+    width: 45px;
+    height: 45px;
+    color: white;
+   }
+  
+   .btnEliminarUser:hover .svgCrossIcon{
+    color: red;
+   }
+  
+   .btnEditarUser:hover .svgEditIcon{
+    color: yellow;
+   }
+  .pagination-controls{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px;
+    height: 24px;
+   }
+  
+   .paginationBtn{
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+   }
+  
+   .paginationBtn:hover{
+    background-color: #23a9da90;
+    color: white;
+   }
+  
+   .svgArrowIcon{
+    height: 20px;
+      width: 20px;
+      display: flex;
+   }
+  
+   .currentPageBtn{
+    border-radius: 100%;
+      height: fit-content;
+      background-color: transparent;
+      border: none;
+   }
+  
+   .current-page {
+    background-color: #23a9da;
+    color: #fff;
+  }
+  
+   .currentPageBtn:hover{
+    background-color: #23a9da;
+    color: white;
+   }
+  
+  .goBackComp{
+    display: flex;
+    justify-content: center;
+   }
+  

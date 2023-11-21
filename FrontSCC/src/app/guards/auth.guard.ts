@@ -18,8 +18,12 @@ export class AuthGuard  {
         if(res){          
           const isLoggedInResult = JSON.stringify(res);
           localStorage.setItem('isLoggedInResult', isLoggedInResult);
-          console.log(isLoggedInResult);
           this.userService.ObtenerTipoPersonaLogueada().subscribe((res: any[]) => {
+            if(res){      
+              const rolesUserLoggedIn = JSON.stringify(res);
+              localStorage.setItem('rolesUserLoggedIn', rolesUserLoggedIn);
+            }
+            
             var rolesArray: any[] = [];
             rolesArray = route.data['roles'];
 

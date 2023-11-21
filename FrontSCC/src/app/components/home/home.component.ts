@@ -16,14 +16,22 @@ export class HomeComponent {
 
   public ngOnInit(): void {
     const isLoggedInResult = localStorage.getItem('isLoggedInResult');
-    console.log(isLoggedInResult);
+    const rolesUserLoggedIn = localStorage.getItem('rolesUserLoggedIn');
     var isLoggedInResultObject = null;
+    var rolesUserLoggedInObject = null;
     if(isLoggedInResult != null){
       isLoggedInResultObject = JSON.parse(isLoggedInResult);
     }
     if(isLoggedInResultObject != null){
       this.username = isLoggedInResultObject.usuario.username;
       this.groups = isLoggedInResultObject.usuario.grupos; 
+    }
+    if(rolesUserLoggedIn != null){
+      rolesUserLoggedInObject = JSON.parse(rolesUserLoggedIn);
+    }
+    if(isLoggedInResultObject != null){
+      this.username = isLoggedInResultObject.usuario.username;
+      this.groups = rolesUserLoggedInObject; 
     }
     // this.apiService.isLoggedIn().subscribe(res => {
     //   if (res) {
@@ -43,5 +51,13 @@ export class HomeComponent {
 
   public usuariosClick(){
     this.router.navigate(['/usuarios']);
+  }
+
+  public personasClick(){
+    this.router.navigate(['/personas']);
+  }
+
+  public institucionesClick(){
+    this.router.navigate(['/instituciones']);
   }
 }

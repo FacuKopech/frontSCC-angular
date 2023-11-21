@@ -59,6 +59,13 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UserRolesPopupComponent } from './components/popups/user-roles-popup/user-roles-popup.component';
 import { AgregarUserPopupComponent } from './components/popups/agregar-user-popup/agregar-user-popup.component';
 import { EditarUserPopupComponent } from './components/popups/editar-user-popup/editar-user-popup.component';
+import { PersonasComponent } from './components/personas/personas.component';
+import { AgregarPersonaPopupComponent } from './components/popups/agregar-persona-popup/agregar-persona-popup.component';
+import { UsuarioPersonaPopupComponent } from './components/popups/usuario-persona-popup/usuario-persona-popup.component';
+import { EditarPersonaPopupComponent } from './components/popups/editar-persona-popup/editar-persona-popup.component';
+import { InstitucionesComponent } from './components/instituciones/instituciones.component';
+import { AgregarInstitucionPopupComponent } from './components/popups/agregar-institucion-popup/agregar-institucion-popup.component';
+import { EditarInstitucionPopupComponent } from './components/popups/editar-institucion-popup/editar-institucion-popup.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +118,14 @@ import { EditarUserPopupComponent } from './components/popups/editar-user-popup/
     UsuariosComponent,
     UserRolesPopupComponent,
     AgregarUserPopupComponent,
-    EditarUserPopupComponent
+    EditarUserPopupComponent,
+    PersonasComponent,
+    AgregarPersonaPopupComponent,
+    UsuarioPersonaPopupComponent,
+    EditarPersonaPopupComponent,
+    InstitucionesComponent,
+    AgregarInstitucionPopupComponent,
+    EditarInstitucionPopupComponent
   ],
   imports: [
     BrowserModule,

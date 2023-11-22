@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ApiService } from 'src/app/services/user_services/api.service';
 
 @Component({
   selector: 'app-user-roles-popup',
@@ -11,6 +12,19 @@ export class UserRolesPopupComponent {
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
+  
+  roles: any[] = [];
+
+  constructor(private userService: ApiService){}
+
+  ngOnInit(): void{
+    this.userService.ObtenerRolesUsuario(this.user.id).subscribe(res => {     
+      if(res){
+        this.roles = res;
+        console.log(this.roles);       
+      }
+    });
+  }
 
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");

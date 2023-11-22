@@ -11,8 +11,8 @@ export class ApiService {
   private hostUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  public Login(username: string, clave: string): Observable<boolean> {
-    return this.http.get<boolean>(this.hostUrl + `/Usuarios/LogIn/${username}/${clave}`);
+  public Login(username: string, clave: string): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Usuarios/LogIn/${username}/${clave}`);
   }
 
   public isLoggedIn(): Observable<any> {

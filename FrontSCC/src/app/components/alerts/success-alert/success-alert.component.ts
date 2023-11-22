@@ -42,6 +42,7 @@ export class SuccessAlertComponent {
   @Input() esAgregarInstitucion: any;
   @Input() esEliminarInstitucion: any;
   @Input() esEditarInstitucion: any;
+  @Input() esBackupDB: any;
   
   constructor() {
   }

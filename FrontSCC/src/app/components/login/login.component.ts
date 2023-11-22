@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../services/user_services/api.service';
 import { AppComponent } from '../../app.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login_services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent {
 
-  constructor(private apiService: ApiService, private router: Router, private appComponent: AppComponent) { }
+  constructor(private apiService: ApiService, private router: Router, private appComponent: AppComponent, private loginService: LoginService) { }
 
   @Input() username: string = "";
   @Input() clave: string = "";
@@ -41,6 +42,7 @@ export class LoginComponent {
     else {
       this.apiService.Login(this.username, this.clave).subscribe(res => {
         if (res) {
+          this.loginService.setLoggedInUser(res);
           this.message = "";
           this.router.navigate(['/home']);
           this.appComponent.ngOnInit();

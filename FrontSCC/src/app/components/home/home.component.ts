@@ -1,6 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '../../services/user_services/api.service';
+import { LoginService } from 'src/app/services/login_services/login.service';
+import { AdminService } from 'src/app/services/admin_services/admin.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -9,36 +12,37 @@ import { ApiService } from '../../services/user_services/api.service';
 })
 export class HomeComponent {
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService, private adminService: AdminService) { }
+  
   public username: string = "";
   public groups: any[] = [];
-
+  openErrorAlert = false;
+  openSuccessAlert = false;
+  esBackupDB = false;
 
   public ngOnInit(): void {
-    const isLoggedInResult = localStorage.getItem('isLoggedInResult');
-    const rolesUserLoggedIn = localStorage.getItem('rolesUserLoggedIn');
-    var isLoggedInResultObject = null;
-    var rolesUserLoggedInObject = null;
-    if(isLoggedInResult != null){
-      isLoggedInResultObject = JSON.parse(isLoggedInResult);
+    const user = this.loginService.getLoggedInUser();
+    if(user != null){
+      this.username = user.usuario.username;
+      this.groups = user.roles; 
     }
-    if(isLoggedInResultObject != null){
-      this.username = isLoggedInResultObject.usuario.username;
-      this.groups = isLoggedInResultObject.usuario.grupos; 
-    }
-    if(rolesUserLoggedIn != null){
-      rolesUserLoggedInObject = JSON.parse(rolesUserLoggedIn);
-    }
-    if(isLoggedInResultObject != null){
-      this.username = isLoggedInResultObject.usuario.username;
-      this.groups = rolesUserLoggedInObject; 
-    }
-    // this.apiService.isLoggedIn().subscribe(res => {
-    //   if (res) {
-    //     this.username = res.usuario.username;
-    //     this.groups = res.usuario.grupos; 
-    //   }
-    // });
+  }
+
+  public backupClick(){
+    this.adminService.Backup().subscribe(res => {
+      debugger
+      if(res){
+        console.log(res);
+        debugger
+        this.openSuccessAlert = true;
+        this.esBackupDB = true;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status >= 400){
+        this.openErrorAlert = true;
+      }
+    });
   }
 
   public NotasEmitidas(): void {

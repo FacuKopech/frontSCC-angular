@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd  } from '@angular/router';
 import { ApiService } from './services/user_services/api.service';
 import { SharedAuthService } from './services/sharedAuthService/shared-auth.service';
+import { LoginService } from './services/login_services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -21,55 +22,39 @@ export class AppComponent implements OnInit {
   isLoggedWithNoRoles: boolean = false;
   nombreUserLogueado = '';
   apellidoUserLogueado = '';
+  loggedInUser: any;
 
-  constructor(private apiService: ApiService, private router: Router,private authService: SharedAuthService) {
+  constructor(private apiService: ApiService, private router: Router,private authService: SharedAuthService, private loginService: LoginService) {
     if (window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
       console.log(window.location.pathname);
-      this.apiService.isLoggedIn().subscribe(res => {
-        if (res) {
-          this.loggedIn = res;
-          if(window.location.pathname === "/" && this.loggedIn){
-            this.router.navigate(['/home']);
-          }else if(window.location.pathname === "/" && !this.loggedIn){
-            this.router.navigate(['/login']);
-          }
+        if(window.location.pathname === "/" && this.loggedIn){
+          this.router.navigate(['/home']);
+        }else if(window.location.pathname === "/" && !this.loggedIn){
+          this.router.navigate(['/login']);
         }
-      });
+      
     }
   }
 
   ngOnInit(): void{
+    this.loggedInUser = this.loginService.getLoggedInUser();
     this.logueoFueraDeHorario = false;
     const seMostro = localStorage.getItem('flag');
     if(seMostro == null){
       localStorage.setItem('flag', 'false');
     }
-    const isLoggedInResult = localStorage.getItem('isLoggedInResult');
-    var isLoggedInResultObject = null;
-    if(isLoggedInResult != null){
-      isLoggedInResultObject = JSON.parse(isLoggedInResult);
-    }
-    if(isLoggedInResultObject != null){
+    if(this.loggedInUser != null){
       this.loggedIn = true;
-      const rolesLoggedIn = localStorage.getItem('rolesUserLoggedIn');
-      var rolesUserLoggedInObject = null;
-      if(rolesLoggedIn != null){ 
-        rolesUserLoggedInObject = JSON.parse(rolesLoggedIn);
-      }
-      
-      console.log(rolesUserLoggedInObject);
-      this.groups = rolesUserLoggedInObject;
-      this.nombreUserLogueado = isLoggedInResultObject.nombre;
-      this.apellidoUserLogueado = isLoggedInResultObject.apellido;
-      if(this.groups.length > 0){
-        // preguntamos a que hora se loguea el padre
+      if(this.loggedInUser.roles.length > 0){
+        this.groups = this.loggedInUser.roles;
+        this.nombreUserLogueado = this.loggedInUser.nombre;
+        this.apellidoUserLogueado = this.loggedInUser.apellido;
         if(localStorage.getItem('flag') == 'false'){
           for (let i = 0; i < this.groups.length; i++) {
             if(this.groups[i].tipo == "Padre"){
               const currentDate = new Date();
-              const currentHour = currentDate.getHours();
-              const currentDay = currentDate.getDay()
-              if((currentHour <= 8 || currentHour >= 16)){
+              const currentHour = currentDate.getHours();           
+              if((currentHour < 8 || currentHour > 16)){
                 this.logueoFueraDeHorario = true;
               }
               break;
@@ -77,48 +62,17 @@ export class AppComponent implements OnInit {
           }
         }
       }else{
-        this.loggedIn = false;
+        this.loggedIn = true;
         this.isLoggedWithNoRoles = true;
       }
     }else{
       this.loggedIn = false;
     }
-    // this.apiService.isLoggedIn().subscribe(res => {
-    //   if (res) {
-    //     this.loggedIn = true;
-    //     this.groups = res.usuario.grupos;
-    //     this.nombreUserLogueado = res.nombre;
-    //     this.apellidoUserLogueado = res.apellido;
-    //     if(this.groups.length > 0){
-    //       // preguntamos a que hora se loguea el padre
-    //       if(localStorage.getItem('flag') == 'false'){
-    //         for (let i = 0; i < this.groups.length; i++) {
-    //           if(this.groups[i].tipo == "Padre"){
-    //             const currentDate = new Date();
-    //             const currentHour = currentDate.getHours();
-    //             const currentDay = currentDate.getDay()
-    //             if((currentHour <= 8 || currentHour >= 16)){
-    //               this.logueoFueraDeHorario = true;
-    //             }
-    //             break;
-    //           }
-    //         }
-    //       }
-    //     }else{
-    //       this.isLoggedWithNoRoles = true;
-    //     }
-    //   }else{
-    //     this.loggedIn = false;
-    //   }
-    // });
-
+   
     this.authService.isUnauthorized$.subscribe((unauthorized) => {
       this.isUnauthorized = unauthorized;
     });
-
-
   }
-
 
   public getBackgroundImage(){
     if (this.loggedIn && !this.isUnauthorized) {
@@ -135,7 +89,7 @@ export class AppComponent implements OnInit {
   public Logout(): void {
     this.apiService.Logout().subscribe(res => {
       if (res) {
-        localStorage.removeItem('isLoggedInResult');
+        this.loginService.logoutUser();
         this.loggedIn = false;
         this.isUnauthorized = false;
         localStorage.removeItem('flag');
@@ -193,6 +147,16 @@ export class AppComponent implements OnInit {
 
   public aulasClick(){
     this.router.navigate(['/aulas-institucion']);
+  }
+
+  public personasClick(){
+    this.router.navigate(['/personas']);
+  }
+  public usuariosClick(){
+    this.router.navigate(['/usuarios']);
+  }
+  public institucionesClick(){
+    this.router.navigate(['/instituciones']);
   }
 
 }

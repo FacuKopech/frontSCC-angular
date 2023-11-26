@@ -66,6 +66,8 @@ import { EditarPersonaPopupComponent } from './components/popups/editar-persona-
 import { InstitucionesComponent } from './components/instituciones/instituciones.component';
 import { AgregarInstitucionPopupComponent } from './components/popups/agregar-institucion-popup/agregar-institucion-popup.component';
 import { EditarInstitucionPopupComponent } from './components/popups/editar-institucion-popup/editar-institucion-popup.component';
+import { NgChartsModule } from 'ng2-charts';
+import { ChartsComponent } from './components/charts/charts.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +127,8 @@ import { EditarInstitucionPopupComponent } from './components/popups/editar-inst
     EditarPersonaPopupComponent,
     InstitucionesComponent,
     AgregarInstitucionPopupComponent,
-    EditarInstitucionPopupComponent
+    EditarInstitucionPopupComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -134,7 +137,8 @@ import { EditarInstitucionPopupComponent } from './components/popups/editar-inst
     FormsModule,
     RoutingModule,
     EditorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
   ],
   providers: [ApiService, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }, DatePipe],
   bootstrap: [AppComponent]

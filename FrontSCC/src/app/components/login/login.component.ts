@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import {  Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/user_services/api.service';
 import { AppComponent } from '../../app.component';
@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/services/login_services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
 
   constructor(private apiService: ApiService, private router: Router, private appComponent: AppComponent, private loginService: LoginService) { }
@@ -17,6 +18,7 @@ export class LoginComponent {
   @Input() username: string = "";
   @Input() clave: string = "";
   public message: string = "";
+  public loggedInActionRegistered = false;
   showOlvideMiClavePopup = false;
   showRecuperarClavePopup = false;
   showGeneracionNuevaClavePopup = false;
@@ -35,17 +37,20 @@ export class LoginComponent {
     }
   }
 
-  public LogIn(): void {
+
+  public LogIn() {
+    console.log('calling login method');
     if (this.username == "" || this.clave == "") {
       this.message = "Debe ingresar sus credenciales para loguearse"
     }
     else {
       this.apiService.Login(this.username, this.clave).subscribe(res => {
         if (res) {
-          this.loginService.setLoggedInUser(res);
+          this.loginService.setLoggedInUser(res);          
           this.message = "";
           this.router.navigate(['/home']);
-          this.appComponent.ngOnInit();
+          this.appComponent.afterSuccessfulLogIn();   
+          this.apiService.RegistrarLogin().subscribe().unsubscribe();       
         }
       },
       (error:HttpErrorResponse) =>{

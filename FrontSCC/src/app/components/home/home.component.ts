@@ -16,6 +16,7 @@ export class HomeComponent {
   
   public username: string = "";
   public groups: any[] = [];
+  path: string = '';
   openErrorAlert = false;
   openSuccessAlert = false;
   esBackupDB = false;
@@ -29,11 +30,10 @@ export class HomeComponent {
   }
 
   public backupClick(){
-    this.adminService.Backup().subscribe(res => {
-      debugger
+    this.adminService.Backup().subscribe((res:any) => {
       if(res){
         console.log(res);
-        debugger
+        this.path = res.path;
         this.openSuccessAlert = true;
         this.esBackupDB = true;
       }

@@ -11,8 +11,8 @@ export class AdminService {
   private hostUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  public Backup(): Observable<string> {
-    return this.http.get<string>(this.hostUrl + `/Sistema/Backup/`);
+  public Backup(): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Sistema/Backup/`);
   }
 
 }

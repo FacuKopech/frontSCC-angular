@@ -17,6 +17,7 @@ import { AlumnosSinAulaComponent } from './components/alumnos-sin-aula/alumnos-s
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { PersonasComponent } from './components/personas/personas.component';
 import { InstitucionesComponent } from './components/instituciones/instituciones.component';
+import { ChartsComponent } from './components/charts/charts.component';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'instituciones', component: InstitucionesComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'reportes', component: ChartsComponent, canActivate: [AuthGuard], data: { roles: ['Directivo'] } },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,20 +1,20 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <main *ngFor="let grupo of groups" role="main" class="inner cover">
-    <div class="customDiv" *ngIf="grupo.tipo == 'UserRegular'">
-      <h1 class="cover-heading">¡Gestiona tus Notas {{username}}!</h1>
-      <p class="lead pSubtitle">Puedes comenzar gestionando tus notas haciendo click en las siguientes opciones:</p>
-     
 
-      <div *ngIf="openSuccessAlert || openErrorAlert" class="divCover"></div>
-
+      <div *ngIf="openSuccessAlert || openErrorAlert" class="divCover"></div>    
       <app-success-alert class="alert" *ngIf="openSuccessAlert"
       (cerrarButtonClick)="openSuccessAlert = false"
-      [esBackupDB]="esBackupDB">
+      [esBackupDB]="esBackupDB"
+      [path]="path">
       </app-success-alert>
 
       <app-error-alert class="alert" *ngIf="openErrorAlert"
       (cerrarButtonClick)=" openErrorAlert = false">
       </app-error-alert>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <main *ngFor="let grupo of groups" role="main" class="inner cover">
+    <div class="customDiv" *ngIf="grupo.tipo == 'UserRegular'">
+      <h1 class="cover-heading">¡Gestiona tus Notas {{username}}!</h1>
+      <p class="lead pSubtitle">Puedes comenzar gestionando tus notas haciendo click en las siguientes opciones:</p>  
 
       <div class="divBtnsContainer">
         <button (click)="NotasEmitidas()" class=" btnGeneral buttonEmitidas">

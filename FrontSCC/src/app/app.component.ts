@@ -74,6 +74,44 @@ export class AppComponent implements OnInit {
     });
   }
 
+  public afterSuccessfulLogIn(){
+    this.loggedInUser = this.loginService.getLoggedInUser();
+    this.logueoFueraDeHorario = false;
+    const seMostro = localStorage.getItem('flag');
+    if(seMostro == null){
+      localStorage.setItem('flag', 'false');
+    }
+    if(this.loggedInUser != null){
+      this.loggedIn = true;
+      if(this.loggedInUser.roles.length > 0){
+        this.groups = this.loggedInUser.roles;
+        this.nombreUserLogueado = this.loggedInUser.nombre;
+        this.apellidoUserLogueado = this.loggedInUser.apellido;
+        if(localStorage.getItem('flag') == 'false'){
+          for (let i = 0; i < this.groups.length; i++) {
+            if(this.groups[i].tipo == "Padre"){
+              const currentDate = new Date();
+              const currentHour = currentDate.getHours();           
+              if((currentHour < 8 || currentHour > 16)){
+                this.logueoFueraDeHorario = true;
+              }
+              break;
+            }
+          }
+        }
+      }else{
+        this.loggedIn = true;
+        this.isLoggedWithNoRoles = true;
+      }
+    }else{
+      this.loggedIn = false;
+    }
+   
+    this.authService.isUnauthorized$.subscribe((unauthorized) => {
+      this.isUnauthorized = unauthorized;
+    });
+  }
+
   public getBackgroundImage(){
     if (this.loggedIn && !this.isUnauthorized) {
       return { 'background-image': 'url(https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1644&q=80)' };
@@ -87,14 +125,18 @@ export class AppComponent implements OnInit {
   }
 
   public Logout(): void {
-    this.apiService.Logout().subscribe(res => {
-      if (res) {
-        this.loginService.logoutUser();
-        this.loggedIn = false;
-        this.isUnauthorized = false;
-        localStorage.removeItem('flag');
+    this.apiService.ActualizarLoginAuditEnLogoutAction().subscribe(res => {
+      if(res){
+        this.apiService.Logout().subscribe(res => {
+          if (res) {        
+            this.loginService.logoutUser();
+            this.loggedIn = false;
+            this.isUnauthorized = false;
+            localStorage.removeItem('flag');
+          }
+        });
       }
-    });
+    });    
     this.router.navigate(['']);
   }
 
@@ -149,12 +191,18 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/aulas-institucion']);
   }
 
+  public reportesClick(){
+    this.router.navigate(['/reportes']);
+  }
+
   public personasClick(){
     this.router.navigate(['/personas']);
   }
+
   public usuariosClick(){
     this.router.navigate(['/usuarios']);
   }
+  
   public institucionesClick(){
     this.router.navigate(['/instituciones']);
   }

@@ -15,6 +15,14 @@ export class ApiService {
     return this.http.get<any>(this.hostUrl + `/Usuarios/LogIn/${username}/${clave}`);
   }
 
+  public RegistrarLogin(): Observable<any> {
+    return this.http.post<any>(this.hostUrl + `/Usuarios/RegistrarLogin/`, null);
+  }
+
+  public ActualizarLoginAuditEnLogoutAction(): Observable<any> {
+    return this.http.put<any>(this.hostUrl + `/Usuarios/ActualizarLoginAuditEnLogoutAction/`, null);
+  }
+
   public isLoggedIn(): Observable<any> {
     return this.http.get<any>(this.hostUrl + "/Usuarios/LoggedIn");
   }

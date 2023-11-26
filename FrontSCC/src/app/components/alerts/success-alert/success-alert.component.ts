@@ -43,6 +43,7 @@ export class SuccessAlertComponent {
   @Input() esEliminarInstitucion: any;
   @Input() esEditarInstitucion: any;
   @Input() esBackupDB: any;
+  @Input() path: any;
   
   constructor() {
   }

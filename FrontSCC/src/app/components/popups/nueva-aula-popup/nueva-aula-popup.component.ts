@@ -23,7 +23,7 @@ export class NuevaAulaPopupComponent {
   gradoAula: string = '';
   divisionAula: string = '';
   alumnosSinAula: any[] = [];
-  docentesSinAula: any[] = [];
+  docentesDeInstitucion: any[] = [];
   alumnosSeleccionados: any[] = [];
   docenteSeleccionadaId: number = 0;
   showErrorAlert = false
@@ -37,9 +37,9 @@ export class NuevaAulaPopupComponent {
     this.aulaService.ObtenerAlumnosSinAula(this.institucion.id).subscribe(res => {
       if(res){
         this.alumnosSinAula = res;
-        this.aulaService.ObtenerDocentesSinAulaAsignada(this.institucion.id).subscribe(res =>{
+        this.aulaService.ObtenerDocentesDeInstitucion(this.institucion.id).subscribe(res =>{
           if(res){
-            this.docentesSinAula = res;
+            this.docentesDeInstitucion = res;
           }
         });
       }

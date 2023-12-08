@@ -15,6 +15,10 @@ export class ChartsService {
     return this.http.get<any>(this.hostUrl + `/Reportes/ObtenerLogInsAverage`);
   }
 
+  public ObtenerAuditoriasHistoriales(): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Reportes/ObtenerAuditoriasHistoriales`);
+  }
+
   public ObtenerAsistenciasPorAulaAverage(): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Reportes/ObtenerAsistenciasPorAulaAverage`);
   }
@@ -23,4 +27,7 @@ export class ChartsService {
     return this.http.get<any>(this.hostUrl + `/Reportes/ObtenerCondicionPorAulaAverage`);
   }
 
+  public ObtenerNotasEnviadasYRecibidasAverage(): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Reportes/ObtenerNotasEnviadasYRecibidasAverage`);
+  }
 }

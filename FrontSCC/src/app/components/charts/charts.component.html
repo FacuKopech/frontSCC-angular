@@ -1,13 +1,25 @@
-<h1>Reportes</h1>
+<h1 *ngIf="adminLogueado">Auditorias</h1>
+<h1 *ngIf="directivoLogueado">Reportes</h1>
 
-<div class="divChartsContainer">
-    <div class="chart-container">
-        <canvas  id="LoginsChart" >{{ chart }}</canvas>
+<div class="divChartsContainer">    
+    <div class="chart-container" *ngIf="adminLogueado">
+        <h3>Auditoria de Logins</h3>
+        <canvas  id="LoginsChart" >{{ chartLogins }}</canvas>
     </div>  
-    <div class="chart-container">
+    <div class="chart-container" *ngIf="adminLogueado">
+        <h3>Auditoria de Historiales</h3>
+        <canvas  id="AuditHistorialesChart" >{{ chartAuditHistoriales }}</canvas>
+    </div>  
+    <div class="chart-container" *ngIf="directivoLogueado">
+        <h3>Asistencias por Aula</h3>
         <canvas  id="AsistenciasChart" >{{ chartAsistencias }}</canvas>
     </div>  
-    <div class="chart-container">
+    <div class="chart-container" *ngIf="directivoLogueado">
+        <h3>Condiciones por Aula</h3>
         <canvas  id="CondicionesChart" >{{ chartCondiciones }}</canvas>
     </div>  
+    <div class="chart-container" *ngIf="directivoLogueado">
+        <h3>Notas por Persona</h3>
+        <canvas  id="NotasChart" >{{ chartNotas }}</canvas>
+    </div>      
 </div>

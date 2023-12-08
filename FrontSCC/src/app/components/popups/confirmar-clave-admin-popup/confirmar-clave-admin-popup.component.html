@@ -1,0 +1,36 @@
+<!--POPUP EDITAR-->
+<div class="popup fadeInDown">
+    <form>
+      <div class="formContent">
+        <div class="titleHeader">
+            <h2 *ngIf="esBackupDB">Base de Datos - Backup</h2>
+            <h2 *ngIf="esRestoreDB">Base de Datos - Restauracion</h2>  
+        </div>
+  
+        <h3>Por favor, ingresa su clave para confirmar que es Ud:</h3>
+        <br>
+  
+        <label>Clave</label>
+        <input #claveInput type="password" [(ngModel)]="clave" name="clave" />
+        <span id="claveError" class="error"></span>
+      </div>
+      
+      <div class="container">
+        <div  class="customButtons">
+            <button (click)="cancelarClicked()" class="closeButton">
+              Cerrar
+            </button>
+        </div>
+        <div class="customButtons">
+          <button (click)="validarClicked()" class="buttonValidarToken">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgValidar">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            Validar
+          </button>
+        </div>
+        
+      </div>
+    </form>
+</div>
+  

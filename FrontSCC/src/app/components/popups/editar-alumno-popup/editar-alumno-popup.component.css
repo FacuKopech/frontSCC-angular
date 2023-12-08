@@ -66,13 +66,13 @@
   flex-wrap: wrap;
   align-content: center;
   text-align: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
 }
 
 h2{
   color: white;
   text-align: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
 }
 
 .divCover {

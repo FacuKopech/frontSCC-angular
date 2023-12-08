@@ -81,8 +81,7 @@ export class AgregarAusenciaPopupComponent {
       fechaHastaError.style.display = "flex";
       fechaHastaError.style.color = "red";
       fechaHastaError.style.fontWeight = "bold";
-    }else if(fechaDesdeSelected.getDay() <= this.today.getDay() && fechaDesdeSelected.getMonth() <= this.today.getMonth() && fechaDesdeSelected.getFullYear() <= this.today.getFullYear()){
-      console.log(fechaDesdeSelected.getDay(), this.today.getDay(), fechaDesdeSelected, this.fechaDesdeInput.nativeElement.value, this.today, fechaDesdeSelected.getDay() <= this.today.getDay(), fechaDesdeSelected.getMonth() <= this.today.getMonth(), fechaDesdeSelected.getFullYear() <= this.today.getFullYear());
+    }else if(fechaDesdeSelected.getDay() <= this.today.getDay() && fechaDesdeSelected.getMonth() <= this.today.getMonth() && fechaDesdeSelected.getFullYear() <= this.today.getFullYear()){      
       fechaDesdeError.textContent = "Esta fecha ya finalizo";
       fechaDesdeError.style.display = "flex";
       fechaDesdeError.style.color = "red";

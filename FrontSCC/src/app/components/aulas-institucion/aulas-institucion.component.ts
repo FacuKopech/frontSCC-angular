@@ -4,6 +4,7 @@ import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { error } from 'console';
+import { LoginService } from 'src/app/services/login_services/login.service';
 
 @Component({
   selector: 'app-aulas-institucion',
@@ -12,7 +13,7 @@ import { error } from 'console';
 })
 export class AulasInstitucionComponent {
 
-  constructor(private aulaService: AulaService, private location: Location, private router: Router){}
+  constructor(private aulaService: AulaService, private location: Location, private router: Router, private loginService: LoginService){}
 
   public aulas: any[] = [];
   public aula: any;
@@ -31,23 +32,23 @@ export class AulasInstitucionComponent {
   itemsPerPage: number = 2;
 
   ngOnInit(): void{
+    const loggedInUser = this.loginService.getLoggedInUser();
+    this.institucion = loggedInUser.institucion;
+    console.log(this.institucion);
     this.aulaService.ObtenerAulasInstitucion().subscribe(res => {
       this.message = "";
-      if(res){
+      if(res.length > 0){
         this.aulas = res;
         this.institucion = this.aulas[0].institucion;
-        console.log(this.aulas, this.institucion);
-        if(this.aulas.length == 0){
-          this.message = "No existen Aulas en esta Institucion";
-        }else{
-          this.aulaService.ObtenerPorcentajesAsistenciaAulas(this.institucion.id).subscribe(res =>{
-            if(res){
-              this.porcentajesAulas = res;
-              console.log(this.porcentajesAulas);
-            }
-          });
-        }
-
+        console.log(this.aulas, this.institucion);      
+        this.aulaService.ObtenerPorcentajesAsistenciaAulas(this.institucion.id).subscribe(res =>{
+          if(res){
+            this.porcentajesAulas = res;
+            console.log(this.porcentajesAulas);
+          }
+        });        
+      }else{
+        this.message = "No existen Aulas en esta Institucion";
       }
     });
   }

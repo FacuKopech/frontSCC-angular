@@ -62,7 +62,7 @@
       <label>Docente</label>
       <select name="docenteAula" (change)="onDocenteSelected($event)">
         <option selected value="0">Seleccionar Docente...</option>
-        <option value="" [value]="docente.id" *ngFor="let docente of docentesSinAula">{{docente.apellido}}, {{docente.nombre}}</option>
+        <option value="" [value]="docente.id" *ngFor="let docente of docentesDeInstitucion">{{docente.apellido}}, {{docente.nombre}}</option>
       </select>
     </div>
 

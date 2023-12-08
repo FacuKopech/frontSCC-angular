@@ -236,7 +236,7 @@
 }
 .titleHeader {
   display: flex;
-    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-family: Chalk, sans-serif;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
@@ -259,7 +259,7 @@ form {
 
 h3 {
   font-size: 24px;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
   display: flex;
   justify-content: center;
   text-align: center;

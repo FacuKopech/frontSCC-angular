@@ -49,8 +49,8 @@
       <p *ngIf="esEliminarInstitucion">Institucion eliminada con exito!</p>
       <p *ngIf="esEditarInstitucion">Institucion modificada con exito!</p>
       <p *ngIf="esBackupDB">Backup completado con exito!</p>
-      <p *ngIf="path != ''">El archivo puede encontrarse en la siguiente ruta: {{path}}</p>
-      
+      <p *ngIf="path != undefined && !esRestoreDB">El archivo puede encontrarse en la siguiente ruta: {{path}}</p>
+      <p *ngIf="esRestoreDB">Restauracion de DB completada con exito!</p>
       
       <div class="divCloseBtn">
         <button (click)="cerrarClicked()" class="closeButton">

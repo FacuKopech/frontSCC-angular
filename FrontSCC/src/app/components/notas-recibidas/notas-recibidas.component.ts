@@ -16,7 +16,14 @@ export class NotasRecibidasComponent {
   constructor(private notaService: NotaService, private userService: ApiService, private location: Location,  private router: Router)  {
     this.popupEditarNota = new LeerNotaPopupComponent();
   }
-
+  
+  filteredNotas: any[] = [];
+  filterOptions: any = {
+    titulo: '',
+    tipo: '',
+    startDate: null,
+    endDate: null
+  };
   openDeletionPopup = false;
   showDeletionSuccessAlert = false;
   showSuccessAlert = false;
@@ -45,6 +52,7 @@ export class NotasRecibidasComponent {
       this.notas = res;
       if (this.notas !== null && this.notas.length > 0) {
         this.notas = res;
+        this.applyFilter();
         console.log(this.notas);
       }else if(this.notas == null || this.notas.length === 0){
         this.message = "No existen notas recibidas!";
@@ -54,6 +62,27 @@ export class NotasRecibidasComponent {
     this.userService.getEmailPersonaLogueada().subscribe(res => {
       this.emailUserLogueado = res;
     });
+  }
+
+  applyFilter() {
+    this.filteredNotas = this.notas.filter(nota => {
+      const matchesTitulo = nota.titulo.toLowerCase().includes(this.filterOptions.titulo.toLowerCase());
+      const matchesTipo = this.filterOptions.tipo === '' || nota.tipo.toString() === this.filterOptions.tipo;
+      
+      const startDate = this.filterOptions.startDate ? new Date(this.filterOptions.startDate) : null;
+      const endDate = this.filterOptions.endDate ? new Date(this.filterOptions.endDate) : null;
+
+      const notaDate = new Date(nota.fecha);
+
+      const matchesStartDate = !startDate || notaDate >= startDate;
+      const matchesEndDate = !endDate || notaDate <= endDate;
+
+      return matchesTitulo && matchesTipo && matchesStartDate && matchesEndDate;
+    });
+  } 
+
+  onFilterChange() {
+    this.applyFilter();
   }
 
   public openDeletion(idNota: number): void {
@@ -182,6 +211,7 @@ export class NotasRecibidasComponent {
   reloadPage(resultado: string) {
     if(resultado == "success"){
       this.showDeletionSuccessAlert = true;
+      this.esFirmaNota = false;
     }
     else{
       this.showErrorAlert = true;

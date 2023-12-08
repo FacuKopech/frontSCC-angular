@@ -46,6 +46,9 @@ export class AulaService {
   public ObtenerDocentesSinAulaAsignada(idInstitucion: number): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerDocentesSinAulaAsignada/${idInstitucion}`);
   }
+  public ObtenerDocentesDeInstitucion(idInstitucion: number): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerDocentesDeInstitucion/${idInstitucion}`);
+  }
 
   public ObtenerAsistenciasAula(idAula: number): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAsistenciasAula/${idAula}`);

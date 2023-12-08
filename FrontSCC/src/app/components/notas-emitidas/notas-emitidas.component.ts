@@ -34,6 +34,13 @@ export class NotasEmitidasComponent {
   public notaId: number = -1;
   public message: string = "";
   public notas: any[] = [];
+  filteredNotas: any[] = [];
+  filterOptions: any = {
+    titulo: '',
+    tipo: '',
+    startDate: null,
+    endDate: null
+  };
   public notaAModificar: any;
   public notaALeerCuerpo: any;
   public gruposUsuario: any[] = [];
@@ -50,6 +57,8 @@ export class NotasEmitidasComponent {
         this.notaService.ObtenerNotasEmitidas().subscribe(res => {
           if (res) {
             this.notas = res;
+            this.applyFilter();
+
             console.log(this.notas);
             if (this.notas.length == 0) {
               this.message = "No existen notas emitidas!";
@@ -59,6 +68,27 @@ export class NotasEmitidasComponent {
       }
     });
     console.log(this.gruposUsuario);
+  }
+
+  applyFilter() {
+    this.filteredNotas = this.notas.filter(nota => {
+      const matchesTitulo = nota.titulo.toLowerCase().includes(this.filterOptions.titulo.toLowerCase());
+      const matchesTipo = this.filterOptions.tipo === '' || nota.tipo.toString() === this.filterOptions.tipo;
+      
+      const startDate = this.filterOptions.startDate ? new Date(this.filterOptions.startDate) : null;
+      const endDate = this.filterOptions.endDate ? new Date(this.filterOptions.endDate) : null;
+
+      const notaDate = new Date(nota.fecha);
+
+      const matchesStartDate = !startDate || notaDate >= startDate;
+      const matchesEndDate = !endDate || notaDate <= endDate;
+
+      return matchesTitulo && matchesTipo && matchesStartDate && matchesEndDate;
+    });
+  } 
+
+  onFilterChange() {
+    this.applyFilter();
   }
 
   public openDeletion(id: number): void {

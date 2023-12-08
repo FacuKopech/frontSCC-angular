@@ -49,6 +49,10 @@ export class ApiService {
     return this.http.get<string>(this.hostUrl + `/Usuarios/RecuperarClave/${email}`, HTTPOptions)
   }
 
+  public ValidarClaveAdmin(claveAdmin: string): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Usuarios/ValidarClaveAdmin/${claveAdmin}`)
+  }
+
   public EnviarTokenSeguridad(email: string, firmaDe: string): Observable<string> {
     let HTTPOptions:Object = {
       responseType: 'text'

@@ -68,6 +68,7 @@ import { AgregarInstitucionPopupComponent } from './components/popups/agregar-in
 import { EditarInstitucionPopupComponent } from './components/popups/editar-institucion-popup/editar-institucion-popup.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartsComponent } from './components/charts/charts.component';
+import { ConfirmarClaveAdminPopupComponent } from './components/popups/confirmar-clave-admin-popup/confirmar-clave-admin-popup.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,8 @@ import { ChartsComponent } from './components/charts/charts.component';
     InstitucionesComponent,
     AgregarInstitucionPopupComponent,
     EditarInstitucionPopupComponent,
-    ChartsComponent
+    ChartsComponent,
+    ConfirmarClaveAdminPopupComponent
   ],
   imports: [
     BrowserModule,

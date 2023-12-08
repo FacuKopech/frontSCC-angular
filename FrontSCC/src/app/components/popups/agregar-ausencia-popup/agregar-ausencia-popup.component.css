@@ -74,7 +74,7 @@
   flex-wrap: wrap;
   align-content: center;
   text-align: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
 }
 
 
@@ -101,11 +101,11 @@
 h2{
   color: white;
   text-align: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
 }
 
 p{
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
 }
 a {
   transition: all 200ms;
@@ -124,7 +124,7 @@ form {
 
 h3 {
   font-size: 24px;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
   display: flex;
   justify-content: center;
   text-align: center;

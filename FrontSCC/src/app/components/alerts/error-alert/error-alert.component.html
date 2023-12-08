@@ -47,6 +47,10 @@
       <p *ngIf="esErrorEmailRepetidoPersona">Ya existe una Persona con ese Email registrado</p>
       <p *ngIf="esErrorNombreInstitucionRepetido">Ya existe una Institucion con ese Nombre registrado</p>
       <p *ngIf="esErrorTelefonoInstitucionRepetido">Ya existe una Institucion con ese Telefono registrado</p>
+      <p *ngIf="esErrorClaveActualIncorrecta">La clave actual ingresada es incorrecta</p>
+      <p *ngIf="esErrorConfirmacionClaveDesigual">La clave nueva y su confirmacion no son iguales</p>
+      <p *ngIf="esErrorAgregarHistorialAlumnoSinPadre">No puede agregarse el Historial debido a que el Alumno aun no tiene Padre(s) asignado(s)</p>
+      
       
     </div>
     <div class="divCloseBtn">

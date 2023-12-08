@@ -51,7 +51,8 @@
 </app-success-alert>
 
 <app-error-alert class="alert" *ngIf="openErrorAlert"
-(cerrarButtonClick)=" openErrorAlert = false">
+(cerrarButtonClick)=" openErrorAlert = false"
+[esErrorAgregarHistorialAlumnoSinPadre]="esErrorAgregarHistorialAlumnoSinPadre">
 </app-error-alert>
 
 <div class="divPrincipal">

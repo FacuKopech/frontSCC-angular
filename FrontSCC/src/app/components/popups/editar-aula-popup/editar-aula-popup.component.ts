@@ -27,7 +27,7 @@ export class EditarAulaPopupComponent {
   esErrorGradoAulaRepetido = false;
   esErrorDivisionAulaRepetida = false;
   docenteSeleccionadaId: number = 0;
-  docentesSinAula: any[] = [];
+  docentesDeInstitucion: any[] = [];
   alumnosSeleccionados: any[] = [];
   nombreAula: string = '';
   gradoAula: string = '';
@@ -37,14 +37,14 @@ export class EditarAulaPopupComponent {
 
   public ngOnInit(){
     console.log(this.aula);
-    this.aulaService.ObtenerDocentesSinAulaAsignada(this.aula.institucion.id).subscribe(res =>{
+    this.aulaService.ObtenerDocentesDeInstitucion(this.aula.institucion.id).subscribe(res =>{
       if(res){
-        this.docentesSinAula = res;
+        this.docentesDeInstitucion = res;
       }
     },
     (error:HttpErrorResponse) =>{
       if(error.status == 404){
-        this.docentesSinAula = [];
+        this.docentesDeInstitucion = [];
       }
     });
     this.nombreAula = this.aula.nombre;

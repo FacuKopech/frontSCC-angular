@@ -71,7 +71,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 12px;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
 }
 a {
   transition: all 200ms;
@@ -90,7 +90,7 @@ form {
 
 h3 {
   font-size: 24px;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
   display: flex;
   justify-content: center;
   text-align: center;

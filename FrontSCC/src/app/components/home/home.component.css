@@ -125,7 +125,7 @@ h1 {
 
 .divBackup{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-top: 60px;
 }
 

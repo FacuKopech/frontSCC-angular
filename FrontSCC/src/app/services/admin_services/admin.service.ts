@@ -15,4 +15,8 @@ export class AdminService {
     return this.http.get<any>(this.hostUrl + `/Sistema/Backup/`);
   }
 
+  public Restore(): Observable<any> {
+    return this.http.get<any>(this.hostUrl + `/Sistema/Restore/`);
+  }
+
 }

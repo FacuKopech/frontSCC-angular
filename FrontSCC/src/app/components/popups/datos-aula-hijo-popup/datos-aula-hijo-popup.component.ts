@@ -38,6 +38,7 @@ export class DatosAulaHijoPopupComponent {
         }else{
           this.aula = res;
           this.docente = this.aula.docente;
+          this.sinAula = false;
         }
       });
     }else{

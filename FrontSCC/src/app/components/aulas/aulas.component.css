@@ -1,9 +1,9 @@
 h1 {
   display: flex;
   justify-content: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
   font-size: 50px;
-  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+  
 }
 
 .divMessage .pMessage{

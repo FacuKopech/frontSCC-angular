@@ -32,6 +32,7 @@ export class HistorialesComponent{
   openAgregarHistorialPopup = false;
   openConfirmDeletePopup = false;
   openEditarHistorialPopup = false;
+  esErrorAgregarHistorialAlumnoSinPadre = false;
   itemForDelete: string = '';
   currentPage: number = 1;
   itemsPerPage: number = 2;
@@ -105,8 +106,12 @@ export class HistorialesComponent{
       }
     },
     (error:HttpErrorResponse) =>{
-      if(error.status == 404 || error.status == 400){
+      if(error.status == 400 && error.error == "No puede agregarse el Historial debido a que el Alumno aun no tiene Padre(s) asignado(s)"){
         this.openErrorAlert = true;
+        this.esErrorAgregarHistorialAlumnoSinPadre = true;
+      }else if(error.status >= 400){
+        this.openErrorAlert = true;
+        this.esErrorAgregarHistorialAlumnoSinPadre = false;
       }
     });
   }

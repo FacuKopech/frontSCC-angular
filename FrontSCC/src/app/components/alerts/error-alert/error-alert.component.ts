@@ -22,10 +22,11 @@ export class ErrorAlertComponent {
   @Input() esErrorEmailRepetidoPersona: any;
   @Input() esErrorNombreInstitucionRepetido: any;
   @Input() esErrorTelefonoInstitucionRepetido: any;
+  @Input() esErrorClaveActualIncorrecta: any;
+  @Input() esErrorConfirmacionClaveDesigual: any;
+  @Input() esErrorAgregarHistorialAlumnoSinPadre: any;
   
   
-  
-
   public cerrarClicked() {
     this.cerrarButtonClick.emit("cerrar_button_clicked");
   }

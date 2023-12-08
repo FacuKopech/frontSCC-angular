@@ -43,6 +43,7 @@ export class SuccessAlertComponent {
   @Input() esEliminarInstitucion: any;
   @Input() esEditarInstitucion: any;
   @Input() esBackupDB: any;
+  @Input() esRestoreDB: any;
   @Input() path: any;
   
   constructor() {
@@ -50,7 +51,9 @@ export class SuccessAlertComponent {
 
   @Output()
   cerrarButtonClick: EventEmitter<string> = new EventEmitter<string>();
-
+  public ngOnInit(){
+    console.log(this.path);
+  }
   public cerrarClicked() {
     this.cerrarButtonClick.emit("cerrar_button_clicked");
   }

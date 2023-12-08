@@ -1,9 +1,9 @@
 h1 {
   display: flex;
   justify-content: center;
-  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+  font-family: Chalk, sans-serif;
   font-size: 50px;
-  text-shadow: -1.5px -1.5px 0 yellow, 1.5px -1.5px 0 blue, -1.5px 1.5px 0 darkgreen, 1.5px 1.5px 0 red;
+  
 }
 
 .containerInst{
@@ -12,8 +12,8 @@ h1 {
 }
 .containerInstitucion{
   text-align: center;
-    background-color: #28282bbd;
-  width: 350px;
+  background-color: #28282bbd;
+  width: fit-content;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -210,7 +210,7 @@ h1 {
 }
 
 .divContainerAula:hover{
-  transform: scale(1.08);
+  transform: scale(1.02);
 
 }
 

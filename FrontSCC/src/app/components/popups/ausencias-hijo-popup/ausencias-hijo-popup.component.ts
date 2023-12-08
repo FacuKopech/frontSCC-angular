@@ -28,6 +28,7 @@ export class AusenciasHijoPopupComponent {
   currentPage: number = 1;
   itemsPerPage: number = 4;
   idHijo: number = -1;
+  idNene: number = -1;
   ausencias: any[] = [];
   alumnoOHijoSinAulaAsignada = false;
   messageAusencias: string = '';
@@ -42,13 +43,15 @@ export class AusenciasHijoPopupComponent {
     if(this.hijo != null){
       this.esAusenciasHijo = true;
       this.esAusenciasAlumno = false;
-      this.idAlumno = this.hijo.id;
+      this.idHijo = this.hijo.id;
+      this.idNene = this.idHijo;
     }else if(this.alumno != null){
       this.esAusenciasAlumno = true;
       this.esAusenciasHijo = false;
       this.idAlumno = this.alumno.id;
+      this.idNene = this.idAlumno;
     }
-    this.ausenciaService.ObtenerAusenciasAlumno(this.idAlumno).subscribe(res => {
+    this.ausenciaService.ObtenerAusenciasAlumno(this.idNene).subscribe(res => {
       if(res){
         this.ausencias = res;
         console.log(this.ausencias);
@@ -61,7 +64,7 @@ export class AusenciasHijoPopupComponent {
         }else{
           this.messageAusencias = "";
         }
-        this.aulaService.ObtenerAulaHijo(this.idAlumno).subscribe(res => {
+        this.aulaService.ObtenerAulaHijo(this.idNene).subscribe(res => {
           if(res == null){
             this.alumnoOHijoSinAulaAsignada = true;
           }else{
@@ -143,7 +146,7 @@ export class AusenciasHijoPopupComponent {
     if(this.counter > 0){
       this.ausenciaService.AgregarAusenciaFiles(eventData.files).subscribe(res =>{
         if(res){
-          this.ausenciaService.AgregarAusencia(this.idHijo, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
+          this.ausenciaService.AgregarAusencia(this.idNene, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
             if(res){
               this.openSuccessAlert = true;
               this.esAgregarAusencia = true;
@@ -159,7 +162,7 @@ export class AusenciasHijoPopupComponent {
         }
       });
     }else{
-      this.ausenciaService.AgregarAusencia(this.idHijo, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
+      this.ausenciaService.AgregarAusencia(this.idNene, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
         if(res){
           this.openSuccessAlert = true;
           this.esAgregarAusencia = true;

@@ -64,6 +64,8 @@ export class HijosComponent {
   }
 
   public verAusencias(hijo: any){
+    console.log('ID HIJO', hijo);
+
     this.openPopupAusenciasHijo = true;
     this.hijo = hijo;
   }

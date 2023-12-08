@@ -19,6 +19,9 @@ html {
 .customBodyHeight {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
 
 }
 .divNoLoggedIn{
@@ -137,7 +140,7 @@ html {
 .divNavTitleContainer {
   display: flex;
   justify-content: center;
-  width: 83%;
+  width: 82%;
 }
 .divNavbarTitle {
   font-family: Chalk, sans-serif;

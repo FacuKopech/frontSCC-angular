@@ -1,0 +1,197 @@
+.popup {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation-name: _ngcontent-awe-c49_fadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    position: absolute;
+    z-index: 9999;
+  }
+  
+  /* Simple CSS3 Fade-in-down Animation */
+  .fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @-webkit-keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  /* Simple CSS3 Fade-in Animation */
+  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  
+  .closeButtonHeader {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -28px;
+    margin-left: 530px;
+  }
+  .close[_ngcontent-lkn-c53] {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+  }
+  .titleHeader {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-family: Chalk, sans-serif;
+  }
+  a {
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+  }
+  
+  form {
+  
+    flex-direction: column;
+    background-color: #28282B;
+    border-radius: 20px;
+    box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  h3 {
+    font-size: 24px;
+    font-family: Chalk, sans-serif;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .formContent {
+    display: flex;
+    flex-direction: column;
+    margin: 4%;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #28282B;
+    margin-top: 26px;
+    margin-bottom: 13px;
+  }
+  .customButtons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .cancelarButton:hover{
+      background-color: red;
+  }
+  
+  .buttonValidarToken {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .buttonValidarToken:hover{
+    background-color: #07c1cf;
+    box-shadow: 0px 15px 20px rgba(4, 209, 185, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  .svgValidar{
+    width: 16px;
+    height: 16px;
+  }
+  
+  input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #28282B;
+    background-color: cadetblue;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .customButtons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .closeButton {
+    padding: 1.3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .closeButton:hover {
+    background-color: #C24037;
+    box-shadow: 0px 15px 20px #dc453a8a;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  
+  
+  

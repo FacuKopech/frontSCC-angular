@@ -3,6 +3,8 @@ import { Router, NavigationEnd  } from '@angular/router';
 import { ApiService } from './services/user_services/api.service';
 import { SharedAuthService } from './services/sharedAuthService/shared-auth.service';
 import { LoginService } from './services/login_services/login.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,9 @@ export class AppComponent implements OnInit {
   title = 'FrontSCC';
   openResetearClavePopup = false;
   showRessetClaveSuccessAlert = false;
+  esResetearClave = false;
+  esErrorClaveActualIncorrecta = false;
+  esErrorConfirmacionClaveDesigual  = false;
   showErrorAlert = false;
   logueoFueraDeHorario = false;
   public loggedIn: boolean = false;
@@ -53,8 +58,9 @@ export class AppComponent implements OnInit {
           for (let i = 0; i < this.groups.length; i++) {
             if(this.groups[i].tipo == "Padre"){
               const currentDate = new Date();
-              const currentHour = currentDate.getHours();           
-              if((currentHour < 8 || currentHour > 16)){
+              const currentHour = currentDate.getHours();    
+              const currentDay = currentDate.getDay();       
+              if((currentHour < 8 || currentHour > 16) || (currentDay == 6) || (currentDay == 0)){
                 this.logueoFueraDeHorario = true;
               }
               break;
@@ -114,7 +120,7 @@ export class AppComponent implements OnInit {
 
   public getBackgroundImage(){
     if (this.loggedIn && !this.isUnauthorized) {
-      return { 'background-image': 'url(https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1644&q=80)' };
+      return { 'background-image': 'url(https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg)' };
     }else if(!this.loggedIn){
       return { 'background-image': 'url(https://a-static.besthdwallpaper.com/white-chalk-and-blackboard-used-in-schools-for-education-teaching-wallpaper-2560x1440-95599_51.jpg)' };
     }else if(this.isUnauthorized){
@@ -154,8 +160,24 @@ export class AppComponent implements OnInit {
     this.apiService.ResetearClave(clave).subscribe(res =>{
       if(res){
         this.showRessetClaveSuccessAlert = true;
+        this.esResetearClave = true;
       }else{
         this.showErrorAlert = true;
+      }
+    },
+    (error:HttpErrorResponse) =>{
+      if(error.status == 400 && error.error == "La clave actual es incorrecta"){
+        this.showErrorAlert = true;         
+        this.esErrorClaveActualIncorrecta = true;
+        this.esErrorConfirmacionClaveDesigual = false;
+      }else if(error.status == 400 && error.error == "La clave nueva y su confirmacion no son iguales"){
+        this.showErrorAlert = true;    
+        this.esErrorClaveActualIncorrecta = false;
+        this.esErrorConfirmacionClaveDesigual = true;
+      }else{
+        this.showErrorAlert = true;  
+        this.esErrorClaveActualIncorrecta = false;
+        this.esErrorConfirmacionClaveDesigual = false;  
       }
     });
   }
@@ -163,6 +185,7 @@ export class AppComponent implements OnInit {
   public closeSuccessAlert(){
     this.openResetearClavePopup = false;
     this.showRessetClaveSuccessAlert = false;
+    this.esResetearClave = false;
     this.Logout();
   }
 

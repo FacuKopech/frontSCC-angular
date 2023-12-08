@@ -40,7 +40,7 @@
         <option value="" disabled selected>Seleccione Docente... </option>
         <option value="0">Sin Docente</option>
         <option *ngIf="aula.docente != null" selected [value]="aula.docente.id">{{aula.docente.apellido}}, {{aula.docente.nombre}}</option>
-        <option value="" [value]="docente.id" *ngFor="let docente of docentesSinAula">{{docente.apellido}}, {{docente.nombre}}</option>
+        <option value="" [value]="docente.id" *ngFor="let docente of docentesDeInstitucion">{{docente.apellido}}, {{docente.nombre}}</option>
       </select>
     </div>
 

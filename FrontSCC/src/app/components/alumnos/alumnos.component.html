@@ -1,5 +1,13 @@
 <h1>Alumnos de {{aula.nombre}}</h1>
 
+
+<!-- POPUP PADRES ALUMNO -->
+<app-padres-alumno-popup *ngIf="openPopupPadresAlumno"
+[aula]="aula"
+[alumno]="alumno"
+(cancelButtonClick)="openPopupPadresAlumno = false">
+</app-padres-alumno-popup>
+
 <div *ngIf="accedeDirectivo" class="divAgregarAlumno">
   <button class="icon-btn add-btn" title="Agregar Alumno" (click)="openAgregarAlumnoPopup = true">
     <div class="add-icon"></div>
@@ -11,13 +19,6 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
-<div class="divAlumnosSinAulaButton">
-  <button (click)="verAlumnosSinAula()" class="alumnosSinAulaButton">
-    Alumnos sin Aula
-  </button>
-</div>
-
-<div *ngIf="openPopupAusenciasAlumno || openPopupPadresAlumno || openSuccessAlert || openErrorAlert || openDeletionPopup || openAgregarAlumnoPopup || openEditarAlumnoPopup" class="divCover"></div>
 
 <!-- POPUP AUSENCIAS ALUMNO -->
 <app-ausencias-hijo-popup class="popupAusenciasAlumno" *ngIf="openPopupAusenciasAlumno"
@@ -26,12 +27,17 @@
 (cancelButtonClick)="cerrarAusenciasAlumnoPopup()">
 </app-ausencias-hijo-popup>
 
-<!-- POPUP PADRES ALUMNO -->
-<app-padres-alumno-popup *ngIf="openPopupPadresAlumno"
-[aula]="aula"
-[alumno]="alumno"
-(cancelButtonClick)="openPopupPadresAlumno = false">
-</app-padres-alumno-popup>
+<div *ngIf="accedeDirectivo" class="divAlumnosSinAulaButton">
+  <button (click)="verAlumnosSinAula()" class="alumnosSinAulaButton">
+    Alumnos sin Aula
+  </button>
+</div>
+
+<div *ngIf="openPopupAusenciasAlumno || openPopupPadresAlumno || openSuccessAlert || openErrorAlert || openDeletionPopup || openAgregarAlumnoPopup || openEditarAlumnoPopup" class="divCover"></div>
+
+
+
+
 
 <!-- ALERT SUCCESS ACEPTAR/DENEGAR AUSENCIA ALUMNO -->
 <app-success-alert class="alert" *ngIf="openSuccessAlert"

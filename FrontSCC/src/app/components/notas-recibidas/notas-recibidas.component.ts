@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/user_services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login_services/login.service';
 @Component({
   selector: 'app-notas-recibidas',
   templateUrl: './notas-recibidas.component.html',
@@ -13,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NotasRecibidasComponent {
   @ViewChild(LeerNotaPopupComponent) popupEditarNota!: LeerNotaPopupComponent;
 
-  constructor(private notaService: NotaService, private userService: ApiService, private location: Location,  private router: Router)  {
+  constructor(private notaService: NotaService, private userService: ApiService, private location: Location,  private router: Router, private loginService: LoginService)  {
     this.popupEditarNota = new LeerNotaPopupComponent();
   }
   
@@ -59,9 +60,10 @@ export class NotasRecibidasComponent {
         this.notas = [];
       }
     });
-    this.userService.getEmailPersonaLogueada().subscribe(res => {
-      this.emailUserLogueado = res;
-    });
+
+    let loggedInUser = this.loginService.getLoggedInUser();
+    this.emailUserLogueado = loggedInUser.email;
+    console.log(this.emailUserLogueado);
   }
 
   applyFilter() {

@@ -46,6 +46,7 @@ export class NotaService {
 
   public EnviarNuevaNota(nuevaNota: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number,
     destinatarios: any[], titulo:string, cuerpo: string, files: FormData, enviaNotaComo: string}): Observable<any> {
+      debugger
     return this.http.post<any>(this.hostUrl + `/Notas/EnviarNuevaNota/`, nuevaNota);
   }
 

@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { AulaService } from 'src/app/services/aulas_services/aula.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login_services/login.service';
 
 @Component({
   selector: 'app-notas-emitidas',
@@ -15,7 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NotasEmitidasComponent {
   @ViewChild(EditarNotaPopupComponent) popupEditarNota!: EditarNotaPopupComponent;
 
-  constructor(private notaService: NotaService, private apiService: ApiService,  private location: Location, private aulaService: AulaService, private router: Router) {
+  constructor(private notaService: NotaService, private apiService: ApiService,  private location: Location, private aulaService: AulaService, private router: Router, private loginService: LoginService) {
     this.popupEditarNota = new EditarNotaPopupComponent(aulaService, apiService);
   }
 
@@ -51,23 +52,22 @@ export class NotasEmitidasComponent {
   itemsPerPage: number = 10;
 
   public ngOnInit(): void {
-    this.apiService.ObtenerTipoPersonaLogueada().subscribe(res =>{
-      if(res != null){
-        this.gruposUsuario = res;
-        this.notaService.ObtenerNotasEmitidas().subscribe(res => {
-          if (res) {
-            this.notas = res;
-            this.applyFilter();
+    let loggedInUser = this.loginService.getLoggedInUser();
+    console.log(loggedInUser);
+    this.gruposUsuario = loggedInUser.roles;
+    this.notaService.ObtenerNotasEmitidas().subscribe(res => {
+      if (res) {
+        this.notas = res;
+        this.applyFilter();
 
-            console.log(this.notas);
-            if (this.notas.length == 0) {
-              this.message = "No existen notas emitidas!";
-            }
-          }
-        });
+        console.log(this.notas);
+        if (this.notas.length == 0) {
+          this.message = "No existen notas emitidas!";
+        }
       }
     });
     console.log(this.gruposUsuario);
+
   }
 
   applyFilter() {
@@ -165,8 +165,10 @@ export class NotasEmitidasComponent {
     if(this.counter > 0){
       this.notaService.AgregarNotaFiles(eventData.files).subscribe(res =>{
         if(res){
+          debugger
           this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
             if(res){
+              debugger
               this.reloadPage("success", "addition");
               this.openAgregarNotaPopup = false;
             }else{

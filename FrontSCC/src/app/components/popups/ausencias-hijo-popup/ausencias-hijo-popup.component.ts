@@ -115,7 +115,7 @@ export class AusenciasHijoPopupComponent {
     this.openDatosAusenciaPopup = false;
   }
 
-  public handleDeleteClicked(eventData: { idAusencia: number, idHijo: number }){
+  public handleDeleteClicked(eventData: { idAusencia: number, idHijo: number }){    
     this.ausenciaService.EliminarAusencia(eventData.idAusencia, eventData.idHijo).subscribe(res =>{
       if(res){
         this.openSuccessAlert = true;

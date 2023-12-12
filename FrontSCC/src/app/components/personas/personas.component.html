@@ -1,10 +1,15 @@
 <h1>Personas</h1>
+<app-editar-persona-popup *ngIf="openEditarPersonaPopup"
+(cancelButtonClick)="openEditarPersonaPopup = false"
+[persona]="persona">    
+</app-editar-persona-popup>
 <div class="divAgregarPersona">
     <button class="icon-btn add-btn" title="Nueva Persona" (click)="openAgregarPersona = true">
       <div class="add-icon"></div>
       <div class="btn-txt">Agregar</div>
     </button>
 </div>
+
 <div class="divMessage">
   <p class="pMessage">{{message}}</p>
 </div>
@@ -40,10 +45,7 @@
 [institucion]="institucion">
 </app-datos-institucion-popup>
 
-<app-editar-persona-popup *ngIf="openEditarPersonaPopup"
-(cancelButtonClick)="openEditarPersonaPopup = false"
-[persona]="persona">    
-</app-editar-persona-popup>
+
 
 <div class="container" >
   <div class="divContainerPersona" *ngFor="let persona of personas.slice(calculateIndices().startIndex, calculateIndices().endIndex)">

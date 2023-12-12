@@ -5,6 +5,17 @@
 (cancelButtonClick)="openAgregarAulaPopup = false">
 </app-nueva-aula-popup>
 
+<app-datos-aula-hijo-popup *ngIf="openInfoAulaPopup"
+[aulaInstitucion]="aula"
+(cancelButtonClick)=" openInfoAulaPopup = false">
+</app-datos-aula-hijo-popup>
+
+<app-editar-aula-popup class="editarAulaPopup" *ngIf="openEditarAulaPopup"
+(cancelButtonClick)="openEditarAulaPopup = false"
+(reloadClick)="closeSuccessAlert()"
+[aula]="aula">
+</app-editar-aula-popup>
+
 <div class="containerInst">
   <div #divContent class="containerInstitucion" >
     <div class="divContainerData">
@@ -27,11 +38,7 @@
   </div>
 </div>
 
-<app-editar-aula-popup class="editarAulaPopup" *ngIf="openEditarAulaPopup"
-(cancelButtonClick)="openEditarAulaPopup = false"
-(reloadClick)="closeSuccessAlert()"
-[aula]="aula">
-</app-editar-aula-popup>
+
 
 <div class="divMessage">
   <p class="pMessage">{{message}}</p>
@@ -45,12 +52,6 @@
 </div>
 
 <div *ngIf="openInfoAulaPopup || openAgregarAulaPopup || openDeletionPopup || openEditarAulaPopup || openSuccessAlert || openErrorAlert" class="divCover"></div>
-
-<app-datos-aula-hijo-popup *ngIf="openInfoAulaPopup"
-[aulaInstitucion]="aula"
-(cancelButtonClick)=" openInfoAulaPopup = false">
-</app-datos-aula-hijo-popup>
-
 
 
 <!-- ALERT SUCCESS ACEPTAR/DENEGAR AUSENCIA ALUMNO -->

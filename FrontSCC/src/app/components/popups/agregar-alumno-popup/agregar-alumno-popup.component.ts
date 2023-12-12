@@ -29,8 +29,9 @@ export class AgregarAlumnoPopupComponent {
   esAgregarAlumnoExistenteAAula = false;
   esAgregarAlumnoNuevoAAula = false;
   esErrorAgregarAlumnoYaExistente = false;
+  today: Date;
 
-  constructor(private aulaService: AulaService){}
+  constructor(private aulaService: AulaService){this.today = new Date();}
 
   public ngOnInit(){
     this.aulaService.ObtenerAlumnosSinAula(this.aula.institucion.id).subscribe(res => {
@@ -44,6 +45,12 @@ export class AgregarAlumnoPopupComponent {
   }
 
   public agregarClicked(){
+    const datePartsNacimiento = this.fechaNacimientoInputRef.nativeElement.value.split('/');
+    const year = parseInt(datePartsNacimiento[0]);
+    const month = parseInt(datePartsNacimiento[1]) - 1; 
+    const day = parseInt(datePartsNacimiento[2]);
+    const fechaNacimientoSelected = new Date(year, month, day);
+    const nacimientoDate = new Date(this.fechaNacimientoInputRef.nativeElement.value);
     if(this.existenteRadioButtonCheck){
       if(this.alumnosSeleccionados.length == 0){
         const divisionError =   document.querySelector(`span[id="alumnosDropdownError"]`) as HTMLElement;
@@ -72,6 +79,7 @@ export class AgregarAlumnoPopupComponent {
       const apellidoError =   document.querySelector(`span[id="apellidoError"]`) as HTMLElement;
       const DNIError =   document.querySelector(`span[id="DNIError"]`) as HTMLElement;
       const fechaNacimientoError =   document.querySelector(`span[id="fechaNacimientoError"]`) as HTMLElement;
+
       if(this.nombreInputRef.nativeElement.value == ""){
         nombreError.textContent = "Este campo es requerido";
         nombreError.style.display = "flex";
@@ -89,6 +97,11 @@ export class AgregarAlumnoPopupComponent {
         DNIError.style.fontWeight = "bold";
       }else  if(this.fechaNacimientoInputRef.nativeElement.value == ""){
         fechaNacimientoError.textContent = "Este campo es requerido";
+        fechaNacimientoError.style.display = "flex";
+        fechaNacimientoError.style.color = "red";
+        fechaNacimientoError.style.fontWeight = "bold";
+      }else if(nacimientoDate > this.today){
+        fechaNacimientoError.textContent = "La fecha de nacimiento no puede ser mayor a la fecha actual";
         fechaNacimientoError.style.display = "flex";
         fechaNacimientoError.style.color = "red";
         fechaNacimientoError.style.fontWeight = "bold";

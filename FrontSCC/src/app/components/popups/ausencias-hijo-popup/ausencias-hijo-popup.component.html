@@ -1,3 +1,14 @@
+<app-datos-ausencia-popup *ngIf="openDatosAusenciaPopup"
+    [ausencia]="ausencia"
+    [idHijo]="idHijo"
+    [idAlumno]="idAlumno"
+    (cancelButtonClick)="handleCancelarClicked()"
+    (deleteButtonClick)="handleDeleteClicked($event)"
+    (editButtonClick)="handleEditClicked($event)"
+    (aceptarAusenciaButtonClick)="handleAceptarAusenciaClicked($event)"
+    (denegarAusenciaButtonClick)="handleDenegarAusenciaClicked($event)">
+    </app-datos-ausencia-popup>
+    
 <div class="overlay">
   <div class="popup fadeInDown">
     <div class="popupHeader">
@@ -9,6 +20,7 @@
         </div>
       </div>
     </div>
+    
 
     <div *ngIf="esAusenciasHijo && alumnoOHijoSinAulaAsignada == false" class="divAgregarAusencia">
       <button class="icon-btn add-btn" title="Nueva ausencia para {{hijo.nombre}}" (click)="openAgregarAusenciaPopup = true">
@@ -34,18 +46,7 @@
     (agregarButtonClick)="handleAgregarClick($event)">
     </app-agregar-ausencia-popup>
 
-    <app-datos-ausencia-popup *ngIf="openDatosAusenciaPopup"
-    [ausencia]="ausencia"
-    [idHijo]="idHijo"
-    [idAlumno]="idAlumno"
-    (cancelButtonClick)="handleCancelarClicked()"
-    (deleteButtonClick)="handleDeleteClicked($event)"
-    (editButtonClick)="handleEditClicked($event)"
-    (aceptarAusenciaButtonClick)="handleAceptarAusenciaClicked($event)"
-    (denegarAusenciaButtonClick)="handleDenegarAusenciaClicked($event)">
-    </app-datos-ausencia-popup>
-
-
+    
     <app-success-alert class="alert" *ngIf="openSuccessAlert"
     (cerrarButtonClick)="aceptarClicked()"
     [esEditAusencia]="esEditAusencia"

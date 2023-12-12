@@ -20,8 +20,6 @@ import { InstitucionesComponent } from './components/instituciones/instituciones
 import { ChartsComponent } from './components/charts/charts.component';
 
 
-
-
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['Padre', 'Docente', 'Directivo', 'Admin'] } },

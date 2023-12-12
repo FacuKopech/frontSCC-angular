@@ -147,22 +147,24 @@
                 </button>
                 <button class="Btn BtnHijos"  (click)="personasClick()"  *ngIf="grupo.tipo == 'Admin'">
                   <div class="signKid">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon personIcon" fill="currentColor"  viewBox="0 0 1024 1024" version="1.1"><path d="M512 597.994667q108.010667 0 225.002667 46.997333t116.992 123.008l0 85.994667-684.010667 0 0-85.994667q0-76.010667 116.992-123.008t225.002667-46.997333zM512 512q-69.994667 0-120-50.005333t-50.005333-120 50.005333-121.002667 120-51.008 120 51.008 50.005333 121.002667-50.005333 120-120 50.005333z"/></svg>          
+                    <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon personIcon" fill="currentColor"  viewBox="0 0 1024 1024" version="1.1">
+                      <path d="M512 597.994667q108.010667 0 225.002667 46.997333t116.992 123.008l0 85.994667-684.010667 0 0-85.994667q0-76.010667 116.992-123.008t225.002667-46.997333zM512 512q-69.994667 0-120-50.005333t-50.005333-120 50.005333-121.002667 120-51.008 120 51.008 50.005333 121.002667-50.005333 120-120 50.005333z"/>
+                    </svg>          
                   </div>
                   <div class="text">Personas</div>
                 </button>
                 <button class="Btn BtnHijos"  (click)="usuariosClick()"  *ngIf="grupo.tipo == 'Admin'">
-                  <div class="signKid">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"  stroke-width="1.5" class="usuarioIcon">
+                  <div class="signUserAndInst">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 usuarioIcon">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg> 
+                    </svg>                    
                   </div>
                   <div class="text">Usuarios</div>
                 </button>
                 <button class="Btn BtnHijos"  (click)="institucionesClick()"   *ngIf="grupo.tipo == 'Admin'">
-                  <div class="signKid">
-                    <svg #svgInstIcon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"  stroke-width="1.5" class="institucionIcon">
-                      <path #svgInstIcon stroke-linecap="round" class="institucionIcon" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                  <div class="signUserAndInst">
+                    <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"  stroke-width="1.5" class="institucionIcon">
+                      <path #svgInstIcon stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
                     </svg>    
                   </div>
                   <div class="text">Inst.</div>

@@ -5,6 +5,11 @@
       <div class="btn-txt">Agregar</div>
     </button>
 </div>
+
+<app-editar-user-popup *ngIf="openEditarUsuarioPopup"
+[user]="user"
+(cancelButtonClick)="openEditarUsuarioPopup = false">  
+</app-editar-user-popup>
 <div class="divMessage">
   <p class="pMessage">{{message}}</p>
 </div>
@@ -35,10 +40,6 @@
 (cancelButtonClick)="openAgregarUsuario = false">
 </app-agregar-user-popup>
 
-<app-editar-user-popup *ngIf="openEditarUsuarioPopup"
-[user]="user"
-(cancelButtonClick)="openEditarUsuarioPopup = false">  
-</app-editar-user-popup>
 
 <div class="container" *ngFor="let user of users.slice(calculateIndices().startIndex, calculateIndices().endIndex)">
   <div class="divContainerUser">

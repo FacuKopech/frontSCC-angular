@@ -1,4 +1,8 @@
 <h1>Instituciones</h1>
+<app-editar-institucion-popup class="alert" *ngIf="openEditarInstitucionPopup"
+(cancelButtonClick)="openEditarInstitucionPopup = false"
+[institucion]="institucion">    
+</app-editar-institucion-popup>
 <div class="divAgregarInstitucion">
   <button class="icon-btn add-btn" title="Nueva Institucion" (click)="openAgregarInstitucionPopup = true">
     <div class="add-icon"></div>
@@ -31,10 +35,6 @@
 (cancelButtonClick) = "openAgregarInstitucionPopup = false">
 </app-agregar-institucion-popup>
 
-<app-editar-institucion-popup class="alert" *ngIf="openEditarInstitucionPopup"
-(cancelButtonClick)="openEditarInstitucionPopup = false"
-[institucion]="institucion">    
-</app-editar-institucion-popup>
 
 <div class="divPrincipal">
   <div class="container" *ngFor="let institucion of instituciones.slice(calculateIndices().startIndex, calculateIndices().endIndex)">

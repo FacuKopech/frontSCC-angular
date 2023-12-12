@@ -14,7 +14,7 @@
     border-radius: 18px;
     box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
     position: absolute;
-    z-index: 9999;
+    z-index: 10000;
     width: fit-content;
 }
 
@@ -28,7 +28,7 @@
     border-radius: 18px;
     box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
     position: absolute;
-    z-index: 9999;
+    z-index: 10000;
     width: 57%;
 }
 

@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class UsuariosComponent {
 
-  constructor(private userService: ApiService, private location: Location){}
+  constructor(private userService: ApiService, private location: Location) { }
 
   public users: any[] = [];
   public user: any;
@@ -25,52 +25,79 @@ export class UsuariosComponent {
   openEditarUsuarioPopup = false;
   currentPage: number = 1;
   itemsPerPage: number = 5;
+  filteredUsuarios: any[] = [];
+  filterOptions: any = {
+    email: '',
+    username: '',
+  };
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.userService.ObtenerUsuariosSistema().subscribe(res => {
       this.message = "";
-      if(res){
+      if (res) {
         this.users = res;
-        console.log(this.users);
-        if(this.users.length == 0){
+        this.applyFilter();
+        if (this.users.length == 0) {
           this.message = "Usted aun no ha agregado Usuarios al sistema";
         }
       }
     });
   }
 
-  public verRoles(user: any){
+  applyFilter() {
+    this.filteredUsuarios = this.users.filter(usuario => {
+      const matchesEmail = usuario.email.toLowerCase().includes(this.filterOptions.email.toLowerCase());
+      const matchesUsername = usuario.username.toLowerCase().includes(this.filterOptions.username.toString());
+
+      return matchesEmail && matchesUsername;
+    });
+  }
+
+  onFilterChange() {
+    this.applyFilter();
+  }
+
+  clearFilter(tipoFiltro: string) {
+    if (tipoFiltro == 'email') {
+      this.filterOptions.email = '';
+    } else if (tipoFiltro == 'username') {
+      this.filterOptions.username = '';
+    }
+    this.applyFilter();
+  }
+
+  public verRoles(user: any) {
     this.user = user;
     this.openUserRolesPopup = true;
   }
 
-  public eliminarUser(user: any){
+  public eliminarUser(user: any) {
     this.openDeletePopup = true;
     this.itemForDelete = "Usuario";
     this.user = user;
   }
 
-  public editarUser(user: any){
+  public editarUser(user: any) {
     this.user = user;
     this.openEditarUsuarioPopup = true;
   }
 
-  public deleteUserConfirmed(){
+  public deleteUserConfirmed() {
     this.openDeletePopup = false;
     this.userService.EliminarUsuario(this.user.id).subscribe(res => {
-      if(res){
+      if (res) {
         this.openSuccessAlert = true;
         this.esEliminarUser = true;
       }
     },
-    (error:HttpErrorResponse) =>{
-      if(error.status >= 400){
-        this.openErrorAlert = true;
-      }
-    })
+      (error: HttpErrorResponse) => {
+        if (error.status >= 400) {
+          this.openErrorAlert = true;
+        }
+      })
   }
 
-  public cerrarSuccess(){
+  public cerrarSuccess() {
     this.openSuccessAlert = false;
     window.location.reload();
   }
@@ -86,19 +113,19 @@ export class UsuariosComponent {
     return Array(totalPages).fill(0).map((_, index) => index + 1);
   }
 
-  public pageClick(page: number){
+  public pageClick(page: number) {
     this.currentPage = page;
   }
 
-  public previousPageClick(){
+  public previousPageClick() {
     this.currentPage = this.currentPage - 1
   }
 
-  public nextPageClick(){
+  public nextPageClick() {
     this.currentPage = this.currentPage + 1
   }
 
-  public goBack(){
+  public goBack() {
     this.location.back();
   }
 }

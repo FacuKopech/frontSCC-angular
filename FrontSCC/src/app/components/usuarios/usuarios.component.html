@@ -1,99 +1,149 @@
 <h1>Usuarios</h1>
 <div class="divAgregarUsuario">
-    <button class="icon-btn add-btn" title="Nuevo Usuario" (click)="openAgregarUsuario = true">
-      <div class="add-icon"></div>
-      <div class="btn-txt">Agregar</div>
-    </button>
+  <button class="icon-btn add-btn" title="Nuevo Usuario" (click)="openAgregarUsuario = true">
+    <div class="add-icon"></div>
+    <div class="btn-txt">Agregar</div>
+  </button>
 </div>
 
-<app-editar-user-popup *ngIf="openEditarUsuarioPopup"
-[user]="user"
-(cancelButtonClick)="openEditarUsuarioPopup = false">  
+<app-editar-user-popup *ngIf="openEditarUsuarioPopup" [user]="user"
+  (cancelButtonClick)="openEditarUsuarioPopup = false">
 </app-editar-user-popup>
 <div class="divMessage">
   <p class="pMessage">{{message}}</p>
 </div>
 
-<div *ngIf="openUserRolesPopup || openDeletePopup || openErrorAlert || openSuccessAlert || openAgregarUsuario || openEditarUsuarioPopup" class="divCover"></div>
+<div
+  *ngIf="openUserRolesPopup || openDeletePopup || openErrorAlert || openSuccessAlert || openAgregarUsuario || openEditarUsuarioPopup"
+  class="divCover"></div>
 
-<app-user-roles-popup *ngIf="openUserRolesPopup"
-[user]="user"
-(cancelButtonClick)="openUserRolesPopup = false">    
+<app-user-roles-popup *ngIf="openUserRolesPopup" [user]="user" (cancelButtonClick)="openUserRolesPopup = false">
 </app-user-roles-popup>
 
-<confirm class="alert" *ngIf="openDeletePopup"
-[itemForDelete]="itemForDelete"
-(cancelButtonClick)="openDeletePopup = false"
-(eliminarButtonClick)="deleteUserConfirmed()">
+<confirm class="alert" *ngIf="openDeletePopup" [itemForDelete]="itemForDelete"
+  (cancelButtonClick)="openDeletePopup = false" (eliminarButtonClick)="deleteUserConfirmed()">
 </confirm>
 
-<app-error-alert class="alert" *ngIf="openErrorAlert"
-(cerrarButtonClick)="openErrorAlert = false">
+<app-error-alert class="alert" *ngIf="openErrorAlert" (cerrarButtonClick)="openErrorAlert = false">
 </app-error-alert>
 
-<app-success-alert class="alert" *ngIf="openSuccessAlert"
-(cerrarButtonClick)="cerrarSuccess()"
-[esEliminarUser]="esEliminarUser">    
+<app-success-alert class="alert" *ngIf="openSuccessAlert" (cerrarButtonClick)="cerrarSuccess()"
+  [esEliminarUser]="esEliminarUser">
 </app-success-alert>
 
 <app-agregar-user-popup class="agregarUserPopup" *ngIf="openAgregarUsuario"
-(cancelButtonClick)="openAgregarUsuario = false">
+  (cancelButtonClick)="openAgregarUsuario = false">
 </app-agregar-user-popup>
 
-
-<div class="container" *ngFor="let user of users.slice(calculateIndices().startIndex, calculateIndices().endIndex)">
-  <div class="divContainerUser">
-    <div class="pEmail">
-      <p>{{user.email}}</p>
-    </div>
-    <div class="divContainerInfo">
-      <div class="divEliminarUsuario">
-        <button title="Eliminar Usuario" class="btnEliminarUser" (click)="eliminarUser(user)"> 
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCrossIcon">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>              
-        </button>
-      </div>
-      <div class="divInfoUser">
-        <div class="divUsername">
-          <label class="labelTitle" for="">Nombre de usuario:</label>
-          <label class="labelData" for="">{{user.username}}</label>
-        </div>
-        <div class="divRoles">
-          <label class="labelTitle" for="">Roles</label>
-          <button class="btnVer" (click)="verRoles(user)">
-            <span>
-            Ver Roles
-            </span>
+<div class="filterInputsContainer">
+  <div class="filterInputs">
+    <div class="search-panels">
+      <div class="search-group">
+        <input required="" [(ngModel)]="filterOptions.email" (ngModelChange)="onFilterChange()" type="text" name="email"
+          autocomplete="on" class="input">
+        <label class="enter-label">Email</label>
+        <div class="btn-box-x">
+          <button class="btn-cleare" (click)="clearFilter('email')">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                id="cleare-line"></path>
+            </svg>
           </button>
         </div>
       </div>
-      <div class="divModificarBtn">
-        <button (click)="editarUser(user)" title="Modificar Usuario" class="btnEditarUser">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgEditIcon">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-              </svg>      
-        </button>            
+    </div>
+    <div class="search-panels">
+      <div class="search-group">
+        <input required="" [(ngModel)]="filterOptions.username" (ngModelChange)="onFilterChange()" type="text"
+          name="username" autocomplete="on" class="input">
+        <label class="enter-label">Username</label>
+        <div class="btn-box-x">
+          <button class="btn-cleare" (click)="clearFilter('username')">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                id="cleare-line"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<div class="divTableContainer">
+  <table #myTable class="table table-striped table-dark personasTable">
+    <thead>
+      <tr class="custom-tr">
+        <th class="thEmail" scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">Roles</th>
+        <th class="thAcciones" scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="scroll"
+      *ngFor="let usuario of filteredUsuarios.slice(calculateIndices().startIndex, calculateIndices().endIndex); let isLast = last">
+      <tr class="trData" [class.last-row]="isLast">
+        <td class="tdEmail">{{ usuario.email }}</td>
+        <td>{{ usuario.username }}</td>
+        <td>
+          <div class="divRoles">
+            <button class="btnVer" (click)="verRoles(usuario)">
+              <span>
+                Ver Roles
+              </span>
+            </button>
+          </div>
+        </td>
+        <td class="tdAcciones">
+          <div class="divActions">
+            <div class="divEliminarUsuario">
+              <button title="Eliminar Usuario" class="btnEliminarUser" (click)="eliminarUser(usuario)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6 svgCrossIcon">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+            </div>
+            <div class="divModificarBtn">
+              <button (click)="editarUser(usuario)" title="Modificar Usuario" class="btnEditarUser">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6 svgEditIcon">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <div class="pagination-controls">
-    <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
-      </svg>
-    </button>
-    <ng-container *ngIf="users.length > itemsPerPage">
-      <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()" [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
-    </ng-container>
-    <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()" [disabled]="currentPage * itemsPerPage >= users.length">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
-      </svg>
-    </button>
-  </div>
+  <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+    </svg>
+  </button>
+  <ng-container *ngIf="users.length > itemsPerPage">
+    <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()"
+      [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
+  </ng-container>
+  <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()"
+    [disabled]="currentPage * itemsPerPage >= users.length">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+    </svg>
+  </button>
+</div>
 
 <app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
 </app-go-back-button>

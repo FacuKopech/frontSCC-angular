@@ -34,7 +34,6 @@ export class AulasInstitucionComponent {
   ngOnInit(): void{
     const loggedInUser = this.loginService.getLoggedInUser();
     this.institucion = loggedInUser.institucion;
-    console.log(this.institucion);
     this.aulaService.ObtenerAulasInstitucion().subscribe(res => {
       this.message = "";
       if(res.length > 0){

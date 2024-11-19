@@ -12,7 +12,7 @@ import { PersonaService } from 'src/app/services/personas_services/persona.servi
 export class AlumnosSinAulaComponent {
 
 
-  idInstitucion: number = 0;
+  idInstitucion: string = '';
   openSuccessAlert = false;
   openErrorAlert = false;
   message: string = '';

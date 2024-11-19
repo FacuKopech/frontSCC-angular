@@ -3,62 +3,64 @@
 <div *ngIf="openSuccessAlert || openErrorAlert || openDeletionPopup" class="divCover"></div>
 
 <!-- ALERT SUCCESS ACEPTAR/DENEGAR AUSENCIA ALUMNO -->
-<app-success-alert class="alert" *ngIf="openSuccessAlert"
-(cerrarButtonClick)="closeSuccessAlert()"
-[esEliminarAlumnoDelSistema]="esEliminarAlumnoDelSistema">
+<app-success-alert class="alert" *ngIf="openSuccessAlert" (cerrarButtonClick)="closeSuccessAlert()"
+  [esEliminarAlumnoDelSistema]="esEliminarAlumnoDelSistema">
 </app-success-alert>
 
 <!-- ALERT ERROR ACEPTAR/DENEGAR AUSENCIA ALUMNO -->
-<app-error-alert class="alert" *ngIf="openErrorAlert"
-(cerrarButtonClick)="openErrorAlert = false">
+<app-error-alert class="alert" *ngIf="openErrorAlert" (cerrarButtonClick)="openErrorAlert = false">
 </app-error-alert>
 
 <confirm class="confirmDeletePopup" (cancelButtonClick)="openDeletionPopup = false"
-(eliminarButtonClick)="confirmEliminarAlumno()"
-[itemForDelete]="itemForDelete"
-*ngIf="openDeletionPopup">
+  (eliminarButtonClick)="confirmEliminarAlumno()" [itemForDelete]="itemForDelete" *ngIf="openDeletionPopup">
 </confirm>
 
-<div class="divContainerAlumnos">
-  <div class="divHeaderContainer">
-    <div class="divNombre">
-      <h3>Alumno</h3>
-    </div>
-    <div class="divAccion">
-      <h3>Accion</h3>
-    </div>
-  </div>
-  <div *ngIf="alumnosSinAula.length == 0" class="divMessage">
-    <p class="pMessage">No existen Alumnos sin Aula asignada</p>
-  </div>
-  <div class="divContainer" *ngFor="let alumno of alumnosSinAula">
-    <div class="divAlumno">
-      <div class="divNombreAlumno">
-        <h3>{{alumno.apellido}}, {{alumno.nombre}}</h3>
-      </div>
-      <div class="divDeleteButton">
-        <button class="btnEliminarAlumno" title="Eliminar Alumno" (click)="deleteClick(alumno)">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCrossIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
+<div class="divTableContainer">
+  <table #myTable class="table table-striped table-dark">
+    <thead>
+      <tr class="custom-tr">
+        <th class="thName" scope="col">Alumno</th>
+        <th class="thAction" scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="scroll" *ngFor="let alumno of alumnosSinAula; let isLast = last">
+      <tr *ngIf="alumnosSinAula.length == 0">
+        <td class="tdName" for="">No existen Alumnos sin Aula asignada</td>
+      </tr>
+      <tr *ngIf="alumnosSinAula.length > 0" class="trData" [class.last-row]="isLast">
+        <td class="tdName" for="">{{alumno.apellido}}, {{alumno.nombre}}</td>
+        <td class="tdAction">
+          <button class="btnEliminarAlumno" title="Eliminar Alumno" (click)="deleteClick(alumno)">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6 svgCrossIcon">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div class="pagination-controls">
   <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
     </svg>
   </button>
   <ng-container *ngIf="alumnosSinAula.length > itemsPerPage">
-    <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()" [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
+    <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()"
+      [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
   </ng-container>
-  <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()" [disabled]="currentPage * itemsPerPage >= alumnosSinAula.length">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+  <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()"
+    [disabled]="currentPage * itemsPerPage >= alumnosSinAula.length">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
     </svg>
   </button>
 </div>

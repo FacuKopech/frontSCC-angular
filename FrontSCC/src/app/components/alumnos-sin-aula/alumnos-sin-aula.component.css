@@ -1,12 +1,9 @@
-
 h1 {
   display: flex;
   justify-content: center;
   font-family: Chalk, sans-serif;
   font-size: 50px;
-  
 }
-
 
 .divCover {
   position: absolute;
@@ -14,133 +11,127 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1d1d1d6b; /* Transparent black background */
-  z-index: 999; /* Ensure the overlay is above other elements */
+  background-color: #1d1d1d6b;
+  z-index: 999;
   backdrop-filter: blur(3px) brightness(1.04);
 }
 
-.alert{
+.alert {
   display: flex;
   justify-content: center;
 }
 
-.divContainerAlumnos{
+.divTableContainer {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   flex-wrap: wrap;
-  align-items: center;
 }
 
-.divHeaderContainer{
-  justify-content: space-between;
-    width: 57%;
-    display: flex;
-    background-color: #00000099;
-    border-radius: 17px;
-    border: 2px solid #25c3be;
-    margin-bottom: 8px;
+table {
+  width: 84%;
 }
 
-.divNombre{
-  margin-left: 10px;
-  text-decoration: underline;
+thead {
+  border-block-color: #03CEA4;
 }
 
-
-.divAccion{
-  margin-right: 4px;
-  text-decoration: underline;
+.thName,
+.tdName {
+  width: 50%;
+  text-align: left;
 }
 
+.thName {
+  border-top-left-radius: 20px;
+}
 
-.divContainer{
+table tbody tr.last-row .tdName {
+  border-bottom-left-radius: 20px;
+}
+
+table tbody tr.last-row .tdAction {
+  border-bottom-right-radius: 20px;
+}
+
+.thAction {
+  width: 50%;
+  text-align: right;
+  border-top-right-radius: 20px;
+}
+
+.tdAction {
   display: flex;
-  justify-content: space-between;
-  width: 57%;
-  flex-direction: column;
+  width: 100%;
+  justify-content: flex-end;
 }
 
-.divAlumno{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  background-color: #0000007d;
-  border-radius: 24px;
-  transition: transform 0.3s ease;
+td {
+  font-family: Chalk, sans-serif;
 }
 
-.divAlumno:hover{
-  transform: scale(1.05);
-}
-
-.divNombreAlumno{
-  margin-left: 14px;
-}
-
-
-.btnEliminarAlumno{
+.btnEliminarAlumno {
   background-color: transparent;
   border: none;
   transition: transform 0.3s ease;
- }
+}
 
- .btnEliminarAlumno:hover{
+.btnEliminarAlumno:hover {
   transform: scale(1.08);
- }
+}
 
-.svgCrossIcon{
+.svgCrossIcon {
   width: 45px;
   height: 45px;
   color: white;
- }
+}
 
- .btnEliminarAlumno:hover .svgCrossIcon{
+.btnEliminarAlumno:hover .svgCrossIcon {
   color: red;
- }
+}
 
- .pagination-controls{
+.pagination-controls {
   display: flex;
   justify-content: center;
   width: 100%;
   margin-bottom: 16px;
   height: 24px;
- }
+}
 
- .paginationBtn{
+.paginationBtn {
   background-color: transparent;
   border: none;
   border-radius: 100%;
- }
+}
 
- .paginationBtn:hover{
+.paginationBtn:hover {
   background-color: #23a9da90;
   color: white;
- }
+}
 
- .svgArrowIcon{
+.svgArrowIcon {
   height: 20px;
-    width: 20px;
-    display: flex;
- }
+  width: 20px;
+  display: flex;
+}
 
- .currentPageBtn{
+.currentPageBtn {
   border-radius: 100%;
-    height: fit-content;
-    background-color: transparent;
-    border: none;
- }
+  height: fit-content;
+  background-color: transparent;
+  border: none;
+}
 
- .current-page {
+.current-page {
   background-color: #23a9da;
   color: #fff;
 }
 
- .currentPageBtn:hover{
+.currentPageBtn:hover {
   background-color: #23a9da;
   color: white;
- }
+}
 
-.goBackComp{
+.goBackComp {
   display: flex;
   justify-content: center;
- }
+}

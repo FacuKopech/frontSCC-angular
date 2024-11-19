@@ -29,6 +29,7 @@
 <app-ausencias-hijo-popup class="popupAusenciasHijo" *ngIf="openPopupAusenciasHijo"
 (cancelButtonClick)="cerrarAusenciasHijoPopup()"
 [hijo]="hijo"
+[alumno]="null"
 [esAusenciasAlumno]="false"
 [esAusenciasHijo]="true">
 </app-ausencias-hijo-popup>
@@ -49,7 +50,9 @@
 <!-- ALERT ERROR AREGAR AUSENCIAS GENERICAS -->
 <app-error-alert class="alert" *ngIf="openErrorAlert"
 (cerrarButtonClick)="openErrorAlert = false"
-[esErrorAgregarAusenciaHijoSinAulaAsignada]="esErrorAgregarAusenciaHijoSinAulaAsignada">
+[esErrorAgregarAusenciaHijoSinAulaAsignada]="esErrorAgregarAusenciaHijoSinAulaAsignada"
+[esErrorAgregarAusenciaExistente]="esErrorAgregarAusenciaExistente"
+[esErrorAlumnoNoEncontrado]="esErrorAlumnoNoEncontrado">
 </app-error-alert>
 
 <div class="container">

@@ -23,7 +23,6 @@ export class HijosComponent {
   openPopupDatosAulaHijo = false;
   openPopupAusenciasHijo = false;
   public institucion: any;
-  public idHijo: number = -1;
   public hijo: any;
   openAgregarAusenciasGenericasPopup = false;
   esGenerica = false;
@@ -34,107 +33,127 @@ export class HijosComponent {
   currentPage: number = 1;
   itemsPerPage: number = 3;
   esErrorAgregarAusenciaHijoSinAulaAsignada = false;
+  esErrorAgregarAusenciaExistente = false;
+  esErrorAlumnoNoEncontrado = false;
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.personaService.ObtenerMisHijos().subscribe(res => {
       this.message = "";
-      if(res){
+      if (res) {
         this.hijos = res;
         console.log(this.hijos);
-        if(this.hijos.length == 0){
+        if (this.hijos.length == 0) {
           this.message = "Usted aun no tiene hijos asignados en el sistema";
         }
       }
     });
   }
 
-  public verInstitucion(institucion: any){
+  public verInstitucion(institucion: any) {
     this.institucion = institucion;
     this.openPopupDatosInstitucionHijo = true;
   }
 
-  public verAula(hijo: any){
+  public verAula(hijo: any) {
     this.hijo = hijo;
     this.openPopupDatosAulaHijo = true;
   }
 
-  public verHistoriales(hijo: any){
+  public verHistoriales(hijo: any) {
     this.hijo = hijo;
-    this.router.navigate(['/historiales_hijo'], {state: {data: this.hijo, esAlumno: false}});
+    this.router.navigate(['/historiales_hijo'], { state: { data: this.hijo, esAlumno: false } });
   }
 
-  public verAusencias(hijo: any){
-    console.log('ID HIJO', hijo);
-
+  public verAusencias(hijo: any) {
     this.openPopupAusenciasHijo = true;
     this.hijo = hijo;
   }
 
-  public handleAgregarAusenciaGenericaClick(eventData: {fechaComienzo: Date, fechaFin: Date, motivo: string, files: FormData}){
+  public handleAgregarAusenciaGenericaClick(eventData: { fechaComienzo: Date, fechaFin: Date, motivo: string, files: FormData }) {
     eventData.files?.forEach((value, key) => {
-      if(value != '' || key != ''){
+      if (value != '' || key != '') {
         this.counter += 1;
       }
     });
-    if(this.counter > 0){
-      this.ausenciaService.AgregarAusenciaFiles(eventData.files).subscribe(res =>{
-        if(res){
-          this.ausenciaService.AgregarAusenciaGenerica(eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res=>{
-            if(res){
+    if (this.counter > 0) {
+      this.ausenciaService.AgregarAusenciaFiles(eventData.files).subscribe(res => {
+        if (res) {
+          this.ausenciaService.AgregarAusenciaGenerica(eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
+            if (res) {
               this.openSuccessAlert = true;
               this.esAgregarAusenciaGenerica = true;
               this.openAgregarAusenciasGenericasPopup = false;
-            }else{
-              this.openErrorAlert = true;
             }
           },
-          (error:HttpErrorResponse) =>{
-            debugger
-            if(error.status == 400 && error.error == 'No puede agregar una Ausencia a un Hijo sin Aula asignada'){
-              this.openErrorAlert = true;
-              this.esErrorAgregarAusenciaHijoSinAulaAsignada = true;
-            }else  if(error.error == ''){
-              if(error.status == 404 || error.status == 400){
+            (error: HttpErrorResponse) => {
+              if (error.status == 400 && error.error == 'No puede agregar una Ausencia a un Hijo sin Aula asignada') {
                 this.openErrorAlert = true;
+                this.esErrorAgregarAusenciaHijoSinAulaAsignada = true;
+                this.esErrorAgregarAusenciaExistente = false;
+              } else if (error.status == 400 && error.error == 'La Ausencia ya existe') {
+                this.openErrorAlert = true;
+                this.esErrorAgregarAusenciaExistente = true;
+                this.esErrorAgregarAusenciaHijoSinAulaAsignada = false;
+              } else if (error.status == 404 && error.error == 'Hijo no encontrado') {
+                this.openErrorAlert = true;
+                this.esErrorAlumnoNoEncontrado = true;
+                this.esErrorAgregarAusenciaExistente = false;
+                this.esErrorAgregarAusenciaHijoSinAulaAsignada = false;
+              } else if (error.error == '') {
+                if (error.status == 404 || error.status == 400) {
+                  this.openErrorAlert = true;
+                }
               }
-            }
 
-          });
+            });
         }
       });
-    }else{
-      this.ausenciaService.AgregarAusenciaGenerica(eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res=>{
-        if(res){
+    } else {
+      this.ausenciaService.AgregarAusenciaGenerica(eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
+        if (res) {
           this.openSuccessAlert = true;
           this.esAgregarAusenciaGenerica = true;
           this.openAgregarAusenciasGenericasPopup = false;
-        }else{
-          this.openErrorAlert = true;
         }
       },
-      (error:HttpErrorResponse) =>{
-        if(error.status == 404 || error.status == 400){
-          this.openErrorAlert = true;
-        }
-      });
+        (error: HttpErrorResponse) => {
+          if (error.status == 400 && error.error == 'No puede agregar una Ausencia a un Hijo sin Aula asignada') {
+            this.openErrorAlert = true;
+            this.esErrorAgregarAusenciaHijoSinAulaAsignada = true;
+            this.esErrorAgregarAusenciaExistente = false;
+          } else if (error.status == 400 && error.error == 'La Ausencia ya existe') {
+            this.openErrorAlert = true;
+            this.esErrorAgregarAusenciaExistente = true;
+            this.esErrorAgregarAusenciaHijoSinAulaAsignada = false;
+          } else if (error.status == 404 && error.error == 'Hijo no encontrado') {
+            this.openErrorAlert = true;
+            this.esErrorAlumnoNoEncontrado = true;
+            this.esErrorAgregarAusenciaExistente = false;
+            this.esErrorAgregarAusenciaHijoSinAulaAsignada = false;
+          } else if (error.error == '') {
+            if (error.status == 404 || error.status == 400) {
+              this.openErrorAlert = true;
+            }
+          }
+        });
     }
   }
 
-  public cerrarDatosInstitucionPopup(){
+  public cerrarDatosInstitucionPopup() {
     this.institucion = null;
     this.openPopupDatosInstitucionHijo = false;
   }
 
-  public cerrarDatosAulaPopup(){
+  public cerrarDatosAulaPopup() {
     this.hijo = null;
     this.openPopupDatosAulaHijo = false;
   }
 
-  public cerrarAusenciasHijoPopup(){
+  public cerrarAusenciasHijoPopup() {
     this.openPopupAusenciasHijo = false;
   }
 
-  public aceptarClicked(){
+  public aceptarClicked() {
     this.openSuccessAlert = false;
     window.location.reload();
   }
@@ -150,19 +169,19 @@ export class HijosComponent {
     return Array(totalPages).fill(0).map((_, index) => index + 1);
   }
 
-  public pageClick(page: number){
+  public pageClick(page: number) {
     this.currentPage = page;
   }
 
-  public previousPageClick(){
+  public previousPageClick() {
     this.currentPage = this.currentPage - 1
   }
 
-  public nextPageClick(){
+  public nextPageClick() {
     this.currentPage = this.currentPage + 1
   }
 
-  public goBack(){
+  public goBack() {
     this.location.back();
   }
 

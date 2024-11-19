@@ -16,11 +16,11 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/IndexNotasEmitidas`);
   }
 
-  public EliminarNotaEmitida(notaIdEliminar: number): Observable<boolean> {
+  public EliminarNotaEmitida(notaIdEliminar: string): Observable<boolean> {
     return this.http.delete<boolean>(this.hostUrl + `/Notas/DeleteConfirmed/${notaIdEliminar}`);
   }
 
-  public ModificarNotaEmitida(notaIdModificar: number, nota: { titulo: string, cuerpo: string, aulasDestinadas: any[] }): Observable<boolean> {
+  public ModificarNotaEmitida(notaIdModificar: string, nota: { titulo: string, cuerpo: string, aulasDestinadas: any[] }): Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Notas/Edit/${notaIdModificar}`, nota);
   }
 
@@ -28,11 +28,11 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerAulasDestinatariosParaNuevaNota/${tipoDeNota}/${conAula}`);
   }
 
-  public ObtenerAlumnosDeAulaParaNuevaNota(idAula: number): Observable<any> {
+  public ObtenerAlumnosDeAulaParaNuevaNota(idAula: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerAlumnosDeAulaParaNuevaNota/${idAula}`);
   }
 
-  public ObtenerListaDeDestinatariosParaNuevaNota(idAula: number, enviaNotaComo: string): Observable<any> {
+  public ObtenerListaDeDestinatariosParaNuevaNota(idAula: string, enviaNotaComo: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerListaDeDestinatariosParaNuevaNota/${idAula}/${enviaNotaComo}`);
   }
 
@@ -44,17 +44,16 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerHijosPadreParaNuevaNota/`);
   }
 
-  public EnviarNuevaNota(nuevaNota: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number,
-    destinatarios: any[], titulo:string, cuerpo: string, files: FormData, enviaNotaComo: string}): Observable<any> {
-      debugger
+  public EnviarNuevaNota(nuevaNota: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: string,
+    destinatarios: any[], titulo:string, cuerpo: string, files: FormData, enviaNotaComo: string}): Observable<any> {      
     return this.http.post<any>(this.hostUrl + `/Notas/EnviarNuevaNota/`, nuevaNota);
   }
 
-  public EnviarNuevaNotaADocente(idHijo: number, nota: { tipo:string, titulo: string, cuerpo: string}): Observable<boolean> {
+  public EnviarNuevaNotaADocente(idHijo: string, nota: { tipo:string, titulo: string, cuerpo: string}): Observable<boolean> {
     return this.http.post<boolean>(this.hostUrl + `/Notas/EnviarNuevaNotaADocente/${idHijo}`, nota);
   }
 
-  public EnviarNuevaNotaAPadres(idAlumno: number, nota: { tipo:string, titulo: string, cuerpo: string}): Observable<boolean> {
+  public EnviarNuevaNotaAPadres(idAlumno: string, nota: { tipo:string, titulo: string, cuerpo: string}): Observable<boolean> {
     return this.http.post<boolean>(this.hostUrl + `/Notas/EnviarNuevaNotaAPadres/${idAlumno}`, nota);
   }
 
@@ -62,7 +61,7 @@ export class NotaService {
     return this.http.post<boolean>(this.hostUrl + `/Notas/AgregarNotaFiles/`, files);
   }
 
-  public ObtenerArchivosNota(idNota: number): Observable<any> {
+  public ObtenerArchivosNota(idNota: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Notas/ObtenerArchivosNota/${idNota}`);
   }
 
@@ -72,15 +71,15 @@ export class NotaService {
     return this.http.get<any>(this.hostUrl + `/Notas/IndexNotasRecibidas`);
   }
 
-  public EliminarNotaRecibida(notaIdEliminar: number): Observable<boolean> {
+  public EliminarNotaRecibida(notaIdEliminar: string): Observable<boolean> {
     return this.http.delete<boolean>(this.hostUrl + `/Notas/DeleteConfirmed/${notaIdEliminar}`);
   }
 
-  public LeerNota(idNotaLeida: number): Observable<boolean>{
+  public LeerNota(idNotaLeida: string): Observable<boolean>{
     return this.http.put<boolean>(this.hostUrl + `/Notas/LeerNota/${idNotaLeida}`, null);
   }
 
-  public FirmarNota(idNota: number): Observable<any> {
+  public FirmarNota(idNota: string): Observable<any> {
     return this.http.put<any>(this.hostUrl + `/Notas/FirmarNota/${idNota}/`, null);
   }
 

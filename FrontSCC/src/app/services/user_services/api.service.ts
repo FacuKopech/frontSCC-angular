@@ -11,16 +11,9 @@ export class ApiService {
   private hostUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  public Login(username: string, clave: string): Observable<any> {
-    return this.http.get<any>(this.hostUrl + `/Usuarios/LogIn/${username}/${clave}`);
-  }
-
-  public RegistrarLogin(): Observable<any> {
-    return this.http.post<any>(this.hostUrl + `/Usuarios/RegistrarLogin/`, null);
-  }
-
-  public ActualizarLoginAuditEnLogoutAction(): Observable<any> {
-    return this.http.put<any>(this.hostUrl + `/Usuarios/ActualizarLoginAuditEnLogoutAction/`, null);
+  public Login(email: string, username: string, clave: string): Observable<any> { 
+    const body = { username, clave, email };
+    return this.http.post<any>(this.hostUrl + `/Usuarios/LogIn/`, body);
   }
 
   public isLoggedIn(): Observable<any> {
@@ -80,11 +73,11 @@ export class ApiService {
     return this.http.get<any>(this.hostUrl + "/Usuarios/ObtenerRolesSistema")
   }
 
-  public ObtenerRolesUsuario(idUser: number): Observable<any>{
+  public ObtenerRolesUsuario(idUser: string): Observable<any>{
     return this.http.get<any>(this.hostUrl + `/Usuarios/ObtenerRolesUsuario/${idUser}`)
   }
 
-  public EliminarUsuario(idUser: number): Observable<boolean> {
+  public EliminarUsuario(idUser: string): Observable<boolean> {
     return this.http.delete<boolean>(this.hostUrl + `/Usuarios/EliminarUsuario/${idUser}`);
   }
 
@@ -92,7 +85,7 @@ export class ApiService {
     return this.http.post<boolean>(this.hostUrl + `/Usuarios/AgregarUsuario/`, usuario);
   }
 
-  public EditarUsuario(idUser: number, usuario: {email: string, username: string, clave: string, rolesSeleccionados: any[]}): Observable<any> {
+  public EditarUsuario(idUser: string, usuario: {email: string, username: string, clave: string, rolesSeleccionados: any[]}): Observable<any> {
     return this.http.put<any>(this.hostUrl + `/Usuarios/EditarUsuario/${idUser}`, usuario);
   }
 }

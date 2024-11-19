@@ -11,7 +11,7 @@ export class AulaService {
   private hostUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  public ObtenerAulaHijo(idHijo: number): Observable<any> {
+  public ObtenerAulaHijo(idHijo: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAulaDeHijo/${idHijo}`);
   }
 
@@ -19,7 +19,7 @@ export class AulaService {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAulasDeHijos`);
   }
 
-  public ObtenerAulasDestinadasNota(idNota: number): Observable<any> {
+  public ObtenerAulasDestinadasNota(idNota: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAulasDestinadasNota/${idNota}`);
   }
 
@@ -31,59 +31,60 @@ export class AulaService {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAulasInstitucion`);
   }
 
-  public ObtenerPorcentajesAsistenciaAulas(idInstitucion: number): Observable<any> {
+  public ObtenerPorcentajesAsistenciaAulas(idInstitucion: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerPorcentajesAsistenciaAulas/${idInstitucion}`);
   }
 
-  public ObtenerAlumnosAula(idAula: number): Observable<any> {
-    return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAlumnosAula/${idAula}`);
+  public ObtenerAlumnosAula(idAula: string): Observable<any> {
+    const body = {idAula}
+    return this.http.post<any>(this.hostUrl + `/Aulas/ObtenerAlumnosAula/`, body);
   }
 
-  public ObtenerAlumnosSinAula(idInstitucion: number): Observable<any> {
+  public ObtenerAlumnosSinAula(idInstitucion: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAlumnosSinAula/${idInstitucion}`);
   }
 
-  public ObtenerDocentesSinAulaAsignada(idInstitucion: number): Observable<any> {
+  public ObtenerDocentesSinAulaAsignada(idInstitucion: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerDocentesSinAulaAsignada/${idInstitucion}`);
   }
-  public ObtenerDocentesDeInstitucion(idInstitucion: number): Observable<any> {
+  public ObtenerDocentesDeInstitucion(idInstitucion: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerDocentesDeInstitucion/${idInstitucion}`);
   }
 
-  public ObtenerAsistenciasAula(idAula: number): Observable<any> {
+  public ObtenerAsistenciasAula(idAula: string): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAsistenciasAula/${idAula}`);
   }
 
-  public ObtenerAsistenciaAlumnos(idAula: number, idAsistencia: number, esPresentes: boolean): Observable<any> {
+  public ObtenerAsistenciaAlumnos(idAula: string, idAsistencia: string, esPresentes: boolean): Observable<any> {
     return this.http.get<any>(this.hostUrl + `/Aulas/ObtenerAsistenciaAlumnos/${idAula}/${idAsistencia}/${esPresentes}`);
   }
 
-  public CargarNuevaAsistencia(idAula: number, alumnos: any[]): Observable<boolean> {
+  public CargarNuevaAsistencia(idAula: string, alumnos: any[]): Observable<boolean> {
     return this.http.post<boolean>(this.hostUrl + `/Aulas/CargarNuevaAsistencia/${idAula}`, alumnos);
   }
 
-  public AgregarAula(aula:{nombreAula: string, gradoAula:string, divisionAula: string, institucionId: number, alumnosSeleccionados: any[], docenteId: number} ): Observable<boolean> {
+  public AgregarAula(aula:{nombreAula: string, gradoAula:string, divisionAula: string, institucionId: string, alumnosSeleccionados: any[], docenteId: string} ): Observable<boolean> {
     console.log(aula.alumnosSeleccionados);
     return this.http.post<boolean>(this.hostUrl + `/Aulas/AgregarAula/`, aula);
   }
 
-  public EditarAula(idAula: number, aula:{nombreAula: string, gradoAula:string, divisionAula: string, institucionId: number, alumnosSeleccionados: any[], docenteId: number} ): Observable<boolean> {
+  public EditarAula(idAula: string, aula:{nombreAula: string, gradoAula:string, divisionAula: string, institucionId: string, alumnosSeleccionados: any[], docenteId: string} ): Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Aulas/EditarAula/${idAula}`, aula);
   }
 
-  public EliminarAlumnoDeAula(idAlumno: number): Observable<boolean> {
+  public EliminarAlumnoDeAula(idAlumno: string): Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Aulas/EliminarAlumnoDeAula/${idAlumno}`, null);
   }
 
-  public AgrgarAlumnoExistenteAAula(idAula: number, alumnos:{alumnosSeleccionados: any[]}) : Observable<boolean> {
+  public AgrgarAlumnoExistenteAAula(idAula: string, alumnos:{alumnosSeleccionados: any[]}) : Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Aulas/AgrgarAlumnoExistenteAAula/${idAula}`, alumnos);
   }
 
-  public AgrgarAlumnoNuevoAAula(idAula: number, alumno:{nombre: string, apellido:string, DNI: number, fechaNacimiento: Date} ): Observable<boolean> {
+  public AgrgarAlumnoNuevoAAula(idAula: string, alumno:{nombre: string, apellido:string, DNI: number, fechaNacimiento: Date} ): Observable<boolean> {
     return this.http.put<boolean>(this.hostUrl + `/Aulas/AgrgarAlumnoNuevoAAula/${idAula}`, alumno);
   }
 
-  public EliminarAula(idAula: number): Observable<any> {
+  public EliminarAula(idAula: string): Observable<any> {
     return this.http.delete<any>(this.hostUrl + `/Aulas/EliminarAula/${idAula}`);
   }
 }

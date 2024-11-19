@@ -12,43 +12,41 @@ export class ArchivosAusenciaComponent {
   @Input() ausencia: any;
   @Input() nota: any;
   filesNames: Blob[] = [];
-  message: string='';
+  message: string = '';
   esAusencia = false;
   stringToReplaceAusencia = /Ausencia-\d+-/;
   stringToReplaceNota = /Nota-\d+-/;
-  constructor(private ausenciaService: AusenciaService, private notaService: NotaService, private location: Location){}
+  constructor(private ausenciaService: AusenciaService, private notaService: NotaService, private location: Location) { }
 
-  ngOnInit(){
-    if(history.state.data.cuerpo == null){
+  ngOnInit() {
+    if (history.state.data.cuerpo == null) {
       this.esAusencia = true;
       this.ausencia = history.state.data;
       this.ausenciaService.ObtenerArchivosAusencia(this.ausencia.id).subscribe((blob: Blob[]) => {
         this.filesNames = blob;
-
-        if(this.filesNames.length == 0){
-          this.message = "Hmmm...Nada por aqui!";
+        if (blob.length === 0) {
+          this.message = "No existen archivos adjuntos";
         }
-        console.log(blob, this.filesNames, this.filesNames[0]);
       });
-    }else{
+    } else {
       this.esAusencia = false;
       this.nota = history.state.data;
       this.notaService.ObtenerArchivosNota(this.nota.id).subscribe((blob: Blob[]) => {
-      this.filesNames = blob;
-      if(this.filesNames.length == 0){
-        this.message = "Hmmm...Nada por aqui!";
-      }
-      console.log(blob, this.filesNames, this.filesNames[0]);
-    });
+        this.filesNames = blob;
+        if (blob.length === 0) {
+          this.message = "No existen archivos adjuntos";
+        }
+        console.log(this.message)
+      });
     }
   }
 
-  public downloadFile(fileName: string, contentType: string, data:string) {
+  public downloadFile(fileName: string, contentType: string, data: string) {
     const byteArray = new Uint8Array(
       atob(data)
         .split('')
         .map((char) => char.charCodeAt(0))
-      );
+    );
     var blobObj = new Blob([byteArray], { type: contentType });
 
     var url = URL.createObjectURL(blobObj);
@@ -65,7 +63,7 @@ export class ArchivosAusenciaComponent {
     URL.revokeObjectURL(url);
   }
 
-  public goBack(){
+  public goBack() {
     this.location.back();
   }
 }

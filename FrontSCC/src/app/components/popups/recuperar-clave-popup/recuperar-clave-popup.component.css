@@ -111,15 +111,17 @@ h3 {
 }
 .customButtons {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .cancelarButton:hover{
     background-color: red;
 }
 
-.buttonValidarToken {
+.buttonTokenPopup {
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
@@ -135,7 +137,7 @@ h3 {
   outline: none;
 }
 
-.buttonValidarToken:hover{
+.buttonTokenPopup:hover{
   background-color: #07c1cf;
   box-shadow: 0px 15px 20px rgba(4, 209, 185, 0.4);
   color: #fff;
@@ -145,6 +147,16 @@ h3 {
 .svgValidar{
   width: 16px;
   height: 16px;
+}
+
+hr{
+  border: 1px solid #ffffff;
+  width: 100%;
+}
+
+p{
+  margin-bottom: 4px;
+  font-family: Chalk, sans-serif;
 }
 
 input[type=text]{

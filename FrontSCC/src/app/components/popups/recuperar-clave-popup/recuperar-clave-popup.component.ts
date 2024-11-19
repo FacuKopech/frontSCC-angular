@@ -9,6 +9,8 @@ export class RecuperarClavePopupComponent {
   @ViewChild('tokenInput', { static: false }) tokenInput!: ElementRef<HTMLInputElement>;
   @Output()
   validarButtonClick = new EventEmitter<{token: string}>();
+  @Output()
+  reenviarButtonClick = new EventEmitter<{}>();
 
   @Input() esTokenParaFirmaHistorial: boolean = false;
   @Input() esTokenParaFirmaNota: boolean = false;
@@ -39,5 +41,9 @@ export class RecuperarClavePopupComponent {
       tokenError.style.display = "none";
       this.validarButtonClick.emit({token: this.token.replace('-', '')});
     }
+  }
+
+  public reenviarTokenClicked = () => {
+    this.reenviarButtonClick.emit();
   }
 }

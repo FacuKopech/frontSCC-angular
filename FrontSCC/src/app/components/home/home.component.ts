@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login_services/login.service';
 import { AdminService } from 'src/app/services/admin_services/admin.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ApiService } from 'src/app/services/user_services/api.service';
+import { EncryptionService } from 'src/app/services/encryption_services/encryption.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { ApiService } from 'src/app/services/user_services/api.service';
 })
 export class HomeComponent {
 
-  constructor(private router: Router, private loginService: LoginService, private adminService: AdminService, private userService: ApiService) { }
+  constructor(private router: Router, private loginService: LoginService, private adminService: AdminService, private userService: ApiService, private encryptionService: EncryptionService) { }
   
   public username: string = "";
   public groups: any[] = [];
@@ -45,7 +46,8 @@ export class HomeComponent {
   }
 
   public validarClaveAdmin(event:{clave: string}){
-    this.userService.ValidarClaveAdmin(event.clave).subscribe(res => {
+    const claveAdmin = this.encryptionService.encryptPassword(event.clave);
+    this.userService.ValidarClaveAdmin(claveAdmin).subscribe(res => {
       if(res){
         this.openClaveConfirmacion = false;
         if(this.esBackupDB){
@@ -101,12 +103,16 @@ export class HomeComponent {
     this.router.navigate(['/notas_recibidas']);
   }
 
+  public personasClick(){
+    this.router.navigate(['/personas']);
+  }
+
   public usuariosClick(){
     this.router.navigate(['/usuarios']);
   }
 
-  public personasClick(){
-    this.router.navigate(['/personas']);
+  public auditoriasClick(){
+    this.router.navigate(['/reportes']);
   }
 
   public institucionesClick(){

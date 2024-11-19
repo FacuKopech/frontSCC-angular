@@ -21,8 +21,9 @@ export class InstitucionesComponent{
   openAgregarInstitucionPopup = false;
   openConfirmDeletePopup = false;
   openEditarInstitucionPopup = false;  
-  idInstitucion: number = -1;
+  idInstitucion: string = '';
   institucion: any;
+  message: string = '';
 
   constructor( private institucionService: InstitucionService, private location: Location){}
 
@@ -30,6 +31,9 @@ export class InstitucionesComponent{
     this.institucionService.ObtenerInstitucionesSistema().subscribe(res => {
       if(res){
         this.instituciones = res;
+        if(this.instituciones.length == 0){
+          this.message = "Usted aun no ha agregado Instituciones al sistema"
+        }
       }
     });
   }

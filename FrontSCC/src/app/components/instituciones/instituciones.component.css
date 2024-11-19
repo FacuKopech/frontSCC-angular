@@ -108,11 +108,11 @@ h1 {
     top: calc(50% - 2px);
   }
   
-  .divMessage .pMessage{
+  .divMessage .pMessage {
     display: flex;
     justify-content: center;
-    font-weight: bold;
-    color: black;
+    font-family: Chalk, sans-serif;
+    font-size: x-large;
   }
   .divCover {
     position: absolute;

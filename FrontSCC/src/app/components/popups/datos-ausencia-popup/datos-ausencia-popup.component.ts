@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@
 import { Router } from '@angular/router';
 import { AusenciaService } from 'src/app/services/ausencias_services/ausencia.service';
 import {  DatePipe  } from '@angular/common';
+import { PersonaService } from 'src/app/services/personas_services/persona.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-datos-ausencia-popup',
@@ -13,6 +15,7 @@ export class DatosAusenciaPopupComponent {
   @ViewChild('fechaComienzoInput', { static: false }) fechaComienzoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('fechaFinInput', { static: false }) fechaFinInput!: ElementRef<HTMLInputElement>;
 
+  padres: any[] = [];
   fechaComienzo: Date;
   fechaFin: Date;
   motivoAusencia: string = '';
@@ -20,31 +23,43 @@ export class DatosAusenciaPopupComponent {
   openConfirmDeletePopup=false;
   itemForDelete: string = '';
   esAusenciaGenerica = false;
+  openErrorAlert = false;
   @Input() filesAusencia: FormData;
-  @Input() idHijo: number=-1;
-  @Input() idAlumno: number=-1;
+  @Input() idHijo: string= '00000000-0000-0000-0000-000000000000';
+  @Input() idAlumno: string= '00000000-0000-0000-0000-000000000000';
   @Input() ausencias: any[] = [];
   @Input() ausencia: any;
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()
-  deleteButtonClick = new EventEmitter<{idAusencia: number, idHijo: number}>();
+  deleteButtonClick = new EventEmitter<{idAusencia: string, idHijo: string}>();
   @Output()
   editButtonClick = new EventEmitter<{fechaComienzo: Date, fechaFin: Date, motivo: string}>();
   @Output()
-  aceptarAusenciaButtonClick = new EventEmitter<{idAusencia: number, idAlumno: number, esAceptada: boolean}>();
+  aceptarAusenciaButtonClick = new EventEmitter<{idAusencia: string, idAlumno: string, esAceptada: boolean}>();
   @Output()
-  denegarAusenciaButtonClick = new EventEmitter<{idAusencia: number, idAlumno: number, esAceptada: boolean}>();
+  denegarAusenciaButtonClick = new EventEmitter<{idAusencia: string, idAlumno: string, esAceptada: boolean}>();
 
-  constructor(private ausenciaService: AusenciaService, private router: Router, private datePipe: DatePipe){
+  constructor(private ausenciaService: AusenciaService, private router: Router, private datePipe: DatePipe, private personaService: PersonaService){
     this.fechaComienzo = new Date();
     this.fechaFin = new Date();
     this.filesAusencia = new FormData();
   }
 
   ngOnInit(){
-    if(this.idAlumno >= 0){
+    console.log('ID ALUMNO', this.idAlumno);
+    console.log('ID HIJO', this.idHijo);
+    this.personaService.ObtenerPadresDeAlumno(this.idAlumno).subscribe(res => {
+      if(res){
+        this.padres = res;
+      }
+    },(error:HttpErrorResponse) =>{
+      if(error.status == 404 || error.status == 400){
+        this.openErrorAlert = true;
+      }
+    });
+    if(this.idAlumno != '00000000-0000-0000-0000-000000000000'){
       if(this.ausencias.length > 0){
         document.getElementById("div-actionButtons")?.classList.remove("divActionButtons")
         document.getElementById("div-actionButtons")?.classList.add("show-close-button");

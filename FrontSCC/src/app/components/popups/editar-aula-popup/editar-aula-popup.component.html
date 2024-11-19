@@ -10,9 +10,7 @@
       <div *ngIf="showErrorAlert || showSuccessAlert" class="divCover"></div>
       <app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
         *ngIf="showErrorAlert"
-        [esErrorNomreAulaRepetido]="esErrorNomreAulaRepetido"
-        [esErrorGradoAulaRepetido]="esErrorGradoAulaRepetido"
-        [esErrorDivisionAulaRepetida]="esErrorDivisionAulaRepetida">
+        [esErrorAulaRepetida]="esErrorAulaRepetida">
       </app-error-alert>
 
       <app-success-alert class="alert" (cerrarButtonClick)="closeSuccessAlert()"

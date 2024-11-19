@@ -23,9 +23,7 @@ export class EditarAulaPopupComponent {
   showErrorAlert = false;
   showSuccessAlert = false;
   showEditionAulaSuccessAlert = false;
-  esErrorNomreAulaRepetido = false;
-  esErrorGradoAulaRepetido = false;
-  esErrorDivisionAulaRepetida = false;
+  esErrorAulaRepetida = false;
   docenteSeleccionadaId: number = 0;
   docentesDeInstitucion: any[] = [];
   alumnosSeleccionados: any[] = [];
@@ -104,7 +102,7 @@ export class EditarAulaPopupComponent {
           divisionAula: this.divisionAula,
           institucionId: this.aula.institucion.id,
           alumnosSeleccionados: this.alumnosSeleccionados,
-          docenteId: this.docenteSeleccionadaId,
+          docenteId: this.docenteSeleccionadaId.toString(),
         };
         console.log(eventData);
         this.aulaService.EditarAula(this.aula.id, eventData).subscribe(res => {
@@ -116,23 +114,9 @@ export class EditarAulaPopupComponent {
         (error:HttpErrorResponse) =>{
           if(error.status == 404 || error.status >= 500 || error.status == 0){
             this.showErrorAlert = true;
-          }else if(error.status == 400 && error.error == "Nombre existente"){
+          }else if(error.status == 400 && error.error == "Existente"){
             this.showErrorAlert = true;
-            this.esErrorNomreAulaRepetido = true;
-            this.esErrorGradoAulaRepetido = false;
-            this.esErrorDivisionAulaRepetida = false;
-          }else if(error.status == 400 && error.error == "Grado existente"){
-            this.showErrorAlert = true;
-            this.esErrorNomreAulaRepetido = false;
-            this.esErrorGradoAulaRepetido = true;
-            this.esErrorDivisionAulaRepetida = false;
-          }else if(error.status == 400 && error.error == "Division existente"){
-            this.showErrorAlert = true;
-            this.esErrorNomreAulaRepetido = false;
-            this.esErrorGradoAulaRepetido = false;
-            this.esErrorDivisionAulaRepetida = true;
-          }else if(error.status == 400 && error.error == ""){
-            this.showErrorAlert = true;
+            this.esErrorAulaRepetida = true;
           }
         });
       }
@@ -143,7 +127,7 @@ export class EditarAulaPopupComponent {
         divisionAula: this.divisionAula,
         institucionId: this.aula.institucion.id,
         alumnosSeleccionados: this.alumnosSeleccionados,
-        docenteId: this.docenteSeleccionadaId,
+        docenteId: this.docenteSeleccionadaId.toString(),
       };
       console.log(eventData);
       this.aulaService.EditarAula(this.aula.id, eventData).subscribe(res => {
@@ -155,21 +139,9 @@ export class EditarAulaPopupComponent {
       (error:HttpErrorResponse) =>{
         if(error.status == 404 || error.status >= 500 || error.status == 0){
           this.showErrorAlert = true;
-        }else if(error.status == 400 && error.error == "Nombre existente"){
+        }else if(error.status == 400 && error.error == "Existente"){
           this.showErrorAlert = true;
-          this.esErrorNomreAulaRepetido = true;
-          this.esErrorGradoAulaRepetido = false;
-          this.esErrorDivisionAulaRepetida = false;
-        }else if(error.status == 400 && error.error == "Grado existente"){
-          this.showErrorAlert = true;
-          this.esErrorNomreAulaRepetido = false;
-          this.esErrorGradoAulaRepetido = true;
-          this.esErrorDivisionAulaRepetida = false;
-        }else if(error.status == 400 && error.error == "Division existente"){
-          this.showErrorAlert = true;
-          this.esErrorNomreAulaRepetido = false;
-          this.esErrorGradoAulaRepetido = false;
-          this.esErrorDivisionAulaRepetida = true;
+          this.esErrorAulaRepetida = true;
         }else if(error.status == 400 && error.error == ""){
           this.showErrorAlert = true;
         }

@@ -1,8 +1,10 @@
 <h1>Asistencias de {{aula.nombre}}</h1>
 <div *ngIf="asistenciaHoyTomada == false" class="divTomarAsistencia">
   <button class="buttonTomarAsistencia" (click)="tomarAsistencia()">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgPersonIcon">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgPersonIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
     </svg>
     Tomar asistencia
   </button>
@@ -11,20 +13,37 @@
   <p class="pMessage">{{message}}</p>
 </div>
 
-<div *ngIf="openAsistenciaAlumnosPopup || openErrorAlert" class="divCover"></div>
+<div *ngIf="openAsistenciaAlumnosPopup || showErrorAlert" class="divCover"></div>
 
-<app-asistencia-alumno-popup *ngIf="openAsistenciaAlumnosPopup"
-(cancelButtonClick)="openAsistenciaAlumnosPopup = false"
-[asistencia]="asistencia"
-[aula]="aula"
-[esPresentes]="esPresentes">
+<div class="filterInputsContainer" *ngIf="message === ''">
+  <div class="filterInputs">
+    <div class="search-panels">
+      <div class="search-group">
+        <input required="" [(ngModel)]="filterOptions.date" (ngModelChange)="onFilterChange()" type="date"
+          placeholder="" name="text" autocomplete="on" class="input">
+        <label class="enter-label">Fecha</label>
+        <div class="btn-box-x">
+          <button class="btn-cleare" (click)="clearFilter()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                id="cleare-line"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-asistencia-alumno-popup *ngIf="openAsistenciaAlumnosPopup" (cancelButtonClick)="openAsistenciaAlumnosPopup = false"
+  [asistencia]="asistencia" [aula]="aula" [esPresentes]="esPresentes">
 </app-asistencia-alumno-popup>
 
-<app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
-*ngIf="showErrorAlert">
+<app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false" *ngIf="showErrorAlert">
 </app-error-alert>
 
-<div class="container" *ngFor="let asistencia of asistencias">
+<div class="container" *ngFor="let asistencia of filteredAsistencias.slice(calculateIndices().startIndex, calculateIndices().endIndex);">
   <div class="divContainerAsistencia">
     <div class="divContainerInfo">
       <div class="divPresentes">
@@ -35,10 +54,13 @@
         <div class="divFechaAsistencia">
           <label class="labelTitle" for="">Fecha:</label>
           <div class="divFechaData">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCalendarIcon">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6 svgCalendarIcon">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
             </svg>
-            <label class="labelData" for="">{{asistencia.fechaAsistenciaTomada.substring(8,10)}}/{{asistencia.fechaAsistenciaTomada.substring(5,7)}}/{{asistencia.fechaAsistenciaTomada.substring(0,4)}}</label>
+            <label class="labelData"
+              for="">{{asistencia.fechaAsistenciaTomada.substring(8,10)}}/{{asistencia.fechaAsistenciaTomada.substring(5,7)}}/{{asistencia.fechaAsistenciaTomada.substring(0,4)}}</label>
           </div>
         </div>
       </div>
@@ -50,9 +72,25 @@
   </div>
 </div>
 
+<div class="pagination-controls">
+  <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+    </svg>
+  </button>
+  <ng-container *ngIf="asistencias.length > itemsPerPage">
+    <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()" [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
+  </ng-container>
+  <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()" [disabled]="currentPage * itemsPerPage >= asistencias.length">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+    </svg>
+  </button>
+</div>
+
 <!-- <ng-template #childTemplate> -->
-  <!-- <app-historiales [aula]="aula"></app-historiales> ASISTENCIA -->
-  <!-- <app-alumnos [aula]="aula"></app-alumnos> ALUMNOS
+<!-- <app-historiales [aula]="aula"></app-historiales> ASISTENCIA -->
+<!-- <app-alumnos [aula]="aula"></app-alumnos> ALUMNOS
 </ng-template> -->
 
 

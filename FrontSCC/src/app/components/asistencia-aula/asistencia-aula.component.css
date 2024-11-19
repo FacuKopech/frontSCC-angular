@@ -3,19 +3,22 @@ h1 {
   justify-content: center;
   font-family: Chalk, sans-serif;
   font-size: 50px;
-  
+
 }
 
-.divMessage .pMessage{
+.divMessage .pMessage {
   display: flex;
   justify-content: center;
+  font-family: Chalk, sans-serif;
+  font-size: x-large;
 }
 
-.divTomarAsistencia{
+.divTomarAsistencia {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
 }
+
 .buttonTomarAsistencia {
   padding: 1.3em 3em;
   font-size: 12px;
@@ -49,17 +52,19 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1d1d1d6b; /* Transparent black background */
-  z-index: 999; /* Ensure the overlay is above other elements */
+  background-color: #1d1d1d6b;
+  /* Transparent black background */
+  z-index: 999;
+  /* Ensure the overlay is above other elements */
   backdrop-filter: blur(3px) brightness(1.04);
 }
 
-.svgPersonIcon{
+.svgPersonIcon {
   width: 18px;
   height: 18px;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -67,7 +72,7 @@ h1 {
   align-content: center;
 }
 
-.divContainerAsistencia{
+.divContainerAsistencia {
   background-color: #28282bbd;
   width: 100%;
   display: flex;
@@ -80,12 +85,12 @@ h1 {
   transition: transform 0.3s ease;
 }
 
-.divContainerAsistencia:hover{
+.divContainerAsistencia:hover {
   transform: scale(1.04);
 
 }
 
-.pNombre{
+.pNombre {
   display: flex;
   justify-content: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif, 'Times New Roman', Times, serif;
@@ -93,39 +98,39 @@ h1 {
   text-decoration-line: underline;
 }
 
-.divContainerInfo{
+.divContainerInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.divInfoAsistencia{
+.divInfoAsistencia {
   display: flex;
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
 }
 
-.divFechaAsistencia{
+.divFechaAsistencia {
   display: flex;
   flex-direction: column;
   width: 145px;
 }
 
-.labelTitle{
+.labelTitle {
   text-decoration-line: underline;
   font-size: 22px;
   font-weight: 500;
 }
 
-.divFechaData{
+.divFechaData {
   display: flex;
-    width: 100%;
-    justify-content: space-around;
+  width: 100%;
+  justify-content: space-around;
 }
 
-.svgCalendarIcon{
+.svgCalendarIcon {
   display: flex;
   flex-wrap: wrap;
   align-self: center;
@@ -133,17 +138,17 @@ h1 {
   height: 20px;
 }
 
-.labelData{
+.labelData {
   font-size: 22px;
 }
 
-.divPresentes{
+.divPresentes {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
 }
 
-.divAusentes{
+.divAusentes {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -163,13 +168,13 @@ h1 {
   position: relative;
   z-index: 1;
   overflow: hidden;
- }
+}
 
- .btnInfo:hover {
+.btnInfo:hover {
   color: black;
- }
+}
 
- .btnInfo:after {
+.btnInfo:after {
   content: "";
   background: white;
   position: absolute;
@@ -180,15 +185,232 @@ h1 {
   bottom: 0;
   transform: skewX(-45deg) scale(0, 1);
   transition: all 0.5s;
- }
+}
 
- .btnInfo:hover:after {
+.btnInfo:hover:after {
   transform: skewX(-45deg) scale(1, 1);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
- }
+}
 
- .goBackComp{
+.pagination-controls {
   display: flex;
   justify-content: center;
- }
+  width: 100%;
+  margin-bottom: 16px;
+  height: 24px;
+}
+
+.paginationBtn {
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+  color: white;
+}
+
+.paginationBtn:hover {
+  background-color: #23a9da90;
+  color: white;
+}
+
+.svgArrowIcon {
+  height: 20px;
+  width: 20px;
+  display: flex;
+}
+
+.currentPageBtn {
+  border-radius: 100%;
+  height: fit-content;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.current-page {
+  background-color: #23a9da;
+  color: #fff;
+}
+
+.currentPageBtn:hover {
+  background-color: #23a9da;
+  color: white;
+}
+
+.goBackComp {
+  display: flex;
+  justify-content: center;
+}
+
+.filterInputsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.filterInputs {
+  display: flex;
+  justify-content: space-evenly;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+select option {
+  background-color: #323539;
+  color: white;
+}
+
+.search-panels {
+  --default-color: white;
+  --color-text: white;
+  --color-active: #395756;
+  --color-active-input: white;
+  --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --width-input: 200px;
+}
+
+.search-group {
+  position: relative;
+}
+
+.input {
+  width: var(--width-input);
+  border: solid 1.5px var(--default-color);
+  border-radius: 80px;
+  background: none;
+  padding: 1rem;
+  padding-right: 3rem;
+  font-size: 1rem;
+  color: var(--color-active-input);
+  transition: border var(--transition);
+}
+
+.enter-label {
+  position: absolute;
+  left: 15px;
+  color: var(--default-color);
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: var(--transition);
+
+}
+
+.enter-label {
+  color: white;
+  pointer-events: none;
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+
+input[type=date]:focus::-webkit-datetime-edit {
+  color: black !important;
+}
+
+.input:focus,
+input:valid {
+  outline: none;
+  border: 1.5px solid var(--color-active);
+}
+
+.input:focus~label,
+input:valid~label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: var(--color-active);
+  border-radius: 20px;
+  padding: .2em .6em;
+  color: var(--color-text);
+  font-size: large;
+  font-weight: bold;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -1em;
+  right: 80%;
+  border-radius: 100%;
+  transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 100ms;
+  opacity: 0;
+}
+
+.input:focus~.btn-box,
+input:valid~.btn-box {
+  right: 10%;
+  opacity: 1;
+  transition-delay: 0s;
+  transition: var(--transition);
+}
+
+.input:not(:focus)~.btn-box,
+input:not(:valid)~.btn-box {
+  transition-property: right, opacity;
+  transition-delay: 300ms;
+}
+
+.input:focus~.btn-box:hover,
+input:valid~.btn-box:hover {
+  transform: scale(1.2);
+}
+
+.input:focus~.btn-box:hover:active,
+input:valid~.btn-box:hover:active {
+  transform: scale(1);
+}
+
+
+#svg-circle {
+  fill: var(--color-text);
+  transition: var(--transition);
+}
+
+.input:focus~.btn-box:hover #svg-circle,
+input:valid~.btn-box:hover #svg-circle {
+  fill: transparent;
+}
+
+.btn-box-x {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 1em;
+  right: 7%;
+  opacity: 0;
+  transform: rotate(-90deg) scale(.1);
+  transition: var(--transition);
+}
+
+.input:focus~.btn-box-x,
+input:valid~.btn-box-x {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+.btn-cleare {
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  width: 2em;
+  height: 2em;
+  border: none;
+  border-radius: 100%;
+  padding: 0;
+  transition: var(--transition);
+}
+
+.btn-cleare svg {
+  width: 15px;
+  height: 15px;
+}
+
+#cleare-line {
+  fill: var(--default-color);
+}
+
+.btn-box-x:hover #cleare-line {
+  fill: var(--color-active);
+}

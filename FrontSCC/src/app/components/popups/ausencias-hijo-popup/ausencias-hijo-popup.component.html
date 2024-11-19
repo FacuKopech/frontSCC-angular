@@ -1,14 +1,3 @@
-<app-datos-ausencia-popup *ngIf="openDatosAusenciaPopup"
-    [ausencia]="ausencia"
-    [idHijo]="idHijo"
-    [idAlumno]="idAlumno"
-    (cancelButtonClick)="handleCancelarClicked()"
-    (deleteButtonClick)="handleDeleteClicked($event)"
-    (editButtonClick)="handleEditClicked($event)"
-    (aceptarAusenciaButtonClick)="handleAceptarAusenciaClicked($event)"
-    (denegarAusenciaButtonClick)="handleDenegarAusenciaClicked($event)">
-    </app-datos-ausencia-popup>
-    
 <div class="overlay">
   <div class="popup fadeInDown">
     <div class="popupHeader">
@@ -20,111 +9,131 @@
         </div>
       </div>
     </div>
-    
-
     <div *ngIf="esAusenciasHijo && alumnoOHijoSinAulaAsignada == false" class="divAgregarAusencia">
-      <button class="icon-btn add-btn" title="Nueva ausencia para {{hijo.nombre}}" (click)="openAgregarAusenciaPopup = true">
+      <button class="icon-btn add-btn" title="Nueva ausencia para {{hijo.nombre}}"
+        (click)="openAgregarAusenciaPopup = true">
         <div class="add-icon"></div>
         <div class="btn-txt">Agregar</div>
       </button>
     </div>
-    <div class="divSinAula" *ngIf="esAusenciasHijo && alumnoOHijoSinAulaAsignada" >
+    <div class="divSinAula" *ngIf="esAusenciasHijo && alumnoOHijoSinAulaAsignada">
       <label for="">Hijo sin Aula asignada. No se pueden agregar nuevas Ausencias</label>
     </div>
-
     <div class="divColorsReference">
       <label class="labelJustificada" for="">Justificada</label>
       <label class="labelNoJustificada" for="">No Justificada</label>
       <label class="labelPendiente" for="">Pendiente</label>
     </div>
 
-    <div *ngIf="openAgregarAusenciaPopup || openDatosAusenciaPopup || openSuccessAlert || openErrorAlert" class="divCover"></div>
+    <div *ngIf="openAgregarAusenciaPopup || openDatosAusenciaPopup || openSuccessAlert || openErrorAlert"
+      class="divCover"></div>
 
-    <app-agregar-ausencia-popup class="agregarAusenciaPopup" *ngIf="openAgregarAusenciaPopup"
-    [hijo]="hijo"
-    (cancelButtonClick)="openAgregarAusenciaPopup = false"
-    (agregarButtonClick)="handleAgregarClick($event)">
+    <app-agregar-ausencia-popup class="agregarAusenciaPopup" *ngIf="openAgregarAusenciaPopup" [hijo]="hijo"
+      (cancelButtonClick)="openAgregarAusenciaPopup = false" (agregarButtonClick)="handleAgregarClick($event)">
     </app-agregar-ausencia-popup>
 
-    
-    <app-success-alert class="alert" *ngIf="openSuccessAlert"
-    (cerrarButtonClick)="aceptarClicked()"
-    [esEditAusencia]="esEditAusencia"
-    [esDeleteAusencia]="esDeleteAusencia"
-    [esAgregarAusencia]="esAgregarAusencia"
-    [esAceptarAusenciaAlumno]="esAceptarAusencia"
-    [esDenegarAusenciaAlumno]="esDenegarAusencia">
+    <app-datos-ausencia-popup *ngIf="openDatosAusenciaPopup" [ausencia]="ausencia" [idHijo]="idHijo"
+      [idAlumno]="idAlumno" (cancelButtonClick)="handleCancelarClicked()"
+      (deleteButtonClick)="handleDeleteClicked($event)" (editButtonClick)="handleEditClicked($event)"
+      (aceptarAusenciaButtonClick)="handleAceptarAusenciaClicked($event)"
+      (denegarAusenciaButtonClick)="handleDenegarAusenciaClicked($event)">
+    </app-datos-ausencia-popup>
+
+    <app-success-alert class="alert" *ngIf="openSuccessAlert" (cerrarButtonClick)="aceptarClicked()"
+      [esEditAusencia]="esEditAusencia" [esDeleteAusencia]="esDeleteAusencia" [esAgregarAusencia]="esAgregarAusencia"
+      [esAceptarAusenciaAlumno]="esAceptarAusencia" [esDenegarAusenciaAlumno]="esDenegarAusencia">
     </app-success-alert>
 
-    <app-error-alert class="alert" *ngIf="openErrorAlert"
-    (cerrarButtonClick)="cerrarClicked()">
+    <app-error-alert class="alert" *ngIf="openErrorAlert" (cerrarButtonClick)="cerrarClicked()"
+    [esErrorAgregarAusenciaHijoSinAulaAsignada]="esErrorAgregarAusenciaHijoSinAulaAsignada"
+    [esErrorAgregarAusenciaExistente]="esErrorAgregarAusenciaExistente"
+    [esErrorAlumnoNoEncontrado]="esErrorAlumnoNoEncontrado"
+    [esErrorAusenciaNoEncontrada]="esErrorAusenciaNoEncontrada"
+    [esErrorIdInvalido]="esErrorIdInvalido">
     </app-error-alert>
 
-      <div #divContent class="container" >
-        <div *ngIf="esAusenciasHijo" class="divAusenciasHijo">
-          <button (click)="verAusenciaHijo(ausencia, hijo.id)" class="btnAusencia" *ngFor="let ausencia of ausencias.slice(calculateIndices().startIndex, calculateIndices().endIndex)"
+    <div #divContent class="container">
+      <div *ngIf="esAusenciasHijo" class="divAusenciasHijo">
+        <button (click)="verAusenciaHijo(ausencia, hijo.id)" class="btnAusencia"
+          *ngFor="let ausencia of ausencias.slice(calculateIndices().startIndex, calculateIndices().endIndex)"
           [ngStyle]="getBackgroundColor(ausencia)">
-            <div class="divFechaComienzo">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCalendarIcon">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
-              </svg>
-              <p class="pFechaComienzo">{{ausencia.fechaComienzo.substring(8,10)}}/{{ausencia.fechaComienzo.substring(5,7)}}/{{ausencia.fechaComienzo .substring(0,4)}}</p>
-            </div>
-            <div class="divContainerData">
-              <div class="divMotivoTitle">
-                <label class="labelTitle" for="">Motivo: </label>
-              </div>
-              <div class="divMotivoData">
-                <label class="labelData" for="">{{ausencia.motivo}}</label>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div *ngIf="esAusenciasAlumno" class="divAusenciasAlumno">
-          <button (click)="verAusenciaAlumno(ausencia)" class="btnAusencia" *ngFor="let ausencia of ausencias.slice(calculateIndices().startIndex, calculateIndices().endIndex)"
-          [ngStyle]="getBackgroundColor(ausencia)">
-            <div class="divFechaComienzo">
-              <div class="divFechaData">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCalendarIcon">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
-                </svg>
-                <label class="pFechaComienzo">{{ausencia.fechaComienzo.substring(8,10)}}/{{ausencia.fechaComienzo.substring(5,7)}}/{{ausencia.fechaComienzo .substring(0,4)}}</label>
-              </div>
-            </div>
-            <div class="divContainerData">
-              <div class="divMotivoTitle">
-                <label class="labelTitle" for="">Motivo: </label>
-              </div>
-              <div class="divMotivoData">
-                <label class="labelData" for="">{{ausencia.motivo}}</label>
-              </div>
-            </div>
-          </button>
-        </div>
-        <div class="pagination-controls">
-          <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+          <div class="divFechaComienzo">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6 svgCalendarIcon">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
             </svg>
-          </button>
-          <ng-container *ngIf="ausencias.length > itemsPerPage">
-            <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()" [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
-          </ng-container>
-          <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()" [disabled]="currentPage * itemsPerPage >= ausencias.length">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgArrowIcon">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
-            </svg>
-          </button>
-        </div>
+            <p class="pFechaComienzo">
+              {{ausencia.fechaComienzo.substring(8,10)}}/{{ausencia.fechaComienzo.substring(5,7)}}/{{ausencia.fechaComienzo
+              .substring(0,4)}}</p>
+          </div>
+          <div class="divContainerData">
+            <div class="divMotivoTitle">
+              <label class="labelTitle" for="">Motivo: </label>
+            </div>
+            <div class="divMotivoData">
+              <label class="labelData" for="">{{ausencia.motivo}}</label>
+            </div>
+          </div>
+        </button>
       </div>
+      <div *ngIf="esAusenciasAlumno" class="divAusenciasAlumno">
+        <button (click)="verAusenciaAlumno(ausencia)" class="btnAusencia"
+          *ngFor="let ausencia of ausencias.slice(calculateIndices().startIndex, calculateIndices().endIndex)"
+          [ngStyle]="getBackgroundColor(ausencia)">
+          <div class="divFechaComienzo">
+            <div class="divFechaData">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6 svgCalendarIcon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+              </svg>
+              <label
+                class="pFechaComienzo">{{ausencia.fechaComienzo.substring(8,10)}}/{{ausencia.fechaComienzo.substring(5,7)}}/{{ausencia.fechaComienzo
+                .substring(0,4)}}</label>
+            </div>
+          </div>
+          <div class="divContainerData">
+            <div class="divMotivoTitle">
+              <label class="labelTitle" for="">Motivo: </label>
+            </div>
+            <div class="divMotivoData">
+              <label class="labelData" for="">{{ausencia.motivo}}</label>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="pagination-controls">
+        <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+          </svg>
+        </button>
+        <ng-container *ngIf="ausencias.length > itemsPerPage">
+          <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()"
+            [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
+        </ng-container>
+        <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()"
+          [disabled]="currentPage * itemsPerPage >= ausencias.length">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6 svgArrowIcon">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+          </svg>
+        </button>
+      </div>
+    </div>
 
     <div class="popupCloseButton">
       <button class="close-button" title="Cerrar" (click)="cancelarClicked()">
         <svg class="close-svgIcon" viewBox="0 0 362 362">
-          <path d="M 90.998 91.502 L 72.515 110.005 107.502 145.002 L 142.489 180.000 107.742 214.758 L 72.995 249.515 91.500 268.000 L 110.005 286.485 144.765 251.735 L 179.524 216.986 214.260 251.774 L 248.996 286.562 267.770 267.788 L 286.545 249.014 251.522 214.257 L 216.500 179.500 251.500 144.761 L 286.500 110.022 268.008 91.509 L 249.515 72.995 214.758 107.742 L 180.000 142.489 145.245 107.745 C 126.129 88.635 110.262 73.000 109.985 73.000 C 109.707 73.000 101.163 81.326 90.998 91.502 "></path>
+          <path
+            d="M 90.998 91.502 L 72.515 110.005 107.502 145.002 L 142.489 180.000 107.742 214.758 L 72.995 249.515 91.500 268.000 L 110.005 286.485 144.765 251.735 L 179.524 216.986 214.260 251.774 L 248.996 286.562 267.770 267.788 L 286.545 249.014 251.522 214.257 L 216.500 179.500 251.500 144.761 L 286.500 110.022 268.008 91.509 L 249.515 72.995 214.758 107.742 L 180.000 142.489 145.245 107.745 C 126.129 88.635 110.262 73.000 109.985 73.000 C 109.707 73.000 101.163 81.326 90.998 91.502 ">
+          </path>
         </svg>
-        </button>
+      </button>
     </div>
   </div>
 </div>
-

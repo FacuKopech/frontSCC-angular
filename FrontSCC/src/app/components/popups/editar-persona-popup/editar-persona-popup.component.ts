@@ -60,7 +60,7 @@ export class EditarPersonaPopupComponent {
     this.institucionSeleccionada = this.persona.institucion;
     this.hijosSeleccionadosCopia = this.hijosSeleccionados;
     
-    this.personaService.ObtenerAlumnosSinPadre(this.persona.id).subscribe(res => {
+    this.personaService.ObtenerAlumnosSinPadre().subscribe(res => {
       if(res){
         this.alumnosSinPadresAsignados = res;
         this.personaService.ObtenerHijosDePersona(this.persona.id).subscribe(res => {
@@ -109,7 +109,7 @@ export class EditarPersonaPopupComponent {
     if(this.nombreInputRef.nativeElement.value == this.persona.nombre && this.apellidoInputRef.nativeElement.value == this.persona.apellido && 
       this.domicilioInputRef.nativeElement.value == this.persona.domicilio && this.telefonoInputRef.nativeElement.value == this.persona.telefono &&
       this.dniInputRef.nativeElement.value == this.persona.dni && this.emailInputRef.nativeElement.value == this.persona.email 
-      && this.usuarioSeleccionado.id == this.persona.usuario.id && this.hijosArrayAreEqual){
+      && this.usuarioSeleccionado.id == this.persona.usuario.id && this.hijosArrayAreEqual && this.institucionSeleccionada == this.persona.institucion){
         generalError.textContent = "Para poder editar una Persona, debe modificar al menos un campo";
         generalError.style.display = "flex";
         generalError.style.color = "red";

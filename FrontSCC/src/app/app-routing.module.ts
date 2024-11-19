@@ -18,6 +18,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { PersonasComponent } from './components/personas/personas.component';
 import { InstitucionesComponent } from './components/instituciones/instituciones.component';
 import { ChartsComponent } from './components/charts/charts.component';
+import { EventosComponent } from './components/eventos/eventos/eventos.component';
 
 
 const routes: Routes = [
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: 'personas', component: PersonasComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'instituciones', component: InstitucionesComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'reportes', component: ChartsComponent, canActivate: [AuthGuard], data: { roles: ['Admin', 'Directivo'] } },
-];
+  { path: 'eventos', component: EventosComponent, canActivate: [AuthGuard], data: { roles: ['Docente', 'Directivo', 'Padre'] } },];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

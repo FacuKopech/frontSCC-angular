@@ -3,10 +3,10 @@ h1 {
   justify-content: center;
   font-family: Chalk, sans-serif;
   font-size: 50px;
-  
+
 }
 
-.divAgregarHistorial{
+.divAgregarHistorial {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -108,53 +108,54 @@ h1 {
   top: calc(50% - 2px);
 }
 
-.divMessage .pMessage{
+.divMessage .pMessage {
   display: flex;
   justify-content: center;
-  font-weight: bold;
-  color: black;
+  font-family: Chalk, sans-serif;
+  font-size: x-large;
 }
+
 .divCover {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1d1d1d6b; /* Transparent black background */
-  z-index: 999; /* Ensure the overlay is above other elements */
+  background-color: #1d1d1d6b;
+  /* Transparent black background */
+  z-index: 999;
+  /* Ensure the overlay is above other elements */
   backdrop-filter: blur(3px) brightness(1.04);
 }
 
-.tokenPopup{
+.tokenPopup {
   position: relative;
   display: flex;
   justify-content: center;
 }
 
-.agregarHistorialPopup{
+.agregarHistorialPopup {
   display: flex;
   justify-content: center;
   position: relative;
 }
 
-.alert{
+.alert {
   display: flex;
   justify-content: center;
 }
 
-.divPrincipal{
+.divPrincipal {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
-.container{
+.container {
   width: 421px;
 }
 
-
-
-.divContainerInfo{
+.divContainerInfo {
   text-align: center;
   background-color: #28282bbd;
   display: flex;
@@ -167,54 +168,57 @@ h1 {
   transition: transform 0.3s ease;
 }
 
-.divContainerInfo:hover{
+.divContainerInfo:hover {
   transform: scale(1.02);
 
 }
 
-.divDescripcionHistorial{
+.divDescripcionHistorial {
   display: flex;
   flex-direction: column;
   font-weight: bold;
 }
 
-.divFechaHistorial{
-  display: flex;
-  justify-content: space-between;
-}
-.divCalificacionHistorial{
-  display: flex;
-  justify-content: space-between;
-}
-.divEstadoHistorial{
+.divFechaHistorial {
   display: flex;
   justify-content: space-between;
 }
 
-.divFirmadoONo{
+.divCalificacionHistorial {
   display: flex;
   justify-content: space-between;
 }
 
-.labelTitle{
+.divEstadoHistorial {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divFirmadoONo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.labelTitle {
   text-decoration-line: underline;
   font-size: 22px;
   font-weight: 500;
   margin-left: 12px;
 }
 
-.labelData{
+.labelData {
   font-size: 22px;
   margin-right: 12px;
 }
 
-.divFirmaHistoriales{
+.divFirmaHistoriales {
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
 svg title {
-  transition: opacity 0.5s ease-in-out; /* Adjust the transition duration */
+  transition: opacity 0.5s ease-in-out;
+  /* Adjust the transition duration */
 }
 
 .buttonFirmarHistorial {
@@ -240,21 +244,21 @@ svg title {
   transform: translateY(-7px);
 }
 
-.svgCheckIcon{
+.svgCheckIcon {
   width: 40px;
   height: 40px;
   color: #00a600;
   border-radius: 25px;
 }
 
-.divAccionesHistorialAlumno{
+.divAccionesHistorialAlumno {
   display: flex;
-    justify-content: space-evenly;
-    margin-top: 12px;
-    margin-bottom: 14px;
+  justify-content: space-evenly;
+  margin-top: 12px;
+  margin-bottom: 14px;
 }
 
- .delete-button {
+.delete-button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -315,6 +319,7 @@ svg title {
   transform: translateY(0px);
   transition-duration: 0.3s;
 }
+
 .edit-button {
   width: 40px;
   height: 40px;
@@ -378,49 +383,49 @@ svg title {
   transition-duration: 0.3s;
 }
 
-.pagination-controls{
+.pagination-controls {
   display: flex;
   justify-content: center;
   width: 100%;
   margin-bottom: 16px;
   height: 24px;
- }
+}
 
- .paginationBtn{
+.paginationBtn {
   background-color: transparent;
   border: none;
   border-radius: 100%;
- }
+}
 
- .paginationBtn:hover{
+.paginationBtn:hover {
   background-color: #23a9da90;
   color: white;
- }
+}
 
- .svgArrowIcon{
+.svgArrowIcon {
   height: 20px;
-    width: 20px;
-    display: flex;
- }
+  width: 20px;
+  display: flex;
+}
 
- .currentPageBtn{
+.currentPageBtn {
   border-radius: 100%;
-    height: fit-content;
-    background-color: transparent;
-    border: none;
- }
+  height: fit-content;
+  background-color: transparent;
+  border: none;
+}
 
- .current-page {
+.current-page {
   background-color: #23a9da;
   color: #fff;
 }
 
- .currentPageBtn:hover{
+.currentPageBtn:hover {
   background-color: #23a9da;
   color: white;
- }
+}
 
-.goBackComp{
+.goBackComp {
   display: flex;
   justify-content: center;
- }
+}

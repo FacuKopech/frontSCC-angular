@@ -17,7 +17,7 @@ export class HistorialesComponent{
   @Input() hijo: any;
   @Input() alumno: any;
   @Input() accedeDirectivo: any;
-  idHistorial: number = -1;
+  idHistorial: string = '';
   emailPersonaLogueada: string = "";
   openConfirmacionFirmaHistorialPopup = false;
   openTokenConfirmation = false;
@@ -64,7 +64,7 @@ export class HistorialesComponent{
       });
     }
   }
-  public openConfirmacionFirmaPopup(id: number){
+  public openConfirmacionFirmaPopup(id: string){
     this.idHistorial = id;
     this.openConfirmacionFirmaHistorialPopup = true;
   }
@@ -87,6 +87,7 @@ export class HistorialesComponent{
     if(this.token == eventData.token.toUpperCase()){
       this.historialService.FirmarHistorial(this.hijo.id, this.idHistorial).subscribe(res =>{
         if(res){
+          this.openTokenConfirmation = false;
           this.esFirmaHistorial = true;
           this.openSuccessAlert = true;
         }else{
@@ -116,7 +117,7 @@ export class HistorialesComponent{
     });
   }
 
-  public handleEditHistorialClick(eventData: {idHistorial: number, descripcion: string, calificacion: number, estado: number}){
+  public handleEditHistorialClick(eventData: {idHistorial: string, descripcion: string, calificacion: number, estado: number}){
     this.historialService.EditarHistorial(this.alumno.id, eventData).subscribe(res => {
       if(res){
         this.openSuccessAlert = true;
@@ -130,7 +131,7 @@ export class HistorialesComponent{
     });
   }
 
-  public openDeletion(idHistorial: number){
+  public openDeletion(idHistorial: string){
     this.openConfirmDeletePopup = true;
     this.itemForDelete = "historial";
     this.idHistorial = idHistorial;

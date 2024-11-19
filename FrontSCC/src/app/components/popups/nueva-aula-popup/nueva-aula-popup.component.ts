@@ -25,7 +25,7 @@ export class NuevaAulaPopupComponent {
   alumnosSinAula: any[] = [];
   docentesDeInstitucion: any[] = [];
   alumnosSeleccionados: any[] = [];
-  docenteSeleccionadaId: number = 0;
+  docenteSeleccionadaId: string = '';
   showErrorAlert = false
   showSuccessAlert = false;
   esErrorNomreAulaRepetido = false;
@@ -40,6 +40,7 @@ export class NuevaAulaPopupComponent {
         this.aulaService.ObtenerDocentesDeInstitucion(this.institucion.id).subscribe(res =>{
           if(res){
             this.docentesDeInstitucion = res;
+            console.log(res);
           }
         });
       }
@@ -130,7 +131,7 @@ export class NuevaAulaPopupComponent {
   }
 
   public onDocenteSelected($event: Event){
-    this.docenteSeleccionadaId =  parseInt(($event.target as HTMLInputElement).value);
+    this.docenteSeleccionadaId =  ($event.target as HTMLInputElement).value;
     console.log(this.docenteSeleccionadaId);
   }
 

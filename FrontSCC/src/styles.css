@@ -1,2 +1,44 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import '../node_modules/angular-calendar/css/angular-calendar.css';
 
+mwl-calendar-month-view[ng-reflect-view-date] {
+    width: 100%;
+}
+
+.cal-month-view {
+    background-color: #3f3f3f;
+}
+
+.cal-month-view .cal-day-cell.cal-in-month.cal-has-events {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cal-month-view .cal-header .cal-cell {
+    font-family: Chalk, sans-serif;
+    text-transform: capitalize;
+}
+
+.ng-star-inserted .cal-cell-row:hover {
+    background-color: rgb(51, 49, 49);
+}
+
+.ng-star-inserted .cal-cell-row .cal-day-cell:hover {
+    background-color: rgb(15, 15, 15);
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+    background-color: #7a7373;
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+    color: rgb(27, 145, 33);
+    font-weight: bold;
+}
+
+body[_ngcontent-ng-c957338733],
+html[_ngcontent-ng-c957338733] {
+    width: 100%;
+}

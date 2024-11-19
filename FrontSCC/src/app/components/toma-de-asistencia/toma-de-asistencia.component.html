@@ -4,69 +4,96 @@
 </div>
 <div class="divFechaHoyContainer">
   <div class="divFechaHoy">
-    <h3 class="pMessage">Fecha: {{fechaString.substring(9,11)}}/{{fechaString.substring(6,8)}}/{{fechaString.substring(1,5)}}</h3>
+    <h3 class="pMessage">Fecha:
+      {{fechaString.substring(9,11)}}/{{fechaString.substring(6,8)}}/{{fechaString.substring(1,5)}}</h3>
   </div>
 </div>
 <div class="divCargarAsistencia">
   <button class="buttonCargarAsistencia" (click)="openConfirmCargaAsistenciaPopup = true">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCalendarIcon">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgCalendarIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
     </svg>
     Cargar asistencia
   </button>
 </div>
 
-<div *ngIf="openDatosAusenciaPopup || openConfirmCargaAsistenciaPopup || openSuccessAlert || openErrorAlert" class="divCover"></div>
+<div *ngIf="openDatosAusenciaPopup || openConfirmCargaAsistenciaPopup || openSuccessAlert || showErrorAlert"
+  class="divCover"></div>
 
-<app-datos-ausencia-popup *ngIf="openDatosAusenciaPopup"
-  [ausencias]="ausencias"
-  [idAlumno]="idAlumno"
+<app-datos-ausencia-popup class="popup" *ngIf="openDatosAusenciaPopup" [ausencias]="ausencias" [idAlumno]="idAlumno"
   (cancelButtonClick)="openDatosAusenciaPopup = false">
 </app-datos-ausencia-popup>
 
 <app-confirm-carga-asistencia-alert *ngIf="openConfirmCargaAsistenciaPopup"
-(cancelButtonClick)="openConfirmCargaAsistenciaPopup = false"
-(cargarButtonClick)="cargarAsistencia()">
+  (cancelButtonClick)="openConfirmCargaAsistenciaPopup = false" (cargarButtonClick)="cargarAsistencia()">
 </app-confirm-carga-asistencia-alert>
 
-<app-success-alert class="alert" *ngIf="openSuccessAlert"
-(cerrarButtonClick)="closeSuccessPopup()"
-[esCargaDeAsistencia]="esCargaDeAsistencia">
+<app-success-alert class="alert" *ngIf="openSuccessAlert" (cerrarButtonClick)="closeSuccessPopup()"
+  [esCargaDeAsistencia]="esCargaDeAsistencia">
 </app-success-alert>
 
-<app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false"
-*ngIf="showErrorAlert">
+<app-error-alert class="alert" (cerrarButtonClick)="showErrorAlert = false" *ngIf="showErrorAlert">
 </app-error-alert>
 
-<div class="divTableHeaders">
-  <div class="divHeaderTitles">
-    <label class="labelTitle" for="">Alumno/a</label>
-    <label class="labelTitle" for="">Asistencia</label>
-  </div>
-</div>
-<div class="container" *ngFor="let alumno of alumnos">
-  <div class="divData">
-    <div class="divNombreAlumno">
-      <label class="labelData" for="">{{alumno.apellido}}, {{alumno.nombre}}</label>
-    </div>
-    <div class="divAsistencia" *ngIf="tieneAusenciaEnEstaFecha(alumno.ausencias) == false">
-      <div class="checkbox-wrapper-44">
-        <label class="toggleButton">
-          <input (click)="presenteChecked(alumno)" type="checkbox">
-          <div>
-            <svg class="svgCheck" viewBox="0 0 44 44">
-              <path transform="translate(-2.000000, -2.000000)" d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"></path>
-            </svg>
+<div class="divTableContainer">
+  <table #myTable class="table table-striped table-dark asistenciasTable">
+    <thead>
+      <tr class="custom-tr">
+        <th class="thAlumno" scope="col">Alumno</th>
+        <th class="thAsistencia" scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody
+      *ngFor="let alumno of alumnos.slice(calculateIndices().startIndex, calculateIndices().endIndex); let isLast = last">
+      <tr class="trData" [class.last-row]="isLast">
+        <td class="tdAlumno">{{alumno.apellido}}, {{alumno.nombre}}</td>
+        <td class="tdAsistencia" *ngIf="tieneAusenciaEnEstaFecha(alumno.ausencias) == false">
+          <div class="divAsistencia">
+            <div class="checkbox-wrapper-44">
+              <label class="toggleButton" title="Check - Presente / Cruz - Ausente">
+                <input (click)="presenteChecked(alumno)" type="checkbox">
+                <div>
+                  <svg class="svgCheck" viewBox="0 0 44 44">
+                    <path transform="translate(-2.000000, -2.000000)"
+                      d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758">
+                    </path>
+                  </svg>
+                </div>
+              </label>
+            </div>
           </div>
-        </label>
-      </div>
-    </div>
-    <div class="divAusencia" *ngIf="tieneAusenciaEnEstaFecha(alumno.ausencias) == true">
-      <button class="btnVer" (click)="verAusenciaAlumnoAusente(alumno.id, alumno.ausencias)">Ausencia</button>
-    </div>
-  </div>
-  <hr class="lineSeparator">
+        </td>
+        <td class="tdAsistencia" *ngIf="tieneAusenciaEnEstaFecha(alumno.ausencias) == true">
+          <div class="divAusencia">
+            <button class="btnVer" (click)="verAusenciaAlumnoAusente(alumno.id, alumno.ausencias)">Ausencia</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
+<div class="pagination-controls">
+  <button title="Anterior" class="paginationBtn" (click)="previousPageClick()" [disabled]="currentPage === 1">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+    </svg>
+  </button>
+  <ng-container *ngIf="alumnos.length > itemsPerPage">
+    <button class="currentPageBtn" (click)="pageClick(page)" *ngFor="let page of getPages()"
+      [ngClass]="{ 'current-page': page === currentPage }">{{page}}</button>
+  </ng-container>
+  <button title="Siguiente" class="paginationBtn" (click)="nextPageClick()"
+    [disabled]="currentPage * itemsPerPage >= alumnos.length">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+      class="w-6 h-6 svgArrowIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+    </svg>
+  </button>
+</div>
 <app-go-back-button class="goBackComp" (backButtonClick)="goBack()">
 </app-go-back-button>

@@ -24,6 +24,8 @@ export class TomaDeAsistenciaComponent {
   ausencias: any[] = [];
   openDatosAusenciaPopup = false;
   openConfirmCargaAsistenciaPopup = false;
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
 
   constructor(private aulaService: AulaService, private location: Location, private datePipe: DatePipe, private router: Router){
     this.fechaString = JSON.stringify(this.fechaHoy);
@@ -91,6 +93,29 @@ export class TomaDeAsistenciaComponent {
   public closeSuccessPopup(){
     this.openSuccessAlert = false;
     this.location.back();
+  }
+
+  public calculateIndices() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return { startIndex, endIndex };
+  }
+
+  public getPages(): number[] {
+    const totalPages = Math.ceil(this.alumnos.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((_, index) => index + 1);
+  }
+
+  public pageClick(page: number){
+    this.currentPage = page;
+  }
+
+  public previousPageClick(){
+    this.currentPage = this.currentPage - 1
+  }
+
+  public nextPageClick(){
+    this.currentPage = this.currentPage + 1
   }
 
   public goBack(){

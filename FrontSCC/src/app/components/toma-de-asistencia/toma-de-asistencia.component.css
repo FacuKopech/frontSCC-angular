@@ -3,22 +3,21 @@ h1 {
   justify-content: center;
   font-family: Chalk, sans-serif;
   font-size: 50px;
-  
+
 }
 
-.divMessage .pMessage{
+.divMessage .pMessage {
   display: flex;
   justify-content: center;
 }
 
-.divFechaHoyContainer{
+.divFechaHoyContainer {
   display: flex;
   justify-content: center;
 }
 
-.divFechaHoy{
+.divFechaHoy {
   width: 18%;
-  background-color: #5f9ea085;
   border-radius: 11px;
   flex-wrap: wrap;
   display: flex;
@@ -26,7 +25,7 @@ h1 {
   align-self: center;
 }
 
-.divCargarAsistencia{
+.divCargarAsistencia {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -48,8 +47,8 @@ h1 {
   cursor: pointer;
   outline: none;
   display: flex;
-    width: 16%;
-    justify-content: space-around;
+  width: 16%;
+  justify-content: space-around;
 }
 
 .buttonCargarAsistencia:hover {
@@ -63,7 +62,7 @@ h1 {
   transform: translateY(-1px);
 }
 
-.svgCalendarIcon{
+.svgCalendarIcon {
   display: flex;
   flex-wrap: wrap;
   align-self: center;
@@ -77,81 +76,63 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1d1d1d6b; /* Transparent black background */
-  z-index: 999; /* Ensure the overlay is above other elements */
+  background-color: #1d1d1d6b;
+  z-index: 999;
   backdrop-filter: blur(3px) brightness(1.04);
 }
 
-.alert{
+.popup{
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.alert {
   display: flex;
   justify-content: center;
 }
 
-.divTableHeaders{
-  width: -webkit-fill-available;
+.divTableContainer{
   display: flex;
   justify-content: center;
 }
 
-.divHeaderTitles{
-  width: 100%;
+.asistenciasTable{
+  width: 68%;
+}
+
+th {
+  border-block-color: #00BD9D;
+}
+
+.thAlumno {
+  border-top-left-radius: 20px;
+  width: 24%;
+}
+
+.thAsistencia {
+  border-top-right-radius: 20px;
   display: flex;
-  justify-content: space-between;
-  max-width: 1292px;
-}
-
-.labelTitle{
-  text-decoration-line: underline;
-  font-size: 22px;
-  font-weight: 500;
-  color: #159098;
+  justify-content: end;
 }
 
 
-.container{
-  background-color: transparent;
-  width: 100%;
+.tdAsistencia{
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-
-  height: fit-content;
-}
-
-
-.divData{
-  display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-radius: 7px;
-    background-color: #086d7085;
-    transition: transform 0.3s ease;
-}
-
-.divData:hover{
-  transform: scale(1.01);
-}
-
-.divNombreAlumno{
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 10px;
+  justify-content: end ;
 }
 
 .divAsistencia{
   display: flex;
-    flex-direction: row;
-    width: 3%;
-    justify-content: center;
-    margin-top: 7px;
-    margin-bottom: 3px;
+  justify-content: end;
 }
 
-.labelData{
-  font-size: 22px;
-  display: flex;
-  align-self: center;
+table tbody tr.last-row .tdAlumno {
+  border-bottom-left-radius: 20px;
+}
+
+table tbody tr.last-row .tdAsistencia {
+  border-bottom-right-radius: 20px;
 }
 
 .checkbox-wrapper-44 input[type="checkbox"] {
@@ -159,16 +140,15 @@ h1 {
   visibility: hidden;
 }
 
-.checkbox-wrapper-44{
+.checkbox-wrapper-44 {
   display: flex;
   justify-content: space-around;
-  width: 100px;
   height: 33px;
 }
 
 .checkbox-wrapper-44 *,
-  .checkbox-wrapper-44 *::before,
-  .checkbox-wrapper-44 *::after {
+.checkbox-wrapper-44 *::before,
+.checkbox-wrapper-44 *::after {
   box-sizing: border-box;
 }
 
@@ -180,18 +160,22 @@ h1 {
   transition: transform 0.14s ease;
 }
 
+.checkbox-wrapper-44 .toggleButton:hover{
+  transform: scale(1.12);
+}
+
 .checkbox-wrapper-44 .toggleButton:active {
   transform: rotateX(30deg);
 }
 
-.checkbox-wrapper-44 .toggleButton input + div {
+.checkbox-wrapper-44 .toggleButton input+div {
   position: relative;
   width: 39px;
   height: 28px;
 }
 
 
-.checkbox-wrapper-44 .toggleButton input + div svg {
+.checkbox-wrapper-44 .toggleButton input+div svg {
   fill: none;
   stroke-width: 3.6;
   stroke: #000;
@@ -212,8 +196,8 @@ h1 {
   stroke: red;
 }
 
-.checkbox-wrapper-44 .toggleButton input + div:before,
-  .checkbox-wrapper-44 .toggleButton input + div:after {
+.checkbox-wrapper-44 .toggleButton input+div:before,
+.checkbox-wrapper-44 .toggleButton input+div:after {
   content: "";
   width: 3px;
   height: 16px;
@@ -225,7 +209,7 @@ h1 {
 
 }
 
-.checkbox-wrapper-44 .toggleButton input + div:before {
+.checkbox-wrapper-44 .toggleButton input+div:before {
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
   -webkit-animation: bounceInBefore-44 0.3s linear forwards 0.3s;
@@ -233,7 +217,7 @@ h1 {
   background-color: red;
 }
 
-.checkbox-wrapper-44 .toggleButton input + div:after {
+.checkbox-wrapper-44 .toggleButton input+div:after {
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
   -webkit-animation: bounceInAfter-44 0.3s linear forwards 0.3s;
@@ -241,14 +225,14 @@ h1 {
   background-color: red;
 }
 
-.checkbox-wrapper-44 .toggleButton input:checked + div svg {
+.checkbox-wrapper-44 .toggleButton input:checked+div svg {
   stroke-dashoffset: 162.6;
   stroke-dasharray: 0 162.6 28 134.6;
   transition: all 0.4s ease 0.2s;
   stroke: green;
 }
 
-.checkbox-wrapper-44 .toggleButton input:checked + div:before {
+.checkbox-wrapper-44 .toggleButton input:checked+div:before {
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(45deg);
   -webkit-animation: bounceInBeforeDont-44 0.3s linear forwards 0s;
@@ -256,7 +240,7 @@ h1 {
 
 }
 
-.checkbox-wrapper-44 .toggleButton input:checked + div:after {
+.checkbox-wrapper-44 .toggleButton input:checked+div:after {
   opacity: 0;
   transform: scale(0.3) translate(-50%, -50%) rotate(-45deg);
   -webkit-animation: bounceInAfterDont-44 0.3s linear forwards 0s;
@@ -400,12 +384,13 @@ h1 {
   }
 }
 
-.divAusencia{
+.divAusencia {
   display: flex;
   margin-bottom: 8px;
   margin-top: 8px;
   margin-right: 4px;
 }
+
 .btnVer {
   border: none;
   outline: none;
@@ -420,7 +405,7 @@ h1 {
   height: 30px;
 }
 
-.btnVer > span {
+.btnVer>span {
   z-index: 2;
 }
 
@@ -459,13 +444,59 @@ h1 {
   transform-origin: left;
 }
 
-.lineSeparator{
+.lineSeparator {
   border: 2px solid black;
   margin-bottom: 5px;
   margin-top: 5px;
 }
- .goBackComp{
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+  height: 24px;
+}
+
+.paginationBtn {
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+  color: white;
+  cursor: pointer;
+}
+
+.paginationBtn:hover {
+  background-color: #23a9da90;
+  color: white;
+}
+
+.svgArrowIcon {
+  height: 20px;
+  width: 20px;
+  display: flex;
+}
+
+.currentPageBtn {
+  border-radius: 100%;
+  height: fit-content;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.current-page {
+  background-color: #23a9da;
+  color: #fff;
+}
+
+.currentPageBtn:hover {
+  background-color: #23a9da;
+  color: white;
+}
+
+.goBackComp {
   display: flex;
   justify-content: center;
   margin-top: 10px;
- }
+}

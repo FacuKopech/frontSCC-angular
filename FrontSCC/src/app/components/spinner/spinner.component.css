@@ -5,8 +5,9 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgb(176 175 175 / 70%);
   z-index: 9999;
+  backdrop-filter: blur(10px);
 }
 
 .newtons-cradle {
@@ -82,3 +83,42 @@
     animation-timing-function: ease-in;
   }
 }
+
+.loading-messages {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  height: 1.5em;
+}
+
+.loading-message {
+  position: relative;
+  display: inline-block;
+  animation: slideInOut 3s ease-in-out infinite;
+  font-family: Chalk, sans-serif;
+  color: #474554;
+  font-size: larger;
+}
+
+/* Keyframes for the sliding effect */
+@keyframes slideInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(100%); /* Start below */
+  }
+  10%, 80% {
+    opacity: 1;
+    transform: translateY(0); /* Fully visible */
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%); /* Slide out upwards */
+  }
+}
+
+
+

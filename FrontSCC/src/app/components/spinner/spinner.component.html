@@ -1,8 +1,14 @@
-<div *ngIf="this.loader.getLoading()" class="cssload-container">
+<div *ngIf="loader.getLoading()" class="cssload-container">
   <div class="newtons-cradle">
     <div class="newtons-cradle__dot"></div>
     <div class="newtons-cradle__dot"></div>
     <div class="newtons-cradle__dot"></div>
     <div class="newtons-cradle__dot"></div>
+  </div>
+
+  <div class="loading-messages">
+    <div class="loading-message" [@slideInOut]="'in'">
+      {{ messages[currentMessageIndex] }}
+    </div>
   </div>
 </div>

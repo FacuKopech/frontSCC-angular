@@ -16,7 +16,7 @@ import { LoginService } from 'src/app/services/login_services/login.service';
 export class NotasEmitidasComponent {
   @ViewChild(EditarNotaPopupComponent) popupEditarNota!: EditarNotaPopupComponent;
 
-  constructor(private notaService: NotaService, private apiService: ApiService,  private location: Location, private aulaService: AulaService, private router: Router, private loginService: LoginService) {
+  constructor(private notaService: NotaService, private apiService: ApiService, private location: Location, private aulaService: AulaService, private router: Router, private loginService: LoginService) {
     this.popupEditarNota = new EditarNotaPopupComponent(aulaService, apiService);
   }
 
@@ -32,7 +32,7 @@ export class NotasEmitidasComponent {
   openDeletionPopup = false;
   openEditionPopup = false;
   openAgregarNotaPopup = false;
-  public notaId: number = -1;
+  public notaId: string = '';
   public message: string = "";
   public notas: any[] = [];
   filteredNotas: any[] = [];
@@ -59,7 +59,6 @@ export class NotasEmitidasComponent {
       if (res) {
         this.notas = res;
         this.applyFilter();
-
         console.log(this.notas);
         if (this.notas.length == 0) {
           this.message = "No existen notas emitidas!";
@@ -74,7 +73,7 @@ export class NotasEmitidasComponent {
     this.filteredNotas = this.notas.filter(nota => {
       const matchesTitulo = nota.titulo.toLowerCase().includes(this.filterOptions.titulo.toLowerCase());
       const matchesTipo = this.filterOptions.tipo === '' || nota.tipo.toString() === this.filterOptions.tipo;
-      
+
       const startDate = this.filterOptions.startDate ? new Date(this.filterOptions.startDate) : null;
       const endDate = this.filterOptions.endDate ? new Date(this.filterOptions.endDate) : null;
 
@@ -85,13 +84,26 @@ export class NotasEmitidasComponent {
 
       return matchesTitulo && matchesTipo && matchesStartDate && matchesEndDate;
     });
-  } 
+  }
 
   onFilterChange() {
     this.applyFilter();
   }
 
-  public openDeletion(id: number): void {
+  clearFilter(tipoFiltro: string) {
+    if (tipoFiltro == 'titulo') {
+      this.filterOptions.titulo = '';
+    } else if (tipoFiltro == 'tipo') {
+      this.filterOptions.tipo = '';
+    } else if (tipoFiltro == 'desde') {
+      this.filterOptions.startDate = null;
+    } else if (tipoFiltro == 'hasta') {
+      this.filterOptions.endDate = null;
+    }
+    this.applyFilter();
+  }
+
+  public openDeletion(id: string): void {
     this.openDeletionPopup = true;
     this.notaId = id;
     this.itemForDelete = "nota";
@@ -103,12 +115,12 @@ export class NotasEmitidasComponent {
     this.notaAModificar = nota;
   }
 
-  public openDestinatariosPopup(nota: any){
+  public openDestinatariosPopup(nota: any) {
     this.nota = nota;
     this.showDestinatariosPopup = true;
   }
 
-  public openLeerCuerpo(nota: any):void{
+  public openLeerCuerpo(nota: any): void {
     this.notaALeerCuerpo = nota;
     this.popuCuerpoNota = true;
   }
@@ -119,14 +131,14 @@ export class NotasEmitidasComponent {
     this.openAgregarNotaPopup = false;
   }
 
-  public closeSuccessAlert(){
+  public closeSuccessAlert() {
     this.showDeletionSuccessAlert = false;
     this.showModificationSuccessAlert = false;
     this.showAdditionSuccessAlert = false;
     window.location.reload();
   }
 
-  public closeErrorAlert(){
+  public closeErrorAlert() {
     this.showErrorAlert = false;
   }
 
@@ -156,66 +168,65 @@ export class NotasEmitidasComponent {
     this.openEditionPopup = false;
   }
 
-  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData, enviaNotaComo: string}) {
+  public handleEnviarClick(eventData: { tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: string, destinatarios: any[], titulo: string, cuerpo: string, files: FormData, enviaNotaComo: string }) {
     eventData.files?.forEach((value, key) => {
-      if(value != '' || key != ''){
+      if (value != '' || key != '') {
         this.counter += 1;
       }
     });
-    if(this.counter > 0){
-      this.notaService.AgregarNotaFiles(eventData.files).subscribe(res =>{
-        if(res){
-          debugger
+    if (this.counter > 0) {
+      this.notaService.AgregarNotaFiles(eventData.files).subscribe(res => {
+        if (res) {
           this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
-            if(res){
-              debugger
+            if (res) {
               this.reloadPage("success", "addition");
               this.openAgregarNotaPopup = false;
-            }else{
+            } else {
               this.reloadPage("error", "");
             }
           },
-          (error:HttpErrorResponse) =>{
-            if(error.status == 404 || error.status == 400){
-              console.log(error);
-              this.reloadPage("error", "");
-            }
-          });
+            (error: HttpErrorResponse) => {
+              if (error.status == 404 || error.status == 400) {
+                console.log(error);
+                this.reloadPage("error", "");
+              }
+            });
         }
       });
-    }else{
+    } else {
+      console.log(eventData);
       this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
-        if(res){
+        if (res) {
           this.reloadPage("success", "addition");
           this.openAgregarNotaPopup = false;
-        }else{
+        } else {
           this.reloadPage("error", "");
         }
       },
-      (error:HttpErrorResponse) =>{
-        if(error.status >= 400){
-          this.reloadPage("error", "");
-        }
-      });
+        (error: HttpErrorResponse) => {
+          if (error.status >= 400) {
+            this.reloadPage("error", "");
+          }
+        });
     }
   }
 
-  public verArchivosNota(nota: any){
+  public verArchivosNota(nota: any) {
     console.log(nota);
-    this.router.navigate(['/archivos_ausencia'], {state: {data: nota}});
+    this.router.navigate(['/archivos_ausencia'], { state: { data: nota } });
   }
 
   reloadPage(resultado: string, action: string) {
-    if(resultado == "success"){
-      if(action == "deletion"){
-          this.showDeletionSuccessAlert = true;
-      }else if(action == "edition") {
+    if (resultado == "success") {
+      if (action == "deletion") {
+        this.showDeletionSuccessAlert = true;
+      } else if (action == "edition") {
         this.showModificationSuccessAlert = true;
-      }else if(action == "addition"){
+      } else if (action == "addition") {
         this.showAdditionSuccessAlert = true;
       }
     }
-    else{
+    else {
       this.showErrorAlert = true;
     }
   }
@@ -231,19 +242,19 @@ export class NotasEmitidasComponent {
     return Array(totalPages).fill(0).map((_, index) => index + 1);
   }
 
-  public pageClick(page: number){
+  public pageClick(page: number) {
     this.currentPage = page;
   }
 
-  public previousPageClick(){
+  public previousPageClick() {
     this.currentPage = this.currentPage - 1
   }
 
-  public nextPageClick(){
+  public nextPageClick() {
     this.currentPage = this.currentPage + 1
   }
 
-  public goBack(){
+  public goBack() {
     this.location.back();
   }
 }

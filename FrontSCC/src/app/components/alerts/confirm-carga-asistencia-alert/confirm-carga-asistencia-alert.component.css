@@ -7,7 +7,8 @@
   border-radius: 10px;
 
 }
-.popup{
+
+.popup {
   position: absolute;
   z-index: 9999;
   background-color: #ffffff;
@@ -15,27 +16,29 @@
   box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
   max-width: 400px;
 }
-.divIcon{
+
+.divIcon {
   display: flex;
-    justify-content: center;
-    background-color: #fefe44;
-    border-radius: 7px;
+  justify-content: center;
+  background-color: #fefe44;
+  border-radius: 7px;
 }
 
-.svgWarningIcon{
+.svgWarningIcon {
   width: 78px;
   height: 75px;
   color: white;
 }
 
-  .popup h2 {
-    margin-top: 0;
-    color: black;
-    font-family: Tahoma, Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    text-decoration: underline;
-  }
+.popup h2 {
+  margin-top: 0;
+  color: black;
+  font-family: Tahoma, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+}
+
 .content {
   display: flex;
   justify-content: space-around;
@@ -46,11 +49,11 @@
 }
 
 
-  .popup .content {
-    overflow: auto;
-  }
+.popup .content {
+  overflow: auto;
+}
 
-  /* Simple CSS3 Fade-in-down Animation */
+/* Simple CSS3 Fade-in-down Animation */
 .fadeInDown {
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
@@ -66,6 +69,7 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -79,6 +83,7 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -87,9 +92,35 @@
 }
 
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
 
 @media screen and (max-width: 700px) {
   .box {
@@ -110,37 +141,39 @@ button {
   background: red;
   border: none;
   border-radius: 5px;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   background: #e62222;
- }
+}
 
 
 
-    button svg {
-      width: 15px;
-      fill: #eee;
-    }
+button svg {
+  width: 15px;
+  fill: #eee;
+}
 
-    button:active .icon svg {
-      transform: scale(0.8);
-    }
+button:active .icon svg {
+  transform: scale(0.8);
+}
+
 .customButtons {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   background-color: transparent;
 }
-.container{
+
+.container {
   margin-bottom: 14px;
   margin-top: 10px;
   width: 100%;
 }
 
-.labelPregunta{
+.labelPregunta {
   color: #000;
 }
 
-.labelInfo{
+.labelInfo {
   color: #bdbd32;
 }
 
@@ -160,10 +193,10 @@ button {
   outline: none;
 }
 
-.btnCargar{
+.btnCargar {
   display: flex;
-    width: 48%;
-    justify-content: space-around;
+  width: 48%;
+  justify-content: space-around;
 }
 
 .btnCargar:hover {
@@ -173,7 +206,7 @@ button {
   transform: translateY(-7px);
 }
 
-.btnCancelar:hover{
+.btnCancelar:hover {
   background-color: #c50d0d;
   box-shadow: 0px 15px 20px rgba(162, 4, 4, 0.4);
   color: #fff;

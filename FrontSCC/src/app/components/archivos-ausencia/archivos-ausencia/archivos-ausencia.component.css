@@ -3,12 +3,12 @@ h1 {
   justify-content: center;
   font-family: Chalk, sans-serif;
   font-size: 50px;
-  
+
 }
 
-.container{
+.container {
   text-align: center;
-    background-color: #28282bbd;
+  background-color: #28282bbd;
   width: 350px;
   display: flex;
   justify-content: center;
@@ -21,106 +21,81 @@ h1 {
 
 }
 
-.container:hover{
-  transform: scale(1.2);
+.container:hover {
+  transform: scale(1.1);
 
 }
-.divFechaComienzo{
+
+.divFechaComienzo {
   font-size: larger;
   font-weight: bold;
   color: white;
 }
 
-.labelTitle{
+.labelTitle {
   font-weight: bold;
   text-decoration: underline;
   font-size: large;
 }
 
-.labelData{
+.labelData {
   margin-bottom: 10px;
 }
 
-.divMain{
+.divTableContainer {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-}
-
-.divTableContainer{
-  background-color: #232c3a;
-  display: flex;
-  width: 90%;
-  justify-content: space-between;
-  border-radius: 10px;
-  border: 2px #396588 solid;
   flex-wrap: wrap;
 }
 
-.divTableHeader{
-  color: #356273;
-}
-.divNombre{
-  display: flex;
-    justify-content: flex-end;
-    width: 8%;
-    font-family: Chalk, sans-serif;
-}
-.divAccion{
-  display: flex;
-    justify-content: flex-start;
-    margin-right: 7px;
-    font-family: Chalk, sans-serif;
+table {
+  width: 84%;
 }
 
-.divAccion label {
-  align-self: center;
+thead {
+  border-block-color: deepskyblue;
 }
 
-.divText{
-  display: flex;
-    justify-content: center;
-    font-size: x-large;
-    color: black;
-    font-weight: 600;
+.thFileName,
+.tdFileName {
+  width: 50%;
+  text-align: left;
 }
 
-.divFile{
-  display: flex;
-    justify-content: space-between;
-    background-color: #28282bbd;
-    border-radius: 10px;
-    height: 48px;
-    margin-top: 5px;
-    font-family: Chalk, sans-serif;
-}
-.even-background {
-  background-color: #345c7c;
+.thFileName {
+  border-top-left-radius: 20px;
 }
 
-.odd-background {
-  background-color: #345c7cbd;
+.thAction {
+  width: 50%;
+  text-align: right;
+  border-top-right-radius: 20px;
 }
-.divFileName{
+
+.tdAction {
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+  width: 100%;
   justify-content: flex-end;
-  width: 25%;
-}
-.divFile label{
-    display: flex;
-    width: 95%;
 }
 
-.divDownloadFileBtn{
+table tbody tr.last-row .tdFileName {
+  border-bottom-left-radius: 20px;
+}
+
+table tbody tr.last-row .tdAction {
+  border-bottom-right-radius: 20px;
+}
+
+td {
+  font-family: Chalk, sans-serif;
+}
+
+.divDownloadFileBtn {
   width: 4%;
   display: flex;
   justify-content: center;
   margin-top: 2px;
-    margin-bottom: 2px;
+  margin-bottom: 2px;
 }
 
 .Btn {
@@ -213,8 +188,20 @@ h1 {
   }
 }
 
-.goBackComp{
+.divMessage{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.divMessage .pMessage{
+  display: flex;
+  justify-content: center;
+  font-family: Chalk, sans-serif;
+  font-size: x-large;
+}
+.goBackComp {
   display: flex;
   justify-content: center;
   margin-top: 10px;
- }
+}

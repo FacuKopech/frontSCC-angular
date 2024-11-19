@@ -1,0 +1,455 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: Chalk, sans-serif;
+    font-size: 50px;
+
+}
+
+.containerInst {
+    display: flex;
+    justify-content: center;
+}
+
+.containerInstitucion {
+    text-align: center;
+    background-color: #28282bbd;
+    width: 22%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-radius: 14px;
+    height: fit-content;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.containerInstitucion:hover {
+    transform: scale(1.03);
+
+}
+
+.divContainerData {
+    margin: 7px;
+}
+
+.labelTitle {
+    text-decoration-line: underline;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.divCampos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.campos {
+    margin-right: 10px;
+    text-decoration-line: underline;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.labelData {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    font-size: 22px;
+}
+
+.divCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1d1d1d6b;
+    /* Transparent black background */
+    z-index: 999;
+    /* Ensure the overlay is above other elements */
+    backdrop-filter: blur(3px) brightness(1.04);
+}
+
+.popup {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 9999999;
+}
+
+.divAgregarEvento {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.icon-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #cdcdcd;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    transition: width 0.2s ease-in-out;
+    font-weight: 500;
+    font-family: inherit;
+}
+
+.add-btn:hover {
+    width: 120px;
+}
+
+.add-btn::before,
+.add-btn::after {
+    transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 10px;
+    top: calc(50% - 2px);
+    background: seagreen;
+}
+
+.add-btn::after {
+    right: 14px;
+    overflow: hidden;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.add-btn::before {
+    left: 14px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.icon-btn:focus {
+    outline: none;
+}
+
+.btn-txt {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.add-btn:hover::before,
+.add-btn:hover::after {
+    width: 6px;
+    border-radius: 2px;
+}
+
+.add-btn:hover .btn-txt {
+    opacity: 1;
+}
+
+.add-icon::after,
+.add-icon::before {
+    transition: all 0.2s ease-in-out;
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 2px;
+    top: calc(50% - 10px);
+    background: seagreen;
+    overflow: hidden;
+}
+
+.add-icon::before {
+    left: 22.4px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.add-icon::after {
+    right: 22.4px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.add-btn:hover .add-icon::before {
+    left: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
+}
+
+.add-btn:hover .add-icon::after {
+    right: 15px;
+    height: 4px;
+    top: calc(50% - 2px);
+}
+
+.divMessage .pMessage{
+    display: flex;
+    justify-content: center;
+    font-family: Chalk, sans-serif;
+    font-size: x-large;
+  }
+.divContainerReferencias{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 8px;
+    width: 40%;
+}
+
+.divContainerReferencias p{
+    font-family: Chalk, sans-serif;
+}
+
+.divReferencia{
+    border-radius: 50%;
+    border: 2px solid black;
+    width: 15px;
+    height: 15px;
+}
+
+.divExpired{
+    background-color: #b0bec5;;
+}
+.divPending{
+    background-color: #28282bbd;
+}
+.divNo{
+    background-color: red;
+}
+.divTalVez{
+    background-color: yellow;
+}
+.divSi{
+    background-color: darkgreen;
+}
+
+.divPrincipal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.divContainerEventos {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.divNumbers {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.day-number {
+    display: flex;
+    width: 90%;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+.weekend-day {
+    color: darkgreen;
+}
+
+.event-count {
+    background-color: #3CB2CC;
+    border-radius: 14px;
+    width: 25px;
+    margin-right: 2px;
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border-radius: 10px;
+    background-color: #28282bbd;
+    transition: transform 0.3s ease;
+    margin-bottom: 4px;
+}
+
+.event-info div {
+    font-family: Chalk, sans-serif;
+}
+
+.talVez-asistencia {
+    background-color: rgb(207, 207, 37);
+}
+
+.no-asistencia {
+    background-color: #f44336;
+}
+
+.si-asistencia {
+    background-color: darkgreen;
+}
+
+.expired-event {
+    background-color: #b0bec5;
+}
+
+
+.event-info:hover {
+    transform: scale(1.08);
+}
+
+.calendar-navigation span {
+    font-family: Chalk, sans-serif;
+    font-size: xx-large;
+    text-transform: capitalize;
+}
+
+
+
+.popupCloseButton {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+    margin-top: 20px;
+}
+
+.noButton {
+    padding: 1.3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.noButton:hover {
+    background-color: #C24037;
+    box-shadow: 0px 15px 20px #dc453a8a;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.talVezButton {
+    padding: 1.3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.talVezButton:hover {
+    background-color: #c0bd0d;
+    box-shadow: 0px 15px 20px #c0bd0d8c;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.siButton {
+    padding: 1.3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.siButton:hover {
+    background-color: #067928;
+    box-shadow: 0px 15px 20px #06792977;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.svgCheck {
+    width: 45px;
+    color: darkgreen;
+}
+
+.svgCross {
+    width: 45px;
+    color: red;
+}
+
+.svgQuestionMark {
+    width: 45px;
+    color: yellow;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 16px;
+    height: 24px;
+}
+
+.paginationBtn {
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+}
+
+.paginationBtn:hover {
+    background-color: #23a9da90;
+    color: white;
+}
+
+.svgArrowIcon {
+    height: 20px;
+    width: 20px;
+    display: flex;
+}
+
+.currentPageBtn {
+    border-radius: 100%;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
+}
+
+.current-page {
+    background-color: #23a9da;
+    color: #fff;
+}
+
+.currentPageBtn:hover {
+    background-color: #23a9da;
+    color: white;
+}
+
+.goBackComp {
+    display: flex;
+    justify-content: center;
+}

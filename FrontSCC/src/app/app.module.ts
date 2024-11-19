@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -69,6 +69,22 @@ import { EditarInstitucionPopupComponent } from './components/popups/editar-inst
 import { NgChartsModule } from 'ng2-charts';
 import { ChartsComponent } from './components/charts/charts.component';
 import { ConfirmarClaveAdminPopupComponent } from './components/popups/confirmar-clave-admin-popup/confirmar-clave-admin-popup.component';
+import { EventosComponent } from './components/eventos/eventos/eventos.component';
+import { AgregarEventoPopupComponent } from './components/popups/agregar-evento-popup/agregar-evento-popup/agregar-evento-popup.component';
+import { DatoClimaPopupComponent } from './components/popups/dato-clima-popup/dato-clima-popup/dato-clima-popup.component';
+import { EditarEventoPopupComponent } from './components/popups/editar-evento-popup/editar-evento-popup/editar-evento-popup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { GoogleSigninComponent } from './components/google-signin/google-signin/google-signin.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { EventoPopupComponent } from './components/popups/evento-popup/evento-popup/evento-popup.component';
+registerLocaleData(localeEs, 'es'); 
+
+
+
 
 @NgModule({
   declarations: [
@@ -130,7 +146,13 @@ import { ConfirmarClaveAdminPopupComponent } from './components/popups/confirmar
     AgregarInstitucionPopupComponent,
     EditarInstitucionPopupComponent,
     ChartsComponent,
-    ConfirmarClaveAdminPopupComponent
+    ConfirmarClaveAdminPopupComponent,
+    EventosComponent,
+    AgregarEventoPopupComponent,
+    DatoClimaPopupComponent,
+    EditarEventoPopupComponent,
+    GoogleSigninComponent,
+    EventoPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -140,9 +162,29 @@ import { ConfirmarClaveAdminPopupComponent } from './components/popups/confirmar
     RoutingModule,
     EditorModule,
     ReactiveFormsModule,
-    NgChartsModule
+    NgChartsModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
-  providers: [ApiService, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }, DatePipe],
+  providers: [ApiService, { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }, DatePipe, {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('802476254023-jjohn3src86rrrappvusa68bjut7t1p3.apps.googleusercontent.com', {
+            scopes: 'openid profile email',
+          })
+        }
+      ], onError: (err) => {
+        console.error(err);
+      },
+    } as SocialAuthServiceConfig,
+  },  { provide: LOCALE_ID, useValue: 'es-ES' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

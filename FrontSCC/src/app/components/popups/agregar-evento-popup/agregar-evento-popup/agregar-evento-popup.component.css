@@ -1,0 +1,419 @@
+.popup {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation-name: _ngcontent-awe-c49_fadeInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    width: -webkit-fill-available;
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+}
+
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.closeButtonHeader {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -28px;
+    margin-left: 530px;
+}
+
+.close[_ngcontent-lkn-c53] {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.titleHeader {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    font-family: Chalk, sans-serif;
+}
+
+.divCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1d1d1d6b;
+    /* Transparent black background */
+    z-index: 999;
+    /* Ensure the overlay is above other elements */
+    backdrop-filter: blur(3px) brightness(1.04);
+}
+
+.datoClimaPopup {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0%;
+    position: relative;
+}
+
+.divPInfo {
+    text-align: center;
+    max-width: 100%;
+}
+
+.svgInfoIcon {
+    width: 28px;
+    height: 28px;
+    color: yellow;
+}
+
+.gFill {
+    fill: rgb(224, 224, 16);
+}
+
+.pAusenciaGenericaInfo {
+    color: rgb(224, 224, 16);
+    font-size: inherit;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+    font-family: Chalk, sans-serif;
+}
+
+p {
+    font-family: Chalk, sans-serif;
+}
+
+a {
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+form {
+    flex-direction: column;
+    background-color: #28282b;
+    border-radius: 18px;
+    box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+    font-size: 24px;
+    font-family: Chalk, sans-serif;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    margin: 4%;
+}
+
+.container {
+    background-color: #28282b;
+    margin-top: 26px;
+    margin-bottom: 13px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.customButtons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.closeButton {
+    padding: 1.3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.closeButton:hover {
+    background-color: #C24037;
+    box-shadow: 0px 15px 20px #dc453a8a;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.btnSend {
+    position: relative;
+    outline: 0;
+    border: 1px solid transparent;
+    background-color: rgb(5, 65, 65);
+    color: #ffffff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(7, 80, 80, 0.685), 0 2px 4px -1px rgba(7, 80, 80, 0.685);
+}
+
+.btnSend span {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all .4s ease;
+}
+
+.btnSend svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.btnSend span:nth-child(2),
+.btnSend span:nth-child(3) {
+    position: absolute;
+    top: 40px;
+    color: #fff;
+}
+
+.btnSend span:nth-child(2) {
+    background-color: rgb(5, 65, 65);
+}
+
+.btnSend span:nth-child(3) {
+    background-color: rgb(5, 65, 65);
+}
+
+.btnSend:hover {
+    box-shadow: 0 10px 15px -3px rgba(7, 80, 80, 0.685), 0 4px 6px -2px rgba(7, 80, 80, 0.685);
+}
+
+.btnSend:hover span:nth-child(2),
+.btnSend:focus span:nth-child(3) {
+    top: 0;
+}
+
+.btnSend:focus {
+    box-shadow: none;
+}
+
+input[type=text],
+input[type=date],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #2a2a2a;
+}
+
+.divFiles {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(27, 27, 27);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.11);
+}
+
+
+.svgIcon {
+    color: white;
+}
+
+.Btn:hover {
+    background-color: white;
+    transition-duration: .3s;
+}
+
+
+.Btn:hover .svgIcon {
+    color: black;
+    animation: slide-in-top 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-in-top {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.button {
+    height: 50px;
+    width: 150px;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #252525;
+    overflow: hidden;
+    border-radius: 30px;
+    color: #333;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn-txt {
+    z-index: 1;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.type1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+    background-color: #333;
+    border-radius: 30px;
+    visibility: hidden;
+    height: 10px;
+    width: 10px;
+    z-index: -1;
+}
+
+.button:hover {
+    box-shadow: 1px 1px 200px #252525;
+    color: #fff;
+    border: none;
+}
+
+.type1:hover::after {
+    visibility: visible;
+    transform: scale(100) translateX(2px);
+}
+
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1em);
+    }
+
+    to {
+        transform: translateY(-0.1em);
+    }
+}
+
+#myTextarea {
+    position: relative;
+    z-index: 1000;
+}

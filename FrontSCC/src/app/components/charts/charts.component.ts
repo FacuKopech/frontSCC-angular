@@ -103,7 +103,7 @@ export class ChartsComponent {
             backgroundColor: this.getRandomColor()
           },
           {
-            label: "Tiempo de sesion",
+            label: "Tiempo de sesion (minutos)",
             data: [this.directivoSessionTimeAvg, this.docenteSessionTimeAvg, this.padreSessionTimeAvg],
             backgroundColor: this.getRandomColor()
           }    

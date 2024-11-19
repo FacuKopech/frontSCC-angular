@@ -1,31 +1,41 @@
 h1 {
-    display: flex;
-    justify-content: center;
-    font-family: Chalk, sans-serif;
-    font-size: 50px;
-    
-    margin-bottom: 40px;
-  }
+  display: flex;
+  justify-content: center;
+  font-family: Chalk, sans-serif;
+  font-size: 50px;
 
-  h3{
-    font-size: x-large;
-    font-family: Chalk, sans-serif;
-  }
-
-
-.divChartsContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
-.chart-container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    background-color: #1b9aaa69;
-    border-radius: 12px;
-    width: 45%;
-    margin-top: 25px;
+h3 {
+  font-size: x-large;
+  font-family: Chalk, sans-serif;
+}
+
+.divContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.divChartsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 2000px;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #6BAB90;
+  border-radius: 12px;
+  width: 45%;
+  margin-top: 25px;
+}
+
+.chart-container canvas{
+  margin-bottom: 16px;
 }

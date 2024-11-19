@@ -27,7 +27,7 @@
     <div class="divEliminarAlumnoDeAula" *ngIf="itemForDelete == 'Alumno de Aula'">
       <h2>Remover Alumno de Aula</h2>
       <div class="content">
-        Seguro que desea remover el Alumno del Aula?
+        Seguro que desea remover el Alumno del Aula? Se eliminaran todas las tomas de asistencia para el Alumno
       </div>
     </div>
     <div class="divEliminarAula" *ngIf="itemForDelete == 'Aula'">
@@ -58,6 +58,12 @@
       <h2>Eliminar Institucion</h2>
       <div class="content">
         Seguro que desea eliminar la Institucion?
+      </div>
+    </div>
+    <div class="divEliminarPersona" *ngIf="itemForDelete == 'Evento'">
+      <h2>Eliminar Evento</h2>
+      <div class="content">
+        Seguro que desea eliminar el Evento?
       </div>
     </div>
 

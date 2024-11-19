@@ -137,21 +137,7 @@ html {
   transition-duration: 0.3s;
   background-color: #28282b;
 }
-.divNavTitleContainer {
-  display: flex;
-  justify-content: center;
-  width: 82%;
-}
-.divNavbarTitle {
-  font-family: Chalk, sans-serif;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  font-size: xx-large;
-  align-self: center;
-}
+
 .navbar-container .hamburger-lines,
 .navbar-container input[type="checkbox"] {
   display: block;
@@ -605,6 +591,7 @@ footer {
   flex-wrap: wrap;
   margin-right: 8px;
   outline: 0;
+  width: fit-content;
 }
 .dropbtn {
   background-color: #ffffff57;
@@ -709,8 +696,22 @@ footer {
   stroke: white;
 }
 
+
 .institucionIcon path{
   color: transparent;
+}
+
+.eventosIcon{
+  width: 48px;
+  height: 40px;
+}
+
+.eventosPath{
+  fill: #fff;
+}
+
+.signEvento{
+  margin-left: 10px;
 }
 
 .signUserAndInst {
@@ -734,4 +735,12 @@ footer {
   width: 30%;
   transition-duration: 0.3s;
   padding-left: 0;
+}
+
+@media screen and (max-width: 1500px) {
+
+  .inner-cover {
+    padding-top: 0;
+  }
+
 }

@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class DestinatariosNotaPopupComponent {
 
   @Input() nota: any;
+  @Input() evento: any;
 
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();

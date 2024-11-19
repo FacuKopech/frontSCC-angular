@@ -1,20 +1,20 @@
-.overlay{
+.overlay {
   display: flex;
-    justify-content: center;
+  justify-content: center;
 }
 
-.popup{
+.popup {
   display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    background-color: #28282b;
-    height: fit-content;
-    width: 40%;
-    border-radius: 18px;
-    position: absolute;
-    z-index: 9999;
-    box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  background-color: #28282b;
+  height: fit-content;
+  width: 50%;
+  border-radius: 18px;
+  position: absolute;
+  z-index: 9999;
+  box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Simple CSS3 Fade-in-down Animation */
@@ -33,6 +33,7 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -46,6 +47,7 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -54,131 +56,133 @@
 }
 
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
 
-.popupHeader{
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.popupHeader {
   display: flex;
   justify-content: center;
 }
 
-.popupTitulo h2{
+.popupTitulo h2 {
   color: aliceblue;
-  text-decoration-line: underline;
+  font-family: Chalk, sans-serif;
 }
 
-.content{
+.popupTitulo h3{
+  font-family: Chalk, sans-serif;
+}
+
+.content {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
 }
 
-.divLeidaPor{
+.divLeidaPor {
   display: flex;
   flex-direction: column;
 }
 
-.labelLeida:hover{
+.labelLeida:hover {
   color: yellow;
 }
 
-.divDestinatarios{
+.labelNoAsistiran:hover {
+  color: red;
+}
+
+.divDestinatarios {
   display: flex;
   flex-direction: column;
 }
 
-.divDestinatarios label{
+.divDestinatarios label {
   display: flex;
   justify-content: flex-start;
 }
 
-.labelDestinatarios:hover{
+.labelDestinatarios:hover {
   color: darkgreen;
 }
 
-.divFirmadaPor{
+.labelTalVezAsistan:hover {
+  color: yellow;
+}
+
+.divFirmadaPor {
   display: flex;
   flex-direction: column;
 }
 
-.labelFirmada:hover{
+.labelFirmada:hover {
   color: darkcyan;
 }
 
-.svgPersonIcon{
+.labelAsistiran:hover {
+  color: darkgreen;
+}
+
+.svgPersonIcon {
   width: 14px;
   height: 14px;
   align-self: center;
 }
 
-.popupCloseButton{
+.popupCloseButton {
   display: flex;
   justify-content: center;
   margin-bottom: 14px;
   margin-top: 20px;
 }
 
-.close-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgb(20, 20, 20);
+.closeButton {
+  padding: 1.3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
   border: none;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
   cursor: pointer;
-  transition-duration: 0.3s;
-  overflow: hidden;
-  position: relative;
-  margin-right: 18px;
+  outline: none;
 }
 
-.close-svgIcon {
-  width: 15px;
-  transition-duration: 0.3s;
-}
-
-.close-svgIcon path {
-  fill: white;
-}
-
-.close-button:hover {
-  width: 90px;
-  border-radius: 50px;
-  transition-duration: 0.3s;
-  background-color: rgb(200, 22, 22);
-  align-items: center;
-}
-
-.close-button:hover .close-svgIcon {
-  width: 20px;
-  transition-duration: 0.3s;
-  transform: translateY(60%);
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
-
-.close-button::before {
-  display: none;
-  content: "Cerrar";
-  color: white;
-  transition-duration: 0.3s;
-  font-size: 2px;
-}
-
-.close-button:hover::before {
-  display: block;
-  padding-right: 10px;
-  font-size: 13px;
-  opacity: 1;
-  transform: translateY(0px);
-  transition-duration: 0.3s;
+.closeButton:hover {
+  background-color: #C24037;
+  box-shadow: 0px 15px 20px #dc453a8a;
+  color: #fff;
+  transform: translateY(-7px);
 }

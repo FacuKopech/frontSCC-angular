@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from 'src/app/services/user_services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { EncryptionService } from 'src/app/services/encryption_services/encryption.service';
 
 @Component({
   selector: 'app-editar-user-popup',
@@ -17,7 +18,7 @@ export class EditarUserPopupComponent {
   @ViewChild('usernameInput', { static: false }) usernameInputRef!: ElementRef<HTMLInputElement>;
   @ViewChild('claveInput', { static: false }) claveInputRef!: ElementRef<HTMLInputElement>;
 
-  constructor (private userService: ApiService){}
+  constructor (private userService: ApiService, private encryptionService: EncryptionService){}
 
   emailUsuario: string = '';
   usernameUsuario: string = '';
@@ -83,7 +84,7 @@ export class EditarUserPopupComponent {
         rolesSeleccionados:  this.rolesSeleccionados
       };
       if(eventData.clave == ''){
-        eventData.clave = this.user.clave;
+        eventData.clave = this.encryptionService.encryptPassword(this.user.clave);
       }
       this.userService.EditarUsuario(this.user.id, eventData).subscribe(res => {
         if(res){

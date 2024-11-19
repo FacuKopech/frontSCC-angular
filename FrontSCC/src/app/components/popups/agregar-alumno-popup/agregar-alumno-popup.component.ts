@@ -45,12 +45,6 @@ export class AgregarAlumnoPopupComponent {
   }
 
   public agregarClicked(){
-    const datePartsNacimiento = this.fechaNacimientoInputRef.nativeElement.value.split('/');
-    const year = parseInt(datePartsNacimiento[0]);
-    const month = parseInt(datePartsNacimiento[1]) - 1; 
-    const day = parseInt(datePartsNacimiento[2]);
-    const fechaNacimientoSelected = new Date(year, month, day);
-    const nacimientoDate = new Date(this.fechaNacimientoInputRef.nativeElement.value);
     if(this.existenteRadioButtonCheck){
       if(this.alumnosSeleccionados.length == 0){
         const divisionError =   document.querySelector(`span[id="alumnosDropdownError"]`) as HTMLElement;
@@ -75,6 +69,12 @@ export class AgregarAlumnoPopupComponent {
         });
       }
     }else if(this.nuevoRadioButtonCheck){
+      const datePartsNacimiento = this.fechaNacimientoInputRef.nativeElement.value.split('/');
+      const year = parseInt(datePartsNacimiento[0]);
+      const month = parseInt(datePartsNacimiento[1]) - 1; 
+      const day = parseInt(datePartsNacimiento[2]);
+      const fechaNacimientoSelected = new Date(year, month, day);
+      const nacimientoDate = new Date(this.fechaNacimientoInputRef.nativeElement.value);
       const nombreError =   document.querySelector(`span[id="nombreError"]`) as HTMLElement;
       const apellidoError =   document.querySelector(`span[id="apellidoError"]`) as HTMLElement;
       const DNIError =   document.querySelector(`span[id="DNIError"]`) as HTMLElement;

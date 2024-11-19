@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from 'src/app/services/user_services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { EncryptionService } from 'src/app/services/encryption_services/encryption.service';
 
 @Component({
   selector: 'app-agregar-user-popup',
@@ -24,7 +25,7 @@ export class AgregarUserPopupComponent {
   esErrorEmailRepetido = false;
   esErrorUsernameRepetido = false;
 
-  constructor (private userService: ApiService){}
+  constructor (private userService: ApiService, private encryptionService: EncryptionService){}
 
   public ngOnInit(){
     this.userService.ObtenerRolesSistema().subscribe(res => {
@@ -66,7 +67,7 @@ export class AgregarUserPopupComponent {
       const eventData = {
         email: this.emailInputRef.nativeElement.value,
         username: this.usernameInputRef.nativeElement.value,
-        clave: this.claveInputRef.nativeElement.value,
+        clave: this.encryptionService.encryptPassword(this.claveInputRef.nativeElement.value),
         rolesSeleccionados: this.rolesSeleccionados
       };
       this.userService.AgregarUsuario(eventData).subscribe(res => {

@@ -21,7 +21,7 @@ export class AgregarNotaPopupComponent {
   public selectedDestinatarios: any[] = [];
   public alumnoSeleccionado: any;
   public aulaSeleccionada: any;
-  public idAlumno: number = -1;
+  public idAlumno: string = '';
   isRadioButtonVisible = false;
   openTipoNotaInfoPopup = false;
   esTipo = false;
@@ -50,7 +50,7 @@ export class AgregarNotaPopupComponent {
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()
-  enviarButtonClick = new EventEmitter<{tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: number, destinatarios: any[], titulo:string, cuerpo: string, files:FormData, enviaNotaComo: string}>();
+  enviarButtonClick = new EventEmitter<{tipo: string, conAula: boolean, aulasDestinadas: any[], idAlumnoReferido: string, destinatarios: any[], titulo:string, cuerpo: string, files:FormData, enviaNotaComo: string}>();
   @ViewChild('radioButtonPadre', { static: false }) radioButtonPadreRef!: ElementRef<HTMLInputElement>;
   @ViewChild('radioButtonRoleAdicional', { static: false }) radioButtonRoleAdicionalRef!: ElementRef<HTMLInputElement>;
   @ViewChild('radioButtonParticular', { static: false }) radioButtonParticularRef!: ElementRef<HTMLInputElement>;
@@ -303,7 +303,7 @@ export class AgregarNotaPopupComponent {
             this.isRadioButtonVisible = false;
             this.esConAula = false;
             this.aulasDestinadas = [];
-            this.idAlumno = 0;
+            this.idAlumno = '00000000-0000-0000-0000-000000000000';
             divAulaDestinada.style.display = 'flex';
             this.selectAulasRef.nativeElement.value = "0";
           }else{
@@ -315,7 +315,7 @@ export class AgregarNotaPopupComponent {
           this.isRadioButtonVisible = false;
             this.esConAula = false;
             this.aulasDestinadas = [];
-            this.idAlumno = 0;
+            this.idAlumno = '00000000-0000-0000-0000-000000000000';
             divAulaDestinada.style.display = 'flex';
             this.selectAulasRef.nativeElement.value = "0";
           this.ObtenerAulasDestinatariosParaNuevaNota(tipoElegido, isPadre, false, false);
@@ -446,6 +446,7 @@ export class AgregarNotaPopupComponent {
   public ObtenerHijosPadreParaNuevaNota = () => {
     this.notaService.ObtenerHijosPadreParaNuevaNota().subscribe(res => {
       if(res != null){
+        console.log('alumnos', res);
         this.alumnos = res;
       }
     });
@@ -453,7 +454,7 @@ export class AgregarNotaPopupComponent {
 
   public handleAulaSeleccionada = ($event: Event) => {
     const idAula =  ($event.target as HTMLInputElement).value;
-    const aulaId = parseInt(idAula);
+    const aulaId = idAula;
     this.selectedDestinatarios.length = 0;
     const isPadre = this.gruposUsuario.some(obj => obj.tipo === 'Padre');
     const isDocente = this.gruposUsuario.some(obj => obj.tipo === 'Docente');
@@ -480,7 +481,7 @@ export class AgregarNotaPopupComponent {
     }
 
     if(this.tipoElegido == "G" && isDocente && !this.enviaNotaComoPadre){
-      this.idAlumno = 0;
+      this.idAlumno = '00000000-0000-0000-0000-000000000000';
       if(this.esConAula){
         dropDownListDestinatarios.style.display = "none";
         labelDropDownListDestinatarios.style.display = "none";
@@ -497,10 +498,10 @@ export class AgregarNotaPopupComponent {
           this.destinatarios = res;
         });
 
-        if(aulaId === 0){
+        if(aulaId === ''){
           dropDownListDestinatarios.style.display = "none";
           labelDropDownListDestinatarios.style.display = "none";
-        }else if(aulaId > 0){
+        }else if(aulaId != ''){
           dropDownListDestinatarios.style.display = "flex";
           labelDropDownListDestinatarios.style.display = "flex";
         }
@@ -524,10 +525,10 @@ export class AgregarNotaPopupComponent {
         this.notaService.ObtenerListaDeDestinatariosParaNuevaNota(aulaId, this.enviaNotaComo).subscribe(res => {
           this.destinatarios = res;
         });
-        if(aulaId === 0){
+        if(aulaId == ''){
           dropDownListDestinatarios.style.display = "none";
           labelDropDownListDestinatarios.style.display = "none";
-        }else if(aulaId > 0){
+        }else if(aulaId != ''){
           dropDownListDestinatarios.style.display = "flex";
           labelDropDownListDestinatarios.style.display = "flex";
         }
@@ -539,9 +540,8 @@ export class AgregarNotaPopupComponent {
 
   public guardarAlumnoSeleccionado = ($event: Event) => {
     const idAlumno =  ($event.target as HTMLInputElement).value;
-    const alumnoId = parseInt(idAlumno);
-    console.log(alumnoId);
-    this.idAlumno = alumnoId;
+    console.log(idAlumno);
+    this.idAlumno = idAlumno;
     this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
     this.divFilesElementRef.nativeElement.style.display = "flex";
   }
@@ -564,7 +564,7 @@ export class AgregarNotaPopupComponent {
 
   }
 
-  public aulasCheck = (idAula: number) => {
+  public aulasCheck = (idAula: string) => {
     let arrayAnterior: any[] = [];
     arrayAnterior = this.aulasDestinadas;
     this.aulasDestinadas = this.aulasDestinadas.filter((aulaArray) => aulaArray != idAula);

@@ -5,8 +5,10 @@
       <div class="titleHeader">
         <h2 *ngIf="esGenerica">Agregar nueva ausencia generica</h2>
         <div *ngIf="esGenerica" class="divPInfo">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgInfoIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6 svgInfoIcon">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
           </svg>
           <p class="pAusenciaGenericaInfo" *ngIf="esGenerica">Esta ausencia sera asignada a TODOS sus hijos</p>
         </div>
@@ -15,36 +17,41 @@
 
       <br>
       <label>Motivo</label>
-      <input #motivoInput type="text"  [(ngModel)]="motivoAusencia" name="motivoAusencia" required/>
+      <input #motivoInput type="text" [(ngModel)]="motivoAusencia" name="motivoAusencia" required />
       <span id="motivoError"></span>
 
       <label>Fecha desde:</label>
-      <input #fechaDesdeInput type="date"  [(ngModel)]="fechaComienzo" name="fechaDesdeAusencia" required/>
+      <input #fechaDesdeInput type="date" [(ngModel)]="fechaComienzo" name="fechaDesdeAusencia" required />
       <span id="fechaDesdeError"></span>
 
       <label>Fecha hasta:</label>
-      <input #fechaHastaInput type="date"  [(ngModel)]="fechaFin" name="fechaHastaAusencia" required/>
+      <input #fechaHastaInput type="date" [(ngModel)]="fechaFin" name="fechaHastaAusencia" required />
       <span id="fechaHastaError"></span>
       <div class="divFiles">
         <label>Archivos adjuntos:</label>
         <button class="Btn" title="Seleccionar archivo(s)" (click)="openFileExplorer()">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgIcon">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6 svgIcon">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
           </svg>
-       </button>
+        </button>
         <input type="file" #fileInput style="display: none" [multiple]="true" (change)="onFilesSelected($event)">
       </div>
       <div class="divContainerFilesNames">
-        <span  id="fileError"></span>
+        <span id="fileError"></span>
         <div *ngFor="let file of files">
           <div class="divFilesNames">
             <span>{{ file.name }}</span>
             <button class="BtnDeleteFile" title="Eliminar" (click)="deleteSelectedFile(file)">
-              <svg class="svgIcon" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet">
+              <svg class="svgIcon" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360"
+                preserveAspectRatio="xMidYMid meet">
                 <g>
-                <path d="M 88.500 78.072 C 83.213 80.706 78.841 85.756 76.717 91.682 C 74.562 97.693 74.548 101.316 76.652 107.493 C 78.097 111.734 82.555 116.611 112.152 146.329 C 130.769 165.021 146.000 180.492 146.000 180.709 C 146.000 180.926 131.107 196.042 112.905 214.302 C 94.703 232.561 78.945 249.186 77.886 251.247 C 73.140 260.491 75.018 271.030 82.756 278.578 C 87.919 283.615 95.862 286.492 101.621 285.411 C 110.374 283.769 113.034 281.551 146.806 247.730 L 180.113 214.376 213.376 247.576 C 232.730 266.893 248.282 281.608 250.569 282.768 C 257.025 286.040 261.905 286.397 268.598 284.087 C 282.414 279.317 289.029 263.754 282.570 251.217 C 280.894 247.965 269.867 236.251 247.070 213.506 L 214.000 180.511 247.458 147.006 C 272.298 122.131 281.437 112.341 282.937 109.000 C 288.132 97.423 282.996 83.509 271.538 78.123 C 265.653 75.356 256.387 75.252 251.210 77.893 C 249.170 78.934 232.384 94.871 213.908 113.307 L 180.316 146.827 146.908 113.372 C 122.484 88.913 112.323 79.389 109.123 77.958 C 103.266 75.338 93.884 75.390 88.500 78.072 "/></g>
-                </svg>
-           </button>
+                  <path
+                    d="M 88.500 78.072 C 83.213 80.706 78.841 85.756 76.717 91.682 C 74.562 97.693 74.548 101.316 76.652 107.493 C 78.097 111.734 82.555 116.611 112.152 146.329 C 130.769 165.021 146.000 180.492 146.000 180.709 C 146.000 180.926 131.107 196.042 112.905 214.302 C 94.703 232.561 78.945 249.186 77.886 251.247 C 73.140 260.491 75.018 271.030 82.756 278.578 C 87.919 283.615 95.862 286.492 101.621 285.411 C 110.374 283.769 113.034 281.551 146.806 247.730 L 180.113 214.376 213.376 247.576 C 232.730 266.893 248.282 281.608 250.569 282.768 C 257.025 286.040 261.905 286.397 268.598 284.087 C 282.414 279.317 289.029 263.754 282.570 251.217 C 280.894 247.965 269.867 236.251 247.070 213.506 L 214.000 180.511 247.458 147.006 C 272.298 122.131 281.437 112.341 282.937 109.000 C 288.132 97.423 282.996 83.509 271.538 78.123 C 265.653 75.356 256.387 75.252 251.210 77.893 C 249.170 78.934 232.384 94.871 213.908 113.307 L 180.316 146.827 146.908 113.372 C 122.484 88.913 112.323 79.389 109.123 77.958 C 103.266 75.338 93.884 75.390 88.500 78.072 " />
+                </g>
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -61,7 +68,8 @@
         <button class="btnSend" (click)="agregarClicked()">
           <span>
             Agregar
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </span>
@@ -70,7 +78,17 @@
           </span>
           <span>
             Agregada!
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><g stroke-width="0" id="SVGRepo_bgCarrier"></g><g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g><g id="SVGRepo_iconCarrier"> <path stroke-linecap="round" stroke-width="2" stroke="#ffffff" d="M8.00011 13L12.2278 16.3821C12.6557 16.7245 13.2794 16.6586 13.6264 16.2345L22.0001 6"></path> <path fill="#ffffff" d="M11.1892 12.2368L15.774 6.63327C16.1237 6.20582 16.0607 5.5758 15.6332 5.22607C15.2058 4.87635 14.5758 4.93935 14.226 5.36679L9.65273 10.9564L11.1892 12.2368ZM8.02292 16.1068L6.48641 14.8263L5.83309 15.6248L2.6 13.2C2.15817 12.8687 1.53137 12.9582 1.2 13.4C0.868627 13.8419 0.95817 14.4687 1.4 14.8L4.63309 17.2248C5.49047 17.8679 6.70234 17.7208 7.381 16.8913L8.02292 16.1068Z" clip-rule="evenodd" fill-rule="evenodd"></path> </g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+              <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path stroke-linecap="round" stroke-width="2" stroke="#ffffff"
+                  d="M8.00011 13L12.2278 16.3821C12.6557 16.7245 13.2794 16.6586 13.6264 16.2345L22.0001 6"></path>
+                <path fill="#ffffff"
+                  d="M11.1892 12.2368L15.774 6.63327C16.1237 6.20582 16.0607 5.5758 15.6332 5.22607C15.2058 4.87635 14.5758 4.93935 14.226 5.36679L9.65273 10.9564L11.1892 12.2368ZM8.02292 16.1068L6.48641 14.8263L5.83309 15.6248L2.6 13.2C2.15817 12.8687 1.53137 12.9582 1.2 13.4C0.868627 13.8419 0.95817 14.4687 1.4 14.8L4.63309 17.2248C5.49047 17.8679 6.70234 17.7208 7.381 16.8913L8.02292 16.1068Z"
+                  clip-rule="evenodd" fill-rule="evenodd"></path>
+              </g>
+            </svg>
           </span>
         </button>
       </div>

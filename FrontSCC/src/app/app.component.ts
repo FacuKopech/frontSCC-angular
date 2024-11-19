@@ -46,15 +46,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInUser = this.loginService.getLoggedInUser();
+    this.showEventosButton = this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Padre')
+      ? true : this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Directivo') ? true :
+        this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Docente') ? true : false;
     this.logueoFueraDeHorario = false;
     const seMostro = localStorage.getItem('flag');
     if (seMostro == null) {
       localStorage.setItem('flag', 'false');
     }
     if (this.loggedInUser != null) {
-      this.showEventosButton = this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Padre')
-        ? true : this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Directivo') ? true :
-          this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Docente') ? true : false;
       this.loggedIn = true;
       if (this.loggedInUser.roles.length > 0) {
         this.groups = this.loggedInUser.roles;
@@ -88,6 +88,9 @@ export class AppComponent implements OnInit {
 
   public afterSuccessfulLogIn() {
     this.loggedInUser = this.loginService.getLoggedInUser();
+    this.showEventosButton = this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Padre')
+      ? true : this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Directivo') ? true :
+        this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Docente') ? true : false;
     this.logueoFueraDeHorario = false;
     const seMostro = localStorage.getItem('flag');
     if (seMostro == null) {

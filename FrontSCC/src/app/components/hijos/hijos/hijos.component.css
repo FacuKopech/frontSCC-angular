@@ -27,6 +27,8 @@ h1 {
 .divMessage .pMessage{
   display: flex;
   justify-content: center;
+  font-family: Chalk, sans-serif;
+  font-size: x-large;
 }
 
 .divAgregarAusenciasGenericas{

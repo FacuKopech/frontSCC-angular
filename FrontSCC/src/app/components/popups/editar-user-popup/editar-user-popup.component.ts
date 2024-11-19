@@ -84,7 +84,7 @@ export class EditarUserPopupComponent {
         rolesSeleccionados:  this.rolesSeleccionados
       };
       if(eventData.clave == ''){
-        eventData.clave = this.encryptionService.encryptPassword(this.user.clave);
+        eventData.clave = this.user.clave;
       }
       this.userService.EditarUsuario(this.user.id, eventData).subscribe(res => {
         if(res){

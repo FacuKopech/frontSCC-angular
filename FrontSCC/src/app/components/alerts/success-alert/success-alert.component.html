@@ -1,11 +1,12 @@
 <div class="alertBody fadeInDown">
   <div class="modal-content">
     <div class="icon-box">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svgCheckIcon">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6 svgCheckIcon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     </div>
-
   </div>
   <div class="alertTextContainer">
     <div class="text-center">
@@ -14,7 +15,8 @@
       <p *ngIf="esDeletion">Nota eliminada con exito!</p>
       <p *ngIf="esAddition">Nota enviada con exito!</p>
       <p *ngIf="esResset">Clave modificada con exito!</p>
-      <p *ngIf="esResset">Al hacer click en 'Aceptar' se cerrara tu sesion y deberas loguearte nuevamente con la nueva clave.</p>
+      <p *ngIf="esResset">Al hacer click en 'Aceptar' se cerrara tu sesion y deberas loguearte nuevamente con la nueva
+        clave.</p>
       <p *ngIf="esRecover">Clave recuperada con exito!</p>
       <p *ngIf="esRecover">Ya puedes iniciar sesion con tu nueva clave.</p>
       <p *ngIf="esEditAusencia">Ausencia modificada con exito!</p>
@@ -51,7 +53,10 @@
       <p *ngIf="esBackupDB">Backup completado con exito!</p>
       <p *ngIf="path != undefined && !esRestoreDB">El archivo puede encontrarse en la siguiente ruta: {{path}}</p>
       <p *ngIf="esRestoreDB">Restauracion de DB completada con exito!</p>
-      
+      <p *ngIf="esAgregarEvento">Evento agregado con exito!</p>
+      <p *ngIf="esEliminarEvento">Evento eliminado con exito!</p>
+      <p *ngIf="esModificarEvento">Evento modificado con exito!</p>
+      <p *ngIf="esConfirmarAsistenciaEvento">Asistencia notificada con exito!</p>
       <div class="divCloseBtn">
         <button (click)="cerrarClicked()" class="closeButton">
           Aceptar

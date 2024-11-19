@@ -1,4 +1,4 @@
-.alertBody{
+.alertBody {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -25,6 +25,7 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -38,6 +39,7 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -46,32 +48,62 @@
 }
 
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
 
-.modal-content{
-  display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-content: flex-end;
-    background-color: #47c9a2;
-    border-radius: 12px 12px 2px 2px;
-    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.2);
+  to {
+    opacity: 1;
+  }
 }
-.icon-box{
+
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  background-color: #47c9a2;
+  border-radius: 12px 12px 2px 2px;
+  box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-box {
   display: flex;
   justify-content: center;
   width: 100%;
 }
-.svgCheckIcon{
+
+.svgCheckIcon {
   width: 86px;
   height: 86px;
 }
-.divCloseBtn{
+
+.divCloseBtn {
   margin-bottom: 13px;
 }
+
 .closeButton {
   padding: 1.3em 3em;
   font-size: 12px;
@@ -95,7 +127,7 @@
   transform: translateY(-7px);
 }
 
-.alertTextContainer{
+.alertTextContainer {
   width: 100%;
   background-color: whitesmoke;
   height: fit-content;
@@ -103,7 +135,7 @@
   box-shadow: 3px 6px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
-.text-center{
+.text-center {
   color: black;
   margin-top: 12px;
   font-family: 'Noto Sans Chorasmian', sans-serif;

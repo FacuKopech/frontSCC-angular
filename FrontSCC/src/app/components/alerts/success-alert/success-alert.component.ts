@@ -45,6 +45,11 @@ export class SuccessAlertComponent {
   @Input() esBackupDB: any;
   @Input() esRestoreDB: any;
   @Input() path: any;
+  @Input() esAgregarEvento: any;
+  @Input() esEliminarEvento: any;
+  @Input() esModificarEvento: any;
+  @Input() esConfirmarAsistenciaEvento: any;
+  
   
   constructor() {
   }

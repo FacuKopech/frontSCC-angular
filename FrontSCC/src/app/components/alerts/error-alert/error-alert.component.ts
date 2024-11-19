@@ -11,11 +11,13 @@ export class ErrorAlertComponent {
 
   @Output()
   cerrarButtonClick: EventEmitter<string> = new EventEmitter<string>();
-  @Input() esErrorNomreAulaRepetido: any;
-  @Input() esErrorGradoAulaRepetido: any;
-  @Input() esErrorDivisionAulaRepetida: any;
+  @Input() esErrorAulaRepetida: any;
   @Input() esErrorAgregarAusenciaHijoSinAulaAsignada: any;
+  @Input() esErrorAgregarAusenciaExistente: any;
+  @Input() esErrorAlumnoNoEncontrado: any;
   @Input() esErrorAgregarAlumnoYaExistente: any;
+  @Input() esErrorAusenciaNoEncontrada: any;
+  @Input() esErrorIdInvalido: any;
   @Input() esErrorEmailRepetido: any;
   @Input() esErrorUsernameRepetido: any;
   @Input() esErrorDNIRepetido: any;
@@ -25,8 +27,10 @@ export class ErrorAlertComponent {
   @Input() esErrorClaveActualIncorrecta: any;
   @Input() esErrorConfirmacionClaveDesigual: any;
   @Input() esErrorAgregarHistorialAlumnoSinPadre: any;
-  
-  
+  @Input() esErrorDatoClima: any;
+  @Input() esAgregarEvento: any;
+  @Input() esErrorEventoYaExistenteEnAula: any;
+
   public cerrarClicked() {
     this.cerrarButtonClick.emit("cerrar_button_clicked");
   }

@@ -236,6 +236,9 @@ export class AgregarNotaPopupComponent {
   }
 
   public enviarNotaComoClick(enviaNotaComo: string){
+    this.aulasDestinadas = [];
+    this.alumnoSeleccionado = null;
+    this.idAlumno = "";
     if(enviaNotaComo == 'P'){
       this.enviaNotaComoPadre = true;
       this.enviaNotaComo = "Padre";
@@ -280,6 +283,9 @@ export class AgregarNotaPopupComponent {
   }
 
   public radioButtonShow(tipoElegido: string) {
+    this.aulasDestinadas = [];
+    this.alumnoSeleccionado = null;
+    this.idAlumno = "";
     this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
     this.divFilesElementRef.nativeElement.style.display = "none";
     var divAulaDestinada = this.aulaRef.nativeElement;
@@ -390,6 +396,7 @@ export class AgregarNotaPopupComponent {
   }
 
   esconderAula(){
+    this.aulasDestinadas = [];
     this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
     this.divFilesElementRef.nativeElement.style.display = "none";
     this.sinAulaRadioButtonCheck = true;

@@ -143,7 +143,7 @@
       <div class="divAlumnoReferido" #divAlumnoReferido>
         <label>Alumno referido</label>
         <select name="" id="" (change)="guardarAlumnoSeleccionado($event)">
-          <option selected disabled>Seleccione un Alumno referido</option>
+          <option selected>Seleccione un Alumno referido</option>
           <option *ngFor="let alumno of alumnos"  [value]="alumno.id">{{alumno.apellido}}, {{alumno.nombre}}</option>
         </select>
       </div>

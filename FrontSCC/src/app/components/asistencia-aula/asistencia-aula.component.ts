@@ -36,7 +36,7 @@ export class AsistenciaAulaComponent {
         this.applyFilter();
         console.log(this.asistencias);
         if (this.asistencias.length == 0) {
-          this.message = "Nose registraron asistencias para esta aula";
+          this.message = "No se registraron Asistencias para esta Aula";
         }
         var today = new Date();
         const formattedDate = this.datePipe.transform(today, 'yyyy-MM-dd');
@@ -45,6 +45,7 @@ export class AsistenciaAulaComponent {
             const formattedAusenciaDate = this.datePipe.transform(this.asistencias[index].fechaAsistenciaTomada, 'yyyy-MM-dd')
             if (formattedDate == formattedAusenciaDate) {
               this.asistenciaHoyTomada = true;
+              break;
             } else {
               this.asistenciaHoyTomada = false;
             }

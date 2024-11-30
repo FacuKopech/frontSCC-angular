@@ -54,7 +54,7 @@ export class EditarHistorialPopupComponent {
       estadoError.style.color = "red";
       estadoError.style.fontWeight = "bold";
     }else{
-      this.editButtonClick.emit({idHistorial: this.historial.idHistorial, descripcion: this.descripcionHistorial, calificacion: this.calificacionHistorial, estado: this.estadoHistorial});
+      this.editButtonClick.emit({idHistorial: this.historial.id, descripcion: this.descripcionHistorial, calificacion: this.calificacionHistorial, estado: this.estadoHistorial});
     }
   }
 }

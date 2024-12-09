@@ -41,7 +41,6 @@ export class HijosComponent {
       this.message = "";
       if (res) {
         this.hijos = res;
-        console.log(this.hijos);
         if (this.hijos.length == 0) {
           this.message = "Usted aun no tiene hijos asignados en el sistema";
         }

@@ -56,9 +56,6 @@ export class SuccessAlertComponent {
 
   @Output()
   cerrarButtonClick: EventEmitter<string> = new EventEmitter<string>();
-  public ngOnInit(){
-    console.log(this.path);
-  }
   public cerrarClicked() {
     this.cerrarButtonClick.emit("cerrar_button_clicked");
   }

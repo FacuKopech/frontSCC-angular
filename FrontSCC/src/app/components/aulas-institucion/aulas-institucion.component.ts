@@ -38,12 +38,10 @@ export class AulasInstitucionComponent {
       this.message = "";
       if(res.length > 0){
         this.aulas = res;
-        this.institucion = this.aulas[0].institucion;
-        console.log(this.aulas, this.institucion);      
+        this.institucion = this.aulas[0].institucion;  
         this.aulaService.ObtenerPorcentajesAsistenciaAulas(this.institucion.id).subscribe(res =>{
           if(res){
             this.porcentajesAulas = res;
-            console.log(this.porcentajesAulas);
           }
         });        
       }else{

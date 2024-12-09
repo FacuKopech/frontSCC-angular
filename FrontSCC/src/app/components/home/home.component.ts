@@ -68,7 +68,6 @@ export class HomeComponent {
   public backupClick(){    
     this.adminService.Backup().subscribe((res:any) => {
       if(res){
-        console.log(res);
         this.path = res.path;
         this.openSuccessAlert = true;
         this.esBackupDB = true;

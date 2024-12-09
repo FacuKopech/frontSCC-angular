@@ -21,7 +21,6 @@ export class UserRolesPopupComponent {
     this.userService.ObtenerRolesUsuario(this.user.id).subscribe(res => {     
       if(res){
         this.roles = res;
-        console.log(this.roles);       
       }
     });
   }

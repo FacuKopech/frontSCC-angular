@@ -66,7 +66,6 @@ export class AgregarPersonaPopupComponent {
     this.directivoRadioBtnCheck = false;
     this.tipoPersona = "Padre";
     this.containerShow = true;
-    console.log(this.tipoPersona);
   }
   public docenteCheck(){
     this.padreRadioBtnCheck = false;
@@ -74,7 +73,6 @@ export class AgregarPersonaPopupComponent {
     this.directivoRadioBtnCheck = false;
     this.tipoPersona = "Docente";
     this.containerShow = true;
-    console.log(this.tipoPersona);
   }
   public directivoCheck(){
     this.padreRadioBtnCheck = false;
@@ -82,18 +80,15 @@ export class AgregarPersonaPopupComponent {
     this.directivoRadioBtnCheck = true;
     this.tipoPersona = "Directivo";
     this.containerShow = true;
-    console.log(this.tipoPersona);
   }
 
   public onUsuarioSelected(){
     this.usuarioSeleccionado = this.usuarioSeleccionado;
     this.emailInputValue = this.usuarioSeleccionado.email;
-    console.log(this.usuarioSeleccionado, this.emailInputValue);
   }
 
   public onInstitucionSelected(){
     this.institucionSeleccionada = this.institucionSeleccionada;
-    console.log(this.institucionSeleccionada);
   }
 
   public agregarClicked(){    

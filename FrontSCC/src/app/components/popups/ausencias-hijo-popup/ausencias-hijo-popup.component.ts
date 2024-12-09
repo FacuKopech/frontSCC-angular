@@ -50,7 +50,6 @@ export class AusenciasHijoPopupComponent {
       this.esAusenciasAlumno = false;
       this.idHijo = this.hijo.id;
       this.idNene = this.idHijo;
-      console.log(this.hijo);
     } else if (this.alumno != null) {
       this.esAusenciasAlumno = true;
       this.esAusenciasHijo = false;
@@ -61,7 +60,6 @@ export class AusenciasHijoPopupComponent {
     this.ausenciaService.ObtenerAusenciasAlumno(this.idNene).subscribe(res => {
       if (res) {
         this.ausencias = res;
-        console.log(this.ausencias);
         if (this.ausencias.length == 0) {
           if (this.esAusenciasHijo) {
             this.messageAusencias = "Su hijo/a aun no tiene ninguna ausencia cargada"
@@ -197,7 +195,6 @@ export class AusenciasHijoPopupComponent {
         if (res) {
           this.ausenciaService.AgregarAusencia(this.idNene, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
             if (res) {
-              console.log(res);
               this.openAgregarAusenciaPopup = false;
               this.openSuccessAlert = true;
               this.esAgregarAusencia = true;
@@ -228,9 +225,7 @@ export class AusenciasHijoPopupComponent {
       });
     } else {
       this.ausenciaService.AgregarAusencia(this.idNene, eventData.fechaComienzo, eventData.fechaFin, eventData.motivo).subscribe(res => {
-        console.log(res);
         if (res) {
-          console.log(res);
           this.openSuccessAlert = true;
           this.esAgregarAusencia = true;
         }

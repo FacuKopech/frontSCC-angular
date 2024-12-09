@@ -48,8 +48,6 @@ export class DatosAusenciaPopupComponent {
   }
 
   ngOnInit(){
-    console.log('ID ALUMNO', this.idAlumno);
-    console.log('ID HIJO', this.idHijo);
     this.personaService.ObtenerPadresDeAlumno(this.idAlumno).subscribe(res => {
       if(res){
         this.padres = res;
@@ -109,7 +107,6 @@ export class DatosAusenciaPopupComponent {
   }
   public editClicked() {
     this.count += 1;
-    console.log(this.count);
     if(this.count == 1){
       this.motivoInput.nativeElement.disabled = false;
       this.fechaComienzoInput.nativeElement.disabled = false;

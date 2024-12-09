@@ -34,10 +34,6 @@ export class AgregarEventoPopupComponent {
   @Output()
   agregarButtonClick = new EventEmitter<{ fecha: Date, localidad: string, motivo: string, descripcion: string, aula: string }>();
 
-  ngOnInit() {
-    console.log(this.aulas);
-  }
-
   public cancelarClicked() {
     this.cancelButtonClick.emit("cancel_button_clicked");
   }
@@ -80,7 +76,6 @@ export class AgregarEventoPopupComponent {
       fechaError.style.color = "red";
       fechaError.style.fontWeight = "bold";
     } else if (inputDate <= this.currentDate) {
-      console.log(inputDate, inputDateValue)
       fechaError.textContent = "La fecha seleccionada no puede ser igual o menor a la actual";
       fechaError.style.display = "flex";
       fechaError.style.color = "red";

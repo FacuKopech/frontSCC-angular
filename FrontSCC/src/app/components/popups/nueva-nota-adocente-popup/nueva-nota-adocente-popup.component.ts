@@ -47,7 +47,6 @@ export class NuevaNotaADocentePopupComponent {
   }
 
   public ngOnInit(){
-    console.log(this.hijo, this.docente, this.padres);
     if(this.docente == null && this.padres.length > 0){
       this.esNotaParaPadre = true;
     }else if(this.docente != null && this.padres.length == 0){
@@ -153,7 +152,6 @@ export class NuevaNotaADocentePopupComponent {
   public onFilesSelected(event: Event) {
     const fileError =   document.querySelector(`span[id="fileError"]`) as HTMLElement;
     const files = (event.target as HTMLInputElement).files;
-    console.log(files);
     if(files !== null){
       if (files.length === 0) {
         return;
@@ -184,7 +182,6 @@ export class NuevaNotaADocentePopupComponent {
         this.fileToUpload = <File>files[0];
         this.files.push(this.fileToUpload);
         this.formData.append(this.fileToUpload.name, this.fileToUpload, this.fileToUpload.name);
-        console.log(this.formData.get(this.fileToUpload.name), files);
       }
     }
   }

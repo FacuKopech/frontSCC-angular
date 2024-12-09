@@ -54,7 +54,6 @@ export class NotasRecibidasComponent {
       if (this.notas !== null && this.notas.length > 0) {
         this.notas = res;
         this.applyFilter();
-        console.log(this.notas);
       } else if (this.notas == null || this.notas.length === 0) {
         this.message = "No existen notas recibidas!";
         this.notas = [];
@@ -63,7 +62,6 @@ export class NotasRecibidasComponent {
 
     let loggedInUser = this.loginService.getLoggedInUser();
     this.emailUserLogueado = loggedInUser.email;
-    console.log(this.emailUserLogueado);
   }
 
   applyFilter() {
@@ -114,7 +112,6 @@ export class NotasRecibidasComponent {
 
   public openConfirmacionFirmaPopup(nota: any) {
     this.notaAFirmar = nota
-    console.log(this.notaAFirmar.id);
     this.openConfirmacionFirmaNotaPopup = true;
     this.esTokenParaFirmaNota = true;
   }
@@ -168,7 +165,6 @@ export class NotasRecibidasComponent {
   }
 
   public verArchivosNota(nota: any) {
-    console.log(nota);
     this.router.navigate(['/archivos_ausencia'], { state: { data: nota } });
   }
 

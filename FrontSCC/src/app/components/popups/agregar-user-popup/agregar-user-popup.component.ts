@@ -110,7 +110,6 @@ export class AgregarUserPopupComponent {
     if(arrayAnterior.length == this.rolesSeleccionados.length){
       this.rolesSeleccionados.push(rol.tipo);
     }
-    console.log(this.rolesSeleccionados)
   }
 
 }

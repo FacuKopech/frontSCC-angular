@@ -156,7 +156,6 @@ export class AgregarAlumnoPopupComponent {
     if(arrayAnterior.length == this.alumnosSeleccionados.length){
       this.alumnosSeleccionados.push(alumno.id);
     }
-    console.log(this.alumnosSeleccionados)
   }
   public closeSuccessAlert(){
     this.showSuccessAlert = false;

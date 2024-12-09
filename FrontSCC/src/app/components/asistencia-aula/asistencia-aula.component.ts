@@ -34,7 +34,6 @@ export class AsistenciaAulaComponent {
       if (res) {
         this.asistencias = res;
         this.applyFilter();
-        console.log(this.asistencias);
         if (this.asistencias.length == 0) {
           this.message = "No se registraron Asistencias para esta Aula";
         }

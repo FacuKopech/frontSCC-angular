@@ -53,7 +53,6 @@ export class TomaDeAsistenciaComponent {
     if(arrayAnterior.length == this.alumnosPresentes.length){
       this.alumnosPresentes.push(alumno);
     }
-    console.log(this.alumnosPresentes);
   }
 
   public tieneAusenciaEnEstaFecha(ausencias: any[]): boolean{

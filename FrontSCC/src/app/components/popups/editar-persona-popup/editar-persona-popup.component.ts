@@ -49,7 +49,6 @@ export class EditarPersonaPopupComponent {
   personaEsPadre = false; 
   
   public ngOnInit(){
-    console.log(this.persona);
     this.nombrePersona = this.persona.nombre;
     this.apellidoPersona = this.persona.apellido;
     this.emailPersona = this.persona.email;
@@ -66,12 +65,10 @@ export class EditarPersonaPopupComponent {
         this.personaService.ObtenerHijosDePersona(this.persona.id).subscribe(res => {
           if(res){
             this.hijosPersona = res;
-            console.log(this.hijosPersona);
             for (let index = 0; index < this.hijosPersona.length; index++) {
               this.hijosSeleccionados.push(this.hijosPersona[index].id);
               this.alumnosSinPadresAsignados.push(this.hijosPersona[index]);
             }
-            console.log(this.hijosSeleccionados);
             this.userService.ObtenerUsuariosSinAsignacionPersona().subscribe(res => {
               if(res){
                 this.usuarios = res;    
@@ -190,7 +187,6 @@ export class EditarPersonaPopupComponent {
     if(this.usuarioSeleccionado != undefined){
       this.usuarioSeleccionado = this.usuarioSeleccionado;
       this.emailInputValue = this.usuarioSeleccionado.email;
-      console.log(this.usuarioSeleccionado, this.emailInputValue);
     }else{
       this.usuarioSeleccionado = this.persona.usuario;
       this.emailInputValue = this.usuarioSeleccionado.email;
@@ -201,7 +197,6 @@ export class EditarPersonaPopupComponent {
   public onInstitucionSelected(){
     if(this.institucionSeleccionada != undefined){
       this.institucionSeleccionada = this.institucionSeleccionada;
-      console.log(this.institucionSeleccionada);
     }else{
       this.institucionSeleccionada = this.persona.institucion;
     }   
@@ -228,7 +223,6 @@ export class EditarPersonaPopupComponent {
     if(arrayAnterior.length == this.hijosSeleccionados.length){
       this.hijosSeleccionados.push(alumno.id);
     }
-    console.log(this.hijosSeleccionados)
   }
 }
 

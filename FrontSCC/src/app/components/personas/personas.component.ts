@@ -72,7 +72,6 @@ export class PersonasComponent {
   public verUsuarioPersona(usuario: any) {
     this.openUsuarioPersonaPopup = true;
     this.usuario = usuario;
-    console.log(this.usuario);
   }
 
   public verInstitucionPersona(institucion: any) {

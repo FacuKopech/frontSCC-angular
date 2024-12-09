@@ -34,7 +34,6 @@ export class EditarAulaPopupComponent {
   constructor(private aulaService: AulaService, private router: Router){}
 
   public ngOnInit(){
-    console.log(this.aula);
     this.aulaService.ObtenerDocentesDeInstitucion(this.aula.institucion.id).subscribe(res =>{
       if(res){
         this.docentesDeInstitucion = res;
@@ -55,7 +54,6 @@ export class EditarAulaPopupComponent {
 
   public onDocenteSelected($event: Event){
     this.docenteSeleccionadaId =  parseInt(($event.target as HTMLInputElement).value);
-    console.log(this.docenteSeleccionadaId);
   }
 
   public cancelarClicked(){
@@ -104,7 +102,6 @@ export class EditarAulaPopupComponent {
           alumnosSeleccionados: this.alumnosSeleccionados,
           docenteId: this.docenteSeleccionadaId.toString(),
         };
-        console.log(eventData);
         this.aulaService.EditarAula(this.aula.id, eventData).subscribe(res => {
           if(res){
             this.showSuccessAlert = true;
@@ -129,7 +126,6 @@ export class EditarAulaPopupComponent {
         alumnosSeleccionados: this.alumnosSeleccionados,
         docenteId: this.docenteSeleccionadaId.toString(),
       };
-      console.log(eventData);
       this.aulaService.EditarAula(this.aula.id, eventData).subscribe(res => {
         if(res){
           this.showSuccessAlert = true;

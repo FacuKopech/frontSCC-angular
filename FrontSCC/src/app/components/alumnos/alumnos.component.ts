@@ -45,7 +45,6 @@ export class AlumnosComponent {
         this.alumnos.sort((a, b) => {
           return a.apellido.localeCompare(b.apellido, undefined, { sensitivity: 'base' });
         });
-        console.log(this.alumnos);
         if(this.alumnos.length == 0 || this.alumnos == null){
           this.message = "Esta aula aun no tiene alumnos"
         }

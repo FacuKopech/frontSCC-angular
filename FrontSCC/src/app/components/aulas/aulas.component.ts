@@ -23,7 +23,6 @@ export class AulasComponent {
       this.message = "";
       if(res){
         this.aulas = res;
-        console.log(this.aulas);
         if(this.aulas.length == 0){
           this.message = "Usted aun no tiene aulas asignadas en el sistema";
         }

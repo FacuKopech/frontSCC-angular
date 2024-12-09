@@ -40,7 +40,6 @@ export class ChartsComponent {
   public ngOnInit(){
 
     this.loggedInUser = this.loginService.getLoggedInUser();
-    console.log(this.loggedInUser);
     this.loggedInUser.roles.forEach((rol: any) => {
       if(rol.tipo == 'Directivo'){
         this.directivoLogueado = true;

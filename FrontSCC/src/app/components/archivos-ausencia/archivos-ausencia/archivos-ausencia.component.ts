@@ -36,7 +36,6 @@ export class ArchivosAusenciaComponent {
         if (blob.length === 0) {
           this.message = "No existen archivos adjuntos";
         }
-        console.log(this.message)
       });
     }
   }
@@ -56,7 +55,6 @@ export class ArchivosAusenciaComponent {
     link.download = fileName.replace(/Ausencia-\d+-/, "");
 
     document.body.appendChild(link);
-    console.log(link.href, link.download, url);
     link.click();
 
     document.body.removeChild(link);

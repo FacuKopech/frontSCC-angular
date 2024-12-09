@@ -40,7 +40,6 @@ export class NuevaAulaPopupComponent {
         this.aulaService.ObtenerDocentesDeInstitucion(this.institucion.id).subscribe(res =>{
           if(res){
             this.docentesDeInstitucion = res;
-            console.log(res);
           }
         });
       }
@@ -79,7 +78,6 @@ export class NuevaAulaPopupComponent {
         alumnosSeleccionados: this.alumnosSeleccionados,
         docenteId: this.docenteSeleccionadaId,
       };
-      console.log(eventData);
       this.aulaService.AgregarAula(eventData).subscribe(res => {
         if(res){
           this.showSuccessAlert = true;
@@ -127,12 +125,10 @@ export class NuevaAulaPopupComponent {
     if(arrayAnterior.length == this.alumnosSeleccionados.length){
       this.alumnosSeleccionados.push(alumno.id);
     }
-    console.log(this.alumnosSeleccionados)
   }
 
   public onDocenteSelected($event: Event){
     this.docenteSeleccionadaId =  ($event.target as HTMLInputElement).value;
-    console.log(this.docenteSeleccionadaId);
   }
 
   public closeSuccessAlert(){

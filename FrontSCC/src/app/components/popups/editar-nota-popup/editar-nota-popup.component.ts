@@ -51,7 +51,6 @@ export class EditarNotaPopupComponent {
 
   ngAfterViewInit() {
     this.aulaSelectRef.nativeElement.value = JSON.stringify(this.nota.aulasDestinadas[0].id);
-    console.log(this.aulaSelectRef.nativeElement.value);
   }
 
   public cancelarClicked() {
@@ -80,7 +79,6 @@ export class EditarNotaPopupComponent {
   public handleSingleAulaSeleccionada = (idAula: number) => {
     this.aulasSeleccionadas = [];
     this.aulasSeleccionadas.push(idAula);
-    console.log(this.aulasSeleccionadas);
   }
 
   public aulasCheck = (idAula: number) => {
@@ -90,8 +88,6 @@ export class EditarNotaPopupComponent {
     if(arrayAnterior.length == this.aulasSeleccionadas.length){
       this.aulasSeleccionadas.push(idAula);
     }
-    console.log(this.aulasSeleccionadas);
   }
-
 }
 

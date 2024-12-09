@@ -64,7 +64,6 @@ export class AulaService {
   }
 
   public AgregarAula(aula:{nombreAula: string, gradoAula:string, divisionAula: string, institucionId: string, alumnosSeleccionados: any[], docenteId: string} ): Observable<boolean> {
-    console.log(aula.alumnosSeleccionados);
     return this.http.post<boolean>(this.hostUrl + `/Aulas/AgregarAula/`, aula);
   }
 

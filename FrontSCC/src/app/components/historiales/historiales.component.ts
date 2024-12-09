@@ -47,7 +47,6 @@ export class HistorialesComponent{
       this.historialService.ObtenerHistorialesHijo(this.alumno.id).subscribe(res => {
       this.message = "";
       this.historiales = res;
-      console.log(this.historiales);
       if(this.historiales.length == 0){
         this.message = `${this.alumno.nombre} aun no tiene ningun historial registrado`;
       }
@@ -57,7 +56,6 @@ export class HistorialesComponent{
       this.historialService.ObtenerHistorialesHijo(this.hijo.id).subscribe(res => {
         this.message = "";
         this.historiales = res;
-        console.log(this.historiales);
         if(this.historiales.length == 0){
           this.message = `${this.hijo.nombre} aun no tiene ningun historial registrado`;
         }

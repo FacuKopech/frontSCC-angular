@@ -53,7 +53,6 @@ export class EditarAlumnoPopupComponent {
     const year = date.getUTCFullYear();
 
     const formattedDate = `${year}-${month}-${day}`;
-    console.log(this.alumno, this.nombreInputRef.nativeElement.value, this.apellidoInputRef.nativeElement.value, this.dniInputRef.nativeElement.value, this.fechaNacimientoInputRef.nativeElement.value);
     const nombreError =   document.querySelector(`span[id="nombreError"]`) as HTMLElement;
     const apellidoError =   document.querySelector(`span[id="apellidoError"]`) as HTMLElement;
     const DNIError =   document.querySelector(`span[id="DNIError"]`) as HTMLElement;

@@ -1,6 +1,6 @@
 <h1>Eventos de Institucion</h1>
 
-<app-evento-popup *ngIf="showEventoPopup" (cancelButtonClick)="showEventoPopup = false" (editarButtonClick)="editarEvento($event, 'idEvento')" (eliminarButtonClick)="confirmEliminarEvento($event)" (confirmarButtonClick)="confirmarAsistencia($event)" [evento]="evento"
+<app-evento-popup *ngIf="showEventoPopup" (cancelButtonClick)="showEventoPopup = false" (editarButtonClick)="editarEvento($event)" (eliminarButtonClick)="confirmEliminarEvento($event)" (confirmarButtonClick)="confirmarAsistencia($event)" [evento]="evento"
   [loggedInUser]="loggedInUser" [isDirectivo]="isDirectivo" [isDocente]="isDocente" [isPadre]="isPadre" [aulas]="aulas">
 </app-evento-popup>
 <div class="containerInst" *ngIf="isDirectivo">
@@ -105,8 +105,7 @@
       </svg>
     </button>
     <span>{{ viewDate | date: 'LLLL yyyy' }}</span>
-    <button title="Siguiente" class="paginationBtn" (click)="nextMonth()"
-      [disabled]="currentPage * itemsPerPage >= eventos.length">
+    <button title="Siguiente" class="paginationBtn" (click)="nextMonth()">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6 svgArrowIcon">
         <path stroke-linecap="round" stroke-linejoin="round"

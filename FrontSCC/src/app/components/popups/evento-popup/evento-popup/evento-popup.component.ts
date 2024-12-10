@@ -23,11 +23,11 @@ export class EventoPopupComponent {
   @Output()
   cancelButtonClick: EventEmitter<string> = new EventEmitter<string>();
   @Output()
-  editarButtonClick = new EventEmitter<{eventData:{ fecha: Date, localidad: string, motivo: string, descripcion: string, aula: string }, idEvento: number}>();
+  editarButtonClick = new EventEmitter<{eventData:{ fecha: Date, localidad: string, motivo: string, descripcion: string, aula: string, idEvento: string }}>();
   @Output()
-  eliminarButtonClick: EventEmitter<{idEvento: number}> = new EventEmitter<{idEvento: number}>();
+  eliminarButtonClick: EventEmitter<{idEvento: string}> = new EventEmitter<{idEvento: string}>();
   @Output()
-  confirmarButtonClick: EventEmitter<{idEvento: number, tipoAsistencia: string}> = new EventEmitter<{idEvento: number, tipoAsistencia: string}>();
+  confirmarButtonClick: EventEmitter<{idEvento: string, tipoAsistencia: string}> = new EventEmitter<{idEvento: string, tipoAsistencia: string}>();
 
   ngOnInit() {
     this.eventoDate = new Date(this.evento.meta.eventDetails.fecha);
@@ -67,14 +67,14 @@ export class EventoPopupComponent {
   }
 
   public editarEvento(eventData: { fecha: Date, localidad: string, motivo: string, descripcion: string, aula: string }) {
-    this.editarButtonClick.emit({eventData:{ fecha: eventData.fecha, localidad: eventData.localidad, motivo: eventData.motivo, descripcion: eventData.descripcion, aula: eventData.aula }, idEvento: this.evento.meta.eventDetails.id});
+    this.editarButtonClick.emit({eventData:{ fecha: eventData.fecha, localidad: eventData.localidad, motivo: eventData.motivo, descripcion: eventData.descripcion, aula: eventData.aula, idEvento:  this.evento.meta.eventDetails.id}});
   }
 
   public confirmEliminarEvento() {
     this.eliminarButtonClick.emit({idEvento: this.evento.meta.eventDetails.id});
   }
 
-  public confirmarAsistencia(idEvento: number, tipoAsistencia: string){
+  public confirmarAsistencia(idEvento: string, tipoAsistencia: string){
     this.confirmarButtonClick.emit({idEvento: idEvento, tipoAsistencia: tipoAsistencia});
   }
 

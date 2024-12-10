@@ -128,7 +128,6 @@ export class EventosComponent {
   public agregarEvento(eventData: { fecha: Date, localidad: string, motivo: string, descripcion: string, aula: string }) {
     const loggedInUser = this.loginService.getLoggedInUser();
     this.eventoService.AgregarEvento(eventData, loggedInUser.id).subscribe(res => {
-      console.log(res);
       if (res) {
         this.openSuccessAlert = true;
         this.esAgregarEvento = true;
@@ -163,8 +162,8 @@ export class EventosComponent {
       });
   }
 
-  public editarEvento({ eventData, idEvento }: { eventData: { fecha: Date, localidad: string, motivo: string, descripcion: string, aula: string }, idEvento: string }) {
-    this.eventoService.EditarEvento(idEvento, eventData).subscribe(res => {
+  public editarEvento({ eventData }: { eventData: { fecha: Date, localidad: string, motivo: string, descripcion: string, aula: string, idEvento: string }}) {
+    this.eventoService.EditarEvento(eventData.idEvento, eventData).subscribe(res => {
       if (res) {
         this.openSuccessAlert = true;
         this.esEditarEvento = true;

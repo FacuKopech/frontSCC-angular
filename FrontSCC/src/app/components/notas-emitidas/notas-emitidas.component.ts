@@ -25,6 +25,7 @@ export class NotasEmitidasComponent {
   showModificationSuccessAlert = false;
   showAdditionSuccessAlert = false;
   showErrorAlert = false;
+  esErrorBodyTooLarge = false;
   OpenpopupEditarNota = false;
   popuCuerpoNota = false;
   popuLeerNota = false;
@@ -53,20 +54,16 @@ export class NotasEmitidasComponent {
 
   public ngOnInit(): void {
     let loggedInUser = this.loginService.getLoggedInUser();
-    console.log(loggedInUser);
     this.gruposUsuario = loggedInUser.roles;
     this.notaService.ObtenerNotasEmitidas().subscribe(res => {
       if (res) {
         this.notas = res;
         this.applyFilter();
-        console.log(this.notas);
         if (this.notas.length == 0) {
           this.message = "No existen notas emitidas!";
         }
       }
     });
-    console.log(this.gruposUsuario);
-
   }
 
   applyFilter() {
@@ -157,7 +154,6 @@ export class NotasEmitidasComponent {
   public handleEditClick(eventData: { titulo: string, cuerpo: string, aulasDestinadas: any[] }) {
     const nota = { titulo: eventData.titulo, cuerpo: eventData.cuerpo, aulasDestinadas: eventData.aulasDestinadas }
     this.notaService.ModificarNotaEmitida(this.notaAModificar.id, nota).subscribe(res => {
-      console.log(res);
       if (res) {
         this.reloadPage("success", "edition");
       }
@@ -187,14 +183,19 @@ export class NotasEmitidasComponent {
           },
             (error: HttpErrorResponse) => {
               if (error.status == 404 || error.status == 400) {
-                console.log(error);
                 this.reloadPage("error", "");
               }
             });
         }
-      });
+      },
+        (error: HttpErrorResponse) => {
+          if (error.error.includes("Request body too large")) {
+            this.reloadPage("Request body too large error", "");
+          } else if (error.status == 404 || error.status == 400) {
+            this.reloadPage("error", "");
+          }
+        });
     } else {
-      console.log(eventData);
       this.notaService.EnviarNuevaNota(eventData).subscribe(res => {
         if (res) {
           this.reloadPage("success", "addition");
@@ -212,7 +213,6 @@ export class NotasEmitidasComponent {
   }
 
   public verArchivosNota(nota: any) {
-    console.log(nota);
     this.router.navigate(['/archivos_ausencia'], { state: { data: nota } });
   }
 
@@ -227,6 +227,11 @@ export class NotasEmitidasComponent {
       }
     }
     else {
+      if(resultado == "Request body too large error"){
+        this.esErrorBodyTooLarge = true;
+      }else{
+        this.esErrorBodyTooLarge = false
+      }
       this.showErrorAlert = true;
     }
   }

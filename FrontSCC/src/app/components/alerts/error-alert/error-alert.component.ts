@@ -30,7 +30,8 @@ export class ErrorAlertComponent {
   @Input() esErrorDatoClima: any;
   @Input() esAgregarEvento: any;
   @Input() esErrorEventoYaExistenteEnAula: any;
-
+  @Input() esErrorBodyTooLarge: any;
+  
   public cerrarClicked() {
     this.cerrarButtonClick.emit("cerrar_button_clicked");
   }

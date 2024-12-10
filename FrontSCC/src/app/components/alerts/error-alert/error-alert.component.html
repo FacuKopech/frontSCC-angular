@@ -34,6 +34,7 @@
       <p *ngIf="esAgregarEvento">No fue posible agregar el nuevo evento</p>
       <p *ngIf="esErrorEventoYaExistenteEnAula">El Evento ya existe para el Aula seleccionada o el Aula seleccionada ya
         tiene un Evento agendado para esa misma fecha</p>
+        <p *ngIf="esErrorBodyTooLarge">El/Los archivo/s que desea adjuntar es/son demasiado grande/s. El tamaño maximo permitido es 10MB</p>
     </div>
     <div class="divCloseBtn">
       <button (click)="cerrarClicked()" class="closeButton">

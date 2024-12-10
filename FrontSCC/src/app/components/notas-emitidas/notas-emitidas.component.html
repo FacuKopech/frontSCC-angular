@@ -52,7 +52,8 @@ showModificationSuccessAlert || showAdditionSuccessAlert || showDeletionSuccessA
 
 <!--ALERT ERROR-->
 <app-error-alert class="alert" (cerrarButtonClick)="closeErrorAlert()"
-*ngIf="showErrorAlert">
+*ngIf="showErrorAlert"
+[esErrorBodyTooLarge]="esErrorBodyTooLarge">
 </app-error-alert>
 
 <div class="filterInputsContainer" *ngIf="message === ''">

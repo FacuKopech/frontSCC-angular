@@ -263,6 +263,14 @@ select {
   transform: translateY(-7px);
 }
 
+.buttonDecisionAusencia:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 .buttonDecisionAusencia:active {
   transform: translateY(-1px);
 }

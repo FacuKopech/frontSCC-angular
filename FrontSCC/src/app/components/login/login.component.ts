@@ -37,12 +37,17 @@ export class LoginComponent {
     this.authSubscription.unsubscribe();
   }
   ngOnInit() {
+    let logoutMessage = this.loginService.getLogoutMessage();
+    if(logoutMessage.includes("Cerramos tu sesión debido a inactividad por más de 5 minutos")){
+      this.message = logoutMessage;
+    } 
     this.authSubscription = this.socialAuthService.authState.subscribe((user) => {
       if (user) {
-        console.log('calling login backend')
         this.apiService.Login(user.email, '', '').subscribe(res => {
           if (res) {
-            this.loginService.setLoggedInUser(res);
+            const { token, user } = res;
+            localStorage.setItem('token', token);
+            this.loginService.setLoggedInUser(user);
             this.message = "";
             this.router.navigate(['/home']);
             this.appComponent.afterSuccessfulLogIn();
@@ -51,7 +56,6 @@ export class LoginComponent {
       }
     },
       (error: HttpErrorResponse) => {
-        console.log(error)
         if (error.status == 400) {
           this.message = "Usuario o clave incorrectos";
           this.clave = '';
@@ -86,14 +90,16 @@ export class LoginComponent {
       const encryptedPassword = this.encryptionService.encryptPassword(this.clave);
       this.apiService.Login('', this.username, encryptedPassword).subscribe(res => {
         if (res) {
-          this.loginService.setLoggedInUser(res);
+          const { token, user } = res;
+          localStorage.setItem('token', token);
+          console.log(user)
+          this.loginService.setLoggedInUser(user);
           this.message = "";
           this.router.navigate(['/home']);
           this.appComponent.afterSuccessfulLogIn();
         }
       },
         (error: HttpErrorResponse) => {
-          console.log(error)
           if (error.status == 400) {
             this.message = "Usuario o clave incorrectos";
             this.clave = '';

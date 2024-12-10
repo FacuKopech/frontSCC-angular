@@ -33,6 +33,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
     "force": "^0.0.3",
+    "jwt-decode": "^4.0.0",
     "mdb-ui-kit": "^6.1.0",
     "ng2-charts": "^5.0.3",
     "node": "^18.15.0",

@@ -27,10 +27,13 @@
 
 <div class="form-container wrapper container fadeInDown">
   <p class="title login">Iniciar Sesión</p>
-  <p *ngIf="message != ''" class="errorMessage">
+  <p *ngIf="message != ''" [ngClass]="{
+    'errorMessage': !message.includes('Cerramos tu sesión debido a inactividad por más de 5 minutos'),
+    'warningMessage': message.includes('Cerramos tu sesión debido a inactividad por más de 5 minutos')
+  }">
     {{message}}
   </p>
-  <form class="form" (ngSubmit)="LogIn()">
+  <form class="form">
     <div class="inputBox">
       <input type="text" required="required" id="login" autocomplete="username" name="username" [(ngModel)]="username">
       <span>Usuario</span>

@@ -44,6 +44,11 @@ h2 {
   font-weight: 900;
 }
 
+.warningMessage {
+  color: yellow;
+  font-weight: 900;
+}
+
 /* STRUCTURE */
 .wrapper {
   display: flex;
@@ -522,7 +527,7 @@ input[type=text]:placeholder {
   margin: 0;
 }
 
-.hrBottom{
+.hrBottom {
   width: 82%;
   display: flex;
   flex-direction: column;
@@ -575,11 +580,11 @@ input[type=text]:placeholder {
   align-items: center;
 }
 
-.divSeparator span{
+.divSeparator span {
   font-family: Chalk, sans-serif;
 }
 
-.hrSeparator{
+.hrSeparator {
   width: 43%;
 }
 

@@ -21,8 +21,21 @@ export class LoginService {
     return this.loggedInUser;
   }
 
-  logoutUser(): void {
+  logoutUser(): boolean {
     this.loggedInUser = null;
     localStorage.removeItem('loggedInUser');
+
+    return false;
+  }
+
+  setLogoutMessage(): void {
+    const message = "Cerramos tu sesión debido a inactividad por más de 5 minutos";
+    localStorage.setItem('logoutMessage', message);
+  }
+
+  getLogoutMessage(): string{
+    const message = localStorage.getItem('logoutMessage');
+    localStorage.removeItem('logoutMessage');
+    return message || "";
   }
 }

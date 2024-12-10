@@ -6,6 +6,7 @@ import { LoginService } from './services/login_services/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EncryptionService } from './services/encryption_services/encryption.service';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { IdleTimeoutService } from './services/timeout/idle-timeout.service';
 
 
 @Component({
@@ -32,9 +33,9 @@ export class AppComponent implements OnInit {
   apellidoUserLogueado = '';
   loggedInUser: any;
 
-  constructor(private apiService: ApiService, private router: Router, private authService: SharedAuthService, private loginService: LoginService, private encryptionService: EncryptionService, private socialAuthService: SocialAuthService,) {
+  constructor(private apiService: ApiService, private router: Router, private authService: SharedAuthService, private loginService: LoginService, 
+    private encryptionService: EncryptionService, private socialAuthService: SocialAuthService, private idleTimeoutService: IdleTimeoutService) {
     if (window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
-      console.log(window.location.pathname);
       if (window.location.pathname === "/" && this.loggedIn) {
         this.router.navigate(['/home']);
       } else if (window.location.pathname === "/" && !this.loggedIn) {
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.idleTimeoutService.startTracking();
     this.loggedInUser = this.loginService.getLoggedInUser();
     this.showEventosButton = this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Padre')
       ? true : this.loggedInUser.roles.some((rol: any) => rol.tipo == 'Directivo') ? true :
@@ -142,10 +144,11 @@ export class AppComponent implements OnInit {
   public Logout(): void {
     this.apiService.Logout().subscribe(res => {
       if (res) {
-        this.loginService.logoutUser();
-        this.loggedIn = false;
-        this.isUnauthorized = false;
+        var result = this.loginService.logoutUser();
+        this.loggedIn = result;
+        this.isUnauthorized = result;
         localStorage.removeItem('flag');
+        localStorage.removeItem('token');
         this.router.navigate(['']);
       }
     });

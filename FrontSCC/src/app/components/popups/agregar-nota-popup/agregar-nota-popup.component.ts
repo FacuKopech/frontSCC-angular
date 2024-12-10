@@ -189,7 +189,6 @@ export class AgregarNotaPopupComponent {
   public onFilesSelected(event: Event) {
     const fileError =   document.querySelector(`span[id="fileError"]`) as HTMLElement;
     const files = (event.target as HTMLInputElement).files;
-    console.log(files);
     if(files !== null){
       if (files.length === 0) {
         return;
@@ -220,7 +219,6 @@ export class AgregarNotaPopupComponent {
         this.fileToUpload = <File>files[0];
         this.files.push(this.fileToUpload);
         this.formData.append(this.fileToUpload.name, this.fileToUpload, this.fileToUpload.name);
-        console.log(this.formData.get(this.fileToUpload.name), files);
       }
     }
   }
@@ -446,14 +444,12 @@ export class AgregarNotaPopupComponent {
   public ObtenerAulasDestinatariosParaNuevaNota = (tipoDeNota: string, isPadre: boolean, esPadreYAlgoMas: boolean, enviaNotaComoPadre: boolean) => {
     this.notaService.ObtenerAulasParaNuevaNota(tipoDeNota, isPadre, esPadreYAlgoMas, enviaNotaComoPadre).subscribe(res => {
       this.aulas = res;
-      console.log(this.aulas);
     });
   }
 
   public ObtenerHijosPadreParaNuevaNota = () => {
     this.notaService.ObtenerHijosPadreParaNuevaNota().subscribe(res => {
       if(res != null){
-        console.log('alumnos', res);
         this.alumnos = res;
       }
     });
@@ -481,7 +477,6 @@ export class AgregarNotaPopupComponent {
     if(this.tipoElegido == 'P'){
       this.notaService.ObtenerAlumnosDeAulaParaNuevaNota(aulaId).subscribe(res => {
         this.alumnos = res;
-        console.log(this.alumnos);
       });
       var divAlumnoReferido = this.alumnoRef.nativeElement;
       divAlumnoReferido.style.display = 'flex';
@@ -547,7 +542,6 @@ export class AgregarNotaPopupComponent {
 
   public guardarAlumnoSeleccionado = ($event: Event) => {
     const idAlumno =  ($event.target as HTMLInputElement).value;
-    console.log(idAlumno);
     this.idAlumno = idAlumno;
     this.divTituloAndCuerpoElementRef.nativeElement.style.display = "flex";
     this.divFilesElementRef.nativeElement.style.display = "flex";
@@ -560,7 +554,6 @@ export class AgregarNotaPopupComponent {
     if(arrayAnterior.length == this.selectedDestinatarios.length){
       this.selectedDestinatarios.push(destinatario.id);
     }
-    console.log(this.selectedDestinatarios);
     if(this.selectedDestinatarios.length === 0){
       this.divTituloAndCuerpoElementRef.nativeElement.style.display = "none";
       this.divFilesElementRef.nativeElement.style.display = "none";
@@ -578,6 +571,5 @@ export class AgregarNotaPopupComponent {
     if(arrayAnterior.length == this.aulasDestinadas.length){
       this.aulasDestinadas.push(idAula);
     }
-    console.log(this.aulasDestinadas);
   }
 }

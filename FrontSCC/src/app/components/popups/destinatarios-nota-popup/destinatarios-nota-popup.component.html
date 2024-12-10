@@ -58,7 +58,7 @@
             </svg>
             {{persona.apellido}}, {{persona.nombre}}
             <span *ngIf="persona.id == evento.meta.eventDetails.aulaDestinada.docente.id">(Docente)</span>
-            <span *ngIf="persona.id !== evento.meta.eventDetails.aulaDestinada.docente.id && persona.id !== evento.creador.id">(Padre)</span>
+            <span *ngIf="persona.id !== evento.meta.eventDetails.aulaDestinada.docente.id && persona.id !== evento.meta.eventDetails.creador.id">(Padre)</span>
           </label>
         </ng-container>
       </div>
